@@ -103,8 +103,9 @@
       .work-item.tall{grid-row:span 1;aspect-ratio:9/16}
       .about-grid{grid-template-columns:1fr;gap:2rem}
       .tools-categories{grid-template-columns:1fr}
-      .tool-cat{border-right:none;border-bottom:0.5px solid var(--border);padding:1.5rem 0}
-      .tool-cat:last-child{border-bottom:none}
+      .tool-cat{border-right:none;border-bottom:0.5px solid var(--border);padding:1.5rem 0;margin:0}
+      .tool-cat:nth-child(2){padding-left:0}
+      .tool-cat:last-child{border-bottom:none;padding-left:0;padding-right:0}
       .contact-grid{grid-template-columns:1fr}
       footer{flex-direction:column;gap:0.5rem;text-align:center}
     }
