@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nacho Santana — Video Editor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --bg:#0a0a09;--surface:#111110;--border:#2a2a27;
+      --text:#f0ede6;--muted:#7a7770;--accent:#c8b89a;
+      --font-serif:'DM Serif Display',serif;--font-mono:'DM Mono',monospace;
+    }
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-size:13px;font-weight:300;line-height:1.7}
+
+    nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 2.5rem;border-bottom:0.5px solid var(--border);position:sticky;top:0;background:var(--bg);z-index:100}
+    .logo{font-family:var(--font-serif);font-size:17px;color:var(--text);text-decoration:none}
+    .nav-links{display:flex;gap:2rem}
+    .nav-links a{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;transition:color 0.2s}
+    .nav-links a:hover{color:var(--text)}
+    .nav-socials{display:flex;gap:1.2rem}
+    .nav-socials a{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:0.08em;transition:color 0.2s}
+    .nav-socials a:hover{color:var(--accent)}
+
+    .hero{padding:5rem 2.5rem 4rem;border-bottom:0.5px solid var(--border)}
+    .hero-label{font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem}
+    .hero-title{font-family:var(--font-serif);font-size:clamp(48px,8vw,88px);line-height:1;color:var(--text)}
+    .hero-title em{font-style:italic;color:var(--accent)}
+    .hero-sub{font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-top:1.5rem;max-width:440px;line-height:1.8}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+    .hero-title{animation:fadeUp 0.8s ease both}
+    .hero-sub{animation:fadeUp 0.8s ease 0.2s both}
+
+    .section{padding:3.5rem 2.5rem;border-bottom:0.5px solid var(--border);scroll-margin-top:60px}
+
+    .section-label{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:2.5rem}
+
+    /* WORK GRID */
+    .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);margin:0 -2.5rem}
+    .work-item{position:relative;overflow:hidden;display:block;cursor:pointer;text-decoration:none;background:var(--bg);aspect-ratio:16/9}
+    .work-item.tall{aspect-ratio:9/16;grid-row:span 2}
+    .work-item.wide{grid-column:span 2;aspect-ratio:16/9}
+    .work-thumb{position:absolute;inset:0;background:var(--surface)}
+    .work-thumb img{width:100%;height:100%;object-fit:cover;opacity:0.8;transition:opacity 0.4s,transform 0.4s;display:block}
+    .work-item:hover .work-thumb img{opacity:1;transform:scale(1.03)}
+    .work-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.8) 0%,transparent 55%);opacity:0;transition:opacity 0.3s}
+    .work-item:hover .work-overlay{opacity:1}
+    .work-info{position:absolute;bottom:0;left:0;right:0;padding:1.2rem;opacity:0;transform:translateY(6px);transition:all 0.3s}
+    .work-item:hover .work-info{opacity:1;transform:translateY(0)}
+    .work-title{font-size:13px;color:var(--text);letter-spacing:0.06em;display:block;margin-bottom:2px}
+    .work-role{font-size:10px;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase}
+    .play-icon{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:48px;height:48px;border:1.5px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.3s;backdrop-filter:blur(4px)}
+    .play-icon:after{content:'';border-left:16px solid white;border-top:9px solid transparent;border-bottom:9px solid transparent;margin-left:4px}
+    .work-item:hover .play-icon{opacity:1}
+
+    /* ABOUT */
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+    .about-text p{color:#b8b4ad;font-size:13px;line-height:1.9;margin-bottom:1rem}
+    .client-list{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1.5rem}
+    .client{font-size:11px;letter-spacing:0.08em;padding:4px 10px;border:0.5px solid var(--border);color:var(--muted)}
+    .software-heading{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem}
+    .software-item{padding:1rem 0;border-bottom:0.5px solid var(--border)}
+    .software-item:first-of-type{border-top:0.5px solid var(--border)}
+    .sw-name{font-family:var(--font-serif);font-size:20px;color:var(--text);display:block;margin-bottom:0.25rem}
+    .sw-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:0.5rem}
+    .sw-tag{font-size:10px;letter-spacing:0.08em;padding:3px 8px;border:0.5px solid var(--border);color:var(--muted)}
+
+    /* TOOLS */
+    .tools-categories{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border-top:0.5px solid var(--border)}
+    .tool-cat{padding:2rem 2rem 2rem 0;border-right:0.5px solid var(--border)}
+    .tool-cat:nth-child(2){padding-left:2rem}
+    .tool-cat:last-child{border-right:none;padding-right:0;padding-left:2rem}
+    .tool-cat-label{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem;display:block}
+    .tool-name{font-size:12px;color:#b8b4ad;padding:0.45rem 0;border-bottom:0.5px solid var(--border);display:block;letter-spacing:0.04em;transition:color 0.2s}
+    .tool-name:last-child{border-bottom:none}
+    .tool-name:hover{color:var(--accent)}
+
+    /* CONTACT */
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
+    .contact-block p{color:var(--muted);font-size:12px;line-height:1.9;margin-bottom:1.5rem}
+    .contact-link{font-family:var(--font-serif);font-size:22px;color:var(--accent);text-decoration:none;display:block;margin-bottom:0.5rem;transition:opacity 0.2s}
+    .contact-link:hover{opacity:0.7}
+    .social-item{display:flex;align-items:center;text-decoration:none;color:var(--muted);font-size:12px;letter-spacing:0.06em;padding:0.8rem 0;border-bottom:0.5px solid var(--border);transition:color 0.2s;font-weight:300}
+    .social-item:hover{color:var(--text)}
+    .social-name{width:100px;flex-shrink:0;font-weight:300}
+    .social-sub{color:var(--muted);font-size:12px;font-weight:300;flex:1}
+    .social-arrow{margin-left:auto;transition:transform 0.2s}
+    .social-item:hover .social-arrow{transform:translateX(4px)}
+
+    footer{padding:2rem 2.5rem;display:flex;justify-content:space-between;align-items:center}
+    .footer-copy{font-size:11px;color:var(--muted);letter-spacing:0.06em}
+
+    @media(max-width:768px){
+      nav{flex-direction:column;gap:1rem;padding:1rem 1.5rem}
+      .nav-links{gap:1rem}
+      .hero{padding:3rem 1.5rem 2.5rem}
+      .section{padding:2.5rem 1.5rem}
+      .work-grid{grid-template-columns:1fr 1fr;margin:0 -1.5rem}
+      .work-item.tall{grid-row:span 1;aspect-ratio:9/16}
+      .about-grid{grid-template-columns:1fr;gap:2rem}
+      .tools-categories{grid-template-columns:1fr}
+      .tool-cat{border-right:none;border-bottom:0.5px solid var(--border);padding:1.5rem 0}
+      .tool-cat:last-child{border-bottom:none}
+      .contact-grid{grid-template-columns:1fr}
+      footer{flex-direction:column;gap:0.5rem;text-align:center}
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="#">Nacho Santana</a>
+  <div class="nav-links">
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a href="#tools">Tools</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="nav-socials">
+    <a href="https://vimeo.com/nachosantanas" target="_blank" rel="noopener">Vimeo</a>
+    <a href="https://www.linkedin.com/in/nachosantanas/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://www.instagram.com/nachosantanas/" target="_blank" rel="noopener">Instagram</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-label">Video Editor & Assistant Editor — London</div>
+  <div class="hero-title">Nacho<br><em>Santana</em></div>
+  <div class="hero-sub">Commercial · Government · Short-form · High-end branded campaigns.<br>Avid Media Composer · Adobe Premiere · DaVinci Resolve</div>
+</div>
+
+<div class="section" id="work">
+  <div class="section-label">Selected work</div>
+  <div class="work-grid">
+
+    <!-- Showreel — Vimeo 896225384 -->
+    <a href="https://vimeo.com/896225384" target="_blank" rel="noopener" class="work-item wide">
+      <div class="work-thumb">
+        <img src="https://vumbnail.com/896225384.jpg" alt="Showreel">
+      </div>
+      <div class="play-icon"></div>
+      <div class="work-overlay"></div>
+      <div class="work-info"><span class="work-title">Showreel</span><span class="work-role">Edit</span></div>
+    </a>
+
+    <!-- Rising Ballers — Vimeo 1137716602 -->
+    <a href="https://vimeo.com/1137716602" target="_blank" rel="noopener" class="work-item">
+      <div class="work-thumb">
+        <img src="https://vumbnail.com/1137716602.jpg" alt="Rising Ballers">
+      </div>
+      <div class="play-icon"></div>
+      <div class="work-overlay"></div>
+      <div class="work-info"><span class="work-title">Rising Ballers</span><span class="work-role">Edit</span></div>
+    </a>
+
+    <!-- EPC Summit — LinkedIn -->
+    <a href="https://www.linkedin.com/posts/foreign-commonwealth-and-development-office_european-political-community-meeting-2024-activity-7219979710145925120-zEmI/" target="_blank" rel="noopener" class="work-item">
+      <div class="work-thumb" style="background:#1a1a18;display:flex;align-items:center;justify-content:center">
+        <span style="font-family:var(--font-serif);font-size:22px;color:var(--accent);text-align:center;padding:1rem;line-height:1.3">EPC Summit<br><span style="font-size:13px;color:var(--muted);font-family:var(--font-mono)">2024</span></span>
+      </div>
+      <div class="work-overlay"></div>
+      <div class="work-info"><span class="work-title">EPC Summit</span><span class="work-role">Shoot & Edit</span></div>
+    </a>
+
+    <!-- ISIS Survivors — Instagram -->
+    <a href="https://www.instagram.com/reel/DDPNwnBtw69/" target="_blank" rel="noopener" class="work-item tall">
+      <div class="work-thumb" style="background:#141414;display:flex;align-items:center;justify-content:center">
+        <span style="font-family:var(--font-serif);font-size:20px;color:var(--accent);text-align:center;padding:1rem;line-height:1.4">ISIS<br>Survivors</span>
+      </div>
+      <div class="work-overlay"></div>
+      <div class="work-info"><span class="work-title">ISIS Survivors</span><span class="work-role">Shoot & Edit</span></div>
+    </a>
+
+    <!-- UK Med Aid — Instagram -->
+    <a href="https://www.instagram.com/p/C-2-lwUo1w5/" target="_blank" rel="noopener" class="work-item">
+      <div class="work-thumb" style="background:#161614;display:flex;align-items:center;justify-content:center">
+        <span style="font-family:var(--font-serif);font-size:20px;color:var(--accent);text-align:center;padding:1rem;line-height:1.4">UK Med Aid</span>
+      </div>
+      <div class="work-overlay"></div>
+      <div class="work-info"><span class="work-title">UK Med Aid</span><span class="work-role">Shoot & Edit</span></div>
+    </a>
+
+    <!-- Dyson Bicester — Instagram -->
+    <a href="https://www.instagram.com/p/DWPoAhJjKH6/" target="_blank" rel="noopener" class="work-item">
+      <div class="work-thumb" style="background:#131312;display:flex;align-items:center;justify-content:center">
+        <span style="font-family:var(--font-serif);font-size:20px;color:var(--accent);text-align:center;padding:1rem;line-height:1.4">Dyson<br><span style="font-size:14px;font-family:var(--font-mono);color:var(--muted)">Bicester</span></span>
+      </div>
+      <div class="work-overlay"></div>
+      <div class="work-info"><span class="work-title">Dyson Bicester</span><span class="work-role">Shoot & Edit</span></div>
+    </a>
+
+    <!-- Dyson Amino11 — Instagram -->
+    <a href="https://www.instagram.com/p/DUSga0FDSDR/" target="_blank" rel="noopener" class="work-item">
+      <div class="work-thumb" style="background:#121211;display:flex;align-items:center;justify-content:center">
+        <span style="font-family:var(--font-serif);font-size:20px;color:var(--accent);text-align:center;padding:1rem;line-height:1.4">Dyson<br><span style="font-size:14px;font-family:var(--font-mono);color:var(--muted)">Amino11</span></span>
+      </div>
+      <div class="work-overlay"></div>
+      <div class="work-info"><span class="work-title">Dyson Amino11</span><span class="work-role">Shoot & Edit</span></div>
+    </a>
+
+    <!-- Anaïs Gallagher x Dyson — Instagram -->
+    <a href="https://www.instagram.com/reel/DRy3HVQjZRF/" target="_blank" rel="noopener" class="work-item wide">
+      <div class="work-thumb" style="background:#151513;display:flex;align-items:center;justify-content:center">
+        <span style="font-family:var(--font-serif);font-size:22px;color:var(--accent);text-align:center;padding:1rem;line-height:1.3">Anaïs Gallagher<br><span style="font-size:14px;font-family:var(--font-mono);color:var(--muted)">× Dyson</span></span>
+      </div>
+      <div class="work-overlay"></div>
+      <div class="work-info"><span class="work-title">Anaïs Gallagher × Dyson</span><span class="work-role">Shoot & Edit</span></div>
+    </a>
+
+  </div>
+</div>
+
+<div class="section" id="about">
+  <div class="section-label">About</div>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>Video Editor and Assistant Editor working across commercial, government and short-form productions, as well as high-end branded campaigns.</p>
+      <p>Experienced in building conform-ready timelines and delivering clean EDLs, AAFs, and XMLs for grade and finish. Calm, solutions-driven approach to fast-paced edits, with strong technical knowledge across multiple platforms and operating systems.</p>
+      <p>Now focused on moving further into scripted and long-form work — telling more grounded, character-driven stories.</p>
+      <div class="client-list">
+        <span class="client">Nike</span>
+        <span class="client">PlayStation</span>
+        <span class="client">Pandora</span>
+        <span class="client">Adidas</span>
+        <span class="client">Monzo</span>
+        <span class="client">Swatch</span>
+        <span class="client">Wagamama</span>
+        <span class="client">Cash App</span>
+        <span class="client">Quorn</span>
+        <span class="client">Dyson</span>
+      </div>
+    </div>
+    <div>
+      <div class="software-heading">Primary software</div>
+      <div class="software-item">
+        <span class="sw-name">Avid Media Composer</span>
+        <div class="sw-tags"><span class="sw-tag">Long-form</span><span class="sw-tag">Commercial</span><span class="sw-tag">Conform</span><span class="sw-tag">AAF</span></div>
+      </div>
+      <div class="software-item">
+        <span class="sw-name">Adobe Premiere</span>
+        <div class="sw-tags"><span class="sw-tag">Commercial</span><span class="sw-tag">Social-first</span><span class="sw-tag">Branded</span></div>
+      </div>
+      <div class="software-item">
+        <span class="sw-name">DaVinci Resolve Studio</span>
+        <div class="sw-tags"><span class="sw-tag">Grade & finish</span><span class="sw-tag">Conform</span><span class="sw-tag">QC</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="tools" style="scroll-margin-top:80px">
+  <div class="section-label">Tools & ecosystem</div>
+  <div class="tools-categories">
+    <div class="tool-cat">
+      <span class="tool-cat-label">Editorial & creative</span>
+      <span class="tool-name">Shutter Encoder</span>
+      <span class="tool-name">Shutter Transcriber</span>
+      <span class="tool-name">ScopeBox</span>
+      <span class="tool-name">XtoCC</span>
+      <span class="tool-name">SendToX</span>
+      <span class="tool-name">Arctic</span>
+      <span class="tool-name">Compressor</span>
+      <span class="tool-name">Keyboard Maestro</span>
+      <span class="tool-name">Name Wrangler</span>
+      <span class="tool-name">MediaInfo</span>
+      <span class="tool-name">QTChange</span>
+      <span class="tool-name">BBEdit</span>
+      <span class="tool-name">VisualDiffer</span>
+      <span class="tool-name">MDVX</span>
+      <span class="tool-name">EasyFind</span>
+      <span class="tool-name">OffShoot Pro</span>
+      <span class="tool-name">FoolCat Pro</span>
+      <span class="tool-name">EditReady</span>
+      <span class="tool-name">Wave Agent</span>
+      <span class="tool-name">Post Haste</span>
+      <span class="tool-name">Tuxera Disk Manager</span>
+      <span class="tool-name">Kyno</span>
+      <span class="tool-name">FileSync</span>
+      <span class="tool-name">Blackmagic Speed Test</span>
+    </div>
+    <div class="tool-cat">
+      <span class="tool-cat-label">Post-production infrastructure</span>
+      <span class="tool-name">PostLab Pro</span>
+      <span class="tool-name">Avid ScriptSync</span>
+      <span class="tool-name">Avid NEXIS</span>
+      <span class="tool-name">Avid Symphony</span>
+      <span class="tool-name">Avid Interplay</span>
+      <span class="tool-name">EditShare</span>
+      <span class="tool-name">MASV</span>
+      <span class="tool-name">Media Shuttle</span>
+      <span class="tool-name">WireDrive</span>
+      <span class="tool-name">ClearCast</span>
+      <span class="tool-name">Frame.io</span>
+      <span class="tool-name">Media Silo</span>
+    </div>
+    <div class="tool-cat">
+      <span class="tool-cat-label">Plugins & extensions</span>
+      <span class="tool-name">Excalibur</span>
+      <span class="tool-name">Grave Robber</span>
+      <span class="tool-name">Dagger</span>
+      <span class="tool-name">Watchtower</span>
+      <span class="tool-name">CommandPost</span>
+      <span class="tool-name">iXML Renamer</span>
+      <span class="tool-name">ALE Metadata Toolkit</span>
+      <span class="tool-name">BLend-X</span>
+      <span class="tool-name">Batch Rename</span>
+      <span class="tool-name">RSMB</span>
+      <span class="tool-name">Captioneer</span>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="contact">
+  <div class="section-label">Get in touch</div>
+  <div class="contact-grid">
+    <div class="contact-block">
+      <p>Available for freelance and contract work across commercial, branded and long-form productions.</p>
+      <a class="contact-link" href="mailto:Info4nacho@gmail.com">Info4nacho@gmail.com</a>
+      <p style="font-size:11px;color:var(--muted)">CV available upon request.</p>
+    </div>
+    <div>
+      <a class="social-item" href="https://vimeo.com/nachosantanas" target="_blank" rel="noopener">
+        <span class="social-name">Vimeo</span><span class="social-sub">vimeo.com/nachosantanas</span><span class="social-arrow">→</span>
+      </a>
+      <a class="social-item" href="https://www.linkedin.com/in/nachosantanas/" target="_blank" rel="noopener">
+        <span class="social-name">LinkedIn</span><span class="social-sub">in/nachosantanas</span><span class="social-arrow">→</span>
+      </a>
+      <a class="social-item" href="https://www.instagram.com/nachosantanas/" target="_blank" rel="noopener">
+        <span class="social-name">Instagram</span><span class="social-sub">@nachosantanas</span><span class="social-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-copy">© 2026 Nacho Santana</div>
+  <div class="footer-copy">London, UK</div>
+</footer>
+
+</body>
+</html>
