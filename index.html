@@ -134,7 +134,7 @@
       .nav-links{gap:1.5rem;justify-content:center}
       .hero{padding:2.5rem 1.5rem 3rem}
       .scroll-hint{display:none}
-      .section{padding:2.5rem 1.5rem;scroll-margin-top:120px}
+      .section{padding:2.5rem 1.5rem;scroll-margin-top:0}
       .timecodeHero-wrap{font-size:10px}
       .timecodeHero-wrap .hero-label{font-size:9px;letter-spacing:0.12em}
       .timecode-hero{font-size:9px}
@@ -425,13 +425,13 @@
   }, {passive: true});
 
   navLinks.forEach(link => {
-    link.addEventListener('click', () => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
       const id = link.getAttribute('href').replace('#','');
       const target = document.getElementById(id);
       if (!target) return;
       const navH = document.querySelector('nav').getBoundingClientRect().height;
-      const gap = window.innerWidth <= 768 ? 12 : 16;
-      const top = target.getBoundingClientRect().top + window.scrollY - navH - gap;
+      const top = target.getBoundingClientRect().top + window.scrollY - navH - 8;
       window.scrollTo({top, behavior:'smooth'});
       target.classList.remove('flash');
       void target.offsetWidth;
