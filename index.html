@@ -47,6 +47,7 @@
     @media(max-width:768px){
       .hero{padding:3rem 1.5rem 4rem}
       .scroll-hint{display:none}
+      .edit-status{display:none}
     }
     .scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;animation:hintFade 2s ease 1.5s both;opacity:0}
     .scroll-hint span{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted)}
@@ -166,12 +167,15 @@
 </nav>
 
 <div class="hero">
-  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0">
+  <div style="display:flex;justify-content:space-between;align-items:center">
     <div class="hero-label" style="margin-bottom:0">Video Editor & Assistant Editor — London</div>
     <span class="timecode-hero" id="timecodeHero">00:00:00:00</span>
   </div>
   <div class="hero-title">Nacho<br><em>Santana</em></div>
-  <div class="hero-sub">Commercial · Branded Content · Long-form<br>Avid · Premiere · Resolve</div>
+  <div style="display:flex;justify-content:space-between;align-items:flex-end">
+    <div class="hero-sub">Commercial · Branded Content · Long-form<br>Avid · Premiere · Resolve</div>
+    <span id="editStatus" style="font-family:var(--font-mono);font-size:10px;color:var(--accent);letter-spacing:0.14em;text-transform:uppercase;opacity:0.75;text-align:right;flex-shrink:0;padding-left:2rem"></span>
+  </div>
   <div class="scroll-hint">
     <span>scroll</span>
     <div class="scroll-arrow"></div>
@@ -445,18 +449,62 @@
   }
 
   function loop() {
-    const burstTime = Math.random() * 100 + 60;
+    const burstTime = Math.random() * 150 + 200;
     const pauseTime = 4000;
     runBurst(burstTime, () => setTimeout(loop, pauseTime));
   }
 
-  const initVal = randomTC();
-  setVal(initVal);
+  const initVal = '00:00:00:00';
+  tc.textContent = initVal;
+  tcHero.textContent = initVal;
+  if (tcMobile) tcMobile.textContent = initVal;
   loop();
 </script>
 
 <script>
-  const dot = document.getElementById('cursorDot');
+  function randomDate() {
+    const d = String(Math.floor(Math.random() * 28) + 1).padStart(2, '0');
+    const m = String(Math.floor(Math.random() * 12) + 1).padStart(2, '0');
+    const y = String(Math.floor(Math.random() * 5) + 22).padStart(2, '0');
+    return d + m + y;
+  }
+
+  const namingTemplates = [
+    'RUSHES_DAY_01','RUSHES_DAY_02','RUSHES_CAM_A','RUSHES_CAM_B',
+    'AAF','EDL','MIX_STEMS','DX_STEMS','MX_STEMS','SFX',
+    'MUSIC_TEMP','MUSIC_FINAL',
+    'EXPORT_MASTER','EXPORT_CLIENT','EXPORT_SOCIAL',
+    'OFFLINE_CUT','ASSEMBLY_CUT','FINE_CUT','LOCKED_CUT','ONLINE_CONFORM',
+    'VFX_COMP','CLEAN_PLATE','WIP'
+  ];
+
+  const allTerms = [randomDate() + '_WIP', ...namingTemplates.filter(t => t !== 'WIP').map(t => randomDate() + '_' + t).sort(() => Math.random() - 0.5)];
+  let statusIndex = 0;
+
+  const statusEl = document.getElementById('editStatus');
+
+  function typeOut(text, onDone) {
+    statusEl.textContent = '';
+    let i = 0;
+    const interval = setInterval(() => {
+      statusEl.textContent = text.slice(0, ++i);
+      if (i >= text.length) {
+        clearInterval(interval);
+        onDone();
+      }
+    }, 55);
+  }
+
+  function runStatus() {
+    const term = allTerms[statusIndex % allTerms.length];
+    statusIndex++;
+    typeOut(term, () => {
+      setTimeout(runStatus, Math.random() * 3000 + 3000);
+    });
+  }
+
+  setTimeout(runStatus, 1800);
+</script>
   const ring = document.getElementById('cursorRing');
   let mouseX = 0, mouseY = 0;
   let ringX = 0, ringY = 0;
@@ -514,7 +562,7 @@
     });
   });
 
-  setTimeout(() => hideCursor(false), 5000);
+  setTimeout(() => hideCursor(false), 3000);
 </script>
 </body>
 </html>
