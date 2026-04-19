@@ -119,9 +119,7 @@
     .social-arrow{margin-left:auto;transition:transform 0.2s}
     .social-item:hover .social-arrow{transform:translateX(4px)}
 
-    .back-top{position:fixed;bottom:2rem;right:2rem;width:36px;height:36px;border:0.5px solid var(--border);border-radius:50%;background:var(--bg);color:var(--muted);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transition:opacity 0.3s,color 0.2s,border-color 0.2s;z-index:90;font-size:14px}
-    .back-top.visible{opacity:1;pointer-events:auto}
-    .back-top:hover{color:var(--accent);border-color:var(--accent)}
+
     footer{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 2.5rem;border-top:0.5px solid var(--border)}
     .footer-copy{font-size:11px;color:var(--muted);letter-spacing:0.06em}
     .timecode{font-family:var(--font-mono);font-size:11px;color:var(--muted);letter-spacing:0.12em;opacity:0.5}
@@ -391,14 +389,9 @@
   <div class="footer-copy">London, UK</div>
 </footer>
 
-<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
-<script>
-  const backTop = document.getElementById('backTop');
-  window.addEventListener('scroll', () => {
-    backTop.classList.toggle('visible', window.scrollY > 300);
-  }, {passive:true});
-</script>
+
+
 <script>
   const sections = ['about','tools','contact'].map(id => document.getElementById(id));
   const navLinks = document.querySelectorAll('.nav-links a');
