@@ -44,7 +44,7 @@
     .hero-title{animation:fadeUp 0.8s ease both}
     .hero-sub{animation:fadeUp 0.8s ease 0.2s both}
 
-    .section{padding:3.5rem 2.5rem;border-bottom:0.5px solid var(--border);scroll-margin-top:60px}
+    .section{padding:3.5rem 2.5rem;border-bottom:0.5px solid var(--border);scroll-margin-top:60px;overflow:hidden}
     @media(max-width:768px){
       .section{scroll-margin-top:120px}
     }
@@ -54,7 +54,7 @@
     .section-label.highlight{animation:labelPop 1.8s ease forwards}
 
     /* WORK GRID */
-    .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);border-radius:4px;overflow:hidden}
+    .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);border-radius:4px;overflow:hidden;width:100%}
     .work-item{position:relative;overflow:hidden;display:block;cursor:pointer;text-decoration:none;background:var(--bg);aspect-ratio:16/9}
     .work-item.tall{aspect-ratio:9/16;grid-row:span 2}
     .work-item.wide{grid-column:span 2;aspect-ratio:16/9}
