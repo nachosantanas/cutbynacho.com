@@ -16,32 +16,201 @@
     html{scroll-behavior:smooth}
     ::selection{background:#f5d06e;color:#0a0a09}
     
-    /* Cursor Styles */
     .cursor-dot{width:4px;height:4px;background:var(--accent);border-radius:50%;position:fixed;transform:translate(-50%,-50%);pointer-events:none;z-index:9999;transition:opacity 0.3s;opacity:0}
     .cursor-ring{width:24px;height:24px;border:0.5px solid rgba(200,184,154,0.3);border-radius:50%;position:fixed;transform:translate(-50%,-50%);pointer-events:none;z-index:9998;transition:width 0.2s,height 0.2s,border-color 0.2s,opacity 0.3s;opacity:0}
     .cursor-ring.hover{width:36px;height:36px;border-color:rgba(200,184,154,0.9);border-width:1px}
 
-    @media(hover:none),(pointer:coarse){
-      html{cursor:auto}
-      .cursor-dot,.cursor-ring{display:none}
-    }
+    @media(hover:none),(pointer:coarse){ .cursor-dot, .cursor-ring { display:none; } }
 
-    body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-size:13px;font-weight:300;line-height:1.7}
+    body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-size:13px;font-weight:300;line-height:1.7;min-height:100vh;}
 
-    /* Navigation */
     nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 2.5rem;border-bottom:0.5px solid var(--border);position:sticky;top:0;background:var(--bg);z-index:100}
     .logo{font-family:var(--font-serif);font-size:17px;color:var(--text);text-decoration:none}
     .nav-links{display:flex;gap:2rem}
     .nav-links a{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;transition:color 0.3s}
-    .nav-links a:hover{color:var(--text)}
     .nav-links a.active{color:var(--text)}
     .nav-socials{display:flex;gap:1.2rem}
     .nav-socials a{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:0.08em;transition:color 0.2s}
-    .nav-socials a:hover{color:var(--accent)}
 
-    /* Hero */
-    .hero{padding:5rem 2.5rem 6rem;border-bottom:0.5px solid var(--border);position:relative}
+    .hero{padding:5rem 2.5rem 6rem;border-bottom:0.5px solid var(--border)}
     .hero-label{font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem}
     .hero-title{font-family:var(--font-serif);font-size:clamp(48px,8vw,88px);line-height:1;color:var(--text)}
     .hero-title em{font-style:italic;color:var(--accent)}
-    .hero-sub{font-size:12px;letter-spacing:0.1em;text-transform
+    .hero-sub{font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-top:1.5rem;max-width:440px}
+
+    .section{padding:3.5rem 2.5rem;border-bottom:0.5px solid var(--border);scroll-margin-top:80px;transition:background 0.5s ease;}
+    .section-label{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:2.5rem;transition:color 0.5s ease;}
+
+    /* Animations */
+    .flash { background: #161614 !important; }
+    .highlight { color: var(--accent) !important; }
+
+    .showreel-container {
+      width: 100%; 
+      aspect-ratio: 16/9; 
+      background: var(--surface); 
+      border-radius: 4px; 
+      overflow: hidden; 
+      position: relative; 
+      border: 0.5px solid var(--border);
+    }
+
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem}
+    .client-list{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1.5rem}
+    .client{font-size:11px;padding:4px 10px;border:0.5px solid var(--border);color:var(--muted)}
+
+    .tools-categories{display:grid;grid-template-columns:1fr 1fr 1fr;border-top:0.5px solid var(--border)}
+    .tool-cat{padding:2rem 1rem 2rem 0;border-right:0.5px solid var(--border)}
+    .tool-cat:last-child{border-right:none}
+
+    .contact-link{font-family:var(--font-serif);font-size:22px;color:var(--accent);text-decoration:none}
+    .social-item{display:flex;justify-content:space-between;text-decoration:none;color:var(--muted);padding:0.8rem 0;border-bottom:0.5px solid var(--border)}
+
+    footer{display:flex;justify-content:space-between;padding:1.5rem 2.5rem;border-top:0.5px solid var(--border)}
+
+    @media(max-width:768px){
+      .about-grid, .tools-categories{grid-template-columns:1fr}
+      .nav-socials, #editStatus { display:none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="#">Nacho Santana</a>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#tools">Tools</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="nav-socials">
+    <a href="https://vimeo.com/nachosantanas" target="_blank">Vimeo</a>
+    <a href="https://www.linkedin.com/in/nachosantanas/" target="_blank">LinkedIn</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div style="display:flex;justify-content:space-between">
+    <div class="hero-label">Video Editor — London</div>
+    <span id="timecodeHero" style="font-family:var(--font-mono);color:var(--accent)">00:00:00:00</span>
+  </div>
+  <div class="hero-title">Nacho<br><em>Santana</em></div>
+  <div style="display:flex;justify-content:space-between;align-items:flex-end">
+    <div class="hero-sub">Commercial · Branded · Long-form</div>
+    <span id="editStatus" style="color:var(--accent);font-size:10px"></span>
+  </div>
+</div>
+
+<div class="section" id="work">
+  <div class="section-label">Showreel</div>
+  <div class="showreel-container">
+    <iframe src="https://player.vimeo.com/video/896225384?h=0&title=0&byline=0&portrait=0" 
+            style="position:absolute;top:0;left:0;width:100%;height:100%;" 
+            frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+  </div>
+</div>
+
+<div class="section" id="about">
+  <div class="section-label">About</div>
+  <div class="about-grid">
+    <div>
+      <p style="color:#b8b4ad">Video Editor and Assistant Editor based in London. Experienced in commercial and high-end branded campaigns.</p>
+      <div class="client-list">
+        <span class="client">Nike</span><span class="client">Adidas</span><span class="client">PlayStation</span>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:10px;text-transform:uppercase;color:var(--muted);margin-bottom:1rem">Software</div>
+      <div style="font-family:var(--font-serif);font-size:20px">Avid Media Composer / Premiere / Resolve</div>
+    </div>
+  </div>
+</div>
+
+<div class="section" id="tools">
+  <div class="section-label">Tools</div>
+  <div class="tools-categories">
+    <div class="tool-cat"><span class="tool-name">Shutter Encoder</span><br><span class="tool-name">ScopeBox</span></div>
+    <div class="tool-cat"><span class="tool-name">PostLab</span><br><span class="tool-name">Frame.io</span></div>
+    <div class="tool-cat"><span class="tool-name">Excalibur</span><br><span class="tool-name">Watchtower</span></div>
+  </div>
+</div>
+
+<div class="section" id="contact">
+  <div class="section-label">Contact</div>
+  <div class="about-grid">
+    <a class="contact-link" href="mailto:Info4nacho@gmail.com">Info4nacho@gmail.com</a>
+    <div>
+      <a class="social-item" href="https://vimeo.com/nachosantanas" target="_blank">Vimeo <span>→</span></a>
+      <a class="social-item" href="https://www.linkedin.com/in/nachosantanas/" target="_blank">LinkedIn <span>→</span></a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div style="font-size:11px;color:var(--muted)">© 2026 Nacho Santana</div>
+  <div id="timecode" style="font-family:var(--font-mono);color:var(--muted);opacity:0.5">00:00:00:00</div>
+</footer>
+
+<script>
+  // 1. Navigation Flash & Highlight
+  const navLinks = document.querySelectorAll('.nav-links a');
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const id = link.getAttribute('href').replace('#','');
+      const target = document.getElementById(id);
+      window.scrollTo({ top: target.offsetTop - 70, behavior: 'smooth' });
+      
+      // Flash effect
+      target.classList.add('flash');
+      target.querySelector('.section-label').classList.add('highlight');
+      setTimeout(() => {
+        target.classList.remove('flash');
+        target.querySelector('.section-label').classList.remove('highlight');
+      }, 1000);
+    });
+  });
+
+  // 2. Timecode Logic
+  function pad(n) { return String(n).padStart(2,'0'); }
+  function setTC() {
+    const val = pad(Math.floor(Math.random()*24))+':'+pad(Math.floor(Math.random()*60))+':'+pad(Math.floor(Math.random()*60))+':'+pad(Math.floor(Math.random()*25));
+    document.getElementById('timecode').textContent = val;
+    document.getElementById('timecodeHero').textContent = val;
+  }
+  setInterval(setTC, 100);
+
+  // 3. Status Typewriter
+  const terms = ['RUSHES_DAY_01','OFFLINE_CUT','LOCKED_CUT_V04','WIP_MASTER'];
+  let termIdx = 0;
+  function typeStatus() {
+    const el = document.getElementById('editStatus');
+    let str = terms[termIdx % terms.length];
+    let i = 0;
+    el.textContent = '';
+    const interval = setInterval(() => {
+      el.textContent += str[i];
+      i++;
+      if(i >= str.length) {
+        clearInterval(interval);
+        setTimeout(() => { termIdx++; typeStatus(); }, 3000);
+      }
+    }, 100);
+  }
+  typeStatus();
+
+  // 4. Cursor
+  const dot = document.getElementById('cursorDot');
+  const ring = document.getElementById('cursorRing');
+  document.addEventListener('mousemove', e => {
+    dot.style.left = e.clientX + 'px'; dot.style.top = e.clientY + 'px';
+    dot.style.opacity = '1'; ring.style.opacity = '1';
+    ring.style.left = e.clientX + 'px'; ring.style.top = e.clientY + 'px';
+  });
+</script>
+
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+</body>
+</html>
