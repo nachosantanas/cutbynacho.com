@@ -13,12 +13,11 @@
       --text:#f0ede6;--muted:#7a7770;--accent:#c8b89a;
       --font-serif:'DM Serif Display',serif;--font-mono:'DM Mono',monospace;
     }
-    html{scroll-behavior:smooth;cursor:none}
+    html{scroll-behavior:smooth}
     ::selection{background:#f5d06e;color:#0a0a09}
-    .cursor-dot{width:4px;height:4px;background:var(--accent);border-radius:50%;position:fixed;transform:translate(-50%,-50%);pointer-events:none;z-index:9999;transition:opacity 1s,transform 0.1s;opacity:1}
-    .cursor-ring{width:24px;height:24px;border:0.5px solid rgba(200,184,154,0.3);border-radius:50%;position:fixed;transform:translate(-50%,-50%);pointer-events:none;z-index:9998;transition:width 0.2s,height 0.2s,border-color 0.2s,opacity 1s;opacity:1}
+    .cursor-dot{width:4px;height:4px;background:var(--accent);border-radius:50%;position:fixed;transform:translate(-50%,-50%);pointer-events:none;z-index:9999;transition:opacity 0.3s;opacity:0}
+    .cursor-ring{width:24px;height:24px;border:0.5px solid rgba(200,184,154,0.3);border-radius:50%;position:fixed;transform:translate(-50%,-50%);pointer-events:none;z-index:9998;transition:width 0.2s,height 0.2s,border-color 0.2s,opacity 0.3s;opacity:0}
     .cursor-ring.hover{width:36px;height:36px;border-color:rgba(200,184,154,0.9);border-width:1px}
-    .cursor-dot.hidden,.cursor-ring.hidden{opacity:0}
     @media(hover:none),(pointer:coarse){
       html{cursor:auto}
       .cursor-dot,.cursor-ring{display:none}
@@ -124,14 +123,17 @@
     .mobile-socials a:hover{color:var(--accent)}
 
     @media(max-width:768px){
-      nav{flex-direction:column;gap:1rem;padding:1rem 1.5rem}
-      .nav-links{gap:1rem}
-      .hero{padding:3rem 1.5rem 2.5rem}
+      nav{flex-direction:column;gap:0.8rem;padding:1rem 1.5rem;text-align:center}
+      .nav-links{gap:1.5rem;justify-content:center}
+      .hero{padding:2.5rem 1.5rem 3rem}
       .scroll-hint{display:none}
       .section{padding:2.5rem 1.5rem;scroll-margin-top:120px}
       .work-grid{grid-template-columns:1fr 1fr}
-      .work-item.tall{grid-row:span 1;aspect-ratio:9/16}
+      .work-item{aspect-ratio:4/3}
+      .work-title{font-size:11px}
+      .work-role{font-size:9px}
       .about-grid{grid-template-columns:1fr;gap:2rem}
+      .hero-sub{max-width:100%}
       .tools-categories{grid-template-columns:1fr}
       .tool-cat{border-right:none;border-bottom:0.5px solid var(--border);padding:1.5rem 0;margin:0}
       .tool-cat:nth-child(2){padding-left:0}
@@ -140,6 +142,8 @@
       footer{flex-direction:column;gap:0.8rem;text-align:center;align-items:center}
       .nav-socials{display:none}
       .mobile-socials{display:flex}
+      #editStatus{display:none}
+      .timecodeHero-wrap{display:none}
     }
   </style>
 </head>
@@ -161,9 +165,15 @@
 </nav>
 
 <div class="hero">
-  <div class="hero-label">Video Editor & Assistant Editor — London</div>
+  <div class="timecodeHero-wrap" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem">
+    <div class="hero-label" style="margin-bottom:0">Video Editor & Assistant Editor — London</div>
+    <span class="timecode-hero" id="timecodeHero">00:00:00:00</span>
+  </div>
   <div class="hero-title">Nacho<br><em>Santana</em></div>
-  <div class="hero-sub">Commercial · Branded Content · Long-form<br>Avid · Premiere · Resolve</div>
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:1.5rem">
+    <div class="hero-sub" style="margin-top:0">Commercial · Branded Content · Long-form<br>Avid · Premiere · Resolve</div>
+    <span id="editStatus" style="font-family:var(--font-mono);font-size:10px;color:var(--accent);letter-spacing:0.14em;text-transform:uppercase;opacity:0.75;text-align:right;flex-shrink:0;padding-left:2rem"></span>
+  </div>
   <div class="scroll-hint">
     <span>scroll</span>
     <div class="scroll-arrow"></div>
@@ -392,115 +402,94 @@
     });
   });
 </script>
+
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
 <script>
   const tc = document.getElementById('timecode');
-  const tcNav = document.getElementById('timecodeNav');
+  const tcHero = document.getElementById('timecodeHero');
   const tcMobile = document.getElementById('timecodeFooterMobile');
   const isMobile = window.matchMedia('(hover:none),(pointer:coarse)').matches;
-  if (isMobile) { tcMobile.style.display = 'block'; }
-
-  function pad(n) { return String(n).padStart(2, '0'); }
-
+  if (isMobile && tcMobile) tcMobile.style.display = 'block';
+  function pad(n) { return String(n).padStart(2,'0'); }
   function randomTC() {
-    const hh = Math.floor(Math.random() * 24);
-    const mm = Math.floor(Math.random() * 60);
-    const ss = Math.floor(Math.random() * 60);
-    const ff = Math.floor(Math.random() * 25);
-    return pad(hh) + ':' + pad(mm) + ':' + pad(ss) + ':' + pad(ff);
+    return pad(Math.floor(Math.random()*24))+':'+pad(Math.floor(Math.random()*60))+':'+pad(Math.floor(Math.random()*60))+':'+pad(Math.floor(Math.random()*25));
   }
-
+  function setVal(val) {
+    if(tc) tc.textContent = val;
+    if(tcHero) tcHero.textContent = val;
+    if(tcMobile) tcMobile.textContent = val;
+  }
   function runBurst(duration, onDone) {
     const start = Date.now();
     function tick() {
-      const val = randomTC();
-      tc.textContent = val;
-      tcNav.textContent = val;
-      tcMobile.textContent = val;
-      if (Date.now() - start < duration) {
-        setTimeout(tick, 8);
-      } else {
+      setVal(randomTC());
+      if (Date.now() - start < duration) { setTimeout(tick, 8); }
+      else {
+        if(tcHero){tcHero.classList.remove('flash');void tcHero.offsetWidth;tcHero.classList.add('flash');}
+        if(tc){tc.classList.remove('flash');void tc.offsetWidth;tc.classList.add('flash');}
         onDone();
       }
     }
     tick();
   }
-
-  function loop() {
-    const burstTime = Math.random() * 100 + 60;
-    const pauseTime = 3000;
-    runBurst(burstTime, () => setTimeout(loop, pauseTime));
-  }
-
-  const initVal = randomTC();
-  tc.textContent = initVal;
-  tcNav.textContent = initVal;
-  tcMobile.textContent = initVal;
+  function loop() { runBurst(Math.random()*150+200, () => setTimeout(loop, 4000)); }
+  setVal('00:00:00:00');
   loop();
+</script>
+
+<script>
+  function randomDate() {
+    return String(Math.floor(Math.random()*28)+1).padStart(2,'0')+String(Math.floor(Math.random()*12)+1).padStart(2,'0')+String(Math.floor(Math.random()*5)+22).padStart(2,'0');
+  }
+  const namingTemplates = [
+    'RUSHES_DAY_01','RUSHES_DAY_02','RUSHES_CAM_A','RUSHES_CAM_B',
+    'AAF','EDL','MIX_STEMS','DX_STEMS','MX_STEMS','SFX',
+    'MUSIC_TEMP','MUSIC_FINAL','EXPORT_MASTER','EXPORT_CLIENT','EXPORT_SOCIAL',
+    'OFFLINE_CUT','ASSEMBLY_CUT','FINE_CUT','LOCKED_CUT','ONLINE_CONFORM',
+    'VFX_COMP','CLEAN_PLATE','WIP'
+  ];
+  const allTerms = [randomDate()+'_WIP', ...namingTemplates.filter(t=>t!=='WIP').map(t=>randomDate()+'_'+t).sort(()=>Math.random()-0.5)];
+  let statusIndex = 0;
+  const statusEl = document.getElementById('editStatus');
+  function typeOut(text, onDone) {
+    if(!statusEl) return;
+    statusEl.textContent = '';
+    let i = 0;
+    const interval = setInterval(() => {
+      statusEl.textContent = text.slice(0,++i);
+      if(i>=text.length){clearInterval(interval);onDone();}
+    }, 55);
+  }
+  function runStatus() {
+    typeOut(allTerms[statusIndex++%allTerms.length], () => setTimeout(runStatus, Math.random()*3000+3000));
+  }
+  setTimeout(runStatus, 1800);
 </script>
 
 <script>
   const dot = document.getElementById('cursorDot');
   const ring = document.getElementById('cursorRing');
-  let mouseX = 0, mouseY = 0;
-  let ringX = 0, ringY = 0;
-  let hidden = false;
-
-  function showCursor() {
-    hidden = false;
-    dot.style.display = 'block';
-    ring.style.display = 'block';
-    dot.style.transition = 'opacity 0.1s';
-    ring.style.transition = 'width 0.2s,height 0.2s,border-color 0.2s,opacity 0.1s';
-    dot.style.opacity = '1';
-    ring.style.opacity = '1';
-  }
-
-  function hideCursor(fast) {
-    hidden = true;
-    const dur = fast ? '0.4s' : '1s';
-    dot.style.transition = 'opacity ' + dur;
-    ring.style.transition = 'width 0.2s,height 0.2s,border-color 0.2s,opacity ' + dur;
-    dot.style.opacity = '0';
-    ring.style.opacity = '0';
-    setTimeout(() => {
-      if (hidden) {
-        document.documentElement.style.cursor = 'auto';
-      }
-    }, fast ? 400 : 1000);
-  }
-
+  let mouseX=0, mouseY=0, ringX=0, ringY=0;
   document.addEventListener('mousemove', e => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-    dot.style.left = mouseX + 'px';
-    dot.style.top = mouseY + 'px';
+    mouseX=e.clientX; mouseY=e.clientY;
+    dot.style.left=mouseX+'px'; dot.style.top=mouseY+'px';
   });
-
   function animateRing() {
-    ringX += (mouseX - ringX) * 0.1;
-    ringY += (mouseY - ringY) * 0.1;
-    ring.style.left = ringX + 'px';
-    ring.style.top = ringY + 'px';
+    ringX+=(mouseX-ringX)*0.1; ringY+=(mouseY-ringY)*0.1;
+    ring.style.left=ringX+'px'; ring.style.top=ringY+'px';
     requestAnimationFrame(animateRing);
   }
   animateRing();
-
-  document.querySelectorAll('a, button').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      document.documentElement.style.cursor = 'none';
-      showCursor();
-      ring.classList.add('hover');
-    });
-    el.addEventListener('mouseleave', () => {
-      ring.classList.remove('hover');
-      hideCursor(true);
-    });
+  function showAnim(){dot.style.opacity='1';ring.style.opacity='1';}
+  function hideAnim(){dot.style.opacity='0';ring.style.opacity='0';}
+  document.querySelectorAll('a,button').forEach(el => {
+    el.addEventListener('mouseenter',()=>{showAnim();ring.classList.add('hover');});
+    el.addEventListener('mouseleave',()=>{ring.classList.remove('hover');hideAnim();});
   });
-
-  setTimeout(() => hideCursor(false), 5000);
+  showAnim();
+  setTimeout(()=>hideAnim(), 3000);
 </script>
 </body>
 </html>
