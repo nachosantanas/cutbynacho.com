@@ -60,6 +60,8 @@
 
     .section{padding:3.5rem 2.5rem;border-bottom:0.5px solid var(--border);scroll-margin-top:60px;overflow:hidden}
     .section{padding:3.5rem 2.5rem;border-bottom:0.5px solid var(--border);scroll-margin-top:60px;overflow:hidden;transition:background 0.4s}
+    #work{padding-top:3.5rem}
+    #work .work-grid{margin-top:1.5rem}
     .section.flash{animation:sectionFlash 1s ease forwards}
     @keyframes sectionFlash{0%{background:var(--bg)}30%{background:#1a1a18}100%{background:var(--bg)}}
       .section{scroll-margin-top:120px}
@@ -69,10 +71,30 @@
     @keyframes labelPop{0%{color:var(--muted)}30%{color:var(--accent)}100%{color:var(--muted)}}
     .section-label.highlight{animation:labelPop 1.8s ease forwards}
 
-    /* SHOWREEL */
-    .work-grid{display:flex;justify-content:center;width:100%}
-    .showreel-wrap{width:100%;max-width:900px;aspect-ratio:16/9;border-radius:4px;overflow:hidden;background:#000}
+    /* WORK GRID */
+    .work-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;background:var(--border);border-radius:4px;overflow:hidden;width:100%}
+    .showreel-wrap{aspect-ratio:16/9;overflow:hidden;background:#000}
     .showreel-wrap iframe{width:100%;height:100%;border:none;display:block}
+    .featured-item{position:relative;overflow:hidden;display:block;cursor:pointer;text-decoration:none;background:var(--surface);aspect-ratio:16/9}
+    .featured-item img{width:100%;height:100%;object-fit:cover;opacity:0.75;transition:opacity 0.4s,transform 0.4s;display:block}
+    .featured-item:hover img{opacity:1;transform:scale(1.03)}
+    .featured-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.75) 0%,transparent 55%);opacity:0;transition:opacity 0.3s}
+    .featured-item:hover .featured-overlay{opacity:1}
+    .featured-info{position:absolute;bottom:0;left:0;right:0;padding:1rem;opacity:0;transform:translateY(6px);transition:all 0.3s}
+    .featured-item:hover .featured-info{opacity:1;transform:translateY(0)}
+    .featured-title{font-size:12px;color:var(--text);letter-spacing:0.06em;display:block;margin-bottom:2px}
+    .featured-role{font-size:10px;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;display:block}
+    .featured-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.75rem;padding:1.5rem;text-align:center}
+    .ig-icon{width:28px;height:28px;opacity:0.4}
+    .featured-name{font-family:var(--font-serif);font-size:16px;color:var(--accent);line-height:1.3}
+    .featured-tag{font-size:10px;color:var(--muted);letter-spacing:0.12em;text-transform:uppercase}
+    .ext-arrow{position:absolute;top:1rem;right:1rem;font-size:11px;color:var(--muted);opacity:0;transition:opacity 0.3s}
+    .featured-item:hover .ext-arrow{opacity:1}
+    @media(max-width:768px){
+      .work-grid{grid-template-columns:1fr}
+      .showreel-wrap{aspect-ratio:16/9}
+      .featured-item{aspect-ratio:16/9}
+    }
 
     /* ABOUT */
     .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
@@ -125,7 +147,7 @@
       .timecodeHero-wrap{font-size:10px}
       .timecodeHero-wrap .hero-label{font-size:9px;letter-spacing:0.12em}
       .timecode-hero{font-size:9px}
-      .showreel-wrap{max-width:100%}
+      
       .about-grid{grid-template-columns:1fr;gap:2rem}
       .hero-sub{max-width:100%}
       .tools-categories{grid-template-columns:1fr}
@@ -175,9 +197,42 @@
 <div class="section" id="work">
   <div class="section-label">Selected work</div>
   <div class="work-grid">
+
+    <!-- LEFT: Instagram reel 1 -->
+    <a class="featured-item" href="https://www.instagram.com/thequarryedit/reel/DLsGES0ihJF/" target="_blank" rel="noopener">
+      <div class="featured-placeholder">
+        <svg class="ig-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="color:var(--accent)"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        <span class="featured-name">The Quarry Edit</span>
+        <span class="featured-tag">Reel 01</span>
+      </div>
+      <div class="featured-overlay"></div>
+      <div class="featured-info">
+        <span class="featured-title">The Quarry Edit</span>
+        <span class="featured-role">View on Instagram →</span>
+      </div>
+      <span class="ext-arrow">↗</span>
+    </a>
+
+    <!-- CENTRE: Vimeo showreel -->
     <div class="showreel-wrap">
       <iframe src="https://player.vimeo.com/video/896225384?autoplay=0&title=0&byline=0&portrait=0&color=c8b89a" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
     </div>
+
+    <!-- RIGHT: Instagram reel 2 -->
+    <a class="featured-item" href="https://www.instagram.com/thequarryedit/reel/DJuKY8Di2D_/" target="_blank" rel="noopener">
+      <div class="featured-placeholder">
+        <svg class="ig-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" style="color:var(--accent)"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        <span class="featured-name">The Quarry Edit</span>
+        <span class="featured-tag">Reel 02</span>
+      </div>
+      <div class="featured-overlay"></div>
+      <div class="featured-info">
+        <span class="featured-title">The Quarry Edit</span>
+        <span class="featured-role">View on Instagram →</span>
+      </div>
+      <span class="ext-arrow">↗</span>
+    </a>
+
   </div>
 </div>
 
