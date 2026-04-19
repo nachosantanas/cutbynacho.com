@@ -17,9 +17,9 @@
     ::selection{background:#f5d06e;color:#0a0a09}
     .cursor-dot{width:4px;height:4px;background:var(--accent);border-radius:50%;position:fixed;transform:translate(-50%,-50%);pointer-events:none;z-index:9999;transition:opacity 1s,transform 0.1s;opacity:1}
     .cursor-ring{width:24px;height:24px;border:0.5px solid rgba(200,184,154,0.3);border-radius:50%;position:fixed;transform:translate(-50%,-50%);pointer-events:none;z-index:9998;transition:width 0.2s,height 0.2s,border-color 0.2s,opacity 1s;opacity:1}
-    .cursor-ring.hover{width:36px;height:36px;border-color:rgba(200,184,154,0.6)}
+    .cursor-ring.hover{width:36px;height:36px;border-color:rgba(200,184,154,0.9);border-width:1px}
     .cursor-dot.hidden,.cursor-ring.hidden{opacity:0}
-    @media(hover:none),(pointer:coarse){ 
+    @media(hover:none),(pointer:coarse){
       html{cursor:auto}
       .cursor-dot,.cursor-ring{display:none}
       ::selection{background:#f5d06e;color:#0a0a09}
@@ -172,14 +172,14 @@
         <span style="font-family:var(--font-serif);font-size:18px;color:var(--accent);text-align:center;padding:1rem;line-height:1.4">Cole Palmer</span>
       </div>
       <div class="work-overlay"></div>
-      <div class="work-info"><span class="work-title">Cole Palmer</span><span class="work-role">Assistant Editor</span></div>
+      <div class="work-info"><span class="work-title">Cole Palmer — Nike</span><span class="work-role">Assistant Editor</span></div>
     </a>
     <a href="#" onclick="return false" class="work-item">
       <div class="work-thumb" style="background:#141412;display:flex;align-items:center;justify-content:center">
-        <span style="font-family:var(--font-serif);font-size:18px;color:var(--accent);text-align:center;padding:1rem;line-height:1.4">Nike Vini JR</span>
+        <span style="font-family:var(--font-serif);font-size:18px;color:var(--accent);text-align:center;padding:1rem;line-height:1.4">Nicki Vini JR</span>
       </div>
       <div class="work-overlay"></div>
-      <div class="work-info"><span class="work-title">Nicki Vini JR</span><span class="work-role">Assistant Editor</span></div>
+      <div class="work-info"><span class="work-title">Nicki Vini JR — Nike</span><span class="work-role">Assistant Editor</span></div>
     </a>
     <a href="#" onclick="return false" class="work-item">
       <div class="work-thumb" style="background:#121210;display:flex;align-items:center;justify-content:center">
@@ -195,14 +195,14 @@
         <span style="font-family:var(--font-serif);font-size:18px;color:var(--accent);text-align:center;padding:1rem;line-height:1.4">Barry Keoghan</span>
       </div>
       <div class="work-overlay"></div>
-      <div class="work-info"><span class="work-title">Barry Keoghan</span><span class="work-role">Edit</span></div>
+      <div class="work-info"><span class="work-title">Barry Keoghan &amp; David Lammy</span><span class="work-role">Edit</span></div>
     </a>
     <a href="#" onclick="return false" class="work-item">
       <div class="work-thumb" style="background:#141412;display:flex;align-items:center;justify-content:center">
-        <span style="font-family:var(--font-serif);font-size:18px;color:var(--accent);text-align:center;padding:1rem;line-height:1.4">Prayer for Ukraine</span>
+        <span style="font-family:var(--font-serif);font-size:18px;color:var(--accent);text-align:center;padding:1rem;line-height:1.4">Choir Sings Prayer</span>
       </div>
       <div class="work-overlay"></div>
-      <div class="work-info"><span class="work-title">Prayer for Ukraine</span><span class="work-role">Edit</span></div>
+      <div class="work-info"><span class="work-title">Choir Sings Prayer for Ukraine</span><span class="work-role">Shoot &amp; Edit</span></div>
     </a>
     <a href="#" onclick="return false" class="work-item">
       <div class="work-thumb" style="background:#121210;display:flex;align-items:center;justify-content:center">
@@ -218,14 +218,14 @@
         <span style="font-family:var(--font-serif);font-size:18px;color:var(--accent);text-align:center;padding:1rem;line-height:1.4">School Poo</span>
       </div>
       <div class="work-overlay"></div>
-      <div class="work-info"><span class="work-title">School Poo</span><span class="work-role">Assistant Editor</span></div>
+      <div class="work-info"><span class="work-title">School Poo — Andrex</span><span class="work-role">Assistant Editor</span></div>
     </a>
     <a href="#" onclick="return false" class="work-item">
       <div class="work-thumb" style="background:#131311;display:flex;align-items:center;justify-content:center">
         <span style="font-family:var(--font-serif);font-size:18px;color:var(--accent);text-align:center;padding:1rem;line-height:1.4">Alexia Putellas</span>
       </div>
       <div class="work-overlay"></div>
-      <div class="work-info"><span class="work-title">Alexia Putellas</span><span class="work-role">Assistant Editor</span></div>
+      <div class="work-info"><span class="work-title">Alexia Putellas — Nike</span><span class="work-role">Assistant Editor</span></div>
     </a>
     <a href="#" onclick="return false" class="work-item">
       <div class="work-thumb" style="background:#141412;display:flex;align-items:center;justify-content:center">
@@ -342,7 +342,7 @@
   <div class="contact-grid">
     <div class="contact-block">
       <p>Available for freelance and contract work across commercial, branded and long-form productions.</p>
-      <a class="contact-link" href="mailto:Info4nacho@gmail.com">Info4nacho@gmail.com</a>
+      <a class="contact-link" href="mailto:Info4nacho@gmail.com?subject=Portfolio%20Enquiry">Info4nacho@gmail.com</a>
       <p style="font-size:11px;color:var(--muted)">CV available upon request.</p>
     </div>
     <div>
@@ -405,8 +405,24 @@
   animateRing();
 
   document.querySelectorAll('a, button').forEach(el => {
-    el.addEventListener('mouseenter', () => ring.classList.add('hover'));
-    el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
+    el.addEventListener('mouseenter', () => {
+      ring.classList.add('hover');
+      dot.style.opacity = '1';
+      ring.style.opacity = '1';
+      clearTimeout(fadeTimer);
+    });
+    el.addEventListener('mouseleave', () => {
+      ring.classList.remove('hover');
+      fadeTimer = setTimeout(() => {
+        dot.classList.add('hidden');
+        ring.classList.add('hidden');
+        setTimeout(() => {
+          document.documentElement.style.cursor = 'auto';
+          dot.style.display = 'none';
+          ring.style.display = 'none';
+        }, 1000);
+      }, 15000);
+    });
   });
 
   fadeTimer = setTimeout(() => {
