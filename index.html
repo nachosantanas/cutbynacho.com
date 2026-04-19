@@ -55,9 +55,7 @@
     /* WORK GRID */
     .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);border-radius:4px;overflow:hidden;width:100%}
     .work-item{position:relative;overflow:hidden;display:block;cursor:pointer;text-decoration:none;background:var(--bg);aspect-ratio:16/9}
-    .work-item.tall{aspect-ratio:9/16;grid-row:span 2}
-    .work-item.wide{grid-column:span 2;aspect-ratio:16/9}
-    .work-thumb{position:absolute;inset:0;background:var(--surface)}
+    .work-thumb{position:absolute;inset:0;background:var(--surface);display:flex;align-items:center;justify-content:center}
     .work-thumb img{width:100%;height:100%;object-fit:cover;opacity:0.8;transition:opacity 0.4s,transform 0.4s;display:block}
     .work-item:hover .work-thumb img{opacity:1;transform:scale(1.03)}
     .work-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.8) 0%,transparent 55%);opacity:0;transition:opacity 0.3s}
@@ -153,17 +151,44 @@
   <div class="section-label">Selected work</div>
   <div class="work-grid">
 
-    <!-- Showreel — Vimeo 896225384 -->
-    <a href="https://vimeo.com/896225384" target="_blank" rel="noopener" class="work-item wide">
-      <div class="work-thumb">
-        <img src="https://vumbnail.com/896225384.jpg" alt="Showreel">
+    <!-- ROW 1 -->
+    <a href="#" class="work-item">
+      <div class="work-thumb" style="background:#131311;display:flex;align-items:center;justify-content:center">
+        <span style="font-family:var(--font-serif);font-size:18px;color:var(--accent);text-align:center;padding:1rem;line-height:1.4">Cole Palmer<br><span style="font-size:13px;font-family:var(--font-mono);color:var(--muted)">Nike</span></span>
       </div>
-      <div class="play-icon"></div>
       <div class="work-overlay"></div>
-      <div class="work-info"><span class="work-title">Showreel</span></div>
+      <div class="work-info"><span class="work-title">Cole Palmer — Nike</span><span class="work-role">Assistant Editor</span></div>
+    </a>
+    <a href="#" class="work-item">
+      <div class="work-thumb" style="background:#141412;display:flex;align-items:center;justify-content:center">
+        <span style="font-family:var(--font-serif);font-size:18px;color:var(--accent);text-align:center;padding:1rem;line-height:1.4">Nicki Vini JR<br><span style="font-size:13px;font-family:var(--font-mono);color:var(--muted)">Nike</span></span>
+      </div>
+      <div class="work-overlay"></div>
+      <div class="work-info"><span class="work-title">Nicki Vini JR — Nike</span><span class="work-role">Assistant Editor</span></div>
+    </a>
+    <a href="#" class="work-item">
+      <div class="work-thumb" style="background:#121210;display:flex;align-items:center;justify-content:center">
+        <span style="font-family:var(--font-serif);font-size:18px;color:var(--accent);text-align:center;padding:1rem;line-height:1.4">Cole Palmer<br><span style="font-size:13px;font-family:var(--font-mono);color:var(--muted)">Nike</span></span>
+      </div>
+      <div class="work-overlay"></div>
+      <div class="work-info"><span class="work-title">Cole Palmer — Nike</span><span class="work-role">Assistant Editor</span></div>
     </a>
 
-    <!-- Rising Ballers — Vimeo 1137716602 -->
+    <!-- ROW 2 -->
+    <a href="#" class="work-item">
+      <div class="work-thumb" style="background:#131311;display:flex;align-items:center;justify-content:center">
+        <span style="font-family:var(--font-serif);font-size:15px;color:var(--accent);text-align:center;padding:1rem;line-height:1.4">Barry Keoghan<br>&amp; David Lammy<br><span style="font-size:11px;font-family:var(--font-mono);color:var(--muted)">A Global Fight for Children</span></span>
+      </div>
+      <div class="work-overlay"></div>
+      <div class="work-info"><span class="work-title">Barry Keoghan &amp; David Lammy</span><span class="work-role">Edit</span></div>
+    </a>
+    <a href="#" class="work-item">
+      <div class="work-thumb" style="background:#141412;display:flex;align-items:center;justify-content:center">
+        <span style="font-family:var(--font-serif);font-size:16px;color:var(--accent);text-align:center;padding:1rem;line-height:1.4">Choir Sings Prayer<br><span style="font-size:12px;font-family:var(--font-mono);color:var(--muted)">for Ukraine</span></span>
+      </div>
+      <div class="work-overlay"></div>
+      <div class="work-info"><span class="work-title">Choir Sings Prayer for Ukraine</span><span class="work-role">Shoot &amp; Edit</span></div>
+    </a>
     <a href="https://vimeo.com/1137716602" target="_blank" rel="noopener" class="work-item">
       <div class="work-thumb">
         <img src="https://vumbnail.com/1137716602.jpg" alt="Rising Ballers">
@@ -173,122 +198,27 @@
       <div class="work-info"><span class="work-title">Rising Ballers</span><span class="work-role">Edit</span></div>
     </a>
 
-    <!-- EPC Summit — LinkedIn -->
-    <a href="https://www.linkedin.com/posts/foreign-commonwealth-and-development-office_european-political-community-meeting-2024-activity-7219979710145925120-zEmI/" target="_blank" rel="noopener" class="work-item">
-      <div class="work-thumb" style="background:#1a1a18;display:flex;align-items:center;justify-content:center">
-        <span style="font-family:var(--font-serif);font-size:22px;color:var(--accent);text-align:center;padding:1rem;line-height:1.3">EPC Summit<br><span style="font-size:13px;color:var(--muted);font-family:var(--font-mono)">2024</span></span>
-      </div>
-      <div class="work-overlay"></div>
-      <div class="work-info"><span class="work-title">EPC Summit</span><span class="work-role">Shoot & Edit</span></div>
-    </a>
-
-    <!-- ISIS Survivors — Instagram -->
-    <a href="https://www.instagram.com/reel/DDPNwnBtw69/" target="_blank" rel="noopener" class="work-item tall">
-      <div class="work-thumb" style="background:#141414;display:flex;align-items:center;justify-content:center">
-        <span style="font-family:var(--font-serif);font-size:20px;color:var(--accent);text-align:center;padding:1rem;line-height:1.4">ISIS<br>Survivors</span>
-      </div>
-      <div class="work-overlay"></div>
-      <div class="work-info"><span class="work-title">ISIS Survivors</span><span class="work-role">Shoot & Edit</span></div>
-    </a>
-
-    <!-- UK Med Aid — Instagram -->
-    <a href="https://www.instagram.com/p/C-2-lwUo1w5/" target="_blank" rel="noopener" class="work-item">
-      <div class="work-thumb" style="background:#161614;display:flex;align-items:center;justify-content:center">
-        <span style="font-family:var(--font-serif);font-size:20px;color:var(--accent);text-align:center;padding:1rem;line-height:1.4">UK Med Aid</span>
-      </div>
-      <div class="work-overlay"></div>
-      <div class="work-info"><span class="work-title">UK Med Aid</span><span class="work-role">Shoot & Edit</span></div>
-    </a>
-
-    <!-- Dyson Bicester — Instagram -->
-    <a href="https://www.instagram.com/p/DWPoAhJjKH6/" target="_blank" rel="noopener" class="work-item">
-      <div class="work-thumb" style="background:#131312;display:flex;align-items:center;justify-content:center">
-        <span style="font-family:var(--font-serif);font-size:20px;color:var(--accent);text-align:center;padding:1rem;line-height:1.4">Dyson<br><span style="font-size:14px;font-family:var(--font-mono);color:var(--muted)">Bicester</span></span>
-      </div>
-      <div class="work-overlay"></div>
-      <div class="work-info"><span class="work-title">Dyson Bicester</span><span class="work-role">Shoot & Edit</span></div>
-    </a>
-
-    <!-- Dyson Amino11 — Instagram -->
-    <a href="https://www.instagram.com/p/DUSga0FDSDR/" target="_blank" rel="noopener" class="work-item">
-      <div class="work-thumb" style="background:#121211;display:flex;align-items:center;justify-content:center">
-        <span style="font-family:var(--font-serif);font-size:20px;color:var(--accent);text-align:center;padding:1rem;line-height:1.4">Dyson<br><span style="font-size:14px;font-family:var(--font-mono);color:var(--muted)">Amino11</span></span>
-      </div>
-      <div class="work-overlay"></div>
-      <div class="work-info"><span class="work-title">Dyson Amino11</span><span class="work-role">Shoot & Edit</span></div>
-    </a>
-
-    <!-- Anaïs Gallagher x Dyson — Instagram -->
-    <a href="https://www.instagram.com/reel/DRy3HVQjZRF/" target="_blank" rel="noopener" class="work-item wide">
-      <div class="work-thumb" style="background:#151513;display:flex;align-items:center;justify-content:center">
-        <span style="font-family:var(--font-serif);font-size:22px;color:var(--accent);text-align:center;padding:1rem;line-height:1.3">Anaïs Gallagher<br><span style="font-size:14px;font-family:var(--font-mono);color:var(--muted)">× Dyson</span></span>
-      </div>
-      <div class="work-overlay"></div>
-      <div class="work-info"><span class="work-title">Anaïs Gallagher × Dyson</span><span class="work-role">Shoot & Edit</span></div>
-    </a>
-
+    <!-- ROW 3 -->
     <a href="#" class="work-item">
-      <div class="work-thumb" style="background:#131311;display:flex;align-items:center;justify-content:center">
-        <span style="font-family:var(--font-serif);font-size:18px;color:var(--accent);text-align:center;padding:1rem;line-height:1.4">Choir Sings Prayer<br><span style="font-size:13px;font-family:var(--font-mono);color:var(--muted)">for Ukraine</span></span>
-      </div>
-      <div class="work-overlay"></div>
-      <div class="work-info"><span class="work-title">Choir Sings Prayer for Ukraine</span><span class="work-role">Shoot & Edit</span></div>
-    </a>
-
-    <a href="#" class="work-item">
-      <div class="work-thumb" style="background:#141412;display:flex;align-items:center;justify-content:center">
-        <span style="font-family:var(--font-serif);font-size:20px;color:var(--accent);text-align:center;padding:1rem;line-height:1.4">Belonging<br><span style="font-size:13px;font-family:var(--font-mono);color:var(--muted)">No Where</span></span>
-      </div>
-      <div class="work-overlay"></div>
-      <div class="work-info"><span class="work-title">Belonging No Where</span><span class="work-role">Shoot & Edit</span></div>
-    </a>
-
-    <a href="#" class="work-item wide">
       <div class="work-thumb" style="background:#121210;display:flex;align-items:center;justify-content:center">
-        <span style="font-family:var(--font-serif);font-size:20px;color:var(--accent);text-align:center;padding:1rem;line-height:1.4">Cash App Pool</span>
-      </div>
-      <div class="work-overlay"></div>
-      <div class="work-info"><span class="work-title">Cash App Pool</span><span class="work-role">Assistant Editor</span></div>
-    </a>
-
-    <a href="#" class="work-item">
-      <div class="work-thumb" style="background:#131311;display:flex;align-items:center;justify-content:center">
         <span style="font-family:var(--font-serif);font-size:18px;color:var(--accent);text-align:center;padding:1rem;line-height:1.4">School Poo<br><span style="font-size:13px;font-family:var(--font-mono);color:var(--muted)">Andrex</span></span>
       </div>
       <div class="work-overlay"></div>
       <div class="work-info"><span class="work-title">School Poo — Andrex</span><span class="work-role">Assistant Editor</span></div>
     </a>
-
     <a href="#" class="work-item">
-      <div class="work-thumb" style="background:#141412;display:flex;align-items:center;justify-content:center">
+      <div class="work-thumb" style="background:#131311;display:flex;align-items:center;justify-content:center">
         <span style="font-family:var(--font-serif);font-size:18px;color:var(--accent);text-align:center;padding:1rem;line-height:1.4">Alexia Putellas<br><span style="font-size:13px;font-family:var(--font-mono);color:var(--muted)">Nike</span></span>
       </div>
       <div class="work-overlay"></div>
       <div class="work-info"><span class="work-title">Alexia Putellas — Nike</span><span class="work-role">Assistant Editor</span></div>
     </a>
-
-    <a href="#" class="work-item">
-      <div class="work-thumb" style="background:#121210;display:flex;align-items:center;justify-content:center">
-        <span style="font-family:var(--font-serif);font-size:20px;color:var(--accent);text-align:center;padding:1rem;line-height:1.4">Fatal Fury</span>
-      </div>
-      <div class="work-overlay"></div>
-      <div class="work-info"><span class="work-title">Fatal Fury</span><span class="work-role">Assistant Editor</span></div>
-    </a>
-
-    <a href="#" class="work-item wide">
-      <div class="work-thumb" style="background:#131311;display:flex;align-items:center;justify-content:center">
-        <span style="font-family:var(--font-serif);font-size:20px;color:var(--accent);text-align:center;padding:1rem;line-height:1.4">Nicki Vini JR<br><span style="font-size:13px;font-family:var(--font-mono);color:var(--muted)">Nike</span></span>
-      </div>
-      <div class="work-overlay"></div>
-      <div class="work-info"><span class="work-title">Nicki Vini JR — Nike</span><span class="work-role">Assistant Editor</span></div>
-    </a>
-
     <a href="#" class="work-item">
       <div class="work-thumb" style="background:#141412;display:flex;align-items:center;justify-content:center">
-        <span style="font-family:var(--font-serif);font-size:18px;color:var(--accent);text-align:center;padding:1rem;line-height:1.4">Cole Palmer<br><span style="font-size:13px;font-family:var(--font-mono);color:var(--muted)">Nike</span></span>
+        <span style="font-family:var(--font-serif);font-size:20px;color:var(--accent);text-align:center;padding:1rem;line-height:1.4">Cash App Pool</span>
       </div>
       <div class="work-overlay"></div>
-      <div class="work-info"><span class="work-title">Cole Palmer — Nike</span><span class="work-role">Assistant Editor</span></div>
+      <div class="work-info"><span class="work-title">Cash App Pool</span><span class="work-role">Assistant Editor</span></div>
     </a>
 
   </div>
