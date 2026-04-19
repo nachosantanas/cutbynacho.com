@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nacho Santana — Video Editor</title>
+  <title>Nacho Santana</title>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
   <style>
@@ -19,6 +19,11 @@
     .cursor-ring{width:24px;height:24px;border:0.5px solid rgba(200,184,154,0.3);border-radius:50%;position:fixed;transform:translate(-50%,-50%);pointer-events:none;z-index:9998;transition:width 0.2s,height 0.2s,border-color 0.2s,opacity 1s;opacity:1}
     .cursor-ring.hover{width:36px;height:36px;border-color:rgba(200,184,154,0.6)}
     .cursor-dot.hidden,.cursor-ring.hidden{opacity:0}
+    @media(hover:none),(pointer:coarse){
+      html{cursor:auto}
+      .cursor-dot,.cursor-ring{display:none}
+      ::selection{background:#f5d06e;color:#0a0a09}
+    }
     body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-size:13px;font-weight:300;line-height:1.7}
 
     nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 2.5rem;border-bottom:0.5px solid var(--border);position:sticky;top:0;background:var(--bg);z-index:100}
