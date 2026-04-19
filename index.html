@@ -54,7 +54,7 @@
     .section-label.highlight{animation:labelPop 1.8s ease forwards}
 
     /* WORK GRID */
-    .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border)}
+    .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);border-radius:4px;overflow:hidden}
     .work-item{position:relative;overflow:hidden;display:block;cursor:pointer;text-decoration:none;background:var(--bg);aspect-ratio:16/9}
     .work-item.tall{aspect-ratio:9/16;grid-row:span 2}
     .work-item.wide{grid-column:span 2;aspect-ratio:16/9}
@@ -150,6 +150,7 @@
     <div class="scroll-arrow"></div>
   </div>
 </div>
+<div class="section" id="work">
   <div class="section-label">Selected work</div>
   <div class="work-grid">
 
