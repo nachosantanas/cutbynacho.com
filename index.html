@@ -26,12 +26,12 @@
     .nav-socials a{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:0.08em;transition:color 0.2s}
     .nav-socials a:hover{color:var(--accent)}
 
-    .hero{padding:5rem 2.5rem 4rem;border-bottom:0.5px solid var(--border);position:relative}
-  .scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;opacity:0.4;animation:hintFade 2s ease 1.5s both}
-  .scroll-hint span{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted)}
-  .scroll-arrow{width:12px;height:12px;border-right:1px solid var(--muted);border-bottom:1px solid var(--muted);transform:rotate(45deg);animation:arrowBounce 1.4s ease-in-out infinite}
-  @keyframes arrowBounce{0%,100%{transform:rotate(45deg) translateY(0)}50%{transform:rotate(45deg) translateY(4px)}}
-  @keyframes hintFade{from{opacity:0}to{opacity:0.4}}
+    .hero{padding:5rem 2.5rem 6rem;border-bottom:0.5px solid var(--border);position:relative}
+    .scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;animation:hintFade 2s ease 1.5s both;opacity:0}
+    .scroll-hint span{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted)}
+    .scroll-arrow{width:10px;height:10px;border-right:1px solid var(--muted);border-bottom:1px solid var(--muted);transform:rotate(45deg);animation:arrowBounce 1.4s ease-in-out infinite}
+    @keyframes arrowBounce{0%,100%{transform:rotate(45deg) translateY(0)}50%{transform:rotate(45deg) translateY(5px)}}
+    @keyframes hintFade{from{opacity:0}to{opacity:0.5}}
     .hero-label{font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem}
     .hero-title{font-family:var(--font-serif);font-size:clamp(48px,8vw,88px);line-height:1;color:var(--text)}
     .hero-title em{font-style:italic;color:var(--accent)}
@@ -124,12 +124,11 @@
 <body>
 
 <nav>
-  <a class="logo" href="#">Nacho Santana</a>
+  <a class="logo" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">Nacho Santana</a>
   <div class="nav-links">
-    <a href="#work">Work</a>
-    <a href="#about">About</a>
-    <a href="#tools">Tools</a>
-    <a href="#contact">Contact</a>
+    <a href="#about" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'});return false">About</a>
+    <a href="#tools" onclick="document.getElementById('tools').scrollIntoView({behavior:'smooth'});return false">Tools</a>
+    <a href="#contact" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'});return false">Contact</a>
   </div>
   <div class="nav-socials">
     <a href="https://vimeo.com/nachosantanas" target="_blank" rel="noopener">Vimeo</a>
