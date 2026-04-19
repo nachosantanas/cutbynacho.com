@@ -40,9 +40,9 @@
       .section{scroll-margin-top:120px}
     }
 
-    .section-label{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:2.5rem;transition:color 0.3s}
+    .section-label{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:2.5rem}
     @keyframes labelPop{0%{color:var(--muted)}30%{color:var(--accent)}100%{color:var(--muted)}}
-    .section:target .section-label{animation:labelPop 1.8s ease forwards}
+    .section-label.highlight{animation:labelPop 1.8s ease forwards}
 
     /* WORK GRID */
     .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);margin:0 -2.5rem}
@@ -347,5 +347,19 @@
   <div class="footer-copy">London, UK</div>
 </footer>
 
+<script>
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      const target = document.querySelector(link.getAttribute('href'));
+      if (!target) return;
+      const label = target.querySelector('.section-label');
+      if (!label) return;
+      label.classList.remove('highlight');
+      void label.offsetWidth;
+      label.classList.add('highlight');
+      label.addEventListener('animationend', () => label.classList.remove('highlight'), {once: true});
+    });
+  });
+</script>
 </body>
 </html>
