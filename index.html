@@ -13,14 +13,12 @@
       --text:#f0ede6;--muted:#7a7770;--accent:#c8b89a;
       --font-serif:'DM Serif Display',serif;--font-mono:'DM Mono',monospace;
     }
-    html{scroll-behavior:smooth;cursor:none}
+    html{scroll-behavior:smooth}
     ::selection{background:#f5d06e;color:#0a0a09}
-    .cursor-dot{width:4px;height:4px;background:var(--accent);border-radius:50%;position:fixed;transform:translate(-50%,-50%);pointer-events:none;z-index:9999;transition:opacity 1s,transform 0.1s;opacity:1}
-    .cursor-ring{width:24px;height:24px;border:0.5px solid rgba(200,184,154,0.3);border-radius:50%;position:fixed;transform:translate(-50%,-50%);pointer-events:none;z-index:9998;transition:width 0.2s,height 0.2s,border-color 0.2s,opacity 1s;opacity:1}
+    .cursor-dot{width:4px;height:4px;background:var(--accent);border-radius:50%;position:fixed;transform:translate(-50%,-50%);pointer-events:none;z-index:9999;transition:opacity 0.3s;opacity:0}
+    .cursor-ring{width:24px;height:24px;border:0.5px solid rgba(200,184,154,0.3);border-radius:50%;position:fixed;transform:translate(-50%,-50%);pointer-events:none;z-index:9998;transition:width 0.2s,height 0.2s,border-color 0.2s,opacity 0.3s;opacity:0}
     .cursor-ring.hover{width:36px;height:36px;border-color:rgba(200,184,154,0.9);border-width:1px}
-    .cursor-dot.hidden,.cursor-ring.hidden{opacity:0}
     @media(hover:none),(pointer:coarse){
-      html{cursor:auto}
       .cursor-dot,.cursor-ring{display:none}
       ::selection{background:#f5d06e;color:#0a0a09}
       .work-thumb span{visibility:hidden}
@@ -505,34 +503,11 @@
 
   setTimeout(runStatus, 1800);
 </script>
+<script>
+  const dot = document.getElementById('cursorDot');
   const ring = document.getElementById('cursorRing');
   let mouseX = 0, mouseY = 0;
   let ringX = 0, ringY = 0;
-  let hidden = false;
-
-  function showCursor() {
-    hidden = false;
-    dot.style.display = 'block';
-    ring.style.display = 'block';
-    dot.style.transition = 'opacity 0.1s';
-    ring.style.transition = 'width 0.2s,height 0.2s,border-color 0.2s,opacity 0.1s';
-    dot.style.opacity = '1';
-    ring.style.opacity = '1';
-  }
-
-  function hideCursor(fast) {
-    hidden = true;
-    const dur = fast ? '0.4s' : '1s';
-    dot.style.transition = 'opacity ' + dur;
-    ring.style.transition = 'width 0.2s,height 0.2s,border-color 0.2s,opacity ' + dur;
-    dot.style.opacity = '0';
-    ring.style.opacity = '0';
-    setTimeout(() => {
-      if (hidden) {
-        document.documentElement.style.cursor = 'auto';
-      }
-    }, fast ? 400 : 1000);
-  }
 
   document.addEventListener('mousemove', e => {
     mouseX = e.clientX;
@@ -550,19 +525,29 @@
   }
   animateRing();
 
+  function showAnim() {
+    dot.style.opacity = '1';
+    ring.style.opacity = '1';
+  }
+
+  function hideAnim() {
+    dot.style.opacity = '0';
+    ring.style.opacity = '0';
+  }
+
   document.querySelectorAll('a, button').forEach(el => {
     el.addEventListener('mouseenter', () => {
-      document.documentElement.style.cursor = 'none';
-      showCursor();
+      showAnim();
       ring.classList.add('hover');
     });
     el.addEventListener('mouseleave', () => {
       ring.classList.remove('hover');
-      hideCursor(true);
+      hideAnim();
     });
   });
 
-  setTimeout(() => hideCursor(false), 3000);
+  showAnim();
+  setTimeout(() => hideAnim(), 3000);
 </script>
 </body>
 </html>
