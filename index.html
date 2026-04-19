@@ -118,6 +118,7 @@
 
     footer{padding:2rem 2.5rem;display:flex;justify-content:space-between;align-items:center}
     .footer-copy{font-size:11px;color:var(--muted);letter-spacing:0.06em}
+    .timecode{font-family:var(--font-mono);font-size:11px;color:var(--muted);letter-spacing:0.12em;opacity:0.5}
 
     @media(max-width:768px){
       nav{flex-direction:column;gap:1rem;padding:1rem 1.5rem}
@@ -147,6 +148,7 @@
     <a href="#contact" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'});return false">Contact</a>
   </div>
   <div class="nav-socials">
+    <span class="timecode" id="timecodeNav" style="margin-right:1.2rem"></span>
     <a href="https://vimeo.com/nachosantanas" target="_blank" rel="noopener">Vimeo</a>
     <a href="https://www.linkedin.com/in/nachosantanas/" target="_blank" rel="noopener">LinkedIn</a>
     <a href="https://www.instagram.com/nachosantanas/" target="_blank" rel="noopener">Instagram</a>
@@ -361,6 +363,7 @@
 
 <footer>
   <div class="footer-copy">© 2026 Nacho Santana</div>
+  <div class="timecode" id="timecode">00:00:00:00</div>
   <div class="footer-copy">London, UK</div>
 </footer>
 
@@ -380,6 +383,47 @@
 </script>
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
+
+<script>
+  const tc = document.getElementById('timecode');
+  const tcNav = document.getElementById('timecodeNav');
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  function randomTC() {
+    const hh = Math.floor(Math.random() * 24);
+    const mm = Math.floor(Math.random() * 60);
+    const ss = Math.floor(Math.random() * 60);
+    const ff = Math.floor(Math.random() * 25);
+    return pad(hh) + ':' + pad(mm) + ':' + pad(ss) + ':' + pad(ff);
+  }
+
+  function runBurst(duration, onDone) {
+    const start = Date.now();
+    function tick() {
+      const val = randomTC();
+      tc.textContent = val;
+      tcNav.textContent = val;
+      if (Date.now() - start < duration) {
+        setTimeout(tick, 8);
+      } else {
+        onDone();
+      }
+    }
+    tick();
+  }
+
+  function loop() {
+    const burstTime = Math.random() * 100 + 60;
+    const pauseTime = 3000;
+    runBurst(burstTime, () => setTimeout(loop, pauseTime));
+  }
+
+  const initVal = randomTC();
+  tc.textContent = initVal;
+  tcNav.textContent = initVal;
+  loop();
+</script>
 
 <script>
   const dot = document.getElementById('cursorDot');
