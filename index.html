@@ -13,8 +13,12 @@
       --text:#f0ede6;--muted:#7a7770;--accent:#c8b89a;
       --font-serif:'DM Serif Display',serif;--font-mono:'DM Mono',monospace;
     }
-    html{scroll-behavior:smooth}
-    ::selection{background:#f0c651;color:#0a0a09}
+    html{scroll-behavior:smooth;cursor:none}
+    ::selection{background:#f5d06e;color:#0a0a09}
+    .cursor-dot{width:4px;height:4px;background:var(--accent);border-radius:50%;position:fixed;transform:translate(-50%,-50%);pointer-events:none;z-index:9999;transition:opacity 1s,transform 0.1s;opacity:1}
+    .cursor-ring{width:24px;height:24px;border:0.5px solid rgba(200,184,154,0.3);border-radius:50%;position:fixed;transform:translate(-50%,-50%);pointer-events:none;z-index:9998;transition:width 0.2s,height 0.2s,border-color 0.2s,opacity 1s;opacity:1}
+    .cursor-ring.hover{width:36px;height:36px;border-color:rgba(200,184,154,0.6)}
+    .cursor-dot.hidden,.cursor-ring.hidden{opacity:0}
     body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-size:13px;font-weight:300;line-height:1.7}
 
     nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 2.5rem;border-bottom:0.5px solid var(--border);position:sticky;top:0;background:var(--bg);z-index:100}
@@ -364,6 +368,47 @@
       label.addEventListener('animationend', () => label.classList.remove('highlight'), {once: true});
     });
   });
+</script>
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<script>
+  const dot = document.getElementById('cursorDot');
+  const ring = document.getElementById('cursorRing');
+  let mouseX = 0, mouseY = 0;
+  let ringX = 0, ringY = 0;
+  let fadeTimer;
+
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    dot.style.left = mouseX + 'px';
+    dot.style.top = mouseY + 'px';
+  });
+
+  function animateRing() {
+    ringX += (mouseX - ringX) * 0.1;
+    ringY += (mouseY - ringY) * 0.1;
+    ring.style.left = ringX + 'px';
+    ring.style.top = ringY + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => ring.classList.add('hover'));
+    el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
+  });
+
+  fadeTimer = setTimeout(() => {
+    dot.classList.add('hidden');
+    ring.classList.add('hidden');
+    setTimeout(() => {
+      document.documentElement.style.cursor = 'auto';
+      dot.style.display = 'none';
+      ring.style.display = 'none';
+    }, 1000);
+  }, 15000);
 </script>
 </body>
 </html>
