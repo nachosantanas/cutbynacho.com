@@ -22,16 +22,11 @@
       html{cursor:auto}
       .cursor-dot,.cursor-ring{display:none}
       ::selection{background:#f5d06e;color:#0a0a09}
-      .work-thumb span{visibility:hidden}
-      .work-overlay{opacity:1 !important}
-      .work-info{opacity:1 !important;transform:translateY(0) !important}
-      .play-icon{display:none}
     }
     body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-size:13px;font-weight:300;line-height:1.7}
 
     nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 2.5rem;border-bottom:0.5px solid var(--border);position:sticky;top:0;background:var(--bg);z-index:100}
     .logo{font-family:var(--font-serif);font-size:17px;color:var(--text);text-decoration:none}
-    .timecode-hero{font-family:var(--font-mono);font-size:11px;font-weight:400;color:var(--accent);letter-spacing:0.14em;opacity:0.9}
     .nav-links{display:flex;gap:2rem}
     .nav-links a{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;transition:color 0.3s}
     .nav-links a:hover{color:var(--text)}
@@ -41,49 +36,25 @@
     .nav-socials a:hover{color:var(--accent)}
 
     .hero{padding:5rem 2.5rem 6rem;border-bottom:0.5px solid var(--border);position:relative}
-    @media(max-width:768px){
-      .hero{padding:3rem 1.5rem 4rem}
-      .scroll-hint{display:none}
-    }
-    .scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;animation:hintFade 2s ease 1.5s both;opacity:0}
-    .scroll-hint span{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted)}
-    .scroll-arrow{width:10px;height:10px;border-right:1px solid var(--muted);border-bottom:1px solid var(--muted);transform:rotate(45deg);animation:arrowBounce 1.4s ease-in-out infinite}
-    @keyframes arrowBounce{0%,100%{transform:rotate(45deg) translateY(0)}50%{transform:rotate(45deg) translateY(5px)}}
-    @keyframes hintFade{from{opacity:0}to{opacity:0.5}}
     .hero-label{font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem}
     .hero-title{font-family:var(--font-serif);font-size:clamp(48px,8vw,88px);line-height:1;color:var(--text)}
     .hero-title em{font-style:italic;color:var(--accent)}
     .hero-sub{font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-top:1.5rem;max-width:440px;line-height:1.8}
-    @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-    .hero-title{animation:fadeUp 0.8s ease both}
-    .hero-sub{animation:fadeUp 0.8s ease 0.2s both}
+    .timecode-hero{font-family:var(--font-mono);font-size:11px;font-weight:400;color:var(--accent);letter-spacing:0.14em;opacity:0.9}
 
-    .section{padding:3.5rem 2.5rem;border-bottom:0.5px solid var(--border);scroll-margin-top:60px;overflow:hidden}
     .section{padding:3.5rem 2.5rem;border-bottom:0.5px solid var(--border);scroll-margin-top:60px;overflow:hidden;transition:background 0.4s}
-    .section.flash{animation:sectionFlash 1s ease forwards}
-    @keyframes sectionFlash{0%{background:var(--bg)}30%{background:#1a1a18}100%{background:var(--bg)}}
-      .section{scroll-margin-top:120px}
-    }
-
     .section-label{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:2.5rem}
-    @keyframes labelPop{0%{color:var(--muted)}30%{color:var(--accent)}100%{color:var(--muted)}}
-    .section-label.highlight{animation:labelPop 1.8s ease forwards}
 
-    /* WORK GRID */
-    .work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);border-radius:4px;overflow:hidden;width:100%}
-    .work-item{position:relative;overflow:hidden;display:block;cursor:pointer;text-decoration:none;background:var(--bg);aspect-ratio:16/9}
-    .work-thumb{position:absolute;inset:0;background:var(--surface);display:flex;align-items:center;justify-content:center}
-    .work-thumb img{width:100%;height:100%;object-fit:cover;opacity:0.8;transition:opacity 0.4s,transform 0.4s;display:block}
-    .work-item:hover .work-thumb img{opacity:1;transform:scale(1.03)}
-    .work-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.8) 0%,transparent 55%);opacity:0;transition:opacity 0.3s}
-    .work-item:hover .work-overlay{opacity:1}
-    .work-info{position:absolute;bottom:0;left:0;right:0;padding:1.2rem;opacity:0;transform:translateY(6px);transition:all 0.3s}
-    .work-item:hover .work-info{opacity:1;transform:translateY(0)}
-    .work-title{font-size:13px;color:var(--text);letter-spacing:0.06em;display:block;margin-bottom:2px}
-    .work-role{font-size:10px;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase}
-    .play-icon{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:48px;height:48px;border:1.5px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity 0.3s;backdrop-filter:blur(4px)}
-    .play-icon:after{content:'';border-left:16px solid white;border-top:9px solid transparent;border-bottom:9px solid transparent;margin-left:4px}
-    .work-item:hover .play-icon{opacity:1}
+    /* SHOWREEL CONTAINER */
+    .showreel-container {
+      width: 100%; 
+      aspect-ratio: 16/9; 
+      background: var(--surface); 
+      border-radius: 4px; 
+      overflow: hidden; 
+      position: relative; 
+      border: 0.5px solid var(--border);
+    }
 
     /* ABOUT */
     .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
@@ -119,37 +90,23 @@
     .social-arrow{margin-left:auto;transition:transform 0.2s}
     .social-item:hover .social-arrow{transform:translateX(4px)}
 
-
     footer{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 2.5rem;border-top:0.5px solid var(--border)}
     .footer-copy{font-size:11px;color:var(--muted);letter-spacing:0.06em}
     .timecode{font-family:var(--font-mono);font-size:11px;color:var(--muted);letter-spacing:0.12em;opacity:0.5}
-    .mobile-socials{display:none;gap:1.5rem;justify-content:center}
-    .mobile-socials a{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:0.08em;transition:color 0.2s}
-    .mobile-socials a:hover{color:var(--accent)}
 
     @media(max-width:768px){
       nav{flex-direction:column;gap:0.8rem;padding:1rem 1.5rem;text-align:center}
       .nav-links{gap:1.5rem;justify-content:center}
       .hero{padding:2.5rem 1.5rem 3rem}
-      .scroll-hint{display:none}
       .section{padding:2.5rem 1.5rem;scroll-margin-top:0}
-      .timecodeHero-wrap{font-size:10px}
-      .timecodeHero-wrap .hero-label{font-size:9px;letter-spacing:0.12em}
-      .timecode-hero{font-size:9px}
-      .work-grid{grid-template-columns:1fr 1fr}
-      .work-item{aspect-ratio:4/3}
-      .work-title{font-size:11px}
-      .work-role{font-size:9px}
       .about-grid{grid-template-columns:1fr;gap:2rem}
-      .hero-sub{max-width:100%}
       .tools-categories{grid-template-columns:1fr}
       .tool-cat{border-right:none;border-bottom:0.5px solid var(--border);padding:1.5rem 0;margin:0}
       .tool-cat:nth-child(2){padding-left:0}
-      .tool-cat:last-child{border-bottom:none;padding-left:0;padding-right:0;padding-bottom:0}
+      .tool-cat:last-child{border-bottom:none;padding:1.5rem 0 0 0}
       .contact-grid{grid-template-columns:1fr}
       footer{flex-direction:column;gap:0.5rem;text-align:center;align-items:center;padding:1.5rem 1.5rem}
       .nav-socials{display:none}
-      .timecodeHero-wrap{display:flex !important}
       #editStatus{display:none}
     }
   </style>
@@ -181,84 +138,19 @@
     <div class="hero-sub" style="margin-top:0">Commercial · Branded Content · Long-form<br>Avid · Premiere · Resolve</div>
     <span id="editStatus" style="font-family:var(--font-mono);font-size:10px;color:var(--accent);letter-spacing:0.14em;text-transform:uppercase;opacity:0.75;text-align:right;flex-shrink:0;padding-left:2rem"></span>
   </div>
-  <div class="scroll-hint">
-    <span>scroll</span>
-    <div class="scroll-arrow"></div>
-  </div>
 </div>
+
 <div class="section" id="work">
-  <div class="section-label">Selected work</div>
-  <div class="work-grid">
-
-    <!-- ROW 1 -->
-    <a href="#" onclick="return false" class="work-item">
-      <div class="work-thumb" style="background:#131311;display:flex;align-items:center;justify-content:center">
-        <span style="font-family:var(--font-serif);font-size:18px;color:var(--accent);text-align:center;padding:1rem;line-height:1.4">Cole Palmer</span>
-      </div>
-      <div class="work-overlay"></div>
-      <div class="work-info"><span class="work-title">Cole Palmer</span><span class="work-role">Assistant Editor</span></div>
-    </a>
-    <a href="#" onclick="return false" class="work-item">
-      <div class="work-thumb" style="background:#141412;display:flex;align-items:center;justify-content:center">
-        <span style="font-family:var(--font-serif);font-size:18px;color:var(--accent);text-align:center;padding:1rem;line-height:1.4">Nicki Vini JR</span>
-      </div>
-      <div class="work-overlay"></div>
-      <div class="work-info"><span class="work-title">Nicke Vini JR</span><span class="work-role">Assistant Editor</span></div>
-    </a>
-    <a href="#" onclick="return false" class="work-item">
-      <div class="work-thumb" style="background:#121210;display:flex;align-items:center;justify-content:center">
-        <span style="font-family:var(--font-serif);font-size:18px;color:var(--accent);text-align:center;padding:1rem;line-height:1.4">Fatal Fury</span>
-      </div>
-      <div class="work-overlay"></div>
-      <div class="work-info"><span class="work-title">Fatal Fury</span><span class="work-role">Assistant Editor</span></div>
-    </a>
-
-    <!-- ROW 2 -->
-    <a href="#" onclick="return false" class="work-item">
-      <div class="work-thumb" style="background:#131311;display:flex;align-items:center;justify-content:center">
-        <span style="font-family:var(--font-serif);font-size:18px;color:var(--accent);text-align:center;padding:1rem;line-height:1.4">Barry Keoghan</span>
-      </div>
-      <div class="work-overlay"></div>
-      <div class="work-info"><span class="work-title">Barry Keoghan</span><span class="work-role">Edit</span></div>
-    </a>
-    <a href="#" onclick="return false" class="work-item">
-      <div class="work-thumb" style="background:#141412;display:flex;align-items:center;justify-content:center">
-        <span style="font-family:var(--font-serif);font-size:18px;color:var(--accent);text-align:center;padding:1rem;line-height:1.4">Prayer for Ukraine</span>
-      </div>
-      <div class="work-overlay"></div>
-      <div class="work-info"><span class="work-title">Prayer for Ukraine</span><span class="work-role">Edit</span></div>
-    </a>
-    <a href="#" onclick="return false" class="work-item">
-      <div class="work-thumb" style="background:#121210;display:flex;align-items:center;justify-content:center">
-        <span style="font-family:var(--font-serif);font-size:18px;color:var(--accent);text-align:center;padding:1rem;line-height:1.4">Rising Ballers</span>
-      </div>
-      <div class="work-overlay"></div>
-      <div class="work-info"><span class="work-title">Rising Ballers</span><span class="work-role">Edit</span></div>
-    </a>
-
-    <!-- ROW 3 -->
-    <a href="#" onclick="return false" class="work-item">
-      <div class="work-thumb" style="background:#121210;display:flex;align-items:center;justify-content:center">
-        <span style="font-family:var(--font-serif);font-size:18px;color:var(--accent);text-align:center;padding:1rem;line-height:1.4">School Poo</span>
-      </div>
-      <div class="work-overlay"></div>
-      <div class="work-info"><span class="work-title">School Poo</span><span class="work-role">Assistant Editor</span></div>
-    </a>
-    <a href="#" onclick="return false" class="work-item">
-      <div class="work-thumb" style="background:#131311;display:flex;align-items:center;justify-content:center">
-        <span style="font-family:var(--font-serif);font-size:18px;color:var(--accent);text-align:center;padding:1rem;line-height:1.4">Alexia Putellas</span>
-      </div>
-      <div class="work-overlay"></div>
-      <div class="work-info"><span class="work-title">Alexia Putellas</span><span class="work-role">Assistant Editor</span></div>
-    </a>
-    <a href="#" onclick="return false" class="work-item">
-      <div class="work-thumb" style="background:#141412;display:flex;align-items:center;justify-content:center">
-        <span style="font-family:var(--font-serif);font-size:20px;color:var(--accent);text-align:center;padding:1rem;line-height:1.4">Cash App Pool</span>
-      </div>
-      <div class="work-overlay"></div>
-      <div class="work-info"><span class="work-title">Cash App Pool</span><span class="work-role">Assistant Editor</span></div>
-    </a>
-
+  <div class="section-label">Showreel</div>
+  
+  <div class="showreel-container">
+    <iframe 
+      src="https://player.vimeo.com/video/YOUR_VIDEO_ID?h=0&title=0&byline=0&portrait=0" 
+      style="position:absolute; top:0; left:0; width:100%; height:100%;" 
+      frameborder="0" 
+      allow="autoplay; fullscreen; picture-in-picture" 
+      allowfullscreen>
+    </iframe>
   </div>
 </div>
 
@@ -389,9 +281,6 @@
   <div class="footer-copy">London, UK</div>
 </footer>
 
-
-
-
 <script>
   const sections = ['about','tools','contact'].map(id => document.getElementById(id));
   const navLinks = document.querySelectorAll('.nav-links a');
@@ -426,16 +315,6 @@
       const navH = document.querySelector('nav').getBoundingClientRect().height;
       const top = target.getBoundingClientRect().top + window.scrollY - navH + 1;
       window.scrollTo({top, behavior:'smooth'});
-      target.classList.remove('flash');
-      void target.offsetWidth;
-      target.classList.add('flash');
-      target.addEventListener('animationend', () => target.classList.remove('flash'), {once:true});
-      const label = target.querySelector('.section-label');
-      if (!label) return;
-      label.classList.remove('highlight');
-      void label.offsetWidth;
-      label.classList.add('highlight');
-      label.addEventListener('animationend', () => label.classList.remove('highlight'), {once:true});
     });
   });
 </script>
@@ -446,9 +325,6 @@
 <script>
   const tc = document.getElementById('timecode');
   const tcHero = document.getElementById('timecodeHero');
-  const tcMobile = document.getElementById('timecodeFooterMobile');
-  const isMobile = window.matchMedia('(hover:none),(pointer:coarse)').matches;
-  if (isMobile && tcMobile) tcMobile.style.display = 'block';
   function pad(n) { return String(n).padStart(2,'0'); }
   function randomTC() {
     return pad(Math.floor(Math.random()*24))+':'+pad(Math.floor(Math.random()*60))+':'+pad(Math.floor(Math.random()*60))+':'+pad(Math.floor(Math.random()*25));
@@ -456,18 +332,13 @@
   function setVal(val) {
     if(tc) tc.textContent = val;
     if(tcHero) tcHero.textContent = val;
-    if(tcMobile) tcMobile.textContent = val;
   }
   function runBurst(duration, onDone) {
     const start = Date.now();
     function tick() {
       setVal(randomTC());
       if (Date.now() - start < duration) { setTimeout(tick, 8); }
-      else {
-        if(tcHero){tcHero.classList.remove('flash');void tcHero.offsetWidth;tcHero.classList.add('flash');}
-        if(tc){tc.classList.remove('flash');void tc.offsetWidth;tc.classList.add('flash');}
-        onDone();
-      }
+      else { onDone(); }
     }
     tick();
   }
@@ -480,14 +351,8 @@
   function randomDate() {
     return String(Math.floor(Math.random()*28)+1).padStart(2,'0')+String(Math.floor(Math.random()*12)+1).padStart(2,'0')+String(Math.floor(Math.random()*5)+22).padStart(2,'0');
   }
-  const namingTemplates = [
-    'RUSHES_DAY_01','RUSHES_DAY_02','RUSHES_CAM_A','RUSHES_CAM_B',
-    'AAF','EDL','MIX_STEMS','DX_STEMS','MX_STEMS','SFX',
-    'MUSIC_TEMP','MUSIC_FINAL','EXPORT_MASTER','EXPORT_CLIENT','EXPORT_SOCIAL',
-    'OFFLINE_CUT','ASSEMBLY_CUT','FINE_CUT','LOCKED_CUT','ONLINE_CONFORM',
-    'VFX_COMP','CLEAN_PLATE','WIP'
-  ];
-  const allTerms = [randomDate()+'_WIP', ...namingTemplates.filter(t=>t!=='WIP').map(t=>randomDate()+'_'+t).sort(()=>Math.random()-0.5)];
+  const namingTemplates = ['RUSHES_DAY_01','EDL','MIX_STEMS','EXPORT_MASTER','OFFLINE_CUT','FINE_CUT','LOCKED_CUT','WIP'];
+  const allTerms = [randomDate()+'_WIP', ...namingTemplates.map(t=>randomDate()+'_'+t).sort(()=>Math.random()-0.5)];
   let statusIndex = 0;
   const statusEl = document.getElementById('editStatus');
   function typeOut(text, onDone) {
