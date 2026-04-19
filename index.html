@@ -33,8 +33,9 @@
     .logo{font-family:var(--font-serif);font-size:17px;color:var(--text);text-decoration:none}
     .timecode-hero{font-family:var(--font-mono);font-size:11px;font-weight:400;color:var(--accent);letter-spacing:0.14em;opacity:0.9}
     .nav-links{display:flex;gap:2rem}
-    .nav-links a{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;transition:color 0.2s}
+    .nav-links a{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;transition:color 0.3s}
     .nav-links a:hover{color:var(--text)}
+    .nav-links a.active{color:var(--text)}
     .nav-socials{display:flex;gap:1.2rem}
     .nav-socials a{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:0.08em;transition:color 0.2s}
     .nav-socials a:hover{color:var(--accent)}
@@ -58,7 +59,9 @@
     .hero-sub{animation:fadeUp 0.8s ease 0.2s both}
 
     .section{padding:3.5rem 2.5rem;border-bottom:0.5px solid var(--border);scroll-margin-top:60px;overflow:hidden}
-    @media(max-width:768px){
+    .section{padding:3.5rem 2.5rem;border-bottom:0.5px solid var(--border);scroll-margin-top:60px;overflow:hidden;transition:background 0.4s}
+    .section.flash{animation:sectionFlash 1s ease forwards}
+    @keyframes sectionFlash{0%{background:var(--bg)}30%{background:#1a1a18}100%{background:var(--bg)}}
       .section{scroll-margin-top:120px}
     }
 
@@ -116,7 +119,9 @@
     .social-arrow{margin-left:auto;transition:transform 0.2s}
     .social-item:hover .social-arrow{transform:translateX(4px)}
 
-    footer{padding:2rem 2.5rem;display:flex;justify-content:space-between;align-items:center}
+    .back-top{position:fixed;bottom:2rem;right:2rem;width:36px;height:36px;border:0.5px solid var(--border);border-radius:50%;background:var(--bg);color:var(--muted);display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transition:opacity 0.3s,color 0.2s,border-color 0.2s;z-index:90;font-size:14px}
+    .back-top.visible{opacity:1;pointer-events:auto}
+    .back-top:hover{color:var(--accent);border-color:var(--accent)}
     .footer-copy{font-size:11px;color:var(--muted);letter-spacing:0.06em}
     .timecode{font-family:var(--font-mono);font-size:11px;color:var(--muted);letter-spacing:0.12em;opacity:0.5}
     .mobile-socials{display:none;gap:1.5rem;justify-content:center}
@@ -128,7 +133,7 @@
       .nav-links{gap:1.5rem;justify-content:center}
       .hero{padding:2.5rem 1.5rem 3rem}
       .scroll-hint{display:none}
-      .section{padding:2.5rem 1.5rem;scroll-margin-top:160px}
+      .section{padding:2.5rem 1.5rem;scroll-margin-top:200px}
       .timecodeHero-wrap{font-size:10px}
       .timecodeHero-wrap .hero-label{font-size:9px;letter-spacing:0.12em}
       .timecode-hero{font-size:9px}
@@ -155,9 +160,9 @@
 <nav>
   <a class="logo" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">Nacho Santana</a>
   <div class="nav-links">
-    <a href="#about" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'});return false">About</a>
-    <a href="#tools" onclick="document.getElementById('tools').scrollIntoView({behavior:'smooth'});return false">Tools</a>
-    <a href="#contact" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'});return false">Contact</a>
+    <a href="#about">About</a>
+    <a href="#tools">Tools</a>
+    <a href="#contact">Contact</a>
   </div>
   <div class="nav-socials">
     <span class="timecode" id="timecodeNav" style="margin-right:1.2rem"></span>
@@ -385,17 +390,54 @@
   <div class="footer-copy">London, UK</div>
 </footer>
 
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
 <script>
-  document.querySelectorAll('.nav-links a').forEach(link => {
+  const backTop = document.getElementById('backTop');
+  window.addEventListener('scroll', () => {
+    backTop.classList.toggle('visible', window.scrollY > 300);
+  }, {passive:true});
+</script>
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  function setActive(id) {
+    navLinks.forEach(l => {
+      l.classList.toggle('active', l.getAttribute('href') === '#' + id);
+    });
+  }
+
+  window.addEventListener('scroll', () => {
+    const navH = document.querySelector('nav').getBoundingClientRect().height;
+    const atBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 50;
+    const atTop = window.scrollY < 100;
+    let current = null;
+    sections.forEach(s => {
+      if (s && s.getBoundingClientRect().top <= navH + 32) current = s.id;
+    });
+    if (atBottom) current = 'contact';
+    if (atTop) current = null;
+    if (current) setActive(current);
+    else navLinks.forEach(l => l.classList.remove('active'));
+  }, {passive: true});
+
+  navLinks.forEach(link => {
     link.addEventListener('click', () => {
-      const target = document.querySelector(link.getAttribute('href'));
+      const id = link.getAttribute('href').replace('#','');
+      const target = document.getElementById(id);
       if (!target) return;
+      const navH = document.querySelector('nav').getBoundingClientRect().height;
+      const top = target.getBoundingClientRect().top + window.scrollY - navH - 16;
+      window.scrollTo({top, behavior:'smooth'});
+      target.classList.remove('flash');
+      void target.offsetWidth;
+      target.classList.add('flash');
+      target.addEventListener('animationend', () => target.classList.remove('flash'), {once:true});
       const label = target.querySelector('.section-label');
       if (!label) return;
       label.classList.remove('highlight');
       void label.offsetWidth;
       label.classList.add('highlight');
-      label.addEventListener('animationend', () => label.classList.remove('highlight'), {once: true});
+      label.addEventListener('animationend', () => label.classList.remove('highlight'), {once:true});
     });
   });
 </script>
