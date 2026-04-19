@@ -13,12 +13,14 @@
       --text:#f0ede6;--muted:#7a7770;--accent:#c8b89a;
       --font-serif:'DM Serif Display',serif;--font-mono:'DM Mono',monospace;
     }
-    html{scroll-behavior:smooth}
+    html{scroll-behavior:smooth;cursor:none}
     ::selection{background:#f5d06e;color:#0a0a09}
-    .cursor-dot{width:4px;height:4px;background:var(--accent);border-radius:50%;position:fixed;transform:translate(-50%,-50%);pointer-events:none;z-index:9999;transition:opacity 0.3s;opacity:0}
-    .cursor-ring{width:24px;height:24px;border:0.5px solid rgba(200,184,154,0.3);border-radius:50%;position:fixed;transform:translate(-50%,-50%);pointer-events:none;z-index:9998;transition:width 0.2s,height 0.2s,border-color 0.2s,opacity 0.3s;opacity:0}
+    .cursor-dot{width:4px;height:4px;background:var(--accent);border-radius:50%;position:fixed;transform:translate(-50%,-50%);pointer-events:none;z-index:9999;transition:opacity 1s,transform 0.1s;opacity:1}
+    .cursor-ring{width:24px;height:24px;border:0.5px solid rgba(200,184,154,0.3);border-radius:50%;position:fixed;transform:translate(-50%,-50%);pointer-events:none;z-index:9998;transition:width 0.2s,height 0.2s,border-color 0.2s,opacity 1s;opacity:1}
     .cursor-ring.hover{width:36px;height:36px;border-color:rgba(200,184,154,0.9);border-width:1px}
+    .cursor-dot.hidden,.cursor-ring.hidden{opacity:0}
     @media(hover:none),(pointer:coarse){
+      html{cursor:auto}
       .cursor-dot,.cursor-ring{display:none}
       ::selection{background:#f5d06e;color:#0a0a09}
       .work-thumb span{visibility:hidden}
@@ -30,10 +32,6 @@
 
     nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 2.5rem;border-bottom:0.5px solid var(--border);position:sticky;top:0;background:var(--bg);z-index:100}
     .logo{font-family:var(--font-serif);font-size:17px;color:var(--text);text-decoration:none}
-    .logo-wrap{display:flex;flex-direction:column;gap:4px}
-    .timecode-hero{font-family:var(--font-mono);font-size:11px;font-weight:400;color:var(--accent);letter-spacing:0.14em;opacity:0.9;transition:opacity 0.1s}
-    .timecode-hero.flash{animation:tcFlash 0.3s ease}
-    @keyframes tcFlash{0%{opacity:0.9}30%{opacity:1;color:#f5d06e}100%{opacity:0.9;color:var(--accent)}}
     .nav-links{display:flex;gap:2rem}
     .nav-links a{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;transition:color 0.2s}
     .nav-links a:hover{color:var(--text)}
@@ -45,7 +43,6 @@
     @media(max-width:768px){
       .hero{padding:3rem 1.5rem 4rem}
       .scroll-hint{display:none}
-      .edit-status{display:none}
     }
     .scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;animation:hintFade 2s ease 1.5s both;opacity:0}
     .scroll-hint span{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted)}
@@ -110,7 +107,7 @@
     /* CONTACT */
     .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem}
     .contact-block p{color:var(--muted);font-size:12px;line-height:1.9;margin-bottom:1.5rem}
-    .contact-link{font-family:var(--font-serif);font-size:22px;color:var(--accent);text-decoration:none;display:block;margin-bottom:0.5rem;transition:opacity 0.2s}
+    .contact-link{font-family:var(--font-serif);font-size:22px;color:var(--accent);text-decoration:none;display:inline-block;margin-bottom:0.5rem;transition:opacity 0.2s}
     .contact-link:hover{opacity:0.7}
     .social-item{display:flex;align-items:center;text-decoration:none;color:var(--muted);font-size:12px;letter-spacing:0.06em;padding:0.8rem 0;border-bottom:0.5px solid var(--border);transition:color 0.2s;font-weight:300}
     .social-item:hover{color:var(--text)}
@@ -121,9 +118,7 @@
 
     footer{padding:2rem 2.5rem;display:flex;justify-content:space-between;align-items:center}
     .footer-copy{font-size:11px;color:var(--muted);letter-spacing:0.06em}
-    .timecode{font-family:var(--font-mono);font-size:11px;color:var(--muted);letter-spacing:0.06em;opacity:1}
-    .timecode.flash{animation:footerPulse 0.3s ease}
-    @keyframes footerPulse{0%{opacity:1}30%{opacity:0.6}100%{opacity:1}}
+    .timecode{font-family:var(--font-mono);font-size:11px;color:var(--muted);letter-spacing:0.12em;opacity:0.5}
     .mobile-socials{display:none;gap:1.5rem;justify-content:center}
     .mobile-socials a{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:0.08em;transition:color 0.2s}
     .mobile-socials a:hover{color:var(--accent)}
@@ -158,6 +153,7 @@
     <a href="#contact" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'});return false">Contact</a>
   </div>
   <div class="nav-socials">
+    <span class="timecode" id="timecodeNav" style="margin-right:1.2rem"></span>
     <a href="https://vimeo.com/nachosantanas" target="_blank" rel="noopener">Vimeo</a>
     <a href="https://www.linkedin.com/in/nachosantanas/" target="_blank" rel="noopener">LinkedIn</a>
     <a href="https://www.instagram.com/nachosantanas/" target="_blank" rel="noopener">Instagram</a>
@@ -165,15 +161,9 @@
 </nav>
 
 <div class="hero">
-  <div style="display:flex;justify-content:space-between;align-items:center">
-    <div class="hero-label" style="margin-bottom:0">Video Editor & Assistant Editor — London</div>
-    <span class="timecode-hero" id="timecodeHero">00:00:00:00</span>
-  </div>
+  <div class="hero-label">Video Editor & Assistant Editor — London</div>
   <div class="hero-title">Nacho<br><em>Santana</em></div>
-  <div style="display:flex;justify-content:space-between;align-items:flex-end">
-    <div class="hero-sub">Commercial · Branded Content · Long-form<br>Avid · Premiere · Resolve</div>
-    <span id="editStatus" style="font-family:var(--font-mono);font-size:10px;color:var(--accent);letter-spacing:0.14em;text-transform:uppercase;opacity:0.75;text-align:right;flex-shrink:0;padding-left:2rem"></span>
-  </div>
+  <div class="hero-sub">Commercial · Branded Content · Long-form<br>Avid · Premiere · Resolve</div>
   <div class="scroll-hint">
     <span>scroll</span>
     <div class="scroll-arrow"></div>
@@ -407,7 +397,7 @@
 
 <script>
   const tc = document.getElementById('timecode');
-  const tcHero = document.getElementById('timecodeHero');
+  const tcNav = document.getElementById('timecodeNav');
   const tcMobile = document.getElementById('timecodeFooterMobile');
   const isMobile = window.matchMedia('(hover:none),(pointer:coarse)').matches;
   if (isMobile) { tcMobile.style.display = 'block'; }
@@ -422,24 +412,16 @@
     return pad(hh) + ':' + pad(mm) + ':' + pad(ss) + ':' + pad(ff);
   }
 
-  function setVal(val) {
-    tc.textContent = val;
-    tcHero.textContent = val;
-    if (tcMobile) tcMobile.textContent = val;
-  }
-
   function runBurst(duration, onDone) {
     const start = Date.now();
     function tick() {
-      setVal(randomTC());
+      const val = randomTC();
+      tc.textContent = val;
+      tcNav.textContent = val;
+      tcMobile.textContent = val;
       if (Date.now() - start < duration) {
         setTimeout(tick, 8);
       } else {
-        tcHero.classList.remove('flash');
-        tc.classList.remove('flash');
-        void tcHero.offsetWidth;
-        tcHero.classList.add('flash');
-        tc.classList.add('flash');
         onDone();
       }
     }
@@ -447,67 +429,48 @@
   }
 
   function loop() {
-    const burstTime = Math.random() * 150 + 200;
-    const pauseTime = 4000;
+    const burstTime = Math.random() * 100 + 60;
+    const pauseTime = 3000;
     runBurst(burstTime, () => setTimeout(loop, pauseTime));
   }
 
-  const initVal = '00:00:00:00';
+  const initVal = randomTC();
   tc.textContent = initVal;
-  tcHero.textContent = initVal;
-  if (tcMobile) tcMobile.textContent = initVal;
+  tcNav.textContent = initVal;
+  tcMobile.textContent = initVal;
   loop();
 </script>
 
-<script>
-  function randomDate() {
-    const d = String(Math.floor(Math.random() * 28) + 1).padStart(2, '0');
-    const m = String(Math.floor(Math.random() * 12) + 1).padStart(2, '0');
-    const y = String(Math.floor(Math.random() * 5) + 22).padStart(2, '0');
-    return d + m + y;
-  }
-
-  const namingTemplates = [
-    'RUSHES_DAY_01','RUSHES_DAY_02','RUSHES_CAM_A','RUSHES_CAM_B',
-    'AAF','EDL','MIX_STEMS','DX_STEMS','MX_STEMS','SFX',
-    'MUSIC_TEMP','MUSIC_FINAL',
-    'EXPORT_MASTER','EXPORT_CLIENT','EXPORT_SOCIAL',
-    'OFFLINE_CUT','ASSEMBLY_CUT','FINE_CUT','LOCKED_CUT','ONLINE_CONFORM',
-    'VFX_COMP','CLEAN_PLATE','WIP'
-  ];
-
-  const allTerms = [randomDate() + '_WIP', ...namingTemplates.filter(t => t !== 'WIP').map(t => randomDate() + '_' + t).sort(() => Math.random() - 0.5)];
-  let statusIndex = 0;
-
-  const statusEl = document.getElementById('editStatus');
-
-  function typeOut(text, onDone) {
-    statusEl.textContent = '';
-    let i = 0;
-    const interval = setInterval(() => {
-      statusEl.textContent = text.slice(0, ++i);
-      if (i >= text.length) {
-        clearInterval(interval);
-        onDone();
-      }
-    }, 55);
-  }
-
-  function runStatus() {
-    const term = allTerms[statusIndex % allTerms.length];
-    statusIndex++;
-    typeOut(term, () => {
-      setTimeout(runStatus, Math.random() * 3000 + 3000);
-    });
-  }
-
-  setTimeout(runStatus, 1800);
-</script>
 <script>
   const dot = document.getElementById('cursorDot');
   const ring = document.getElementById('cursorRing');
   let mouseX = 0, mouseY = 0;
   let ringX = 0, ringY = 0;
+  let hidden = false;
+
+  function showCursor() {
+    hidden = false;
+    dot.style.display = 'block';
+    ring.style.display = 'block';
+    dot.style.transition = 'opacity 0.1s';
+    ring.style.transition = 'width 0.2s,height 0.2s,border-color 0.2s,opacity 0.1s';
+    dot.style.opacity = '1';
+    ring.style.opacity = '1';
+  }
+
+  function hideCursor(fast) {
+    hidden = true;
+    const dur = fast ? '0.4s' : '1s';
+    dot.style.transition = 'opacity ' + dur;
+    ring.style.transition = 'width 0.2s,height 0.2s,border-color 0.2s,opacity ' + dur;
+    dot.style.opacity = '0';
+    ring.style.opacity = '0';
+    setTimeout(() => {
+      if (hidden) {
+        document.documentElement.style.cursor = 'auto';
+      }
+    }, fast ? 400 : 1000);
+  }
 
   document.addEventListener('mousemove', e => {
     mouseX = e.clientX;
@@ -525,29 +488,19 @@
   }
   animateRing();
 
-  function showAnim() {
-    dot.style.opacity = '1';
-    ring.style.opacity = '1';
-  }
-
-  function hideAnim() {
-    dot.style.opacity = '0';
-    ring.style.opacity = '0';
-  }
-
   document.querySelectorAll('a, button').forEach(el => {
     el.addEventListener('mouseenter', () => {
-      showAnim();
+      document.documentElement.style.cursor = 'none';
+      showCursor();
       ring.classList.add('hover');
     });
     el.addEventListener('mouseleave', () => {
       ring.classList.remove('hover');
-      hideAnim();
+      hideCursor(true);
     });
   });
 
-  showAnim();
-  setTimeout(() => hideAnim(), 3000);
+  setTimeout(() => hideCursor(false), 5000);
 </script>
 </body>
 </html>
