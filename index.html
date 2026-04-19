@@ -32,6 +32,10 @@
 
     nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 2.5rem;border-bottom:0.5px solid var(--border);position:sticky;top:0;background:var(--bg);z-index:100}
     .logo{font-family:var(--font-serif);font-size:17px;color:var(--text);text-decoration:none}
+    .logo-wrap{display:flex;flex-direction:column;gap:4px}
+    .timecode-hero{font-family:var(--font-mono);font-size:11px;font-weight:400;color:var(--accent);letter-spacing:0.14em;opacity:0.9;transition:opacity 0.1s}
+    .timecode-hero.flash{animation:tcFlash 0.3s ease}
+    @keyframes tcFlash{0%{opacity:0.9}30%{opacity:1;color:#f5d06e}100%{opacity:0.9;color:var(--accent)}}
     .nav-links{display:flex;gap:2rem}
     .nav-links a{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;transition:color 0.2s}
     .nav-links a:hover{color:var(--text)}
@@ -118,7 +122,9 @@
 
     footer{padding:2rem 2.5rem;display:flex;justify-content:space-between;align-items:center}
     .footer-copy{font-size:11px;color:var(--muted);letter-spacing:0.06em}
-    .timecode{font-family:var(--font-mono);font-size:11px;color:var(--muted);letter-spacing:0.12em;opacity:0.5}
+    .timecode{font-family:var(--font-mono);font-size:11px;color:var(--muted);letter-spacing:0.06em;opacity:1}
+    .timecode.flash{animation:footerPulse 0.3s ease}
+    @keyframes footerPulse{0%{opacity:1}30%{opacity:0.6}100%{opacity:1}}
     .mobile-socials{display:none;gap:1.5rem;justify-content:center}
     .mobile-socials a{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:0.08em;transition:color 0.2s}
     .mobile-socials a:hover{color:var(--accent)}
@@ -153,7 +159,6 @@
     <a href="#contact" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'});return false">Contact</a>
   </div>
   <div class="nav-socials">
-    <span class="timecode" id="timecodeNav" style="margin-right:1.2rem"></span>
     <a href="https://vimeo.com/nachosantanas" target="_blank" rel="noopener">Vimeo</a>
     <a href="https://www.linkedin.com/in/nachosantanas/" target="_blank" rel="noopener">LinkedIn</a>
     <a href="https://www.instagram.com/nachosantanas/" target="_blank" rel="noopener">Instagram</a>
@@ -161,7 +166,10 @@
 </nav>
 
 <div class="hero">
-  <div class="hero-label">Video Editor & Assistant Editor — London</div>
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0">
+    <div class="hero-label" style="margin-bottom:0">Video Editor & Assistant Editor — London</div>
+    <span class="timecode-hero" id="timecodeHero">00:00:00:00</span>
+  </div>
   <div class="hero-title">Nacho<br><em>Santana</em></div>
   <div class="hero-sub">Commercial · Branded Content · Long-form<br>Avid · Premiere · Resolve</div>
   <div class="scroll-hint">
@@ -397,7 +405,7 @@
 
 <script>
   const tc = document.getElementById('timecode');
-  const tcNav = document.getElementById('timecodeNav');
+  const tcHero = document.getElementById('timecodeHero');
   const tcMobile = document.getElementById('timecodeFooterMobile');
   const isMobile = window.matchMedia('(hover:none),(pointer:coarse)').matches;
   if (isMobile) { tcMobile.style.display = 'block'; }
@@ -412,16 +420,24 @@
     return pad(hh) + ':' + pad(mm) + ':' + pad(ss) + ':' + pad(ff);
   }
 
+  function setVal(val) {
+    tc.textContent = val;
+    tcHero.textContent = val;
+    if (tcMobile) tcMobile.textContent = val;
+  }
+
   function runBurst(duration, onDone) {
     const start = Date.now();
     function tick() {
-      const val = randomTC();
-      tc.textContent = val;
-      tcNav.textContent = val;
-      tcMobile.textContent = val;
+      setVal(randomTC());
       if (Date.now() - start < duration) {
         setTimeout(tick, 8);
       } else {
+        tcHero.classList.remove('flash');
+        tc.classList.remove('flash');
+        void tcHero.offsetWidth;
+        tcHero.classList.add('flash');
+        tc.classList.add('flash');
         onDone();
       }
     }
@@ -430,14 +446,12 @@
 
   function loop() {
     const burstTime = Math.random() * 100 + 60;
-    const pauseTime = 3000;
+    const pauseTime = 4000;
     runBurst(burstTime, () => setTimeout(loop, pauseTime));
   }
 
   const initVal = randomTC();
-  tc.textContent = initVal;
-  tcNav.textContent = initVal;
-  tcMobile.textContent = initVal;
+  setVal(initVal);
   loop();
 </script>
 
