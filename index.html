@@ -398,6 +398,8 @@
     backTop.classList.toggle('visible', window.scrollY > 300);
   }, {passive:true});
 </script>
+<script>
+  const sections = ['about','tools','contact'].map(id => document.getElementById(id));
   const navLinks = document.querySelectorAll('.nav-links a');
 
   function setActive(id) {
