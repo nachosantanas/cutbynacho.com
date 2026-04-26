@@ -242,7 +242,7 @@
     <div class="hero-sub" style="margin-top:0">Commercial · Branded Content · Long-form<br>Avid · Premiere · Resolve</div>
     <span id="editStatus"></span>
   </div>
-  <div class="scroll-hint" onclick="document.getElementById('work').scrollIntoView({behavior:'smooth'})">
+  <div class="scroll-hint" onclick="(function(){ var target=document.getElementById('work'); var navH=document.querySelector('nav').getBoundingClientRect().height; var to=target.getBoundingClientRect().top+window.scrollY-navH; var from=window.scrollY; var start=null; var dur=650; function step(ts){ if(!start)start=ts; var p=Math.min((ts-start)/dur,1); var ease=p<0.5?2*p*p:1-Math.pow(-2*p+2,2)/2; window.scrollTo(0,from+(to-from)*ease); if(p<1)requestAnimationFrame(step); } requestAnimationFrame(step); })()">
     <span>scroll</span>
     <div class="scroll-arrow"></div>
   </div>
@@ -537,9 +537,7 @@
   <div class="footer-copy">London, UK</div>
 </footer>
 
-
 <script>
-  // ── NAV ACTIVE STATE ──
   const sections = ['work','about','tools','contact'].map(id => document.getElementById(id));
   const navLinks = document.querySelectorAll('.nav-links a');
 
