@@ -173,9 +173,12 @@
       .about-grid{grid-template-columns:1fr;gap:2rem}
       .hero-sub{max-width:100%}
       .tools-categories{grid-template-columns:1fr}
-      .tool-cat{border-right:none;border-bottom:0.5px solid var(--border);padding:1.5rem 0;margin:0}
+      .tool-cat{border-right:none;border-bottom:1px solid var(--border);padding:1.5rem 0;margin:0}
       .tool-cat:nth-child(2){padding-left:0}
       .tool-cat:last-child{border-bottom:none;padding-left:0;padding-right:0;padding-bottom:0}
+      .tool-name{border-bottom:1px solid var(--border)}
+      .tool-name:last-child{border-bottom:1px solid var(--border)}
+      .tool-cat:last-child .tool-name:last-child{border-bottom:none}
       .contact-grid{grid-template-columns:1fr}
       footer{flex-direction:column;gap:0.5rem;text-align:center;align-items:center;padding:1.5rem 1.5rem}
       .nav-socials{display:none}
