@@ -69,12 +69,13 @@
     .scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;animation:hintFade 2s ease 1.5s both;cursor:pointer}
     .scroll-hint span{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);transition:color 0.2s}
     .scroll-hint:hover span{color:var(--accent)}
-    .scroll-arrow{width:10px;height:10px;border-right:1px solid var(--muted);border-bottom:1px solid var(--muted);animation:arrowDrift 2.4s ease-in-out infinite}
+    .scroll-arrow{width:10px;height:10px;border-right:1px solid var(--muted);border-bottom:1px solid var(--muted);animation:arrowDrift 3s cubic-bezier(0.45,0,0.55,1) infinite}
     @keyframes arrowDrift{
-      0%  {transform:rotate(45deg) translateY(-2px);opacity:0}
-      30% {opacity:0.8}
-      60% {transform:rotate(45deg) translateY(6px);opacity:1}
-      100%{transform:rotate(45deg) translateY(12px);opacity:0}
+      0%  {transform:rotate(45deg) translateY(0px); opacity:0}
+      20% {opacity:0.6}
+      50% {transform:rotate(45deg) translateY(7px); opacity:1}
+      80% {opacity:0.6}
+      100%{transform:rotate(45deg) translateY(0px); opacity:0}
     }
     @keyframes hintFade{from{opacity:0}to{opacity:0.7}}
 
@@ -152,9 +153,13 @@
     .tool-cat-label{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem;display:block}
     .tool-subcat{font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);opacity:0.5;margin-top:1.5rem;margin-bottom:0.5rem;display:block}
     .tool-subcat:first-of-type{margin-top:0}
-    .tool-name{font-size:12px;color:#b8b4ad;padding:0.45rem 0;border-bottom:0.5px solid var(--border);display:flex;justify-content:space-between;align-items:center;letter-spacing:0.04em;transition:color 0.2s}
+    /* TOOL DESCRIPTIONS — click name to reveal */
+    .tool-name{font-size:12px;color:#b8b4ad;padding:0.45rem 0;border-bottom:0.5px solid var(--border);display:flex;flex-direction:column;letter-spacing:0.04em;transition:color 0.2s;cursor:pointer;gap:0}
     .tool-name:last-child{border-bottom:none}
-    .tool-name:hover{color:var(--accent)}
+    .tool-name-row{display:flex;justify-content:space-between;align-items:center;width:100%}
+    .tool-name:hover .tool-name-row{color:var(--accent)}
+    .tool-desc{font-size:10px;color:var(--muted);line-height:1.6;letter-spacing:0.02em;max-height:0;overflow:hidden;transition:max-height 0.35s ease,opacity 0.3s ease,padding 0.3s ease;opacity:0;padding-top:0;font-style:italic;text-transform:none;font-weight:300}
+    .tool-name.open .tool-desc{max-height:60px;opacity:1;padding-top:0.35rem}
     .tool-nle{font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);opacity:0.5;flex-shrink:0;margin-left:0.75rem}
 
     /* CONTACT */
@@ -431,73 +436,73 @@
     <div class="tool-cat">
       <span class="tool-cat-label">Ecosystem &amp; utilities</span>
       <span class="tool-subcat">Transcoding &amp; encoding</span>
-      <span class="tool-name">Shutter Encoder</span>
-      <span class="tool-name">Compressor</span>
-      <span class="tool-name">EditReady</span>
+      <span class="tool-name"><span class="tool-name-row">Shutter Encoder</span><span class="tool-desc">Free open-source transcoder. Converts any video or audio format via drag-and-drop.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Compressor</span><span class="tool-desc">Apple's encoding tool. Batch export and delivery presets integrated with FCPX.</span></span>
+      <span class="tool-name"><span class="tool-name-row">EditReady</span><span class="tool-desc">Lightweight transcoder for camera originals. Quick conversion to ProRes or other edit codecs.</span></span>
       <span class="tool-subcat">Media analysis &amp; monitoring</span>
-      <span class="tool-name">ScopeBox</span>
-      <span class="tool-name">MediaInfo</span>
-      <span class="tool-name">ExifTool</span>
-      <span class="tool-name">QTChange</span>
-      <span class="tool-name">Blackmagic Speed Test</span>
+      <span class="tool-name"><span class="tool-name-row">ScopeBox</span><span class="tool-desc">Real-time video scopes for Mac. Waveform, vectorscope, and histogram outside the NLE.</span></span>
+      <span class="tool-name"><span class="tool-name-row">MediaInfo</span><span class="tool-desc">Reads technical metadata from any media file — codec, bitrate, timecode, colour space.</span></span>
+      <span class="tool-name"><span class="tool-name-row">ExifTool</span><span class="tool-desc">Command-line metadata reader and editor across hundreds of file types.</span></span>
+      <span class="tool-name"><span class="tool-name-row">QTChange</span><span class="tool-desc">Edits QuickTime metadata — reel name, timecode, frame rate — without re-encoding.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Blackmagic Speed Test</span><span class="tool-desc">Benchmarks disk read/write speed for high-res playback verification.</span></span>
       <span class="tool-subcat">FCP utilities</span>
-      <span class="tool-name">XtoCC</span>
-      <span class="tool-name">SendToX</span>
-      <span class="tool-name">Multicam Flattener</span>
-      <span class="tool-name">X2Pro5</span>
-      <span class="tool-name">Worx4 X</span>
-      <span class="tool-name">Arctic</span>
+      <span class="tool-name"><span class="tool-name-row">XtoCC</span><span class="tool-desc">Converts FCP 7 XML to Premiere-readable XML for legacy project migration.</span></span>
+      <span class="tool-name"><span class="tool-name-row">SendToX</span><span class="tool-desc">Migrates FCP 7 projects into FCPX preserving timeline structure.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Multicam Flattener</span><span class="tool-desc">Flattens FCPX multicam clips to single-angle before export or interchange.</span></span>
+      <span class="tool-name"><span class="tool-name-row">X2Pro5</span><span class="tool-desc">Exports FCPX timelines as AAF for Pro Tools audio handoff.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Worx4 X</span><span class="tool-desc">FCPX utility suite — roles, list export, and audio lane management.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Arctic</span><span class="tool-desc">FCPX library manager. Handles archiving, migration, and cleanup of project libraries.</span></span>
       <span class="tool-subcat">Avid media management</span>
-      <span class="tool-name">MDVX</span>
+      <span class="tool-name"><span class="tool-name-row">MDVX</span><span class="tool-desc">Inspects and validates Avid MXF media — codec, resolution, and timecode integrity.</span></span>
       <span class="tool-subcat">Ingest &amp; asset management</span>
-      <span class="tool-name">OffShoot Pro</span>
-      <span class="tool-name">FoolCat Pro</span>
-      <span class="tool-name">Kyno</span>
-      <span class="tool-name">Wave Agent</span>
+      <span class="tool-name"><span class="tool-name-row">OffShoot Pro</span><span class="tool-desc">Card offload tool with checksum verification for secure camera media backup.</span></span>
+      <span class="tool-name"><span class="tool-name-row">FoolCat Pro</span><span class="tool-desc">Media cataloguing and ingest with metadata, proxies, and stills databases.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Kyno</span><span class="tool-desc">Browse, log, transcode, and deliver camera media with full metadata tagging.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Wave Agent</span><span class="tool-desc">Reads and edits BWF metadata — scene, take, track names — in production .wav files.</span></span>
       <span class="tool-subcat">Dialogue &amp; script</span>
-      <span class="tool-name">Avid ScriptSync</span>
+      <span class="tool-name"><span class="tool-name-row">Avid ScriptSync</span><span class="tool-desc">Links script text to timeline clips. Navigate footage by clicking script lines.</span></span>
       <span class="tool-subcat">File &amp; system</span>
-      <span class="tool-name">Keyboard Maestro</span>
-      <span class="tool-name">Name Wrangler</span>
-      <span class="tool-name">BBEdit</span>
-      <span class="tool-name">VisualDiffer</span>
-      <span class="tool-name">EasyFind</span>
-      <span class="tool-name">Post Haste</span>
-      <span class="tool-name">Tuxera Disk Manager</span>
-      <span class="tool-name">FileSync</span>
+      <span class="tool-name"><span class="tool-name-row">Keyboard Maestro</span><span class="tool-desc">Mac automation via hotkeys. Speeds up repetitive editorial tasks across any app.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Name Wrangler</span><span class="tool-desc">Batch file renaming with rules, sequences, and metadata substitutions.</span></span>
+      <span class="tool-name"><span class="tool-name-row">BBEdit</span><span class="tool-desc">Pro text editor for Mac. Inspect and edit EDLs, XMLs, and CSVs.</span></span>
+      <span class="tool-name"><span class="tool-name-row">VisualDiffer</span><span class="tool-desc">Side-by-side file comparison. Useful for checking EDL or XML revisions.</span></span>
+      <span class="tool-name"><span class="tool-name-row">EasyFind</span><span class="tool-desc">Fast file search without indexing. Good for locating media on external drives.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Post Haste</span><span class="tool-desc">Creates consistent project folder structures from templates on every job.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Tuxera Disk Manager</span><span class="tool-desc">Full read/write access to NTFS drives on Mac. Essential for Windows media.</span></span>
+      <span class="tool-name"><span class="tool-name-row">FileSync</span><span class="tool-desc">Syncs folders between locations for project and media backups.</span></span>
     </div>
     <div class="tool-cat">
       <span class="tool-cat-label">Post-production infrastructure</span>
       <span class="tool-subcat">Collaboration &amp; versioning</span>
-      <span class="tool-name">PostLab Pro</span>
-      <span class="tool-name">Mimiq</span>
-      <span class="tool-name">EditShare</span>
-      <span class="tool-name">Avid NEXIS</span>
+      <span class="tool-name"><span class="tool-name-row">PostLab Pro</span><span class="tool-desc">Cloud collaboration for Avid, Premiere, Resolve, and FCPX. Remote project check-in/out.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Mimiq</span><span class="tool-desc">Mirrors Avid NEXIS over the internet for remote shared-storage access.</span></span>
+      <span class="tool-name"><span class="tool-name-row">EditShare</span><span class="tool-desc">Networked shared storage and production management for post teams.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Avid NEXIS</span><span class="tool-desc">Industry-standard shared storage for large Avid team workflows.</span></span>
       <span class="tool-subcat">Delivery &amp; transfer</span>
-      <span class="tool-name">MASV</span>
-      <span class="tool-name">Media Shuttle</span>
-      <span class="tool-name">WireDrive</span>
-      <span class="tool-name">Frame.io</span>
-      <span class="tool-name">Media Silo</span>
-      <span class="tool-name">ClearCast</span>
+      <span class="tool-name"><span class="tool-name-row">MASV</span><span class="tool-desc">High-speed large file transfers with no size limits.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Media Shuttle</span><span class="tool-desc">Signiant's enterprise transfer platform for broadcasters and post houses.</span></span>
+      <span class="tool-name"><span class="tool-name-row">WireDrive</span><span class="tool-desc">Secure file sharing and review platform used by advertising agencies.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Frame.io</span><span class="tool-desc">Video review platform. Clients leave timestamped comments directly on the cut.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Media Silo</span><span class="tool-desc">Cloud review and asset management with proxy playback and version control.</span></span>
+      <span class="tool-name"><span class="tool-name-row">ClearCast</span><span class="tool-desc">UK broadcast clearance system. Required before any ad airs on commercial TV.</span></span>
     </div>
     <div class="tool-cat">
       <span class="tool-cat-label">Plugins &amp; extensions</span>
       <span class="tool-subcat">Workflow &amp; organisation</span>
-      <span class="tool-name">Excalibur <span class="tool-nle">Premiere</span></span>
-      <span class="tool-name">Grave Robber <span class="tool-nle">Premiere</span></span>
-      <span class="tool-name">Dagger <span class="tool-nle">Premiere</span></span>
-      <span class="tool-name">Watchtower <span class="tool-nle">Premiere</span></span>
+      <span class="tool-name"><span class="tool-name-row">Excalibur <span class="tool-nle">Premiere</span></span><span class="tool-desc">Batch operations, sequence tools, and workflow automation for Premiere.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Grave Robber <span class="tool-nle">Premiere</span></span><span class="tool-desc">Extracts and rebuilds sequences from other Premiere projects.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Dagger <span class="tool-nle">Premiere</span></span><span class="tool-desc">Sequence and project management — duplicate, lock, and organise at scale.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Watchtower <span class="tool-nle">Premiere</span></span><span class="tool-desc">Monitors for offline media and broken links before delivery.</span></span>
       <span class="tool-subcat">Metadata &amp; naming</span>
-      <span class="tool-name">iXML Renamer <span class="tool-nle">Premiere</span></span>
-      <span class="tool-name">ALE Metadata Toolkit <span class="tool-nle">Premiere</span></span>
-      <span class="tool-name">Batch Rename <span class="tool-nle">Premiere</span></span>
-      <span class="tool-name">CommandPost <span class="tool-nle">FCP</span></span>
+      <span class="tool-name"><span class="tool-name-row">iXML Renamer <span class="tool-nle">Premiere</span></span><span class="tool-desc">Reads iXML from sound recorders and renames Premiere clips — scene, take, track.</span></span>
+      <span class="tool-name"><span class="tool-name-row">ALE Metadata Toolkit <span class="tool-nle">Premiere</span></span><span class="tool-desc">Imports Avid ALE metadata into Premiere clips. Bridges Avid and Premiere workflows.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Batch Rename <span class="tool-nle">Premiere</span></span><span class="tool-desc">Renames bins, clips, or sequences in bulk using custom naming patterns.</span></span>
+      <span class="tool-name"><span class="tool-name-row">CommandPost <span class="tool-nle">FCP</span></span><span class="tool-desc">FCPX automation — MIDI control, custom shortcuts, and batch actions.</span></span>
       <span class="tool-subcat">Effects &amp; finishing</span>
-      <span class="tool-name">RSMB <span class="tool-nle">Avid · Premiere · Resolve</span></span>
-      <span class="tool-name">BLend-X <span class="tool-nle">Avid</span></span>
-      <span class="tool-name">Color Finale® 2 Pro <span class="tool-nle">FCP</span></span>
-      <span class="tool-name">Captioneer <span class="tool-nle">Premiere</span></span>
+      <span class="tool-name"><span class="tool-name-row">RSMB <span class="tool-nle">Avid · Premiere · Resolve</span></span><span class="tool-desc">Adds realistic motion blur to footage in post. Standard in commercial VFX work.</span></span>
+      <span class="tool-name"><span class="tool-name-row">BLend-X <span class="tool-nle">Avid</span></span><span class="tool-desc">Extends Avid's compositing and blending options for titles and layer mixing.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Color Finale® 2 Pro <span class="tool-nle">FCP</span></span><span class="tool-desc">Node-based colour grading with scopes and LUT support inside FCPX.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Captioneer <span class="tool-nle">Premiere</span></span><span class="tool-desc">Imports SRT files and auto-positions captions across Premiere sequences.</span></span>
     </div>
   </div>
 </div>
@@ -603,6 +608,15 @@
     function run(){typeOut(terms[idx++%terms.length],()=>setTimeout(run,Math.random()*3000+3000));}
     setTimeout(run,1800);
   })();
+
+  // ── TOOL DESCRIPTIONS ──
+  document.querySelectorAll('.tool-name').forEach(el=>{
+    el.addEventListener('click', ()=>{
+      const isOpen = el.classList.contains('open');
+      document.querySelectorAll('.tool-name.open').forEach(n=>n.classList.remove('open'));
+      if(!isOpen) el.classList.add('open');
+    });
+  });
 
   // ── JKL EASTER EGG ──
   let jklSeq=[];
