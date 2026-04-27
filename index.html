@@ -213,7 +213,6 @@
       body{cursor:auto}
       .cursor-dot,.cursor-ring{display:none}
       nav{flex-direction:column;gap:0.8rem;padding:1rem 1.5rem;text-align:center;background:rgba(10,10,9,0.99);position:fixed;top:0;left:0;right:0;z-index:100;backdrop-filter:none;-webkit-backdrop-filter:none}
-      body{padding-top:110px}
       .nav-right{flex-direction:column;gap:0.5rem;align-items:center}
       .nav-links{gap:1.5rem;justify-content:center}
       .hero{padding:1.5rem 1.5rem 2rem;min-height:0}
@@ -612,7 +611,16 @@
     });
   });
 
-  // ── TIMECODE (~25fps) ──
+  // ── MOBILE NAV OFFSET ──
+  function setNavOffset() {
+    if (window.innerWidth <= 768) {
+      document.body.style.paddingTop = document.querySelector('nav').offsetHeight + 'px';
+    } else {
+      document.body.style.paddingTop = '';
+    }
+  }
+  setNavOffset();
+  window.addEventListener('resize', setNavOffset);
   function realTimecode() {
     const now = new Date();
     return String(now.getHours()).padStart(2,'0') + ':' +
