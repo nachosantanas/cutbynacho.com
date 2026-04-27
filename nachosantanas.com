@@ -541,7 +541,7 @@
   <div class="section-label">Get in touch</div>
   <div class="contact-grid">
     <div class="contact-block">
-      <p>Available for freelance and contract work across commercial, branded and long-form productions.</p>
+      <p>Available for freelance and contract work across commercial, branded and long-form productions. Based in London — available to travel internationally.</p>
       <a class="contact-link" href="mailto:hello@nachosantanas.com?subject=Let's%20Work">hello@nachosantanas.com</a>
       <br>
       <a href="/Nacho-Santana-Video-Editor.pdf" target="_blank" rel="noopener" style="display:block;margin-top:0.75rem;font-size:11px;color:var(--muted);letter-spacing:0.08em;text-decoration:none;border-bottom:0.5px solid var(--border);padding-bottom:2px;width:fit-content;transition:color 0.2s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">Download CV →</a>
