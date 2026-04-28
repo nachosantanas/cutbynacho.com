@@ -689,7 +689,6 @@
           const img = document.createElement('img');
           img.src = data.thumbnail_url.replace(/_\d+x\d+/, '_1280x720');
           img.alt = data.title || '';
-          img.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.75;transition:opacity 0.5s,transform 0.5s';
           el.insertBefore(img, el.firstChild);
           el.querySelector('.featured-thumb-placeholder').style.display = 'none';
         }
