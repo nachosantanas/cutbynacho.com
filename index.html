@@ -97,8 +97,11 @@
     .showreel-wrap{aspect-ratio:16/9;overflow:hidden;background:#000;margin-bottom:2px}
     .showreel-wrap iframe{width:100%;height:100%;border:none;display:block}
 
+    /* SHOWREEL full-width item */
+    .showreel-item{grid-column:1/-1;aspect-ratio:16/5;margin-bottom:1.5rem}
+
     /* WORK GRID - 3 cols for real projects */
-    .work-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;background:var(--border);border-radius:0 0 4px 4px;overflow:hidden}
+    .work-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;background:var(--bg);border-radius:0 0 4px 4px;overflow:hidden}
 
     /* FEATURED ITEM */
     .featured-item{
@@ -289,8 +292,21 @@
     <iframe src="https://player.vimeo.com/video/YOUR_VIMEO_ID?autoplay=0&title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
   </div> -->
 
-  <!-- WORK GRID: 3 real projects. Add <img src="..."> inside each to show thumbnails. -->
+  <!-- WORK GRID: showreel + 3 real projects per row -->
   <div class="work-grid">
+
+    <!-- SHOWREEL - full width spanning all 3 columns -->
+    <a class="featured-item showreel-item" href="https://vimeo.com/nachosantanas" target="_blank" rel="noopener">
+      <div class="featured-thumb-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="4" width="20" height="16" rx="2" stroke="white" stroke-width="1.5"/><path d="M10 9L16 12L10 15V9Z" fill="white"/></svg>
+      </div>
+      <div class="featured-overlay"></div>
+      <div class="featured-info">
+        <span class="featured-title">Showreel</span>
+        <span class="featured-role">Editor</span>
+      </div>
+      <span class="ext-arrow">↗</span>
+    </a>
 
     <!-- 1. Andrex - First School Poo -->
     <a class="featured-item" href="https://www.instagram.com/thequarryedit/reel/DJuKY8Di2D_/" target="_blank" rel="noopener">
@@ -336,43 +352,43 @@
 
     <!-- ── ROW 2 - replace href, title, role, and add <img> for each ── -->
 
-    <!-- 4. Project D -->
-    <a class="featured-item" href="#" target="_blank" rel="noopener">
-      <!-- <img src="images/project-d.jpg" alt="Project D"> -->
+    <!-- 4. Amino Dyson -->
+    <a class="featured-item" href="https://www.instagram.com/foreignanddevelopmentoffice/reel/DDPNwnBtw69/" target="_blank" rel="noopener">
+      <!-- <img src="images/amino-dyson.jpg" alt="Amino Dyson"> -->
       <div class="featured-thumb-placeholder">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="4" width="20" height="16" rx="2" stroke="white" stroke-width="1.5"/><path d="M10 9L16 12L10 15V9Z" fill="white"/></svg>
       </div>
       <div class="featured-overlay"></div>
       <div class="featured-info">
-        <span class="featured-title">Project D</span>
+        <span class="featured-title">Amino Dyson</span>
         <span class="featured-role">Editor</span>
       </div>
       <span class="ext-arrow">↗</span>
     </a>
 
-    <!-- 5. Project E -->
-    <a class="featured-item" href="#" target="_blank" rel="noopener">
-      <!-- <img src="images/project-e.jpg" alt="Project E"> -->
+    <!-- 5. Ukraine Prayers -->
+    <a class="featured-item" href="https://www.youtube.com/watch?v=UAy4YnFTEXg" target="_blank" rel="noopener">
+      <!-- <img src="images/ukraine-prayers.jpg" alt="Ukraine Prayers"> -->
       <div class="featured-thumb-placeholder">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="4" width="20" height="16" rx="2" stroke="white" stroke-width="1.5"/><path d="M10 9L16 12L10 15V9Z" fill="white"/></svg>
       </div>
       <div class="featured-overlay"></div>
       <div class="featured-info">
-        <span class="featured-title">Project E</span>
-        <span class="featured-role">Assistant Editor</span>
+        <span class="featured-title">Ukraine Prayers</span>
+        <span class="featured-role">Editor</span>
       </div>
       <span class="ext-arrow">↗</span>
     </a>
 
-    <!-- 6. Project F -->
-    <a class="featured-item" href="#" target="_blank" rel="noopener">
-      <!-- <img src="images/project-f.jpg" alt="Project F"> -->
+    <!-- 6. The Story of Nasrin, Awaz and Shireen -->
+    <a class="featured-item" href="https://www.instagram.com/foreignanddevelopmentoffice/reel/DDPNwnBtw69/" target="_blank" rel="noopener">
+      <!-- <img src="images/nasrin-awaz-shireen.jpg" alt="The Story of Nasrin, Awaz and Shireen"> -->
       <div class="featured-thumb-placeholder">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="4" width="20" height="16" rx="2" stroke="white" stroke-width="1.5"/><path d="M10 9L16 12L10 15V9Z" fill="white"/></svg>
       </div>
       <div class="featured-overlay"></div>
       <div class="featured-info">
-        <span class="featured-title">Project F</span>
+        <span class="featured-title">Nasrin, Awaz and Shireen</span>
         <span class="featured-role">Editor</span>
       </div>
       <span class="ext-arrow">↗</span>
@@ -380,44 +396,44 @@
 
     <!-- ── ROW 3 - replace href, title, role, and add <img> for each ── -->
 
-    <!-- 7. Project G -->
-    <a class="featured-item" href="#" target="_blank" rel="noopener">
-      <!-- <img src="images/project-g.jpg" alt="Project G"> -->
+    <!-- 7. Cash App Pool -->
+    <a class="featured-item" href="https://www.instagram.com/buildersclub_studios/p/DRKY4bfDIqi/?img_index=1" target="_blank" rel="noopener">
+      <!-- <img src="images/cash-app-pool.jpg" alt="Cash App Pool"> -->
       <div class="featured-thumb-placeholder">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="4" width="20" height="16" rx="2" stroke="white" stroke-width="1.5"/><path d="M10 9L16 12L10 15V9Z" fill="white"/></svg>
       </div>
       <div class="featured-overlay"></div>
       <div class="featured-info">
-        <span class="featured-title">Project G</span>
-        <span class="featured-role">Editor</span>
-      </div>
-      <span class="ext-arrow">↗</span>
-    </a>
-
-    <!-- 8. Project H -->
-    <a class="featured-item" href="#" target="_blank" rel="noopener">
-      <!-- <img src="images/project-h.jpg" alt="Project H"> -->
-      <div class="featured-thumb-placeholder">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="4" width="20" height="16" rx="2" stroke="white" stroke-width="1.5"/><path d="M10 9L16 12L10 15V9Z" fill="white"/></svg>
-      </div>
-      <div class="featured-overlay"></div>
-      <div class="featured-info">
-        <span class="featured-title">Project H</span>
+        <span class="featured-title">Cash App Pool</span>
         <span class="featured-role">Assistant Editor</span>
       </div>
       <span class="ext-arrow">↗</span>
     </a>
 
-    <!-- 9. Project I -->
-    <a class="featured-item" href="#" target="_blank" rel="noopener">
-      <!-- <img src="images/project-i.jpg" alt="Project I"> -->
+    <!-- 8. Reputational Damage Specialists -->
+    <a class="featured-item" href="https://www.instagram.com/thequarryedit/reel/DL2py2rifW5/" target="_blank" rel="noopener">
+      <!-- <img src="images/reputational-damage.jpg" alt="Reputational Damage Specialists"> -->
       <div class="featured-thumb-placeholder">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="4" width="20" height="16" rx="2" stroke="white" stroke-width="1.5"/><path d="M10 9L16 12L10 15V9Z" fill="white"/></svg>
       </div>
       <div class="featured-overlay"></div>
       <div class="featured-info">
-        <span class="featured-title">Project I</span>
-        <span class="featured-role">Editor</span>
+        <span class="featured-title">Reputational Damage</span>
+        <span class="featured-role">Assistant Editor</span>
+      </div>
+      <span class="ext-arrow">↗</span>
+    </a>
+
+    <!-- 9. The Fury Continues -->
+    <a class="featured-item" href="https://www.instagram.com/thequarryedit/p/DIbxvNliRmm/" target="_blank" rel="noopener">
+      <!-- <img src="images/fury-continues.jpg" alt="The Fury Continues"> -->
+      <div class="featured-thumb-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="4" width="20" height="16" rx="2" stroke="white" stroke-width="1.5"/><path d="M10 9L16 12L10 15V9Z" fill="white"/></svg>
+      </div>
+      <div class="featured-overlay"></div>
+      <div class="featured-info">
+        <span class="featured-title">The Fury Continues</span>
+        <span class="featured-role">Assistant Editor</span>
       </div>
       <span class="ext-arrow">↗</span>
     </a>
