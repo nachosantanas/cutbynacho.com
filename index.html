@@ -97,6 +97,15 @@
     .showreel-wrap{aspect-ratio:16/9;overflow:hidden;background:#000;margin-bottom:2px}
     .showreel-wrap iframe{width:100%;height:100%;border:none;display:block}
 
+    /* SHOWREEL PLAY BUTTON */
+    .showreel-play{
+      position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+      width:64px;height:64px;z-index:2;
+      transition:transform 0.3s cubic-bezier(0.2,0.8,0.2,1),opacity 0.3s;
+      opacity:0.85;
+    }
+    .showreel-item:hover .showreel-play{transform:translate(-50%,-50%) scale(1.1);opacity:1}
+
     /* SHOWREEL full-width item */
     .showreel-item{grid-column:1/-1;aspect-ratio:16/5;margin-bottom:1.5rem}
 
@@ -307,6 +316,12 @@
     <a class="featured-item showreel-item" href="https://vimeo.com/896225384" target="_blank" rel="noopener" data-vimeo-id="896225384">
       <div class="featured-thumb-placeholder">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="4" width="20" height="16" rx="2" stroke="white" stroke-width="1.5"/><path d="M10 9L16 12L10 15V9Z" fill="white"/></svg>
+      </div>
+      <div class="showreel-play">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="32" cy="32" r="31" stroke="rgba(255,255,255,0.6)" stroke-width="1"/>
+          <path d="M26 20L46 32L26 44V20Z" fill="white"/>
+        </svg>
       </div>
       <div class="featured-overlay"></div>
       <div class="featured-info">
