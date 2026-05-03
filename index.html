@@ -755,6 +755,20 @@
   window.addEventListener('load', fixNavPadding);
   window.addEventListener('resize', fixNavPadding);
 
+  // Fix Safari mid-scroll nav tap landing wrong
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (!target) return;
+      // Stop any current scroll momentum then navigate
+      window.scrollTo(window.scrollX, window.scrollY);
+      setTimeout(() => {
+        target.scrollIntoView({behavior: 'smooth'});
+      }, 50);
+    });
+  });
+
   let jklSeq=[];
   const jklEl=document.getElementById('jklMsg');
   document.addEventListener('keydown',e=>{
