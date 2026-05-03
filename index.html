@@ -96,10 +96,6 @@
     /* WORK SECTION */
     #work{padding-top:3.5rem}
 
-    /* SHOWREEL */
-    .showreel-wrap{aspect-ratio:16/9;overflow:hidden;background:#000;margin-bottom:2px}
-    .showreel-wrap iframe{width:100%;height:100%;border:none;display:block}
-
     /* GRID ITEM PLAY BUTTON */
     .grid-play{
       position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
@@ -109,17 +105,6 @@
     }
     .featured-item:hover .grid-play{opacity:0.85;transform:translate(-50%,-50%) scale(1.05)}
     .featured-item.touch-active .grid-play{opacity:0.85}
-
-    /* SHOWREEL PLAY BUTTON */
-    .showreel-play{
-      position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-      width:64px;height:64px;z-index:2;
-      transition:transform 0.3s cubic-bezier(0.2,0.8,0.2,1),opacity 0.5s 0.08s;
-      opacity:0;
-    }
-    .showreel-item:hover .showreel-play{transform:translate(-50%,-50%) scale(1.1);opacity:0.85}
-    /* SHOWREEL full-width item */
-    .showreel-item{grid-column:1/-1;aspect-ratio:16/5;margin-bottom:1.5rem}
 
     /* WORK GRID - 3 cols for real projects */
     .work-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;background:var(--bg);border-radius:0 0 4px 4px;overflow:hidden}
@@ -273,7 +258,6 @@
       .ext-arrow{opacity:0.6!important}
       .featured-overlay{opacity:1!important}
       .featured-info{opacity:1!important;transform:translateY(0)!important}
-      .showreel-play{width:36px;height:36px}
       .grid-play{display:none}
     }
   </style>
@@ -324,24 +308,8 @@
     <iframe src="https://player.vimeo.com/video/YOUR_VIMEO_ID?autoplay=0&title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
   </div> -->
 
-  <!-- WORK GRID: showreel + 3 real projects per row -->
+  <!-- WORK GRID: 3 real projects per row -->
   <div class="work-grid">
-
-    <!-- SHOWREEL - full width spanning all 3 columns -->
-    <a class="featured-item showreel-item" href="https://vimeo.com/896225384" target="_blank" rel="noopener" data-vimeo-id="896225384">
-      <div class="showreel-play">
-        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="32" cy="32" r="31" stroke="rgba(255,255,255,0.6)" stroke-width="1"/>
-          <path d="M26 20L46 32L26 44V20Z" fill="white"/>
-        </svg>
-      </div>
-      <div class="featured-overlay"></div>
-      <div class="featured-info">
-        <span class="featured-title">Showreel</span>
-        <span class="featured-role">Editor</span>
-      </div>
-      <span class="ext-arrow">↗</span>
-    </a>
 
     <!-- 1. Andrex - First School Poo -->
     <a class="featured-item" href="https://www.youtube.com/watch?v=Uv0W37Red9o" target="_blank" rel="noopener">
