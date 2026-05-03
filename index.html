@@ -58,6 +58,39 @@
     .logo{font-family:var(--font-serif);font-size:17px;color:var(--text);text-decoration:none}
     .nav-links{display:flex;gap:2rem}
     .nav-links a{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;transition:color 0.3s}
+
+    /* SUBSHIFT SECTION */
+    .subshift-wrap{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+    .subshift-icon{width:56px;height:56px;border-radius:14px;margin-bottom:1.5rem;display:block}
+    .subshift-title{font-family:var(--font-serif);font-size:32px;color:var(--text);margin-bottom:0.5rem}
+    .subshift-title em{font-style:italic;color:var(--accent)}
+    .subshift-desc{color:#b8b4ad;font-size:13px;line-height:1.9;margin-bottom:1.5rem}
+    .subshift-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:2rem}
+    .subshift-tag{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;border:0.5px solid var(--border);color:var(--muted)}
+    .subshift-features{list-style:none;margin-bottom:2rem}
+    .subshift-features li{font-size:12px;color:var(--muted);padding:0.5rem 0;border-bottom:0.5px solid var(--border);letter-spacing:0.04em;display:flex;align-items:center;gap:0.75rem}
+    .subshift-features li::before{content:"—";color:var(--accent);opacity:0.6}
+    .subshift-features li:first-child{border-top:0.5px solid var(--border)}
+    .subshift-gate{margin-top:1rem}
+    .subshift-gate-label{font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);margin-bottom:0.75rem;display:block}
+    .subshift-input-row{display:flex;gap:0;border:0.5px solid var(--border)}
+    .subshift-pw{background:var(--surface);border:none;outline:none;padding:0.6rem 1rem;font-family:var(--font-mono);font-size:12px;color:var(--text);letter-spacing:0.1em;flex:1;width:100%}
+    .subshift-pw::placeholder{color:var(--muted);opacity:0.4}
+    .subshift-pw-btn{background:var(--surface);border:none;border-left:0.5px solid var(--border);padding:0.6rem 1.2rem;font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);cursor:pointer;transition:background 0.2s}
+    .subshift-pw-btn:hover{background:#1a1a18}
+    .subshift-error{font-size:11px;color:#e07070;letter-spacing:0.08em;margin-top:0.5rem;opacity:0;transition:opacity 0.2s}
+    .subshift-error.show{opacity:1}
+    .subshift-download{display:none;margin-top:1.5rem}
+    .subshift-download.show{display:block}
+    .subshift-dl-btn{display:inline-flex;align-items:center;gap:0.75rem;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;padding:0.75rem 1.5rem;text-decoration:none;transition:opacity 0.2s}
+    .subshift-dl-btn:hover{opacity:0.85}
+    .subshift-dl-note{font-size:10px;color:var(--muted);letter-spacing:0.06em;margin-top:0.75rem;line-height:1.7}
+    .subshift-shortcuts{border-top:0.5px solid var(--border);padding-top:2rem}
+    .subshift-shortcuts-label{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;display:block}
+    .shortcut-row{display:flex;justify-content:space-between;padding:0.4rem 0;border-bottom:0.5px solid var(--border);font-size:11px}
+    .shortcut-row:last-child{border-bottom:none}
+    .shortcut-action{color:var(--muted);letter-spacing:0.04em}
+    .shortcut-key{font-family:var(--font-mono);color:var(--accent);letter-spacing:0.1em;font-size:10px}
     .nav-links a:hover,.nav-links a.active{color:var(--text)}
     .nav-right{display:flex;align-items:center;gap:1.5rem}
     .nav-socials{display:flex;gap:1.2rem}
@@ -503,9 +536,17 @@
       <span class="tool-name"><span class="tool-name-row">Color Finale 2 Pro </span><span class="tool-desc">Layer-based colour grading plugin with scopes and LUT support inside FCPX.</span></span>
       <span class="tool-name"><span class="tool-name-row">Nobe Display </span><span class="tool-desc">Resolve plugin for real-time video output to an external monitor during colour and finishing work.</span></span>
       <span class="tool-name"><span class="tool-name-row">Captioneer </span><span class="tool-desc">Imports SRT files and auto-positions captions across Premiere sequences.</span></span>
+      <span class="tool-subcat">In-house</span>
+      <span class="tool-name" id="subshiftToolRow">
+        <span class="tool-name-row">
+          <span class="tool-name-left">SubShift</span>
+        </span>
+        <span class="tool-desc" style="max-height:none!important">Native macOS caption converter — SRT · Avid DS · TXT · VTT<br><span id="subshiftInlineGate" onclick="event.stopPropagation()" style="display:inline-block;margin-top:0.5rem;width:100%"><span style="display:flex;gap:0;border:0.5px solid var(--border);max-width:280px"><input id="subshiftPw" type="password" placeholder="Password" autocomplete="off" onclick="event.stopPropagation()" style="background:var(--bg);border:none;outline:none;padding:0.4rem 0.75rem;font-family:var(--font-mono);font-size:11px;color:var(--text);letter-spacing:0.08em;flex:1;width:100%"><button onclick="checkSubshiftPw(event)" style="background:var(--bg);border:none;border-left:0.5px solid var(--border);padding:0.4rem 0.75rem;font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);cursor:pointer">→</button></span><span id="subshiftErr" style="font-size:10px;color:#e07070;letter-spacing:0.08em;margin-top:0.35rem;display:none">Incorrect password</span><a id="subshiftDl" href="/subshift/SubShift.zip" download style="display:none;margin-top:0.5rem;font-size:10px;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;text-decoration:none">↓ Download SubShift v1.1</a></span></span>
+      </span>
     </div>
   </div>
 </div>
+
 
 <div class="section" id="contact">
   <div class="section-label">Get in touch</div>
@@ -663,6 +704,25 @@
       document.querySelectorAll('.featured-item').forEach(i => i.classList.remove('touch-active'));
     }
   }, {passive:true});
+
+  // ── SUBSHIFT PASSWORD ──
+  function checkSubshiftPw(e) {
+    if (e) e.stopPropagation();
+    const pw = document.getElementById('subshiftPw').value.trim();
+    const err = document.getElementById('subshiftErr');
+    const dl  = document.getElementById('subshiftDl');
+    if (pw.toLowerCase() === 'subshift2026') {
+      err.style.display = 'none';
+      dl.style.display = 'inline-block';
+      document.getElementById('subshiftPw').disabled = true;
+    } else {
+      err.style.display = 'block';
+    }
+  }
+  document.addEventListener('DOMContentLoaded', () => {
+    const pw = document.getElementById('subshiftPw');
+    if (pw) pw.addEventListener('keydown', e => { if (e.key === 'Enter') checkSubshiftPw(e); });
+  });
 
   let jklSeq=[];
   const jklEl=document.getElementById('jklMsg');
