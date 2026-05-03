@@ -267,7 +267,8 @@
     @media(max-width:768px){
       body{cursor:auto}
       .cursor-dot,.cursor-ring{display:none}
-      nav{flex-direction:column;gap:0.8rem;padding:calc(env(safe-area-inset-top) + 1rem) 1.5rem 1rem;text-align:center;background:#0a0a09;position:fixed;top:calc(-1 * env(safe-area-inset-top));left:0;right:0;z-index:1000;-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}
+      nav{flex-direction:column;gap:0.8rem;padding:calc(env(safe-area-inset-top) + 1rem) 1.5rem 1rem;text-align:center;background:#0a0a09;position:fixed;top:0;left:0;right:0;z-index:1000;-webkit-transform:translateZ(0);transform:translateZ(0);backface-visibility:hidden;-webkit-backface-visibility:hidden}
+      nav::before{content:"";position:absolute;top:calc(-1 * env(safe-area-inset-top));left:0;right:0;height:env(safe-area-inset-top);background:#0a0a09}
       body{-webkit-overflow-scrolling:touch}
       .tool-subcat{margin-top:0.5rem!important;margin-bottom:0.2rem!important}
       .nav-right{flex-direction:column;gap:0.5rem;align-items:center}
