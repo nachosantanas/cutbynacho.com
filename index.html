@@ -32,7 +32,7 @@
       --text:#f0ede6;--muted:#8a867f;--accent:#c8b89a;
       --font-serif:'DM Serif Display',serif;--font-mono:'DM Mono',monospace;
     }
-    html{scroll-behavior:smooth;scroll-padding-top:90px}
+    html{scroll-behavior:smooth}
     ::selection{background:#f5d06e;color:#0a0a09}
 
     /* GRAIN OVERLAY */
@@ -745,11 +745,15 @@
 
   // Fix Safari mobile nav gap
   function fixNavPadding() {
+    const nav = document.querySelector('nav');
+    if (!nav) return;
     if (window.innerWidth <= 768) {
-      const nav = document.querySelector('nav');
-      if (nav) document.body.style.paddingTop = nav.offsetHeight + 'px';
+      const h = nav.offsetHeight;
+      document.body.style.paddingTop = h + 'px';
+      document.documentElement.style.scrollPaddingTop = h + 'px';
     } else {
       document.body.style.paddingTop = '';
+      document.documentElement.style.scrollPaddingTop = '80px';
     }
   }
   window.addEventListener('load', fixNavPadding);
