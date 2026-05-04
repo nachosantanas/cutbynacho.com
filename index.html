@@ -750,7 +750,7 @@
     if (window.innerWidth <= 768) {
       const h = nav.offsetHeight;
       document.body.style.paddingTop = h + 'px';
-      document.documentElement.style.scrollPaddingTop = h + 'px';
+      document.documentElement.style.scrollPaddingTop = (h + 80) + 'px';
     } else {
       document.body.style.paddingTop = '';
       document.documentElement.style.scrollPaddingTop = '80px';
