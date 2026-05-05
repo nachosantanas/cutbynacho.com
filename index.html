@@ -767,6 +767,7 @@
   }
   window.addEventListener('load', fixNavPadding);
   window.addEventListener('resize', fixNavPadding);
+  window.addEventListener('load', () => setActive('work'));
 
   // Nav scroll with correct offset
   document.querySelectorAll('.nav-links a').forEach(a => {
