@@ -312,7 +312,7 @@
 <nav>
   <a class="logo" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">Nacho Santana</a>
   <div class="nav-links">
-    <a href="#work" id="nav-work" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Work</a>
+    <a href="#" id="nav-work">Work</a>
     <a href="#about">About</a>
     <a href="#tools">Tools</a>
     <a href="#contact">Contact</a>
@@ -567,7 +567,8 @@
   <div class="contact-grid">
     <div class="contact-block">
       <p>Available for freelance and contract work across commercial, branded and long-form productions. Based in London - available to travel internationally.</p>
-      <a class="contact-link" href="mailto:info4nacho@gmail.com?subject=Let's%20Work">info4nacho@gmail.com</a>
+      <p style="margin-top:0.75rem;font-size:12px;opacity:0.6;font-family:var(--font-mono);letter-spacing:0.04em">For availability and rates, get in touch with your project details. Pencils on confirmed budget only.</p>
+      <a class="contact-link" href="mailto:info4nacho@gmail.com?subject=Project%20Enquiry&body=Hi%20Nacho%2C%0A%0AProject%20details%3A%0AProduction%20company%3A%20%0ARole%3A%20%0AProject%20type%3A%20%0ADates%3A%20%0ABudget%3A%20%0A%0A">info4nacho@gmail.com</a>
       <br>
       <a href="/Nacho-Santana-CV.pdf" target="_blank" rel="noopener" style="display:block;margin-top:0.75rem;font-size:11px;color:var(--muted);letter-spacing:0.08em;text-decoration:none;border-bottom:0.5px solid var(--border);padding-bottom:2px;width:fit-content;transition:color 0.2s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">View CV →</a>
       <a href="/Nacho-Santana-Deck-2026.pdf" target="_blank" rel="noopener" style="display:block;margin-top:0.75rem;font-size:11px;color:var(--muted);letter-spacing:0.08em;text-decoration:none;border-bottom:0.5px solid var(--border);padding-bottom:2px;width:fit-content;transition:color 0.2s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">View Deck →</a>
@@ -775,9 +776,9 @@
       e.preventDefault();
       const href = a.getAttribute('href');
       // Work always goes to top
-      if (href === '#work' || href === '#') {
+      if (href === '#' || href === '#work') {
         window.scrollTo({top: 0, behavior: 'smooth'});
-        setActive('work');
+        setTimeout(() => setActive('work'), 300);
         return;
       }
       const target = document.querySelector(href);
