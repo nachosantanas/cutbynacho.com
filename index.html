@@ -773,7 +773,14 @@
   document.querySelectorAll('.nav-links a').forEach(a => {
     a.addEventListener('click', e => {
       e.preventDefault();
-      const target = document.querySelector(a.getAttribute('href'));
+      const href = a.getAttribute('href');
+      // Work always goes to top
+      if (href === '#work' || href === '#') {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+        setActive('work');
+        return;
+      }
+      const target = document.querySelector(href);
       if (!target) return;
       window.scrollTo(window.scrollX, window.scrollY);
       setTimeout(() => {
