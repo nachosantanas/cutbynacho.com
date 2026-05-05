@@ -59,6 +59,10 @@
     .nav-links{display:flex;gap:2rem}
     .nav-links a{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;transition:color 0.3s}
 
+    /* WORK FLASH */
+    .work-flash{position:fixed;inset:0;background:rgba(255,255,255,0.06);pointer-events:none;opacity:0;z-index:9998;transition:opacity 0.08s ease}
+    .work-flash.active{opacity:1}
+
     /* SCROLL FADE IN */
     .fade-in{opacity:0;transform:translateY(16px);transition:opacity 0.5s ease,transform 0.5s ease}
     .fade-in.visible{opacity:1;transform:translateY(0)}
@@ -336,7 +340,8 @@
     <div class="hero-sub" style="margin-top:0">Commercial · Branded Content · Long-form<br>Avid · Premiere · Resolve</div>
     <span id="editStatus"></span>
   </div>
-  <div class="mobile-scroll-nudge" onclick="(function(){ var target=document.getElementById('work'); var navH=document.querySelector('nav').getBoundingClientRect().height; var to=target.getBoundingClientRect().top+window.scrollY-navH; var from=window.scrollY; var start=null; var dur=650; function step(ts){ if(!start)start=ts; var p=Math.min((ts-start)/dur,1); var ease=p<0.5?2*p*p:1-Math.pow(-2*p+2,2)/2; window.scrollTo(0,from+(to-from)*ease); if(p<1)requestAnimationFrame(step); } requestAnimationFrame(step); })()">
+  <div class="work-flash" id="workFlash"></div>
+<div class="mobile-scroll-nudge" onclick="(function(){ var target=document.getElementById('work'); var navH=document.querySelector('nav').getBoundingClientRect().height; var to=target.getBoundingClientRect().top+window.scrollY-navH; var from=window.scrollY; var start=null; var dur=650; function step(ts){ if(!start)start=ts; var p=Math.min((ts-start)/dur,1); var ease=p<0.5?2*p*p:1-Math.pow(-2*p+2,2)/2; window.scrollTo(0,from+(to-from)*ease); if(p<1)requestAnimationFrame(step); } requestAnimationFrame(step); })()">
     <span>scroll</span><span>↓</span>
   </div>
   <div class="scroll-hint" onclick="(function(){ var target=document.getElementById('work'); var navH=document.querySelector('nav').getBoundingClientRect().height; var to=target.getBoundingClientRect().top+window.scrollY-navH; var from=window.scrollY; var start=null; var dur=650; function step(ts){ if(!start)start=ts; var p=Math.min((ts-start)/dur,1); var ease=p<0.5?2*p*p:1-Math.pow(-2*p+2,2)/2; window.scrollTo(0,from+(to-from)*ease); if(p<1)requestAnimationFrame(step); } requestAnimationFrame(step); })()">
@@ -779,6 +784,12 @@
       if (href === '#' || href === '#work') {
         window.scrollTo({top: 0, behavior: 'smooth'});
         setTimeout(() => setActive('work'), 300);
+        // Flash the screen
+        const flash = document.getElementById('workFlash');
+        if (flash) {
+          flash.classList.add('active');
+          setTimeout(() => flash.classList.remove('active'), 120);
+        }
         return;
       }
       const target = document.querySelector(href);
