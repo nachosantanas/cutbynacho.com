@@ -312,7 +312,7 @@
 <nav>
   <a class="logo" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">Nacho Santana</a>
   <div class="nav-links">
-    <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Work</a>
+    <a href="#work" id="nav-work" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">Work</a>
     <a href="#about">About</a>
     <a href="#tools">Tools</a>
     <a href="#contact">Contact</a>
@@ -599,7 +599,11 @@
   const navLinks = document.querySelectorAll('.nav-links a');
 
   function setActive(id) {
-    navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
+    navLinks.forEach(l => {
+      const href = l.getAttribute('href');
+      const isWork = (href === '#work' || href === '#') && id === 'work';
+      l.classList.toggle('active', href === '#' + id || isWork);
+    });
   }
 
   window.addEventListener('scroll', () => {
