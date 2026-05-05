@@ -59,6 +59,10 @@
     .nav-links{display:flex;gap:2rem}
     .nav-links a{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;transition:color 0.3s}
 
+    /* SCROLL FADE IN */
+    .fade-in{opacity:0;transform:translateY(16px);transition:opacity 0.5s ease,transform 0.5s ease}
+    .fade-in.visible{opacity:1;transform:translateY(0)}
+
     /* SUBSHIFT SECTION */
     .subshift-wrap{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
     .subshift-icon{width:56px;height:56px;border-radius:14px;margin-bottom:1.5rem;display:block}
@@ -774,6 +778,18 @@
       }, 50);
     });
   });
+
+  // Scroll fade-in
+  const fadeEls = document.querySelectorAll('.fade-in');
+  const fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        fadeObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+  fadeEls.forEach(el => fadeObserver.observe(el));
 
   let jklSeq=[];
   const jklEl=document.getElementById('jklMsg');
