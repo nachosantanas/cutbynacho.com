@@ -330,25 +330,10 @@
   </div>
 </nav>
 
-<div class="hero">
-  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem">
-    <div class="hero-label">Video Editor &amp; Assistant Editor - London</div>
-    <span style="font-family:var(--font-mono);font-size:11px;color:var(--accent);letter-spacing:0.14em;opacity:0.9" id="timecodeHero">00:00:00:00</span>
-  </div>
-  <div class="hero-title">Nacho<br><em>Santana</em></div>
-  <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:1.5rem">
-    <div class="hero-sub" style="margin-top:0">Commercial · Branded Content · Long-form<br>Avid · Premiere · Resolve</div>
-    <span id="editStatus"></span>
-  </div>
-  <div class="work-flash" id="workFlash"></div>
-<div class="mobile-scroll-nudge" onclick="(function(){ var target=document.getElementById('work'); var navH=document.querySelector('nav').getBoundingClientRect().height; var to=target.getBoundingClientRect().top+window.scrollY-navH; var from=window.scrollY; var start=null; var dur=650; function step(ts){ if(!start)start=ts; var p=Math.min((ts-start)/dur,1); var ease=p<0.5?2*p*p:1-Math.pow(-2*p+2,2)/2; window.scrollTo(0,from+(to-from)*ease); if(p<1)requestAnimationFrame(step); } requestAnimationFrame(step); })()">
-    <span>scroll</span><span>↓</span>
-  </div>
-  <div class="scroll-hint" onclick="(function(){ var target=document.getElementById('work'); var navH=document.querySelector('nav').getBoundingClientRect().height; var to=target.getBoundingClientRect().top+window.scrollY-navH; var from=window.scrollY; var start=null; var dur=650; function step(ts){ if(!start)start=ts; var p=Math.min((ts-start)/dur,1); var ease=p<0.5?2*p*p:1-Math.pow(-2*p+2,2)/2; window.scrollTo(0,from+(to-from)*ease); if(p<1)requestAnimationFrame(step); } requestAnimationFrame(step); })()">
-    <span>scroll</span>
-    <div class="scroll-arrow"></div>
-  </div>
-</div>
+
+
+
+<div class="work-flash" id="workFlash"></div>
 
 <div class="section" id="work">
   <div class="section-label">Selected work</div>
