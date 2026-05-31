@@ -142,11 +142,11 @@
 
     /* SHOWREEL */
     .showreel{position:relative;aspect-ratio:16/9;background:var(--surface);overflow:hidden;cursor:pointer;margin-bottom:2.5rem;border-bottom:0.5px solid var(--border)}
-    .showreel-poster{width:100%;height:100%;object-fit:cover;display:block;opacity:0.6;transition:opacity 0.8s var(--ease-out-expo),transform 0.8s var(--ease-out-expo)}
+    .showreel-poster{width:100%;height:100%;object-fit:contain;display:block;opacity:0.6;transition:opacity 0.8s var(--ease-out-expo),transform 0.8s var(--ease-out-expo)}
     .showreel:hover .showreel-poster{opacity:0.35;transform:scale(1.02)}
-    .showreel-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.2rem;z-index:2}
-    .showreel-play{width:72px;height:72px;border:1px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:border-color 0.4s,transform 0.4s var(--ease-out-expo);backdrop-filter:blur(2px)}
-    .showreel-play svg{width:20px;height:20px;margin-left:3px}
+    .showreel-overlay{position:absolute;inset:0;display:flex;flex-direction:row;align-items:center;justify-content:center;gap:1rem;z-index:2}
+    .showreel-play{width:48px;height:48px;border:1px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:border-color 0.4s,transform 0.4s var(--ease-out-expo);backdrop-filter:blur(2px);flex-shrink:0}
+    .showreel-play svg{width:16px;height:16px;margin-left:2px}
     .showreel:hover .showreel-play{border-color:rgba(255,255,255,0.7);transform:scale(1.08)}
     .showreel-label{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);transition:color 0.3s}
     .showreel:hover .showreel-label{color:var(--accent)}
@@ -825,7 +825,7 @@
       if (!target) return;
       const nav = document.querySelector('nav');
       const navH = nav ? nav.offsetHeight : 0;
-      const top = target.offsetTop - navH;
+      const top = target.offsetTop - navH - 20;
       window.scrollTo({top, behavior: 'smooth'});
       target.classList.remove('flash'); void target.offsetWidth; target.classList.add('flash');
       target.addEventListener('animationend', () => target.classList.remove('flash'), {once:true});
