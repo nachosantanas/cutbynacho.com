@@ -550,6 +550,7 @@
       <span class="tool-name"><span class="tool-name-row">ClearCast</span><span class="tool-desc">UK broadcast clearance system. Required before any ad airs on commercial TV.</span></span>
       <span class="tool-subcat">Production organisation</span>
       <span class="tool-name"><span class="tool-name-row">Ceta</span><span class="tool-desc">Production management for film and TV.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Farmer's Wife</span><span class="tool-desc">Schedule, manage, and collaborate. Resource tracking and project lifecycle management for media and post-production teams.</span></span>
     </div>
     <div class="tool-cat">
       <span class="tool-cat-label">Plugins &amp; extensions</span>
@@ -709,7 +710,7 @@
 
   // ── SHOWREEL ──
   (function(){
-    const id = '896225384';
+    const id = '1197188227';
     const poster = document.getElementById('showreelPoster');
     fetch('https://vimeo.com/api/oembed.json?url=https://vimeo.com/'+id)
       .then(r=>r.json())
@@ -722,7 +723,7 @@
     if(el.querySelector('.showreel-video')) return;
     const wrap = document.createElement('div');
     wrap.className='showreel-video';
-    wrap.innerHTML='<iframe src="https://player.vimeo.com/video/896225384?autoplay=1&title=0&byline=0&portrait=0&dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
+    wrap.innerHTML='<iframe src="https://player.vimeo.com/video/1197188227?autoplay=1&title=0&byline=0&portrait=0&dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
     const close = document.createElement('button');
     close.className='showreel-close';
     close.textContent='✕';
