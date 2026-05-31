@@ -640,22 +640,6 @@
     setActive(current);
   }, {passive:true});
 
-  navLinks.forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      const id = link.getAttribute('href').replace('#','');
-      const target = document.getElementById(id);
-      if (!target) return;
-      const navH = document.querySelector('nav').getBoundingClientRect().height;
-      window.scrollTo({top: target.getBoundingClientRect().top + window.scrollY - navH + 1, behavior:'smooth'});
-      target.classList.remove('flash'); void target.offsetWidth; target.classList.add('flash');
-      target.addEventListener('animationend', () => target.classList.remove('flash'), {once:true});
-      const label = target.querySelector('.section-label');
-      if (!label) return;
-      label.classList.remove('highlight'); void label.offsetWidth; label.classList.add('highlight');
-      label.addEventListener('animationend', () => label.classList.remove('highlight'), {once:true});
-    });
-  });
 
   // ── MOBILE NAV OFFSET ──
   function setNavOffset() {
@@ -826,11 +810,9 @@
     a.addEventListener('click', e => {
       e.preventDefault();
       const href = a.getAttribute('href');
-      // Work always goes to top
       if (href === '#' || href === '#work') {
         window.scrollTo({top: 0, behavior: 'smooth'});
         setTimeout(() => setActive('work'), 300);
-        // Flash the screen
         const flash = document.getElementById('workFlash');
         if (flash) {
           flash.classList.add('active');
@@ -840,13 +822,17 @@
       }
       const target = document.querySelector(href);
       if (!target) return;
-      window.scrollTo(window.scrollX, window.scrollY);
-      setTimeout(() => {
-        const nav = document.querySelector('nav');
-        const navH = nav ? nav.offsetHeight : 0;
-        const top = target.offsetTop - navH;
-        window.scrollTo({top, behavior: 'smooth'});
-      }, 50);
+      const nav = document.querySelector('nav');
+      const navH = nav ? nav.offsetHeight : 0;
+      const top = target.offsetTop - navH;
+      window.scrollTo({top, behavior: 'smooth'});
+      target.classList.remove('flash'); void target.offsetWidth; target.classList.add('flash');
+      target.addEventListener('animationend', () => target.classList.remove('flash'), {once:true});
+      const label = target.querySelector('.section-label');
+      if (label) {
+        label.classList.remove('highlight'); void label.offsetWidth; label.classList.add('highlight');
+        label.addEventListener('animationend', () => label.classList.remove('highlight'), {once:true});
+      }
     });
   });
 
