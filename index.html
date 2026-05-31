@@ -9,15 +9,15 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a0a09'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='serif' font-size='13' font-style='italic' fill='%23c8b89a'>NS</text></svg>">
 
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://nachosantana.com">
+  <meta property="og:url" content="https://cutbynacho.com">
   <meta property="og:title" content="Nacho Santana - Editor">
   <meta property="og:description" content="Video Editor and Assistant Editor based in London. Working across commercial, branded content and long-form productions. Clients include Nike, PlayStation, Pandora and more.">
-  <meta property="og:image" content="https://nachosantana.com/og-image.jpg">
+  <meta property="og:image" content="https://cutbynacho.com/og-image.jpg">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Nacho Santana - Editor">
   <meta name="twitter:description" content="Video Editor and Assistant Editor based in London. Working across commercial, branded content and long-form productions.">
-  <meta name="twitter:image" content="https://nachosantana.com/og-image.jpg">
+  <meta name="twitter:image" content="https://cutbynacho.com/og-image.jpg">
 
   <link rel="preconnect" href="https://img.youtube.com">
   <link rel="preconnect" href="https://vimeo.com">
@@ -32,7 +32,6 @@
       --text:#f0ede6;--muted:#8a867f;--accent:#c8b89a;
       --font-serif:'DM Serif Display',serif;--font-mono:'DM Mono',monospace;
       --ease-out-expo:cubic-bezier(0.16,1,0.3,1);
-      --ease-out-quart:cubic-bezier(0.25,1,0.5,1);
     }
     html{scroll-behavior:smooth}
     ::selection{background:#f5d06e;color:#0a0a09}
@@ -63,6 +62,7 @@
     /* NAV */
     nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 2.5rem;border-bottom:0.5px solid var(--border);position:sticky;top:0;background:rgba(10,10,9,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:100;transition:padding 0.4s var(--ease-out-expo),background 0.4s}
     nav.scrolled{padding:1rem 2.5rem;background:rgba(10,10,9,0.97)}
+    h1{font-size:inherit;font-weight:inherit;display:inline}
     .logo{font-family:var(--font-serif);font-size:17px;color:var(--text);text-decoration:none;transition:opacity 0.2s}
     .logo:hover{opacity:0.7}
     .nav-links{display:flex;gap:2rem}
@@ -175,7 +175,6 @@
     .featured-item img{
       width:100%;height:100%;object-fit:cover;display:block;opacity:0.7;
       transition:opacity 0.6s var(--ease-out-expo),transform 0.8s var(--ease-out-expo);
-      will-change:transform;
     }
     .featured-thumb-placeholder{
       width:100%;height:100%;display:flex;align-items:center;justify-content:center;
@@ -321,13 +320,29 @@
       .grid-play{display:none}
     }
   </style>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Nacho Santana",
+    "jobTitle": "Video Editor",
+    "url": "https://cutbynacho.com",
+    "sameAs": [
+      "https://vimeo.com/cutbynacho",
+      "https://www.linkedin.com/in/cutbynacho/",
+      "https://www.instagram.com/cutbynacho/"
+    ],
+    "knowsAbout": ["Video Editing", "Post-Production", "Avid Media Composer", "Adobe Premiere", "DaVinci Resolve"],
+    "workLocation": { "@type": "Place", "name": "London, UK" }
+  }
+  </script>
 </head>
 <body>
 
 <div style="position:fixed;top:0;left:0;right:0;height:env(safe-area-inset-top);background:#0a0a09;z-index:9999"></div>
 <nav>
-  <a class="logo" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">Nacho Santana</a>
+  <h1><a class="logo" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">Nacho Santana</a></h1>
   <div class="nav-links">
     <a href="#" id="nav-work">Work</a>
     <a href="#about">About</a>
@@ -366,7 +381,7 @@
 
     <!-- 1. Andrex - First School Poo -->
     <a class="featured-item" href="https://www.youtube.com/watch?v=Uv0W37Red9o" target="_blank" rel="noopener">
-      <img src="https://img.youtube.com/vi/Uv0W37Red9o/hqdefault.jpg" alt="Andrex First School Poo" loading="lazy">
+      <img src="https://img.youtube.com/vi/Uv0W37Red9o/maxresdefault.jpg" alt="Andrex First School Poo" loading="lazy">
       <div class="grid-play"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="32" r="31" stroke="rgba(255,255,255,0.6)" stroke-width="1"/><path d="M26 20L46 32L26 44V20Z" fill="white"/></svg></div>
       <div class="featured-overlay"></div>
       <div class="featured-info">
@@ -378,7 +393,7 @@
 
     <!-- 2. Late Nike Shopping -->
     <a class="featured-item" href="https://www.youtube.com/watch?v=9bsjNnKcjzY" target="_blank" rel="noopener">
-      <img src="https://img.youtube.com/vi/9bsjNnKcjzY/hqdefault.jpg" alt="Late Nike Shopping" loading="lazy">
+      <img src="https://img.youtube.com/vi/9bsjNnKcjzY/maxresdefault.jpg" alt="Late Nike Shopping" loading="lazy">
       <div class="grid-play"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="32" r="31" stroke="rgba(255,255,255,0.6)" stroke-width="1"/><path d="M26 20L46 32L26 44V20Z" fill="white"/></svg></div>
       <div class="featured-overlay"></div>
       <div class="featured-info">
@@ -390,7 +405,7 @@
 
     <!-- 3. Nike Psychic Readings -->
     <a class="featured-item" href="https://www.youtube.com/watch?v=LYJoTsjVQZM" target="_blank" rel="noopener">
-      <img src="https://img.youtube.com/vi/LYJoTsjVQZM/hqdefault.jpg" alt="Nike Psychic Readings" loading="lazy">
+      <img src="https://img.youtube.com/vi/LYJoTsjVQZM/maxresdefault.jpg" alt="Nike Psychic Readings" loading="lazy">
       <div class="grid-play"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="32" r="31" stroke="rgba(255,255,255,0.6)" stroke-width="1"/><path d="M26 20L46 32L26 44V20Z" fill="white"/></svg></div>
       <div class="featured-overlay"></div>
       <div class="featured-info">
@@ -413,7 +428,7 @@
 
     <!-- 8. Reputational Damage -->
     <a class="featured-item" href="https://www.youtube.com/watch?v=UD_pdVO4OU4" target="_blank" rel="noopener">
-      <img src="https://img.youtube.com/vi/UD_pdVO4OU4/hqdefault.jpg" alt="Reputational Damage" loading="lazy">
+      <img src="https://img.youtube.com/vi/UD_pdVO4OU4/maxresdefault.jpg" alt="Reputational Damage" loading="lazy">
       <div class="grid-play"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="32" r="31" stroke="rgba(255,255,255,0.6)" stroke-width="1"/><path d="M26 20L46 32L26 44V20Z" fill="white"/></svg></div>
       <div class="featured-overlay"></div>
       <div class="featured-info">
@@ -425,7 +440,7 @@
 
     <!-- 9. The Fury Continues -->
     <a class="featured-item" href="https://www.youtube.com/watch?v=Sxb7lP0TFbQ" target="_blank" rel="noopener">
-      <img src="https://img.youtube.com/vi/Sxb7lP0TFbQ/hqdefault.jpg" alt="The Fury Continues" loading="lazy">
+      <img src="https://img.youtube.com/vi/Sxb7lP0TFbQ/maxresdefault.jpg" alt="The Fury Continues" loading="lazy">
       <div class="grid-play"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="32" r="31" stroke="rgba(255,255,255,0.6)" stroke-width="1"/><path d="M26 20L46 32L26 44V20Z" fill="white"/></svg></div>
       <div class="featured-overlay"></div>
       <div class="featured-info">
@@ -773,12 +788,14 @@
   }, {passive:true});
 
   // ── SUBSHIFT PASSWORD ──
-  function checkSubshiftPw(e) {
+  async function hashPw(s){const e=new TextEncoder().encode(s);const h=await crypto.subtle.digest('SHA-256',e);return Array.from(new Uint8Array(h)).map(b=>b.toString(16).padStart(2,'0')).join('')}
+  async function checkSubshiftPw(e) {
     if (e) e.stopPropagation();
     const pw = document.getElementById('subshiftPw').value.trim();
     const err = document.getElementById('subshiftErr');
     const dl  = document.getElementById('subshiftDl');
-    if (pw.toLowerCase() === 'subshift2026') {
+    const hash = await hashPw(pw.toLowerCase());
+    if (hash === 'a34cb4a58b3420f47e3c072fab28abc75a0cf4148362892fce6d920f09529018') {
       err.style.display = 'none';
       dl.style.display = 'inline-block';
       document.getElementById('subshiftPw').disabled = true;
