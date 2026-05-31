@@ -31,9 +31,16 @@
       --bg:#0a0a09;--surface:#111110;--border:#2a2a27;
       --text:#f0ede6;--muted:#8a867f;--accent:#c8b89a;
       --font-serif:'DM Serif Display',serif;--font-mono:'DM Mono',monospace;
+      --ease-out-expo:cubic-bezier(0.16,1,0.3,1);
+      --ease-out-quart:cubic-bezier(0.25,1,0.5,1);
     }
     html{scroll-behavior:smooth}
     ::selection{background:#f5d06e;color:#0a0a09}
+
+    /* REDUCED MOTION */
+    @media(prefers-reduced-motion:reduce){
+      *,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important;scroll-behavior:auto!important}
+    }
 
     /* GRAIN OVERLAY */
     body::before{
@@ -54,16 +61,30 @@
     body{background:var(--bg);color:var(--text);font-family:var(--font-mono);font-size:13px;font-weight:300;line-height:1.7}
 
     /* NAV */
-    nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 2.5rem;border-bottom:0.5px solid var(--border);position:sticky;top:0;background:rgba(10,10,9,0.92);backdrop-filter:blur(8px);z-index:100}
-    .logo{font-family:var(--font-serif);font-size:17px;color:var(--text);text-decoration:none}
+    nav{display:flex;justify-content:space-between;align-items:center;padding:1.5rem 2.5rem;border-bottom:0.5px solid var(--border);position:sticky;top:0;background:rgba(10,10,9,0.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:100;transition:padding 0.4s var(--ease-out-expo),background 0.4s}
+    nav.scrolled{padding:1rem 2.5rem;background:rgba(10,10,9,0.97)}
+    .logo{font-family:var(--font-serif);font-size:17px;color:var(--text);text-decoration:none;transition:opacity 0.2s}
+    .logo:hover{opacity:0.7}
     .nav-links{display:flex;gap:2rem}
-    .nav-links a{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;transition:color 0.3s}
+    .nav-links a{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;transition:color 0.3s;position:relative}
+    .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:0.5px;background:var(--accent);transition:width 0.3s var(--ease-out-expo)}
+    .nav-links a:hover::after,.nav-links a.active::after{width:100%}
 
     /* WORK FLASH */
     .work-flash{position:fixed;inset:0;background:rgba(255,255,255,0.06);pointer-events:none;opacity:0;z-index:9998;transition:opacity 0.3s ease}
     .work-flash.active{opacity:1}
 
-    /* SCROLL FADE IN */
+    /* SCROLL REVEAL */
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s var(--ease-out-expo),transform 0.7s var(--ease-out-expo)}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+    .reveal-stagger>*{opacity:0;transform:translateY(20px);transition:opacity 0.6s var(--ease-out-expo),transform 0.6s var(--ease-out-expo)}
+    .reveal-stagger.visible>*{opacity:1;transform:translateY(0)}
+    .reveal-stagger.visible>*:nth-child(1){transition-delay:0s}
+    .reveal-stagger.visible>*:nth-child(2){transition-delay:0.06s}
+    .reveal-stagger.visible>*:nth-child(3){transition-delay:0.12s}
+    .reveal-stagger.visible>*:nth-child(4){transition-delay:0.18s}
+    .reveal-stagger.visible>*:nth-child(5){transition-delay:0.24s}
+    .reveal-stagger.visible>*:nth-child(6){transition-delay:0.3s}
     .fade-in{opacity:0;transform:translateY(16px);transition:opacity 0.5s ease,transform 0.5s ease}
     .fade-in.visible{opacity:1;transform:translateY(0)}
 
@@ -106,25 +127,7 @@
     .nav-socials a:hover{color:var(--accent)}
     .timecode-nav{font-family:var(--font-mono);font-size:11px;color:var(--muted);letter-spacing:0.12em;opacity:0.5}
 
-    /* HERO */
-    .hero{padding:5rem 2.5rem 6rem;border-bottom:0.5px solid var(--border);position:relative;overflow:hidden}
-    .hero-label{font-size:11px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:0}
-    .hero-title{font-family:var(--font-serif);font-size:clamp(48px,8vw,88px);line-height:1;color:var(--text);animation:fadeUp 0.8s ease both}
-    .hero-title em{font-style:italic;color:var(--accent)}
-    .hero-sub{font-size:12px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);max-width:440px;line-height:1.8;animation:fadeUp 0.8s ease 0.2s both}
     @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-    .scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;animation:hintFade 2s ease 1.5s both;cursor:pointer}
-    .scroll-hint span{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);transition:color 0.2s}
-    .scroll-hint:hover span{color:var(--accent)}
-    .scroll-arrow{width:10px;height:10px;border-right:1px solid var(--muted);border-bottom:1px solid var(--muted);animation:arrowDrift 3s cubic-bezier(0.45,0,0.55,1) infinite}
-    @keyframes arrowDrift{
-      0%  {transform:rotate(45deg) translateY(0px); opacity:0}
-      20% {opacity:0.6}
-      50% {transform:rotate(45deg) translateY(7px); opacity:1}
-      80% {opacity:0.6}
-      100%{transform:rotate(45deg) translateY(0px); opacity:0}
-    }
-    @keyframes hintFade{from{opacity:0}to{opacity:0.7}}
 
     /* SECTIONS */
     .section{padding:3.5rem 2.5rem;border-bottom:0.5px solid var(--border);scroll-margin-top:0;overflow:hidden;transition:background 0.4s}
@@ -136,6 +139,21 @@
 
     /* WORK SECTION */
     #work{padding-top:3.5rem}
+
+    /* SHOWREEL */
+    .showreel{position:relative;aspect-ratio:16/9;background:var(--surface);overflow:hidden;cursor:pointer;margin-bottom:2.5rem;border-bottom:0.5px solid var(--border)}
+    .showreel-poster{width:100%;height:100%;object-fit:cover;display:block;opacity:0.6;transition:opacity 0.8s var(--ease-out-expo),transform 0.8s var(--ease-out-expo)}
+    .showreel:hover .showreel-poster{opacity:0.35;transform:scale(1.02)}
+    .showreel-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.2rem;z-index:2}
+    .showreel-play{width:72px;height:72px;border:1px solid rgba(255,255,255,0.4);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:border-color 0.4s,transform 0.4s var(--ease-out-expo);backdrop-filter:blur(2px)}
+    .showreel-play svg{width:20px;height:20px;margin-left:3px}
+    .showreel:hover .showreel-play{border-color:rgba(255,255,255,0.7);transform:scale(1.08)}
+    .showreel-label{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);transition:color 0.3s}
+    .showreel:hover .showreel-label{color:var(--accent)}
+    .showreel-video{position:absolute;inset:0;z-index:3}
+    .showreel-video iframe{width:100%;height:100%;border:none}
+    .showreel-close{position:absolute;top:1rem;right:1rem;z-index:4;width:36px;height:36px;border:1px solid rgba(255,255,255,0.3);border-radius:50%;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);color:var(--text);font-size:16px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:border-color 0.2s,background 0.2s;font-family:var(--font-mono)}
+    .showreel-close:hover{border-color:var(--accent);background:rgba(0,0,0,0.8)}
 
     /* GRID ITEM PLAY BUTTON */
     .grid-play{
@@ -152,40 +170,31 @@
 
     /* FEATURED ITEM */
     .featured-item{
-      position:relative;overflow:hidden;display:block;text-decoration:none;background:var(--surface);aspect-ratio:16/9;
+      position:relative;overflow:hidden;display:block;text-decoration:none;background:var(--surface);aspect-ratio:16/9;cursor:pointer;
     }
-    /* Thumbnail image */
     .featured-item img{
-      width:100%;height:100%;object-fit:cover;display:block;opacity:0.75;
-      transition:opacity 0.5s cubic-bezier(0.2,0.8,0.2,1),transform 0.5s cubic-bezier(0.2,0.8,0.2,1);
+      width:100%;height:100%;object-fit:cover;display:block;opacity:0.7;
+      transition:opacity 0.6s var(--ease-out-expo),transform 0.8s var(--ease-out-expo);
+      will-change:transform;
     }
-
-    /* Fallback placeholder when no image */
     .featured-thumb-placeholder{
       width:100%;height:100%;display:flex;align-items:center;justify-content:center;
       background:var(--surface);
     }
     .featured-thumb-placeholder svg{opacity:0.08;width:40px;height:40px}
-
-    /* Overlay gradient */
     .featured-overlay{
       position:absolute;inset:0;
-      background:linear-gradient(to top,rgba(0,0,0,0.8) 0%,rgba(0,0,0,0.1) 50%,transparent 100%);
-      opacity:0;transition:opacity 0.35s;
+      background:linear-gradient(to top,rgba(0,0,0,0.85) 0%,rgba(0,0,0,0.15) 45%,transparent 100%);
+      opacity:0;transition:opacity 0.5s var(--ease-out-expo);
     }
     .featured-item:hover .featured-overlay{opacity:1}
-    /* Extra dark overlay behind play button on hover */
-    .featured-item:hover img{opacity:0.5;transform:scale(1.03)}
-
-    /* Info */
-    .featured-info{position:absolute;bottom:0;left:0;right:0;padding:1rem;opacity:0;transform:translateY(6px);transition:all 0.3s}
+    .featured-item:hover img{opacity:0.45;transform:scale(1.05)}
+    .featured-info{position:absolute;bottom:0;left:0;right:0;padding:1.2rem;opacity:0;transform:translateY(10px);transition:opacity 0.5s var(--ease-out-expo),transform 0.5s var(--ease-out-expo)}
     .featured-item:hover .featured-info{opacity:1;transform:translateY(0)}
-    .featured-title{font-size:12px;color:var(--text);letter-spacing:0.06em;display:block;margin-bottom:3px}
+    .featured-title{font-size:12px;color:var(--text);letter-spacing:0.06em;display:block;margin-bottom:4px}
     .featured-role{font-size:10px;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;display:block}
-
-    /* External arrow - always visible on mobile */
-    .ext-arrow{position:absolute;top:0.75rem;right:0.75rem;font-size:12px;color:var(--accent);opacity:0;transition:opacity 0.3s}
-    .featured-item:hover .ext-arrow{opacity:1}
+    .ext-arrow{position:absolute;top:0.75rem;right:0.75rem;font-size:12px;color:var(--accent);opacity:0;transition:opacity 0.4s,transform 0.4s var(--ease-out-expo);transform:translate(-3px,3px)}
+    .featured-item:hover .ext-arrow{opacity:1;transform:translate(0,0)}
 
     /* ABOUT */
     .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
@@ -276,6 +285,7 @@
       body{cursor:auto}
       .cursor-dot,.cursor-ring{display:none}
       nav{flex-direction:column;gap:0.8rem;padding:calc(env(safe-area-inset-top) + 1rem) 1.5rem 1rem;text-align:center;background:#0a0a09;position:fixed;top:0;left:0;right:0;z-index:9999;-webkit-transform:translateZ(0);transform:translateZ(0);backface-visibility:hidden;-webkit-backface-visibility:hidden}
+      nav.scrolled{padding:calc(env(safe-area-inset-top) + 0.75rem) 1.5rem 0.75rem}
       nav::before{content:"";position:absolute;top:calc(-1 * env(safe-area-inset-top));left:0;right:0;height:env(safe-area-inset-top);background:#0a0a09}
       .hero{position:relative;z-index:0;overflow:hidden}
       .hero iframe{position:relative;z-index:-1;transform:translateZ(0);isolation:isolate}
@@ -283,7 +293,7 @@
       .tool-subcat{margin-top:0.5rem!important;margin-bottom:0.2rem!important}
       .nav-right{flex-direction:column;gap:0.5rem;align-items:center}
       .nav-links{gap:1.5rem;justify-content:center}
-      .hero{padding:1.5rem 1.5rem 2rem;min-height:0}
+      .nav-links a::after{display:none}
       .mobile-scroll-nudge{margin-top:0.75rem}
       .scroll-hint{display:none}
       .mobile-scroll-nudge{display:flex}
@@ -302,6 +312,9 @@
       #editStatus{display:none}
       #timecodeHero{display:none}
       #timecodeFooter{display:none}
+      .showreel-play{width:56px;height:56px}
+      .showreel-play svg{width:16px;height:16px}
+      .showreel-poster{opacity:0.5}
       .ext-arrow{opacity:0.6!important}
       .featured-overlay{opacity:1!important}
       .featured-info{opacity:1!important;transform:translateY(0)!important}
@@ -338,13 +351,18 @@
 <div class="section" id="work">
   <div class="section-label">Selected work</div>
 
-  <!-- SHOWREEL - swap YOUR_VIMEO_ID with your real reel ID -->
-  <!-- <div class="showreel-wrap">
-    <iframe src="https://player.vimeo.com/video/YOUR_VIMEO_ID?autoplay=0&title=0&byline=0&portrait=0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
-  </div> -->
+  <div class="showreel" id="showreel" onclick="playShowreel()">
+    <img class="showreel-poster" id="showreelPoster" alt="Showreel" loading="eager">
+    <div class="showreel-overlay" id="showreelOverlay">
+      <div class="showreel-play">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="white"/></svg>
+      </div>
+      <span class="showreel-label">Play showreel</span>
+    </div>
+  </div>
 
   <!-- WORK GRID: 3 real projects per row -->
-  <div class="work-grid">
+  <div class="work-grid reveal-stagger">
 
     <!-- 1. Andrex - First School Poo -->
     <a class="featured-item" href="https://www.youtube.com/watch?v=Uv0W37Red9o" target="_blank" rel="noopener">
@@ -426,7 +444,7 @@
 
 <div class="section" id="about">
   <div class="section-label">About</div>
-  <div class="about-grid">
+  <div class="about-grid reveal">
     <div class="about-text">
       <p>Video Editor and Assistant Editor working across commercial, branded and long-form productions.</p>
       <p>My work sits at the intersection of craft and precision. Building timelines that not only tell a story, but are structured for seamless delivery downstream. From offline through to conform, I focus on clarity, rhythm, and technical integrity, delivering clean EDLs, AAFs, and XMLs ready for grade and finish.</p>
@@ -466,7 +484,7 @@
 
 <div class="section" id="tools">
   <div class="section-label">Tools &amp; ecosystem</div>
-  <div class="tools-categories">
+  <div class="tools-categories reveal">
     <div class="tool-cat">
       <span class="tool-cat-label">Ecosystem &amp; utilities</span>
       <span class="tool-subcat">Transcoding &amp; encoding</span>
@@ -554,7 +572,7 @@
 
 <div class="section" id="contact">
   <div class="section-label">Get in touch</div>
-  <div class="contact-grid">
+  <div class="contact-grid reveal">
     <div class="contact-block">
       <p>Available for freelance and contract work across commercial, branded and long-form productions. Based in London - available to travel internationally.</p>
       <p style="margin-top:0.75rem;font-size:12px;opacity:0.6;font-family:var(--font-mono);letter-spacing:0.04em">For availability and rates, get in touch with your project details. Pencils on confirmed budget only.</p>
@@ -694,6 +712,36 @@
     });
   });
 
+  // ── SHOWREEL ──
+  (function(){
+    const id = '896225384';
+    const poster = document.getElementById('showreelPoster');
+    fetch('https://vimeo.com/api/oembed.json?url=https://vimeo.com/'+id)
+      .then(r=>r.json())
+      .then(d=>{if(d.thumbnail_url) poster.src=d.thumbnail_url.replace(/_\d+x\d+/,'_1920x1080');})
+      .catch(()=>{});
+  })();
+
+  function playShowreel(){
+    const el = document.getElementById('showreel');
+    if(el.querySelector('.showreel-video')) return;
+    const wrap = document.createElement('div');
+    wrap.className='showreel-video';
+    wrap.innerHTML='<iframe src="https://player.vimeo.com/video/896225384?autoplay=1&title=0&byline=0&portrait=0&dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
+    const close = document.createElement('button');
+    close.className='showreel-close';
+    close.textContent='✕';
+    close.onclick=function(e){
+      e.stopPropagation();
+      wrap.remove();close.remove();
+      document.getElementById('showreelOverlay').style.display='';
+      document.getElementById('showreelPoster').style.display='';
+    };
+    document.getElementById('showreelOverlay').style.display='none';
+    document.getElementById('showreelPoster').style.display='none';
+    el.appendChild(wrap);el.appendChild(close);
+  }
+
   // ── VIMEO THUMBNAILS ──
   document.querySelectorAll('[data-vimeo-id]').forEach(el => {
     const id = el.getAttribute('data-vimeo-id');
@@ -789,17 +837,25 @@
     });
   });
 
-  // Scroll fade-in
-  const fadeEls = document.querySelectorAll('.fade-in');
-  const fadeObserver = new IntersectionObserver((entries) => {
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.fade-in,.reveal,.reveal-stagger');
+  const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        fadeObserver.unobserve(entry.target);
+        revealObserver.unobserve(entry.target);
       }
     });
   }, { threshold: 0.08 });
-  fadeEls.forEach(el => fadeObserver.observe(el));
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  // Nav shrink on scroll
+  const navEl = document.querySelector('nav');
+  let lastScroll = 0;
+  window.addEventListener('scroll', () => {
+    navEl.classList.toggle('scrolled', window.scrollY > 80);
+  }, {passive:true});
+
 
   let jklSeq=[];
   const jklEl=document.getElementById('jklMsg');
