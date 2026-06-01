@@ -825,7 +825,8 @@
       if (!target) return;
       const nav = document.querySelector('nav');
       const navH = nav ? nav.offsetHeight : 0;
-      const top = target.offsetTop - navH + 10;
+      const rect = target.getBoundingClientRect();
+      const top = rect.top + window.scrollY - navH - 2;
       window.scrollTo({top, behavior: 'smooth'});
       target.classList.remove('flash'); void target.offsetWidth; target.classList.add('flash');
       target.addEventListener('animationend', () => target.classList.remove('flash'), {once:true});
