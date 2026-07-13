@@ -340,10 +340,10 @@
 <nav>
   <h1><a class="logo" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">Nacho Santana</a></h1>
   <div class="nav-links">
-    <a href="#" id="nav-work">Work</a>
-    <a href="#about">About</a>
-    <a href="#tools">Tools</a>
-    <a href="#contact">Contact</a>
+    <a href="#" id="nav-work" data-en="Work" data-es="Trabajo">Work</a>
+    <a href="#about" data-en="About" data-es="Sobre mí">About</a>
+    <a href="#tools" data-en="Tools" data-es="Herramientas">Tools</a>
+    <a href="#contact" data-en="Contact" data-es="Contacto">Contact</a>
   </div>
   <div class="nav-right">
     <div class="nav-socials">
@@ -351,6 +351,9 @@
       <a href="https://www.linkedin.com/in/cutbynacho/" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://www.instagram.com/cutbynacho/" target="_blank" rel="noopener">Instagram</a>
     </div>
+    <button id="langToggle" onclick="toggleLang()" aria-label="Switch language" style="background:none;border:0.5px solid var(--border);color:var(--muted);font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:0.35rem 0.6rem;cursor:pointer;transition:color 0.2s,border-color 0.2s" onmouseover="this.style.color='var(--accent)';this.style.borderColor='var(--accent)'" onmouseout="this.style.color='var(--muted)';this.style.borderColor='var(--border)'">
+      <span id="langToggleLabel">ES</span>
+    </button>
   </div>
 </nav>
 
@@ -361,7 +364,7 @@
 
 
 <div class="section" id="work">
-  <div class="section-label">Selected work</div>
+  <div class="section-label" data-en="Selected work" data-es="Trabajo seleccionado">Selected work</div>
 
   <div class="showreel" id="showreel" onclick="playShowreel()">
     <video id="showreelBg" autoplay muted loop playsinline preload="none" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.55;z-index:1;pointer-events:none"></video>
@@ -370,7 +373,7 @@
       <div class="showreel-play">
         <svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="white"/></svg>
       </div>
-      <span class="showreel-label">Play showreel</span>
+      <span class="showreel-label" data-en="Play showreel" data-es="Reproducir showreel">Play showreel</span>
     </div>
   </div>
 
@@ -384,10 +387,9 @@
       <div class="featured-overlay"></div>
       <div class="featured-info">
         <span class="featured-title">Andrex - First School Poo</span>
-        <span class="featured-role">Assistant Editor</span>
+        <span class="featured-role" data-en="Assistant Editor" data-es="Ayudante de Edición">Assistant Editor</span>
       </div>
-      <span class="ext-arrow">↗</span>
-    </a>
+    <span class="ext-arrow">↗</span></a>
 
     <!-- 2. Late Nike Shopping -->
     <a class="featured-item" href="https://www.youtube.com/watch?v=9bsjNnKcjzY" target="_blank" rel="noopener">
@@ -396,10 +398,9 @@
       <div class="featured-overlay"></div>
       <div class="featured-info">
         <span class="featured-title">Late Nike Shopping</span>
-        <span class="featured-role">Assistant Editor</span>
+        <span class="featured-role" data-en="Assistant Editor" data-es="Ayudante de Edición">Assistant Editor</span>
       </div>
-      <span class="ext-arrow">↗</span>
-    </a>
+    <span class="ext-arrow">↗</span></a>
 
     <!-- 3. Nike Psychic Readings -->
     <a class="featured-item" href="https://www.youtube.com/watch?v=LYJoTsjVQZM" target="_blank" rel="noopener">
@@ -408,10 +409,9 @@
       <div class="featured-overlay"></div>
       <div class="featured-info">
         <span class="featured-title">Nike Psychic Readings</span>
-        <span class="featured-role">Assistant Editor</span>
+        <span class="featured-role" data-en="Assistant Editor" data-es="Ayudante de Edición">Assistant Editor</span>
       </div>
-      <span class="ext-arrow">↗</span>
-    </a>
+    <span class="ext-arrow">↗</span></a>
 
     <!-- 4. Cash App Pool -->
     <a class="featured-item" href="https://vimeo.com/1141942588" target="_blank" rel="noopener" data-vimeo-id="1141942588">
@@ -419,10 +419,9 @@
       <div class="featured-overlay"></div>
       <div class="featured-info">
         <span class="featured-title">Cash App Pool</span>
-        <span class="featured-role">Assistant Editor</span>
+        <span class="featured-role" data-en="Assistant Editor" data-es="Ayudante de Edición">Assistant Editor</span>
       </div>
-      <span class="ext-arrow">↗</span>
-    </a>
+    <span class="ext-arrow">↗</span></a>
 
     <!-- 8. Reputational Damage -->
     <a class="featured-item" href="https://www.youtube.com/watch?v=UD_pdVO4OU4" target="_blank" rel="noopener">
@@ -431,10 +430,9 @@
       <div class="featured-overlay"></div>
       <div class="featured-info">
         <span class="featured-title">Reputational Damage</span>
-        <span class="featured-role">Assistant Editor</span>
+        <span class="featured-role" data-en="Assistant Editor" data-es="Ayudante de Edición">Assistant Editor</span>
       </div>
-      <span class="ext-arrow">↗</span>
-    </a>
+    <span class="ext-arrow">↗</span></a>
 
     <!-- 9. The Fury Continues -->
     <a class="featured-item" href="https://www.youtube.com/watch?v=Sxb7lP0TFbQ" target="_blank" rel="noopener">
@@ -443,10 +441,9 @@
       <div class="featured-overlay"></div>
       <div class="featured-info">
         <span class="featured-title">The Fury Continues</span>
-        <span class="featured-role">Assistant Editor</span>
+        <span class="featured-role" data-en="Assistant Editor" data-es="Ayudante de Edición">Assistant Editor</span>
       </div>
-      <span class="ext-arrow">↗</span>
-    </a>
+    <span class="ext-arrow">↗</span></a>
 
     <!-- 10. Starling Bank - Matchmakers -->
     <a class="featured-item" href="https://www.youtube.com/watch?v=jBcbnrnWFG0" target="_blank" rel="noopener">
@@ -455,27 +452,37 @@
       <div class="featured-overlay"></div>
       <div class="featured-info">
         <span class="featured-title">Starling Bank - Matchmakers</span>
-        <span class="featured-role">Assistant Editor</span>
+        <span class="featured-role" data-en="Assistant Editor" data-es="Ayudante de Edición">Assistant Editor</span>
       </div>
-      <span class="ext-arrow">↗</span>
-    </a>
+    <span class="ext-arrow">↗</span></a>
+
+    <!-- 11. Prayer for Ukraine (Editor cut) -->
+    <a class="featured-item" href="https://www.youtube.com/watch?v=UAy4YnFTEXg" target="_blank" rel="noopener">
+      <img src="https://img.youtube.com/vi/UAy4YnFTEXg/maxresdefault.jpg" alt="Prayer for Ukraine" loading="lazy">
+      <div class="grid-play"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="32" r="31" stroke="rgba(255,255,255,0.6)" stroke-width="1"/><path d="M26 20L46 32L26 44V20Z" fill="white"/></svg></div>
+      <div class="featured-overlay"></div>
+      <div class="featured-info">
+        <span class="featured-title">Prayer for Ukraine</span>
+        <span class="featured-role" data-en="Editor" data-es="Editor">Editor</span>
+      </div>
+    <span class="ext-arrow">↗</span></a>
 
   </div>
 
   <p style="margin-top:1.5rem;font-size:11px;color:var(--muted);letter-spacing:0.06em;line-height:1.7">
-    More work available on <a href="https://www.linkedin.com/in/cutbynacho/" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;transition:opacity 0.2s" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">LinkedIn ↗</a>
+    <span data-en="More work available on " data-es="Más trabajo disponible en ">More work available on </span><a href="https://www.linkedin.com/in/cutbynacho/" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;transition:opacity 0.2s" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">LinkedIn ↗</a>
   </p>
 </div>
 
 <div class="section" id="about">
-  <div class="section-label">About</div>
+  <div class="section-label" data-en="About" data-es="Sobre mí">About</div>
   <div class="about-grid reveal">
     <div class="about-text">
-      <p>Video Editor and Assistant Editor working across commercial, branded and long-form productions.</p>
-      <p>My work sits at the intersection of craft and precision. Building timelines that not only tell a story, but are structured for seamless delivery downstream. From offline through to conform, I focus on clarity, rhythm, and technical integrity, delivering clean EDLs, AAFs, and XMLs ready for grade and finish.</p>
-      <p>I'm drawn to the detail: pacing, structure, and the subtle decisions that shape how something feels. Whether working independently or alongside a team, I bring a calm, solutions-driven approach to fast-moving edits, with a strong understanding of workflows across platforms and post environments.</p>
-      <p>Originally from Lanzarote, Canary Islands. Grew up between the sea and open skies. That shaped how I see things: the rhythm of water, the patience it takes. It still informs the way I cut.</p>
-      <p>Beyond the edit, I care about leaving things better than I found them. For the people around me, the work we make together, and the world we're making it in.</p>
+      <p data-en="Video Editor and Assistant Editor working across commercial, branded and long-form productions." data-es="Editor de Vídeo y Ayudante de Edición, trabajando en producciones comerciales, de marca y de largo formato.">Video Editor and Assistant Editor working across commercial, branded and long-form productions.</p>
+      <p data-en="My work sits at the intersection of craft and precision. Building timelines that not only tell a story, but are structured for seamless delivery downstream. From offline through to conform, I focus on clarity, rhythm, and technical integrity, delivering clean EDLs, AAFs, and XMLs ready for grade and finish." data-es="Mi trabajo se sitúa en la intersección entre el oficio y la precisión. Construyo timelines que no solo cuentan una historia, sino que están estructurados para una entrega fluida en las siguientes fases. Desde el offline hasta el conform, me centro en la claridad, el ritmo y la integridad técnica, entregando EDLs, AAFs y XMLs limpios y listos para etalonaje y acabado.">My work sits at the intersection of craft and precision. Building timelines that not only tell a story, but are structured for seamless delivery downstream. From offline through to conform, I focus on clarity, rhythm, and technical integrity, delivering clean EDLs, AAFs, and XMLs ready for grade and finish.</p>
+      <p data-en="I'm drawn to the detail: pacing, structure, and the subtle decisions that shape how something feels. Whether working independently or alongside a team, I bring a calm, solutions-driven approach to fast-moving edits, with a strong understanding of workflows across platforms and post environments." data-es="Me atrae el detalle: el ritmo, la estructura y las decisiones sutiles que definen cómo se siente algo. Ya sea trabajando de forma independiente o en equipo, aporto un enfoque tranquilo y orientado a soluciones en ediciones de ritmo acelerado, con un buen conocimiento de los flujos de trabajo en distintas plataformas y entornos de postproducción.">I'm drawn to the detail: pacing, structure, and the subtle decisions that shape how something feels. Whether working independently or alongside a team, I bring a calm, solutions-driven approach to fast-moving edits, with a strong understanding of workflows across platforms and post environments.</p>
+      <p data-en="Originally from Lanzarote, Canary Islands. Grew up between the sea and open skies. That shaped how I see things: the rhythm of water, the patience it takes. It still informs the way I cut." data-es="Originario de Lanzarote, Islas Canarias. Crecí entre el mar y el cielo abierto. Eso moldeó mi forma de ver las cosas: el ritmo del agua, la paciencia que exige. Todavía influye en la forma en que edito.">Originally from Lanzarote, Canary Islands. Grew up between the sea and open skies. That shaped how I see things: the rhythm of water, the patience it takes. It still informs the way I cut.</p>
+      <p data-en="Beyond the edit, I care about leaving things better than I found them. For the people around me, the work we make together, and the world we're making it in." data-es="Más allá de la edición, me importa dejar las cosas mejor de como las encontré. Por la gente que me rodea, por el trabajo que hacemos juntos y por el mundo en el que lo hacemos.">Beyond the edit, I care about leaving things better than I found them. For the people around me, the work we make together, and the world we're making it in.</p>
       <div class="client-list">
         <span class="client">Nike</span>
         <span class="client">PlayStation</span>
@@ -490,106 +497,106 @@
       </div>
     </div>
     <div>
-      <div class="software-heading">Primary software</div>
+      <div class="software-heading" data-en="Primary software" data-es="Software principal">Primary software</div>
       <div class="software-item">
         <span class="sw-name">Avid Media Composer</span>
-        <div class="sw-tags"><span class="sw-tag">Long-form</span><span class="sw-tag">Commercial</span><span class="sw-tag">Branded</span></div>
+        <div class="sw-tags"><span class="sw-tag" data-en="Long-form" data-es="Largo formato">Long-form</span><span class="sw-tag" data-en="Commercial" data-es="Comercial">Commercial</span><span class="sw-tag" data-en="Branded" data-es="Marca">Branded</span></div>
       </div>
       <div class="software-item">
         <span class="sw-name">Adobe Premiere</span>
-        <div class="sw-tags"><span class="sw-tag">Commercial</span><span class="sw-tag">Social-first</span><span class="sw-tag">Branded</span></div>
+        <div class="sw-tags"><span class="sw-tag" data-en="Commercial" data-es="Comercial">Commercial</span><span class="sw-tag" data-en="Social-first" data-es="Social-first">Social-first</span><span class="sw-tag" data-en="Branded" data-es="Marca">Branded</span></div>
       </div>
       <div class="software-item">
         <span class="sw-name">DaVinci Resolve</span>
-        <div class="sw-tags"><span class="sw-tag">Proxy</span><span class="sw-tag">Conform</span><span class="sw-tag">QC</span></div>
+        <div class="sw-tags"><span class="sw-tag" data-en="Proxy" data-es="Proxy">Proxy</span><span class="sw-tag" data-en="Conform" data-es="Conform">Conform</span><span class="sw-tag" data-en="QC" data-es="QC">QC</span></div>
       </div>
     </div>
   </div>
 </div>
 
 <div class="section" id="tools">
-  <div class="section-label">Tools &amp; ecosystem</div>
+  <div class="section-label" data-en="Tools &amp; ecosystem" data-es="Herramientas y ecosistema">Tools &amp; ecosystem</div>
   <div class="tools-categories reveal">
     <div class="tool-cat">
-      <span class="tool-cat-label">Ecosystem &amp; utilities</span>
-      <span class="tool-subcat">Transcoding &amp; encoding</span>
-      <span class="tool-name"><span class="tool-name-row">Shutter Encoder</span><span class="tool-desc">Free open-source transcoder. Converts any video or audio format via drag-and-drop.</span></span>
-      <span class="tool-name"><span class="tool-name-row">Compressor</span><span class="tool-desc">Apple's encoding tool. Batch export and delivery presets integrated with FCPX.</span></span>
-      <span class="tool-name"><span class="tool-name-row">EditReady</span><span class="tool-desc">Lightweight transcoder for camera originals. Quick conversion to ProRes or other edit codecs.</span></span>
-      <span class="tool-subcat">Media analysis &amp; monitoring</span>
-      <span class="tool-name"><span class="tool-name-row">ScopeBox</span><span class="tool-desc">Real-time video scopes for Mac. Waveform, vectorscope, and histogram outside the NLE.</span></span>
-      <span class="tool-name"><span class="tool-name-row">MediaInfo</span><span class="tool-desc">Reads technical metadata from any media file - codec, bitrate, timecode, colour space.</span></span>
-      <span class="tool-name"><span class="tool-name-row">ExifTool</span><span class="tool-desc">Command-line metadata reader and editor across hundreds of file types.</span></span>
-      <span class="tool-name"><span class="tool-name-row">QTChange</span><span class="tool-desc">Edits QuickTime metadata - reel name, timecode, frame rate - without re-encoding.</span></span>
-      <span class="tool-name"><span class="tool-name-row">Blackmagic Disk Speed Test</span><span class="tool-desc">Benchmarks disk read/write speed for high-res playback verification.</span></span>
-      <span class="tool-subcat">FCP utilities</span>
-      <span class="tool-name"><span class="tool-name-row">XtoCC</span><span class="tool-desc">Converts FCP 7 XML to Premiere-readable XML for legacy project migration.</span></span>
-      <span class="tool-name"><span class="tool-name-row">SendToX</span><span class="tool-desc">Migrates FCP 7 projects into FCPX preserving timeline structure.</span></span>
-      <span class="tool-name"><span class="tool-name-row">Multicam Flattener</span><span class="tool-desc">Flattens FCPX multicam clips to single-angle before export or interchange.</span></span>
-      <span class="tool-name"><span class="tool-name-row">X2Pro5</span><span class="tool-desc">Exports FCPX timelines as AAF for Pro Tools audio handoff.</span></span>
-      <span class="tool-name"><span class="tool-name-row">Worx4 X</span><span class="tool-desc">FCPX utility suite - roles, list export, and audio lane management.</span></span>
-      <span class="tool-name"><span class="tool-name-row">Arctic</span><span class="tool-desc">FCPX library manager. Handles archiving, migration, and cleanup of project libraries.</span></span>
-      <span class="tool-subcat">Avid media management</span>
-      <span class="tool-name"><span class="tool-name-row">MDVX</span><span class="tool-desc">Free file-system media manager for Avid. Organise and archive media across any drive or NEXIS storage.</span></span>
-      <span class="tool-subcat">Ingest &amp; asset management</span>
-      <span class="tool-name"><span class="tool-name-row">OffShoot Pro</span><span class="tool-desc">Card offload tool with checksum verification for secure camera media backup.</span></span>
-      <span class="tool-name"><span class="tool-name-row">FoolCat Pro</span><span class="tool-desc">Media cataloguing and ingest with metadata, proxies, and stills databases.</span></span>
-      <span class="tool-name"><span class="tool-name-row">Kyno</span><span class="tool-desc">Browse, log, transcode, and deliver camera media with full metadata tagging.</span></span>
-      <span class="tool-name"><span class="tool-name-row">Wave Agent</span><span class="tool-desc">Reads and edits BWF metadata - scene, take, track names - in production .wav files.</span></span>
-      <span class="tool-subcat">Dialogue &amp; script</span>
-      <span class="tool-name"><span class="tool-name-row">Avid ScriptSync</span><span class="tool-desc">Links script text to timeline clips. Navigate footage by clicking script lines.</span></span>
-      <span class="tool-subcat">File &amp; system</span>
-      <span class="tool-name"><span class="tool-name-row">Keyboard Maestro</span><span class="tool-desc">Mac automation via hotkeys. Speeds up repetitive editorial tasks across any app.</span></span>
-      <span class="tool-name"><span class="tool-name-row">Name Wrangler</span><span class="tool-desc">Batch file renaming with rules, sequences, and metadata substitutions.</span></span>
-      <span class="tool-name"><span class="tool-name-row">BBEdit</span><span class="tool-desc">Pro text editor for Mac. Inspect and edit EDLs, XMLs, and CSVs.</span></span>
-      <span class="tool-name"><span class="tool-name-row">VisualDiffer</span><span class="tool-desc">Side-by-side file comparison. Useful for checking EDL or XML revisions.</span></span>
-      <span class="tool-name"><span class="tool-name-row">EasyFind</span><span class="tool-desc">Fast file search without indexing. Good for locating media on external drives.</span></span>
-      <span class="tool-name"><span class="tool-name-row">Post Haste</span><span class="tool-desc">Creates consistent project folder structures from templates on every job.</span></span>
-      <span class="tool-name"><span class="tool-name-row">Tuxera Disk Manager</span><span class="tool-desc">Full read/write access to NTFS drives on Mac. Essential for Windows media.</span></span>
-      <span class="tool-name"><span class="tool-name-row">FileSync</span><span class="tool-desc">Syncs folders between locations for project and media backups.</span></span>
+      <span class="tool-cat-label" data-en="Ecosystem &amp; utilities" data-es="Ecosistema y utilidades">Ecosystem &amp; utilities</span>
+      <span class="tool-subcat" data-en="Transcoding &amp; encoding" data-es="Transcodificación y codificación">Transcoding &amp; encoding</span>
+      <span class="tool-name"><span class="tool-name-row">Shutter Encoder</span><span class="tool-desc" data-en="Free open-source transcoder. Converts any video or audio format via drag-and-drop." data-es="Transcodificador gratuito y de código abierto. Convierte cualquier formato de vídeo o audio arrastrando y soltando.">Free open-source transcoder. Converts any video or audio format via drag-and-drop.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Compressor</span><span class="tool-desc" data-en="Apple's encoding tool. Batch export and delivery presets integrated with FCPX." data-es="Herramienta de codificación de Apple. Exportación por lotes y ajustes de entrega integrados con FCPX.">Apple's encoding tool. Batch export and delivery presets integrated with FCPX.</span></span>
+      <span class="tool-name"><span class="tool-name-row">EditReady</span><span class="tool-desc" data-en="Lightweight transcoder for camera originals. Quick conversion to ProRes or other edit codecs." data-es="Transcodificador ligero para originales de cámara. Conversión rápida a ProRes u otros códecs de edición.">Lightweight transcoder for camera originals. Quick conversion to ProRes or other edit codecs.</span></span>
+      <span class="tool-subcat" data-en="Media analysis &amp; monitoring" data-es="Análisis y monitorización de media">Media analysis &amp; monitoring</span>
+      <span class="tool-name"><span class="tool-name-row">ScopeBox</span><span class="tool-desc" data-en="Real-time video scopes for Mac. Waveform, vectorscope, and histogram outside the NLE." data-es="Scopes de vídeo en tiempo real para Mac. Forma de onda, vectorscopio e histograma fuera del NLE.">Real-time video scopes for Mac. Waveform, vectorscope, and histogram outside the NLE.</span></span>
+      <span class="tool-name"><span class="tool-name-row">MediaInfo</span><span class="tool-desc" data-en="Reads technical metadata from any media file - codec, bitrate, timecode, colour space." data-es="Lee metadatos técnicos de cualquier archivo de media: códec, bitrate, timecode, espacio de color.">Reads technical metadata from any media file - codec, bitrate, timecode, colour space.</span></span>
+      <span class="tool-name"><span class="tool-name-row">ExifTool</span><span class="tool-desc" data-en="Command-line metadata reader and editor across hundreds of file types." data-es="Lector y editor de metadatos por línea de comandos para cientos de tipos de archivo.">Command-line metadata reader and editor across hundreds of file types.</span></span>
+      <span class="tool-name"><span class="tool-name-row">QTChange</span><span class="tool-desc" data-en="Edits QuickTime metadata - reel name, timecode, frame rate - without re-encoding." data-es="Edita metadatos de QuickTime (nombre de bobina, timecode, frame rate) sin recodificar.">Edits QuickTime metadata - reel name, timecode, frame rate - without re-encoding.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Blackmagic Disk Speed Test</span><span class="tool-desc" data-en="Benchmarks disk read/write speed for high-res playback verification." data-es="Mide la velocidad de lectura/escritura del disco para verificar reproducción en alta resolución.">Benchmarks disk read/write speed for high-res playback verification.</span></span>
+      <span class="tool-subcat" data-en="FCP utilities" data-es="Utilidades de FCP">FCP utilities</span>
+      <span class="tool-name"><span class="tool-name-row">XtoCC</span><span class="tool-desc" data-en="Converts FCP 7 XML to Premiere-readable XML for legacy project migration." data-es="Convierte XML de FCP 7 a XML legible por Premiere para migrar proyectos antiguos.">Converts FCP 7 XML to Premiere-readable XML for legacy project migration.</span></span>
+      <span class="tool-name"><span class="tool-name-row">SendToX</span><span class="tool-desc" data-en="Migrates FCP 7 projects into FCPX preserving timeline structure." data-es="Migra proyectos de FCP 7 a FCPX conservando la estructura del timeline.">Migrates FCP 7 projects into FCPX preserving timeline structure.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Multicam Flattener</span><span class="tool-desc" data-en="Flattens FCPX multicam clips to single-angle before export or interchange." data-es="Aplana clips multicámara de FCPX a un solo ángulo antes de exportar o intercambiar.">Flattens FCPX multicam clips to single-angle before export or interchange.</span></span>
+      <span class="tool-name"><span class="tool-name-row">X2Pro5</span><span class="tool-desc" data-en="Exports FCPX timelines as AAF for Pro Tools audio handoff." data-es="Exporta timelines de FCPX como AAF para la entrega de audio a Pro Tools.">Exports FCPX timelines as AAF for Pro Tools audio handoff.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Worx4 X</span><span class="tool-desc" data-en="FCPX utility suite - roles, list export, and audio lane management." data-es="Suite de utilidades para FCPX: roles, exportación de listas y gestión de pistas de audio.">FCPX utility suite - roles, list export, and audio lane management.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Arctic</span><span class="tool-desc" data-en="FCPX library manager. Handles archiving, migration, and cleanup of project libraries." data-es="Gestor de librerías de FCPX. Archiva, migra y limpia librerías de proyectos.">FCPX library manager. Handles archiving, migration, and cleanup of project libraries.</span></span>
+      <span class="tool-subcat" data-en="Avid media management" data-es="Gestión de media en Avid">Avid media management</span>
+      <span class="tool-name"><span class="tool-name-row">MDVX</span><span class="tool-desc" data-en="Free file-system media manager for Avid. Organise and archive media across any drive or NEXIS storage." data-es="Gestor de media gratuito basado en sistema de archivos para Avid. Organiza y archiva media en cualquier disco o almacenamiento NEXIS.">Free file-system media manager for Avid. Organise and archive media across any drive or NEXIS storage.</span></span>
+      <span class="tool-subcat" data-en="Ingest &amp; asset management" data-es="Ingest y gestión de assets">Ingest &amp; asset management</span>
+      <span class="tool-name"><span class="tool-name-row">OffShoot Pro</span><span class="tool-desc" data-en="Card offload tool with checksum verification for secure camera media backup." data-es="Herramienta de descarga de tarjetas con verificación de checksum para copias de seguridad seguras de media de cámara.">Card offload tool with checksum verification for secure camera media backup.</span></span>
+      <span class="tool-name"><span class="tool-name-row">FoolCat Pro</span><span class="tool-desc" data-en="Media cataloguing and ingest with metadata, proxies, and stills databases." data-es="Catalogación e ingest de media con metadatos, proxies y bases de datos de fotogramas fijos.">Media cataloguing and ingest with metadata, proxies, and stills databases.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Kyno</span><span class="tool-desc" data-en="Browse, log, transcode, and deliver camera media with full metadata tagging." data-es="Explora, cataloga, transcodifica y entrega media de cámara con etiquetado completo de metadatos.">Browse, log, transcode, and deliver camera media with full metadata tagging.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Wave Agent</span><span class="tool-desc" data-en="Reads and edits BWF metadata - scene, take, track names - in production .wav files." data-es="Lee y edita metadatos BWF (escena, toma, nombres de pista) en archivos .wav de producción.">Reads and edits BWF metadata - scene, take, track names - in production .wav files.</span></span>
+      <span class="tool-subcat" data-en="Dialogue &amp; script" data-es="Diálogo y guion">Dialogue &amp; script</span>
+      <span class="tool-name"><span class="tool-name-row">Avid ScriptSync</span><span class="tool-desc" data-en="Links script text to timeline clips. Navigate footage by clicking script lines." data-es="Vincula el texto del guion con los clips del timeline. Navega por el metraje haciendo clic en las líneas del guion.">Links script text to timeline clips. Navigate footage by clicking script lines.</span></span>
+      <span class="tool-subcat" data-en="File &amp; system" data-es="Archivos y sistema">File &amp; system</span>
+      <span class="tool-name"><span class="tool-name-row">Keyboard Maestro</span><span class="tool-desc" data-en="Mac automation via hotkeys. Speeds up repetitive editorial tasks across any app." data-es="Automatización para Mac mediante atajos de teclado. Acelera tareas editoriales repetitivas en cualquier aplicación.">Mac automation via hotkeys. Speeds up repetitive editorial tasks across any app.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Name Wrangler</span><span class="tool-desc" data-en="Batch file renaming with rules, sequences, and metadata substitutions." data-es="Renombrado de archivos por lotes con reglas, secuencias y sustituciones de metadatos.">Batch file renaming with rules, sequences, and metadata substitutions.</span></span>
+      <span class="tool-name"><span class="tool-name-row">BBEdit</span><span class="tool-desc" data-en="Pro text editor for Mac. Inspect and edit EDLs, XMLs, and CSVs." data-es="Editor de texto profesional para Mac. Inspecciona y edita EDLs, XMLs y CSVs.">Pro text editor for Mac. Inspect and edit EDLs, XMLs, and CSVs.</span></span>
+      <span class="tool-name"><span class="tool-name-row">VisualDiffer</span><span class="tool-desc" data-en="Side-by-side file comparison. Useful for checking EDL or XML revisions." data-es="Comparación de archivos lado a lado. Útil para revisar cambios en EDLs o XMLs.">Side-by-side file comparison. Useful for checking EDL or XML revisions.</span></span>
+      <span class="tool-name"><span class="tool-name-row">EasyFind</span><span class="tool-desc" data-en="Fast file search without indexing. Good for locating media on external drives." data-es="Búsqueda rápida de archivos sin indexación. Ideal para localizar media en discos externos.">Fast file search without indexing. Good for locating media on external drives.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Post Haste</span><span class="tool-desc" data-en="Creates consistent project folder structures from templates on every job." data-es="Crea estructuras de carpetas de proyecto coherentes a partir de plantillas en cada trabajo.">Creates consistent project folder structures from templates on every job.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Tuxera Disk Manager</span><span class="tool-desc" data-en="Full read/write access to NTFS drives on Mac. Essential for Windows media." data-es="Acceso completo de lectura/escritura a discos NTFS en Mac. Esencial para media de Windows.">Full read/write access to NTFS drives on Mac. Essential for Windows media.</span></span>
+      <span class="tool-name"><span class="tool-name-row">FileSync</span><span class="tool-desc" data-en="Syncs folders between locations for project and media backups." data-es="Sincroniza carpetas entre ubicaciones para copias de seguridad de proyectos y media.">Syncs folders between locations for project and media backups.</span></span>
     </div>
     <div class="tool-cat">
-      <span class="tool-cat-label">Post-production infrastructure</span>
-      <span class="tool-subcat">Collaboration &amp; versioning</span>
-      <span class="tool-name"><span class="tool-name-row">PostLab Pro</span><span class="tool-desc">Cloud collaboration for Avid, Premiere, Resolve, and FCPX. Remote project check-in/out.</span></span>
-      <span class="tool-name"><span class="tool-name-row">Mimiq</span><span class="tool-desc">Mirrors Avid NEXIS over the internet for remote shared-storage access.</span></span>
-      <span class="tool-name"><span class="tool-name-row">EditShare</span><span class="tool-desc">Networked shared storage and production management for post teams.</span></span>
-      <span class="tool-name"><span class="tool-name-row">Avid NEXIS</span><span class="tool-desc">Industry-standard shared storage for large Avid team workflows.</span></span>
-      <span class="tool-subcat">Delivery &amp; transfer</span>
-      <span class="tool-name"><span class="tool-name-row">MASV</span><span class="tool-desc">High-speed large file transfers with no size limits.</span></span>
-      <span class="tool-name"><span class="tool-name-row">Media Shuttle</span><span class="tool-desc">Signiant's enterprise transfer platform for broadcasters and post houses.</span></span>
-      <span class="tool-name"><span class="tool-name-row">WireDrive</span><span class="tool-desc">Secure file sharing and review platform used by advertising agencies.</span></span>
-      <span class="tool-name"><span class="tool-name-row">Frame.io</span><span class="tool-desc">Video review platform. Clients leave timestamped comments directly on the cut.</span></span>
-      <span class="tool-name"><span class="tool-name-row">Media Silo</span><span class="tool-desc">Cloud review and asset management with proxy playback and version control.</span></span>
-      <span class="tool-name"><span class="tool-name-row">ClearCast</span><span class="tool-desc">UK broadcast clearance system. Required before any ad airs on commercial TV.</span></span>
-      <span class="tool-subcat">Production organisation</span>
-      <span class="tool-name"><span class="tool-name-row">Ceta</span><span class="tool-desc">Production management for film and TV.</span></span>
-      <span class="tool-name"><span class="tool-name-row">Farmer's Wife</span><span class="tool-desc">Schedule, manage, and collaborate. Resource tracking and project lifecycle management for media and post-production teams.</span></span>
+      <span class="tool-cat-label" data-en="Post-production infrastructure" data-es="Infraestructura de postproducción">Post-production infrastructure</span>
+      <span class="tool-subcat" data-en="Collaboration &amp; versioning" data-es="Colaboración y versionado">Collaboration &amp; versioning</span>
+      <span class="tool-name"><span class="tool-name-row">PostLab Pro</span><span class="tool-desc" data-en="Cloud collaboration for Avid, Premiere, Resolve, and FCPX. Remote project check-in/out." data-es="Colaboración en la nube para Avid, Premiere, Resolve y FCPX. Check-in/check-out remoto de proyectos.">Cloud collaboration for Avid, Premiere, Resolve, and FCPX. Remote project check-in/out.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Mimiq</span><span class="tool-desc" data-en="Mirrors Avid NEXIS over the internet for remote shared-storage access." data-es="Replica Avid NEXIS a través de internet para acceso remoto a almacenamiento compartido.">Mirrors Avid NEXIS over the internet for remote shared-storage access.</span></span>
+      <span class="tool-name"><span class="tool-name-row">EditShare</span><span class="tool-desc" data-en="Networked shared storage and production management for post teams." data-es="Almacenamiento compartido en red y gestión de producción para equipos de postproducción.">Networked shared storage and production management for post teams.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Avid NEXIS</span><span class="tool-desc" data-en="Industry-standard shared storage for large Avid team workflows." data-es="Almacenamiento compartido estándar del sector para flujos de trabajo con grandes equipos en Avid.">Industry-standard shared storage for large Avid team workflows.</span></span>
+      <span class="tool-subcat" data-en="Delivery &amp; transfer" data-es="Entrega y transferencia">Delivery &amp; transfer</span>
+      <span class="tool-name"><span class="tool-name-row">MASV</span><span class="tool-desc" data-en="High-speed large file transfers with no size limits." data-es="Transferencias de archivos grandes a alta velocidad sin límite de tamaño.">High-speed large file transfers with no size limits.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Media Shuttle</span><span class="tool-desc" data-en="Signiant's enterprise transfer platform for broadcasters and post houses." data-es="Plataforma de transferencia empresarial de Signiant para broadcasters y casas de postproducción.">Signiant's enterprise transfer platform for broadcasters and post houses.</span></span>
+      <span class="tool-name"><span class="tool-name-row">WireDrive</span><span class="tool-desc" data-en="Secure file sharing and review platform used by advertising agencies." data-es="Plataforma segura de revisión y compartición de archivos utilizada por agencias de publicidad.">Secure file sharing and review platform used by advertising agencies.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Frame.io</span><span class="tool-desc" data-en="Video review platform. Clients leave timestamped comments directly on the cut." data-es="Plataforma de revisión de vídeo. Los clientes dejan comentarios con marca de tiempo directamente sobre el montaje.">Video review platform. Clients leave timestamped comments directly on the cut.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Media Silo</span><span class="tool-desc" data-en="Cloud review and asset management with proxy playback and version control." data-es="Revisión en la nube y gestión de assets con reproducción de proxies y control de versiones.">Cloud review and asset management with proxy playback and version control.</span></span>
+      <span class="tool-name"><span class="tool-name-row">ClearCast</span><span class="tool-desc" data-en="UK broadcast clearance system. Required before any ad airs on commercial TV." data-es="Sistema de autorización de emisión en el Reino Unido. Obligatorio antes de emitir cualquier anuncio en TV comercial.">UK broadcast clearance system. Required before any ad airs on commercial TV.</span></span>
+      <span class="tool-subcat" data-en="Production organisation" data-es="Organización de producción">Production organisation</span>
+      <span class="tool-name"><span class="tool-name-row">Ceta</span><span class="tool-desc" data-en="Production management for film and TV." data-es="Gestión de producción para cine y televisión.">Production management for film and TV.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Farmer's Wife</span><span class="tool-desc" data-en="Schedule, manage, and collaborate. Resource tracking and project lifecycle management for media and post-production teams." data-es="Planifica, gestiona y colabora. Seguimiento de recursos y gestión del ciclo de vida de proyectos para equipos de media y postproducción.">Schedule, manage, and collaborate. Resource tracking and project lifecycle management for media and post-production teams.</span></span>
     </div>
     <div class="tool-cat">
-      <span class="tool-cat-label">Plugins &amp; extensions</span>
-      <span class="tool-subcat">Workflow &amp; organisation</span>
-      <span class="tool-name"><span class="tool-name-row">Excalibur </span><span class="tool-desc">Batch operations, sequence tools, and workflow automation for Premiere.</span></span>
-      <span class="tool-name"><span class="tool-name-row">Grave Robber </span><span class="tool-desc">Extracts and rebuilds sequences from other Premiere projects.</span></span>
-      <span class="tool-name"><span class="tool-name-row">Dagger </span><span class="tool-desc">Sequence and project management - duplicate, lock, and organise at scale.</span></span>
-      <span class="tool-name"><span class="tool-name-row">Watchtower </span><span class="tool-desc">Monitors for offline media and broken links before delivery.</span></span>
-      <span class="tool-subcat">Metadata &amp; naming</span>
-      <span class="tool-name"><span class="tool-name-row">iXML Renamer </span><span class="tool-desc">Reads iXML from sound recorders and renames Premiere clips - scene, take, track.</span></span>
-      <span class="tool-name"><span class="tool-name-row">ALE Metadata Toolkit </span><span class="tool-desc">Imports Avid ALE metadata into Premiere clips. Bridges Avid and Premiere workflows.</span></span>
-      <span class="tool-name"><span class="tool-name-row">Batch Rename </span><span class="tool-desc">Renames bins, clips, or sequences in bulk using custom naming patterns.</span></span>
-      <span class="tool-name"><span class="tool-name-row">CommandPost </span><span class="tool-desc">FCPX automation - MIDI control, custom shortcuts, and batch actions.</span></span>
-      <span class="tool-subcat">Effects &amp; finishing</span>
-      <span class="tool-name"><span class="tool-name-row">RSMB </span><span class="tool-desc">Adds realistic motion blur to footage in post. Standard in commercial VFX work.</span></span>
-      <span class="tool-name"><span class="tool-name-row">BLend-X </span><span class="tool-desc">Extends Avid's compositing and blending options for titles and layer mixing.</span></span>
-      <span class="tool-name"><span class="tool-name-row">Color Finale 2 Pro </span><span class="tool-desc">Layer-based colour grading plugin with scopes and LUT support inside FCPX.</span></span>
-      <span class="tool-name"><span class="tool-name-row">Nobe Display </span><span class="tool-desc">Resolve plugin for real-time video output to an external monitor during colour and finishing work.</span></span>
-      <span class="tool-name"><span class="tool-name-row">Captioneer </span><span class="tool-desc">Imports SRT files and auto-positions captions across Premiere sequences.</span></span>
-      <span class="tool-subcat" style="margin-top:0.5rem;margin-bottom:0.25rem">In-house</span>
+      <span class="tool-cat-label" data-en="Plugins &amp; extensions" data-es="Plugins y extensiones">Plugins &amp; extensions</span>
+      <span class="tool-subcat" data-en="Workflow &amp; organisation" data-es="Flujo de trabajo y organización">Workflow &amp; organisation</span>
+      <span class="tool-name"><span class="tool-name-row">Excalibur </span><span class="tool-desc" data-en="Batch operations, sequence tools, and workflow automation for Premiere." data-es="Operaciones por lotes, herramientas de secuencia y automatización de flujo de trabajo para Premiere.">Batch operations, sequence tools, and workflow automation for Premiere.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Grave Robber </span><span class="tool-desc" data-en="Extracts and rebuilds sequences from other Premiere projects." data-es="Extrae y reconstruye secuencias de otros proyectos de Premiere.">Extracts and rebuilds sequences from other Premiere projects.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Dagger </span><span class="tool-desc" data-en="Sequence and project management - duplicate, lock, and organise at scale." data-es="Gestión de secuencias y proyectos: duplica, bloquea y organiza a gran escala.">Sequence and project management - duplicate, lock, and organise at scale.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Watchtower </span><span class="tool-desc" data-en="Monitors for offline media and broken links before delivery." data-es="Detecta media offline y enlaces rotos antes de la entrega.">Monitors for offline media and broken links before delivery.</span></span>
+      <span class="tool-subcat" data-en="Metadata &amp; naming" data-es="Metadatos y nomenclatura">Metadata &amp; naming</span>
+      <span class="tool-name"><span class="tool-name-row">iXML Renamer </span><span class="tool-desc" data-en="Reads iXML from sound recorders and renames Premiere clips - scene, take, track." data-es="Lee iXML de grabadoras de sonido y renombra clips de Premiere: escena, toma, pista.">Reads iXML from sound recorders and renames Premiere clips - scene, take, track.</span></span>
+      <span class="tool-name"><span class="tool-name-row">ALE Metadata Toolkit </span><span class="tool-desc" data-en="Imports Avid ALE metadata into Premiere clips. Bridges Avid and Premiere workflows." data-es="Importa metadatos ALE de Avid en clips de Premiere. Conecta los flujos de trabajo de Avid y Premiere.">Imports Avid ALE metadata into Premiere clips. Bridges Avid and Premiere workflows.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Batch Rename </span><span class="tool-desc" data-en="Renames bins, clips, or sequences in bulk using custom naming patterns." data-es="Renombra bins, clips o secuencias en bloque usando patrones de nomenclatura personalizados.">Renames bins, clips, or sequences in bulk using custom naming patterns.</span></span>
+      <span class="tool-name"><span class="tool-name-row">CommandPost </span><span class="tool-desc" data-en="FCPX automation - MIDI control, custom shortcuts, and batch actions." data-es="Automatización para FCPX: control MIDI, atajos personalizados y acciones por lotes.">FCPX automation - MIDI control, custom shortcuts, and batch actions.</span></span>
+      <span class="tool-subcat" data-en="Effects &amp; finishing" data-es="Efectos y acabado">Effects &amp; finishing</span>
+      <span class="tool-name"><span class="tool-name-row">RSMB </span><span class="tool-desc" data-en="Adds realistic motion blur to footage in post. Standard in commercial VFX work." data-es="Añade motion blur realista al metraje en postproducción. Estándar en VFX para comerciales.">Adds realistic motion blur to footage in post. Standard in commercial VFX work.</span></span>
+      <span class="tool-name"><span class="tool-name-row">BLend-X </span><span class="tool-desc" data-en="Extends Avid's compositing and blending options for titles and layer mixing." data-es="Amplía las opciones de composición y mezcla de Avid para títulos y combinación de capas.">Extends Avid's compositing and blending options for titles and layer mixing.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Color Finale 2 Pro </span><span class="tool-desc" data-en="Layer-based colour grading plugin with scopes and LUT support inside FCPX." data-es="Plugin de etalonaje por capas con scopes y soporte de LUTs dentro de FCPX.">Layer-based colour grading plugin with scopes and LUT support inside FCPX.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Nobe Display </span><span class="tool-desc" data-en="Resolve plugin for real-time video output to an external monitor during colour and finishing work." data-es="Plugin de Resolve para salida de vídeo en tiempo real a un monitor externo durante el etalonaje y el acabado.">Resolve plugin for real-time video output to an external monitor during colour and finishing work.</span></span>
+      <span class="tool-name"><span class="tool-name-row">Captioneer </span><span class="tool-desc" data-en="Imports SRT files and auto-positions captions across Premiere sequences." data-es="Importa archivos SRT y posiciona automáticamente los subtítulos en secuencias de Premiere.">Imports SRT files and auto-positions captions across Premiere sequences.</span></span>
+      <span class="tool-subcat" style="margin-top:0.5rem;margin-bottom:0.25rem" data-en="In-house" data-es="Desarrollo propio">In-house</span>
       <span class="tool-name" id="subshiftToolRow">
         <span class="tool-name-row">
           <span class="tool-name-left">SubShift</span>
         </span>
-        <span class="tool-desc">Native macOS caption converter — SRT · Avid DS · TXT · VTT<br><span id="subshiftInlineGate" onclick="event.stopPropagation()" style="display:inline-block;margin-top:0.5rem;width:100%"><span style="display:flex;gap:0;border:0.5px solid var(--border);max-width:280px"><input id="subshiftPw" type="password" placeholder="Password" autocomplete="off" onclick="event.stopPropagation()" style="background:var(--bg);border:none;outline:none;padding:0.4rem 0.75rem;font-family:var(--font-mono);font-size:11px;color:var(--text);letter-spacing:0.08em;flex:1;width:100%"><button onclick="checkSubshiftPw(event)" style="background:var(--bg);border:none;border-left:0.5px solid var(--border);padding:0.4rem 0.75rem;font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);cursor:pointer">→</button></span><span id="subshiftErr" style="font-size:10px;color:#e07070;letter-spacing:0.08em;margin-top:0.35rem;display:none">Incorrect password</span><a id="subshiftDl" href="/subshift/SubShift.zip" download style="display:none;margin-top:0.5rem;font-size:10px;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;text-decoration:none">↓ Download SubShift v1.1</a></span></span>
+        <span class="tool-desc"><span data-en="Native macOS caption converter — SRT · Avid DS · TXT · VTT" data-es="Conversor de subtítulos nativo para macOS — SRT · Avid DS · TXT · VTT">Native macOS caption converter — SRT · Avid DS · TXT · VTT</span><br><span id="subshiftInlineGate" onclick="event.stopPropagation()" style="display:inline-block;margin-top:0.5rem;width:100%"><span style="display:flex;gap:0;border:0.5px solid var(--border);max-width:280px"><input id="subshiftPw" type="password" placeholder="Password" data-en-placeholder="Password" data-es-placeholder="Contraseña" autocomplete="off" onclick="event.stopPropagation()" style="background:var(--bg);border:none;outline:none;padding:0.4rem 0.75rem;font-family:var(--font-mono);font-size:11px;color:var(--text);letter-spacing:0.08em;flex:1;width:100%"><button onclick="checkSubshiftPw(event)" style="background:var(--bg);border:none;border-left:0.5px solid var(--border);padding:0.4rem 0.75rem;font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);cursor:pointer">→</button></span><span id="subshiftErr" style="font-size:10px;color:#e07070;letter-spacing:0.08em;margin-top:0.35rem;display:none" data-en="Incorrect password" data-es="Contraseña incorrecta">Incorrect password</span><a id="subshiftDl" href="/subshift/SubShift.zip" download style="display:none;margin-top:0.5rem;font-size:10px;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;text-decoration:none" data-en="↓ Download SubShift v1.1" data-es="↓ Descargar SubShift v1.1">↓ Download SubShift v1.1</a></span></span>
       </span>
     </div>
   </div>
@@ -597,14 +604,14 @@
 
 
 <div class="section" id="contact">
-  <div class="section-label">Get in touch</div>
+  <div class="section-label" data-en="Get in touch" data-es="Contacta conmigo">Get in touch</div>
   <div class="contact-grid reveal">
     <div class="contact-block">
-      <p>Available for freelance and contract work across commercial, branded and long-form productions. Based in London - available to travel internationally.</p>
-      <p style="margin-top:0.75rem;font-size:12px;opacity:0.6;font-family:var(--font-mono);letter-spacing:0.04em">For availability and rates, get in touch with your project details. Pencils on confirmed budget only.</p>
+      <p data-en="Available for freelance and contract work across commercial, branded and long-form productions. Based in London - available to travel internationally." data-es="Disponible para trabajo freelance y por contrato en producciones comerciales, de marca y de largo formato. Con base en Londres, disponible para viajar internacionalmente.">Available for freelance and contract work across commercial, branded and long-form productions. Based in London - available to travel internationally.</p>
+      <p style="margin-top:0.75rem;font-size:12px;opacity:0.6;font-family:var(--font-mono);letter-spacing:0.04em" data-en="For availability and rates, get in touch with your project details. Pencils on confirmed budget only." data-es="Para disponibilidad y tarifas, ponte en contacto con los detalles de tu proyecto. Solo se reservan fechas con presupuesto confirmado.">For availability and rates, get in touch with your project details. Pencils on confirmed budget only.</p>
       <a class="contact-link" href="mailto:info4nacho@gmail.com?subject=Project%20Enquiry">info4nacho@gmail.com</a>
       <br>
-      <a href="/Nacho-Santana-CV.pdf" target="_blank" rel="noopener" style="display:block;margin-top:0.75rem;font-size:11px;color:var(--muted);letter-spacing:0.08em;text-decoration:none;border-bottom:0.5px solid var(--border);padding-bottom:2px;width:fit-content;transition:color 0.2s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">View CV →</a>
+      <a href="/Nacho-Santana-CV.pdf" target="_blank" rel="noopener" style="display:block;margin-top:0.75rem;font-size:11px;color:var(--muted);letter-spacing:0.08em;text-decoration:none;border-bottom:0.5px solid var(--border);padding-bottom:2px;width:fit-content;transition:color 0.2s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'" data-en="View CV →" data-es="Ver CV →">View CV →</a>
       
     </div>
     <div>
@@ -621,12 +628,12 @@
   </div>
 </div>
 
-<div id="jklMsg">J K L - nice one, editor 🎬</div>
+<div id="jklMsg" data-en="J K L - nice one, editor 🎬" data-es="J K L - bien hecho, editor 🎬">J K L - nice one, editor 🎬</div>
 
 <footer>
   <div class="footer-copy">© 2026 Nacho Santana</div>
   <div class="timecode" id="timecodeFooter">00:00:00:00</div>
-  <div class="footer-copy">London, UK</div>
+  <div class="footer-copy" data-en="London, UK" data-es="Londres, Reino Unido">London, UK</div>
 </footer>
 
 <script>
@@ -736,6 +743,31 @@
           }
         }).catch(()=>{});
     }
+  })();
+
+  // ── LANGUAGE TOGGLE ──
+  function applyLang(lang){
+    document.querySelectorAll('[data-en]').forEach(el => {
+      const val = lang === 'es' ? el.getAttribute('data-es') : el.getAttribute('data-en');
+      if (val !== null) el.textContent = val;
+    });
+    document.querySelectorAll('[data-en-placeholder]').forEach(el => {
+      const val = lang === 'es' ? el.getAttribute('data-es-placeholder') : el.getAttribute('data-en-placeholder');
+      if (val !== null) el.setAttribute('placeholder', val);
+    });
+    document.documentElement.setAttribute('lang', lang);
+    const label = document.getElementById('langToggleLabel');
+    if (label) label.textContent = lang === 'es' ? 'EN' : 'ES';
+    try { localStorage.setItem('site-lang', lang); } catch(e){}
+  }
+  function toggleLang(){
+    const current = document.documentElement.getAttribute('lang') === 'es' ? 'es' : 'en';
+    applyLang(current === 'es' ? 'en' : 'es');
+  }
+  (function(){
+    let saved = 'en';
+    try { saved = localStorage.getItem('site-lang') || 'en'; } catch(e){}
+    if (saved === 'es') applyLang('es');
   })();
 
   function playShowreel(){
