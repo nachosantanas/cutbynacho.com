@@ -70,6 +70,30 @@
     .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:0.5px;background:var(--accent);transition:width 0.3s var(--ease-out-expo)}
     .nav-links a:hover::after,.nav-links a.active::after{width:100%}
 
+    /* NAV DROPDOWN */
+    .nav-dropdown-wrap{position:relative}
+    .nav-dropdown-bridge{position:absolute;top:100%;left:50%;transform:translateX(-50%);width:150px;height:16px;z-index:49}
+    .nav-dropdown{
+      position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(-6px);
+      background:var(--surface);border:0.5px solid var(--border);
+      display:flex;flex-direction:column;min-width:150px;
+      opacity:0;pointer-events:none;transition:opacity 0.25s var(--ease-out-expo),transform 0.25s var(--ease-out-expo);
+      z-index:50;
+    }
+    .nav-dropdown-wrap:hover .nav-dropdown,
+    .nav-dropdown-wrap.open .nav-dropdown{
+      opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0);
+    }
+    .nav-dropdown a{padding:0.7rem 1rem;font-size:10px;border-bottom:0.5px solid var(--border);white-space:nowrap}
+    .nav-dropdown a:last-child{border-bottom:none}
+    .nav-dropdown a::after{display:none}
+    .nav-dropdown a:hover{color:var(--text);background:rgba(255,255,255,0.03)}
+
+    @media(hover:none),(pointer:coarse){
+      .nav-dropdown-wrap:hover .nav-dropdown{opacity:0;pointer-events:none;transform:translateX(-50%) translateY(-6px)}
+      .nav-dropdown-wrap.open .nav-dropdown{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+    }
+
     /* WORK FLASH */
     .work-flash{position:fixed;inset:0;background:rgba(255,255,255,0.06);pointer-events:none;opacity:0;z-index:9998;transition:opacity 0.3s ease}
     .work-flash.active{opacity:1}
@@ -131,6 +155,7 @@
 
     /* SECTIONS */
     .section{padding:3.5rem 2.5rem;border-bottom:0.5px solid var(--border);scroll-margin-top:0;overflow:hidden;transition:background 0.4s}
+    #work{border-bottom:none;padding-bottom:0}
     .section.flash{animation:sectionFlash 1s ease forwards}
     @keyframes sectionFlash{0%{background:var(--bg)}30%{background:#1a1a18}100%{background:var(--bg)}}
     .section-label{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:2.5rem}
@@ -141,7 +166,7 @@
     #work{padding-top:3.5rem}
 
     /* SHOWREEL */
-    .showreel{position:relative;aspect-ratio:16/9;background:#000;overflow:hidden;cursor:pointer;margin-bottom:2.5rem;border-bottom:0.5px solid var(--border)}
+    .showreel{position:relative;aspect-ratio:16/9;background:#000;overflow:hidden;cursor:pointer;margin-bottom:0}
     .showreel-poster{width:100%;height:100%;object-fit:cover;display:block;opacity:0.6;transition:opacity 0.8s var(--ease-out-expo),transform 0.8s var(--ease-out-expo)}
     .showreel:hover .showreel-poster{opacity:0.35;transform:scale(1.02)}
     .showreel-overlay{position:absolute;inset:0;display:flex;flex-direction:row;align-items:center;justify-content:center;gap:1rem;z-index:2}
@@ -340,7 +365,15 @@
 <nav>
   <h1><a class="logo" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false">Nacho Santana</a></h1>
   <div class="nav-links">
-    <a href="#" id="nav-work" data-en="Work" data-es="Trabajo">Work</a>
+    <div class="nav-dropdown-wrap" id="navWorkWrap">
+      <a href="#work" id="nav-work" data-en="Work" data-es="Trabajo">Work</a>
+      <div class="nav-dropdown-bridge"></div>
+      <div class="nav-dropdown">
+        <a href="#commercial" data-en="Commercial" data-es="Comercial">Commercial</a>
+        <a href="#social" data-en="Social" data-es="Social">Social</a>
+        <a href="#corporate" data-en="Corporate" data-es="Corporativo">Corporate</a>
+      </div>
+    </div>
     <a href="#about" data-en="About" data-es="Sobre mí">About</a>
     <a href="#tools" data-en="Tools" data-es="Herramientas">Tools</a>
     <a href="#contact" data-en="Contact" data-es="Contacto">Contact</a>
@@ -364,7 +397,7 @@
 
 
 <div class="section" id="work">
-  <div class="section-label" data-en="Selected work" data-es="Trabajo seleccionado">Selected work</div>
+  <div class="section-label" data-en="Reel" data-es="Reel">Reel</div>
 
   <div class="showreel" id="showreel" onclick="playShowreel()">
     <video id="showreelBg" autoplay muted loop playsinline preload="none" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.55;z-index:1;pointer-events:none"></video>
@@ -376,6 +409,10 @@
       <span class="showreel-label" data-en="Play showreel" data-es="Reproducir showreel">Play showreel</span>
     </div>
   </div>
+</div>
+
+<div class="section" id="commercial">
+  <div class="section-label" data-en="Commercial" data-es="Comercial">Commercial</div>
 
   <!-- WORK GRID: 3 real projects per row -->
   <div class="work-grid reveal-stagger">
@@ -456,6 +493,14 @@
       </div>
     <span class="ext-arrow">↗</span></a>
 
+  </div>
+</div>
+
+<div class="section" id="social">
+  <div class="section-label" data-en="Social" data-es="Social">Social</div>
+
+  <div class="work-grid reveal-stagger">
+
     <!-- 11. Prayer for Ukraine (Editor cut) -->
     <a class="featured-item" href="https://www.youtube.com/watch?v=UAy4YnFTEXg" target="_blank" rel="noopener">
       <img src="https://img.youtube.com/vi/UAy4YnFTEXg/maxresdefault.jpg" alt="Prayer for Ukraine" loading="lazy">
@@ -522,6 +567,18 @@
   <p style="margin-top:1.5rem;font-size:11px;color:var(--muted);letter-spacing:0.06em;line-height:1.7">
     <span data-en="More work available on " data-es="Más trabajo disponible en ">More work available on </span><a href="https://www.linkedin.com/in/cutbynacho/" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;transition:opacity 0.2s" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">LinkedIn ↗</a>
   </p>
+</div>
+
+<div class="section" id="corporate">
+  <div class="section-label" data-en="Corporate" data-es="Corporativo">Corporate</div>
+
+  <div class="work-grid reveal-stagger">
+
+    <!-- Corporate projects go here -->
+
+  </div>
+
+  <p style="margin-top:1.5rem;font-size:11px;color:var(--muted);letter-spacing:0.06em;line-height:1.7" data-en="More corporate work coming soon." data-es="Próximamente más trabajo corporativo.">More corporate work coming soon.</p>
 </div>
 
 <div class="section" id="about">
@@ -687,13 +744,14 @@
 </footer>
 
 <script>
-  const sections = ['work','about','tools','contact'].map(id => document.getElementById(id));
+  const sections = ['work','commercial','social','corporate','about','tools','contact'].map(id => document.getElementById(id));
   const navLinks = document.querySelectorAll('.nav-links a');
 
   function setActive(id) {
+    const workGroup = ['work','commercial','social','corporate'];
     navLinks.forEach(l => {
       const href = l.getAttribute('href');
-      const isWork = (href === '#work' || href === '#') && id === 'work';
+      const isWork = (href === '#work' || href === '#') && workGroup.includes(id);
       l.classList.toggle('active', href === '#' + id || isWork);
     });
   }
@@ -793,6 +851,22 @@
           }
         }).catch(()=>{});
     }
+  })();
+
+  // ── NAV WORK DROPDOWN (touch toggle) ──
+  (function(){
+    const wrap = document.getElementById('navWorkWrap');
+    const workLink = document.getElementById('nav-work');
+    if (!wrap || !workLink) return;
+    workLink.addEventListener('click', e => {
+      if (window.matchMedia('(hover: none), (pointer: coarse)').matches) {
+        e.preventDefault();
+        wrap.classList.toggle('open');
+      }
+    });
+    document.addEventListener('click', e => {
+      if (!wrap.contains(e.target)) wrap.classList.remove('open');
+    });
   })();
 
   // ── LANGUAGE TOGGLE ──
