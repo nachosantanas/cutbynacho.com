@@ -65,13 +65,13 @@
     h1{font-size:inherit;font-weight:inherit;display:inline}
     .logo{font-family:var(--font-serif);font-size:17px;color:var(--text);text-decoration:none;transition:opacity 0.2s}
     .logo:hover{opacity:0.7}
-    .nav-links{display:flex;gap:2rem}
+    .nav-links{display:flex;gap:2rem;align-items:center}
     .nav-links a{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;transition:color 0.3s;position:relative}
     .nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:0.5px;background:var(--accent);transition:width 0.3s var(--ease-out-expo)}
     .nav-links a:hover::after,.nav-links a.active::after{width:100%}
 
     /* NAV DROPDOWN */
-    .nav-dropdown-wrap{position:relative}
+    .nav-dropdown-wrap{position:relative;display:flex;align-items:center}
     .nav-dropdown-bridge{position:absolute;top:100%;left:50%;transform:translateX(-50%);width:150px;height:16px;z-index:49}
     .nav-dropdown{
       position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%) translateY(-6px);
