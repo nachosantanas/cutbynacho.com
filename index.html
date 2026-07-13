@@ -221,7 +221,9 @@
     .featured-item:hover .ext-arrow{opacity:1;transform:translate(0,0)}
 
     /* ABOUT */
-    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+    .about-grid{display:grid;grid-template-columns:1.4fr 0.9fr 0.7fr;gap:3rem;align-items:start}
+    .about-photo-wrap{width:100%}
+    .about-photo{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;filter:grayscale(15%);border:0.5px solid var(--border)}
     .about-text p{color:#b8b4ad;font-size:13px;line-height:1.9;margin-bottom:1rem}
     .client-list{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1.5rem}
     .client{font-size:11px;letter-spacing:0.08em;padding:4px 10px;border:0.5px solid var(--border);color:var(--muted)}
@@ -319,6 +321,7 @@
       .mobile-scroll-nudge{display:flex}
       .section{padding:2.5rem 1.5rem;scroll-margin-top:150px}
       .about-grid{grid-template-columns:1fr;gap:2rem}
+      .about-photo{max-width:280px;aspect-ratio:4/5;margin:0 auto}
       .work-grid{grid-template-columns:1fr}
       .reveal-stagger.visible>*{transition-delay:0s!important}
       .tools-categories{grid-template-columns:1fr}
@@ -618,6 +621,9 @@
         <div class="sw-tags"><span class="sw-tag" data-en="Proxy" data-es="Proxy">Proxy</span><span class="sw-tag" data-en="Conform" data-es="Conform">Conform</span><span class="sw-tag" data-en="QC" data-es="QC">QC</span></div>
       </div>
     </div>
+    <div class="about-photo-wrap">
+      <img class="about-photo" src="images/nacho.jpg" alt="Nacho Santana">
+    </div>
   </div>
 </div>
 
@@ -754,8 +760,25 @@
       const isWork = (href === '#work' || href === '#') && workGroup.includes(id);
       l.classList.toggle('active', href === '#' + id || isWork);
     });
+
+    // Dynamic Work label
+    const workLabels = {
+      work: ['Work', 'Trabajo'],
+      commercial: ['Commercial', 'Comercial'],
+      social: ['Social', 'Social'],
+      corporate: ['Corporate', 'Corporativo']
+    };
+    const navWorkEl = document.getElementById('nav-work');
+    if (navWorkEl) {
+      const pair = workGroup.includes(id) ? workLabels[id] : workLabels.work;
+      navWorkEl.setAttribute('data-en', pair[0]);
+      navWorkEl.setAttribute('data-es', pair[1]);
+      const currentLang = document.documentElement.getAttribute('lang') === 'es' ? 'es' : 'en';
+      navWorkEl.textContent = currentLang === 'es' ? pair[1] : pair[0];
+    }
   }
 
+  let lastActiveSection = 'work';
   window.addEventListener('scroll', () => {
     const navH = document.querySelector('nav').getBoundingClientRect().height;
     const atBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 50;
@@ -767,6 +790,8 @@
     });
     if (atBottom) current = 'contact';
     if (atTop) current = 'work';
+    if (current === null) current = lastActiveSection;
+    lastActiveSection = current;
     setActive(current);
   }, {passive:true});
 
@@ -866,6 +891,15 @@
     });
     document.addEventListener('click', e => {
       if (!wrap.contains(e.target)) wrap.classList.remove('open');
+    });
+
+    // On hover, force label back to "Work" and show dropdown; on leave, restore scroll-based label
+    wrap.addEventListener('mouseenter', () => {
+      const currentLang = document.documentElement.getAttribute('lang') === 'es' ? 'es' : 'en';
+      workLink.textContent = currentLang === 'es' ? 'Trabajo' : 'Work';
+    });
+    wrap.addEventListener('mouseleave', () => {
+      setActive(typeof lastActiveSection !== 'undefined' ? lastActiveSection : 'work');
     });
   })();
 
