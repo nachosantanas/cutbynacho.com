@@ -750,7 +750,7 @@
       <p style="margin-top:0.75rem;font-size:12px;opacity:0.6;font-family:var(--font-mono);letter-spacing:0.04em" data-en="For availability and rates, get in touch with your project details. Pencils on confirmed budget only." data-es="Para disponibilidad y tarifas, ponte en contacto con los detalles de tu proyecto. Solo se reservan fechas con presupuesto confirmado.">For availability and rates, get in touch with your project details. Pencils on confirmed budget only.</p>
       <a class="contact-link" href="mailto:info4nacho@gmail.com?subject=Project%20Enquiry">info4nacho@gmail.com</a>
       <br>
-      <a href="/Nacho-Santana-CV.pdf" target="_blank" rel="noopener" style="display:block;margin-top:0.75rem;font-size:11px;color:var(--muted);letter-spacing:0.08em;text-decoration:none;border-bottom:0.5px solid var(--border);padding-bottom:2px;width:fit-content;transition:color 0.2s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'" data-en="View CV →" data-es="Ver CV →">View CV →</a>
+      <a href="/CV-Ignacio-Santana-Soria-EN.pdf" data-en-href="/CV-Ignacio-Santana-Soria-EN.pdf" data-es-href="/CV-Ignacio-Santana-Soria-ES.pdf" target="_blank" rel="noopener" style="display:block;margin-top:0.75rem;font-size:11px;color:var(--muted);letter-spacing:0.08em;text-decoration:none;border-bottom:0.5px solid var(--border);padding-bottom:2px;width:fit-content;transition:color 0.2s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'" data-en="View CV →" data-es="Ver CV →">View CV →</a>
       
     </div>
     <div>
@@ -946,6 +946,10 @@
     document.querySelectorAll('[data-en-placeholder]').forEach(el => {
       const val = lang === 'es' ? el.getAttribute('data-es-placeholder') : el.getAttribute('data-en-placeholder');
       if (val !== null) el.setAttribute('placeholder', val);
+    });
+    document.querySelectorAll('[data-en-href]').forEach(el => {
+      const val = lang === 'es' ? el.getAttribute('data-es-href') : el.getAttribute('data-en-href');
+      if (val !== null) el.setAttribute('href', val);
     });
     document.documentElement.setAttribute('lang', lang);
     const label = document.getElementById('langToggleLabel');
