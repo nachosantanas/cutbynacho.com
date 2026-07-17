@@ -413,9 +413,11 @@
       <a href="https://www.linkedin.com/in/cutbynacho/" target="_blank" rel="noopener">LinkedIn</a>
       <a href="https://www.instagram.com/nachosantanas/" target="_blank" rel="noopener">Instagram</a>
     </div>
-    <button id="langToggle" onclick="toggleLang()" aria-label="Switch language" style="background:none;border:0.5px solid var(--border);color:var(--muted);font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:0.35rem 0.6rem;cursor:pointer;transition:color 0.2s,border-color 0.2s" onmouseover="this.style.color='var(--accent)';this.style.borderColor='var(--accent)'" onmouseout="this.style.color='var(--muted)';this.style.borderColor='var(--border)'">
-      <span id="langToggleLabel">ES</span>
-    </button>
+    <div id="langToggle" role="group" aria-label="Switch language" style="display:inline-flex;align-items:center;gap:0.4rem;border:0.5px solid var(--border);font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;padding:0.35rem 0.6rem">
+      <span id="langOptES" onclick="applyLang('es')" style="cursor:pointer;transition:color 0.2s">ES</span>
+      <span style="color:var(--border)">/</span>
+      <span id="langOptEN" onclick="applyLang('en')" style="cursor:pointer;transition:color 0.2s">EN</span>
+    </div>
   </div>
 </nav>
 
@@ -952,24 +954,28 @@
       if (val !== null) el.setAttribute('href', val);
     });
     document.documentElement.setAttribute('lang', lang);
-    const label = document.getElementById('langToggleLabel');
-    if (label) label.textContent = lang === 'es' ? 'EN' : 'ES';
+    const optES = document.getElementById('langOptES');
+    const optEN = document.getElementById('langOptEN');
+    if (optES && optEN) {
+      const activeColor = 'var(--fg, var(--accent))';
+      optES.style.color = lang === 'es' ? activeColor : 'var(--muted)';
+      optES.style.fontWeight = lang === 'es' ? '700' : '400';
+      optEN.style.color = lang === 'en' ? activeColor : 'var(--muted)';
+      optEN.style.fontWeight = lang === 'en' ? '700' : '400';
+    }
     try { localStorage.setItem('site-lang', lang); } catch(e){}
-  }
-  function toggleLang(){
-    const current = document.documentElement.getAttribute('lang') === 'es' ? 'es' : 'en';
-    applyLang(current === 'es' ? 'en' : 'es');
   }
   (function(){
     let saved = null;
     try { saved = localStorage.getItem('site-lang'); } catch(e){}
+    let initial = 'en';
     if (saved === 'es' || saved === 'en') {
-      if (saved === 'es') applyLang('es');
+      initial = saved;
     } else {
-      // No saved preference yet — detect from browser language
       const browserLang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
-      if (browserLang.startsWith('es')) applyLang('es');
+      if (browserLang.startsWith('es')) initial = 'es';
     }
+    applyLang(initial);
   })();
 
   function playShowreel(){
