@@ -950,7 +950,6 @@
     if (btn) btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
   }
   document.querySelectorAll('#navLinksWrap a, #navRightWrap a').forEach(a => {
-    if (a.id === 'nav-work') return;
     a.addEventListener('click', () => {
       if (window.matchMedia('(max-width: 768px)').matches) {
         document.querySelector('nav').classList.remove('menu-open');
