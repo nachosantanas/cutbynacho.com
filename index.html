@@ -400,6 +400,7 @@
       <div class="nav-dropdown">
         <a href="#commercial" data-en="Commercial" data-es="Comercial">Commercial</a>
         <a href="#social" data-en="Social" data-es="Social">Social</a>
+        <a href="#narrative" data-en="Narrative" data-es="Narrativa">Narrative</a>
         <a href="#corporate" data-en="Corporate" data-es="Corporativo">Corporate</a>
       </div>
     </div>
@@ -596,6 +597,24 @@
   </div>
 </div>
 
+<div class="section" id="narrative">
+  <div class="section-label" data-en="Narrative" data-es="Narrativa">Narrative</div>
+
+  <div class="work-grid reveal-stagger">
+
+    <!-- Short film -->
+    <a class="featured-item" href="https://vimeo.com/761715020?fl=pl&amp;fe=sh" target="_blank" rel="noopener" data-vimeo-id="761715020">
+      <div class="grid-play"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="32" r="31" stroke="rgba(255,255,255,0.6)" stroke-width="1"/><path d="M26 20L46 32L26 44V20Z" fill="white"/></svg></div>
+      <div class="featured-overlay"></div>
+      <div class="featured-info">
+        <span class="featured-title">The Letterbox</span>
+        <span class="featured-role" data-en="Editor" data-es="Montador">Editor</span>
+      </div>
+    <span class="ext-arrow">↗</span></a>
+
+  </div>
+</div>
+
 <div class="section" id="corporate">
   <div class="section-label" data-en="Corporate" data-es="Corporativo">Corporate</div>
 
@@ -704,6 +723,7 @@
       <span class="tool-name"><span class="tool-name-row">EditShare</span><span class="tool-desc" data-en="Networked shared storage and production management for post teams." data-es="Almacenamiento compartido en red y gestión de producción para equipos de postproducción.">Networked shared storage and production management for post teams.</span></span>
       <span class="tool-name"><span class="tool-name-row">Avid NEXIS</span><span class="tool-desc" data-en="Industry-standard shared storage for large Avid team workflows." data-es="Almacenamiento compartido estándar del sector para flujos de trabajo con grandes equipos en Avid.">Industry-standard shared storage for large Avid team workflows.</span></span>
       <span class="tool-subcat" data-en="Delivery &amp; transfer" data-es="Entrega y transferencia">Delivery &amp; transfer</span>
+      <span class="tool-name"><span class="tool-name-row">Aspera</span><span class="tool-desc" data-en="IBM's high-speed transfer protocol for massive media files. Industry standard for broadcast and studio delivery." data-es="Protocolo de transferencia de alta velocidad de IBM para archivos de media de gran tamaño. Estándar del sector para entregas de broadcast y estudios.">IBM's high-speed transfer protocol for massive media files. Industry standard for broadcast and studio delivery.</span></span>
       <span class="tool-name"><span class="tool-name-row">MASV</span><span class="tool-desc" data-en="High-speed large file transfers with no size limits." data-es="Transferencias de archivos grandes a alta velocidad sin límite de tamaño.">High-speed large file transfers with no size limits.</span></span>
       <span class="tool-name"><span class="tool-name-row">Media Shuttle</span><span class="tool-desc" data-en="Signiant's enterprise transfer platform for broadcasters and post houses." data-es="Plataforma de transferencia empresarial de Signiant para broadcasters y casas de postproducción.">Signiant's enterprise transfer platform for broadcasters and post houses.</span></span>
       <span class="tool-name"><span class="tool-name-row">WireDrive</span><span class="tool-desc" data-en="Secure file sharing and review platform used by advertising agencies." data-es="Plataforma segura de revisión y compartición de archivos utilizada por agencias de publicidad.">Secure file sharing and review platform used by advertising agencies.</span></span>
@@ -778,11 +798,11 @@
 </footer>
 
 <script>
-  const sections = ['work','commercial','social','corporate','about','tools','contact'].map(id => document.getElementById(id));
+  const sections = ['work','commercial','social','narrative','corporate','about','tools','contact'].map(id => document.getElementById(id));
   const navLinks = document.querySelectorAll('.nav-links a');
 
   function setActive(id) {
-    const workGroup = ['work','commercial','social','corporate'];
+    const workGroup = ['work','commercial','social','narrative','corporate'];
     navLinks.forEach(l => {
       const href = l.getAttribute('href');
       const isWork = (href === '#work' || href === '#') && workGroup.includes(id);
@@ -794,6 +814,7 @@
       work: ['Work', 'Trabajo'],
       commercial: ['Commercial', 'Comercial'],
       social: ['Social', 'Social'],
+      narrative: ['Narrative', 'Narrativa'],
       corporate: ['Corporate', 'Corporativo']
     };
     const navWorkEl = document.getElementById('nav-work');
