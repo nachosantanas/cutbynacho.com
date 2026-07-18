@@ -1009,13 +1009,33 @@
     close.textContent='✕';
     close.onclick=function(e){
       e.stopPropagation();
-      wrap.remove();close.remove();
-      document.getElementById('showreelOverlay').style.display='';
-      document.getElementById('showreelPoster').style.display='';
+      stopShowreel();
     };
     document.getElementById('showreelOverlay').style.display='none';
     document.getElementById('showreelPoster').style.display='none';
     el.appendChild(wrap);el.appendChild(close);
+  }
+
+  function stopShowreel(){
+    const el = document.getElementById('showreel');
+    const wrap = el.querySelector('.showreel-video');
+    const close = el.querySelector('.showreel-close');
+    if(!wrap) return;
+    wrap.remove();
+    if(close) close.remove();
+    document.getElementById('showreelOverlay').style.display='';
+    document.getElementById('showreelPoster').style.display='';
+  }
+
+  // ── STOP SHOWREEL WHEN LEAVING THE WORK SECTION ──
+  const workSectionEl = document.getElementById('work');
+  if (workSectionEl) {
+    const showreelSectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) stopShowreel();
+      });
+    }, { threshold: 0 });
+    showreelSectionObserver.observe(workSectionEl);
   }
 
   // ── VIMEO THUMBNAILS ──
