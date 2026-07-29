@@ -850,11 +850,11 @@
 </footer>
 
 <script>
-  const sections = ['work','commercial','social','narrative','corporate','about','tools','contact'].map(id => document.getElementById(id));
+  const sections = ['work','commercial','social','musicvideo','narrative','corporate','about','tools','contact'].map(id => document.getElementById(id));
   const navLinks = document.querySelectorAll('.nav-links a');
 
   function setActive(id) {
-    const workGroup = ['work','commercial','social','narrative','corporate'];
+    const workGroup = ['work','commercial','social','musicvideo','narrative','corporate'];
     navLinks.forEach(l => {
       const href = l.getAttribute('href');
       const isWork = (href === '#work' || href === '#') && workGroup.includes(id);
@@ -866,6 +866,7 @@
       work: ['Work', 'Trabajo'],
       commercial: ['Commercial', 'Comercial'],
       social: ['Social', 'Social'],
+      musicvideo: ['Music Video', 'Videoclip'],
       narrative: ['Narrative', 'Narrativa'],
       corporate: ['Corporate', 'Corporativo']
     };
