@@ -1208,7 +1208,7 @@
       const nav = document.querySelector('nav');
       const navH = nav ? nav.offsetHeight : 0;
       const rect = target.getBoundingClientRect();
-      const top = rect.top + window.scrollY - navH - 2;
+      const top = rect.top + window.scrollY - navH - 32;
       window.scrollTo({top, behavior: 'smooth'});
       target.classList.remove('highlight'); void target.offsetWidth; target.classList.add('highlight');
       target.addEventListener('animationend', () => target.classList.remove('highlight'), {once:true});
