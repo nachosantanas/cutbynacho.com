@@ -168,6 +168,19 @@
     .section-label{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin-bottom:2.5rem}
     @keyframes labelPop{0%{color:var(--muted)}30%{color:var(--accent)}100%{color:var(--muted)}}
     .section-label.highlight{animation:labelPop 1.8s ease forwards}
+    .tool-subcat.highlight{animation:labelPop 1.8s ease forwards;opacity:1!important}
+    .tool-subcat.collapsible{cursor:pointer;display:flex;align-items:center;gap:0.4rem;transition:color 0.3s ease}
+    .tool-subcat.collapsible::before{content:"▸";display:inline-block;font-size:8px;transition:transform 0.5s var(--ease-out-expo)}
+    .tool-subcat.collapsible.open::before{transform:rotate(90deg)}
+    .personal-builds-content{max-height:0;overflow:hidden;opacity:0;transition:max-height 0.6s var(--ease-out-expo),opacity 0.5s ease}
+    .personal-builds-content.open{max-height:600px;opacity:1}
+    .personal-builds-block{border-radius:4px;margin:0 -0.75rem;padding:0 0.75rem}
+    .personal-builds-block.flash{animation:personalBuildsFlash 3s ease forwards}
+    @keyframes personalBuildsFlash{
+      0%{background:rgba(200,184,154,0.18)}
+      60%{background:rgba(200,184,154,0.18)}
+      100%{background:rgba(200,184,154,0)}
+    }
 
     /* WORK SECTION */
     #work{padding-top:3.5rem}
@@ -226,6 +239,9 @@
     .featured-role{font-size:10px;color:var(--accent);letter-spacing:0.12em;text-transform:uppercase;display:block}
     .ext-arrow{position:absolute;top:0.75rem;right:0.75rem;font-size:12px;color:var(--accent);opacity:0;transition:opacity 0.4s,transform 0.4s var(--ease-out-expo);transform:translate(-3px,3px)}
     .featured-item:hover .ext-arrow{opacity:1;transform:translate(0,0)}
+    .featured-item.locked{cursor:default}
+    .featured-item.locked .grid-play{opacity:0.5}
+    .featured-item.locked:hover .grid-play{opacity:0.65;transform:translate(-50%,-50%)}
 
     /* ABOUT */
     .about-grid{display:grid;grid-template-columns:1.4fr 0.9fr 0.7fr;gap:3rem;align-items:start}
@@ -235,6 +251,8 @@
     .client-list{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1.5rem}
     .client{font-size:11px;letter-spacing:0.08em;padding:4px 10px;border:0.5px solid var(--border);color:var(--muted)}
     .software-heading{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem}
+    .software-category{font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);opacity:0.5;margin-top:1.25rem;margin-bottom:0.5rem;display:block}
+    .software-category:first-of-type{margin-top:0}
     .software-item{
       padding:1rem 0;border-bottom:0.5px solid var(--border);
       cursor:pointer;
@@ -603,15 +621,15 @@
 
   <div class="work-grid reveal-stagger">
 
-    <!-- Dumb Excuse -->
-    <a class="featured-item" href="#" target="_blank" rel="noopener">
-      <div class="grid-play"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="32" r="31" stroke="rgba(255,255,255,0.6)" stroke-width="1"/><path d="M26 20L46 32L26 44V20Z" fill="white"/></svg></div>
+    <!-- Dumb Excuse - private, link stored but not clickable -->
+    <div class="featured-item locked" data-vimeo-id="1213973356" data-vimeo-url="https://vimeo.com/1213973356?share=copy&fl=sv&fe=ci">
+      <div class="grid-play"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="32" r="31" stroke="rgba(255,255,255,0.6)" stroke-width="1"/><path d="M24 30V26C24 21.5817 27.5817 18 32 18C36.4183 18 40 21.5817 40 26V30" stroke="white" stroke-width="2" stroke-linecap="round"/><rect x="21" y="30" width="22" height="17" rx="2" fill="white"/></svg></div>
       <div class="featured-overlay"></div>
       <div class="featured-info">
         <span class="featured-title">Dumb Excuse</span>
         <span class="featured-role" data-en="Editor" data-es="Montador">Editor</span>
       </div>
-    <span class="ext-arrow">↗</span></a>
+    </div>
 
   </div>
 </div>
@@ -655,10 +673,11 @@
   <div class="about-grid reveal">
     <div class="about-text">
       <p data-en="Video Editor and Assistant Editor working across commercial, branded and long-form productions." data-es="Montador y Ayudante de Montaje especializado en publicidad, contenido de marca y producciones de formato largo.">Video Editor and Assistant Editor working across commercial, branded and long-form productions.</p>
-      <p data-en="My work sits at the intersection of craft and precision. Building timelines that not only tell a story, but are structured for seamless delivery downstream. From offline through to conform, I focus on clarity, rhythm, and technical integrity, delivering clean EDLs, AAFs, and XMLs ready for grade and finish." data-es="Entiendo el montaje como el lugar donde el criterio creativo y la precisión técnica se encuentran. Mi trabajo consiste en construir líneas de tiempo que no solo cuenten una historia, sino que también faciliten todo el proceso de postproducción. Desde el montaje offline hasta el conformado final, cuido tanto el ritmo narrativo como la solidez técnica, entregando EDLs, AAFs y XMLs limpios y preparados para etalonaje y acabado.">My work sits at the intersection of craft and precision. Building timelines that not only tell a story, but are structured for seamless delivery downstream. From offline through to conform, I focus on clarity, rhythm, and technical integrity, delivering clean EDLs, AAFs, and XMLs ready for grade and finish.</p>
-      <p data-en="I'm drawn to the detail: pacing, structure, and the subtle decisions that shape how something feels. Whether working independently or alongside a team, I bring a calm, solutions-driven approach to fast-moving edits, with a strong understanding of workflows across platforms and post environments." data-es="Me interesan los detalles: el ritmo, la estructura y esas decisiones casi imperceptibles que acaban definiendo cómo se siente una pieza. Tanto si trabajo de forma independiente como integrado en un equipo, afronto cada proyecto con calma, criterio y una mentalidad orientada a resolver problemas, siempre con un conocimiento sólido de los flujos de trabajo y los entornos de postproducción actuales.">I'm drawn to the detail: pacing, structure, and the subtle decisions that shape how something feels. Whether working independently or alongside a team, I bring a calm, solutions-driven approach to fast-moving edits, with a strong understanding of workflows across platforms and post environments.</p>
-      <p data-en="Originally from Lanzarote, Canary Islands. Grew up between the sea and open skies. That shaped how I see things: the rhythm of water, the patience it takes. It still informs the way I cut." data-es="Soy de Lanzarote, en las Islas Canarias. Crecí entre el mar y los espacios abiertos, y esa forma de crecer sigue influyendo en mi manera de mirar y de construir las historias. El ritmo del océano y la paciencia que exige siguen presentes en mi forma de montar.">Originally from Lanzarote, Canary Islands. Grew up between the sea and open skies. That shaped how I see things: the rhythm of water, the patience it takes. It still informs the way I cut.</p>
-      <p data-en="Beyond the edit, I care about leaving things better than I found them. For the people around me, the work we make together, and the world we're making it in." data-es="Más allá del montaje, me gusta dejar las cosas mejor de como las encontré: para las personas con las que trabajo, para los proyectos que construimos juntos y para el mundo al que, de alguna manera, contribuimos con nuestro trabajo.">Beyond the edit, I care about leaving things better than I found them. For the people around me, the work we make together, and the world we're making it in.</p>
+      <p data-en="My work sits at the intersection of craft and precision. Building timelines that tell a story, but are also structured for seamless delivery downstream, from offline through to conform, with clean EDLs, AAFs, and XMLs ready for grade and finish." data-es="Entiendo el montaje como el lugar donde el criterio creativo y la precisión técnica se encuentran. Construyo líneas de tiempo que cuentan una historia, pero también están pensadas para facilitar todo el proceso de postproducción, desde el offline hasta el conformado, con EDLs, AAFs y XMLs limpios y listos para etalonaje y acabado.">My work sits at the intersection of craft and precision. Building timelines that tell a story, but are also structured for seamless delivery downstream, from offline through to conform, with clean EDLs, AAFs, and XMLs ready for grade and finish.</p>
+      <p data-en="I'm drawn to the detail: pacing, structure, and the subtle decisions that shape how something feels. That comes from curiosity, really: I've always taken the time to understand not just how to use a tool, but how it thinks, from Avid's track-based editing and bin management for long-form and broadcast, to Resolve's node-based grading for finishing." data-es="Me interesan los detalles: el ritmo, la estructura y esas decisiones casi imperceptibles que acaban definiendo cómo se siente una pieza. Eso viene, en realidad, de la curiosidad: siempre me he tomado el tiempo de entender no solo cómo usar una herramienta, sino cómo piensa, desde el montaje basado en pistas y la gestión de bins de Avid para formato largo y broadcast, hasta el etalonaje por nodos de Resolve para el acabado.">I'm drawn to the detail: pacing, structure, and the subtle decisions that shape how something feels. That comes from curiosity, really: I've always taken the time to understand not just how to use a tool, but how it thinks, from Avid's track-based editing and bin management for long-form and broadcast, to Resolve's node-based grading for finishing.</p>
+      <p><span data-en="Once I understand a system at that level, I start building automation around it: " data-es="En cuanto entiendo un sistema a ese nivel, empiezo a construir automatización a su alrededor: ">Once I understand a system at that level, I start building automation around it: </span><a href="#personal-projects" style="color:var(--accent);text-decoration:underline" data-en="custom tools" data-es="herramientas personalizadas">custom tools</a><span data-en=", " data-es=", ">, </span><a href="#personal-projects" style="color:var(--accent);text-decoration:underline">macros</a><span data-en=", and " data-es=" y ">, and </span><a href="#personal-projects" style="color:var(--accent);text-decoration:underline">scripts</a><span data-en=" that reduce friction and eliminate human error." data-es=" que reducen la fricción y eliminan el error humano."> that reduce friction and eliminate human error.</span></p>
+      <p data-en="Originally from Lanzarote, Canary Islands. That rhythm of water and patience still informs the way I cut." data-es="Soy de Lanzarote, en las Islas Canarias. Ese ritmo del agua y esa paciencia siguen presentes en mi forma de montar.">Originally from Lanzarote, Canary Islands. That rhythm of water and patience still informs the way I cut.</p>
+      <p data-en="Beyond the edit, I care about leaving things better than I found them, for the people I work with and the work we make together." data-es="Más allá del montaje, me gusta dejar las cosas mejor de como las encontré, tanto para las personas con las que trabajo como para los proyectos que construimos juntos.">Beyond the edit, I care about leaving things better than I found them, for the people I work with and the work we make together.</p>
       <div class="client-list">
         <span class="client">Nike</span>
         <span class="client">PlayStation</span>
@@ -674,6 +693,7 @@
     </div>
     <div>
       <div class="software-heading" data-en="Primary software" data-es="Software principal">Primary software</div>
+      <span class="software-category" data-en="Assembly" data-es="Montaje">Assembly</span>
       <div class="software-item">
         <span class="sw-name">Avid Media Composer</span>
         <div class="sw-tags"><span class="sw-tag" data-en="Long-form" data-es="Largo formato">Long-form</span><span class="sw-tag" data-en="Commercial" data-es="Comercial">Commercial</span><span class="sw-tag" data-en="Branded" data-es="Marca">Branded</span></div>
@@ -682,6 +702,11 @@
         <span class="sw-name">Adobe Premiere</span>
         <div class="sw-tags"><span class="sw-tag" data-en="Commercial" data-es="Comercial">Commercial</span><span class="sw-tag" data-en="Social-first" data-es="Social-first">Social-first</span><span class="sw-tag" data-en="Branded" data-es="Marca">Branded</span></div>
       </div>
+      <div class="software-item">
+        <span class="sw-name">Final Cut Pro</span>
+        <div class="sw-tags"><span class="sw-tag" data-en="Fast-turnaround" data-es="Entrega rápida">Fast-turnaround</span><span class="sw-tag" data-en="Trim-heavy" data-es="Mucho trim">Trim-heavy</span></div>
+      </div>
+      <span class="software-category" data-en="Color &amp; Finishing" data-es="Etalonaje y acabado">Color &amp; Finishing</span>
       <div class="software-item">
         <span class="sw-name">DaVinci Resolve</span>
         <div class="sw-tags"><span class="sw-tag" data-en="Proxy" data-es="Proxy">Proxy</span><span class="sw-tag" data-en="Conform" data-es="Conform">Conform</span><span class="sw-tag" data-en="QC" data-es="QC">QC</span></div>
@@ -775,13 +800,17 @@
       <span class="tool-name"><span class="tool-name-row">FilmConvert Nitrate </span><span class="tool-desc" data-en="Film stock emulation plugin for Premiere - authentic film colour, halation, and grain." data-es="Plugin de emulación de negativos de cine para Premiere: color, halación y grano fílmico auténticos.">Film stock emulation plugin for Premiere - authentic film colour, halation, and grain.</span></span>
       <span class="tool-name"><span class="tool-name-row">Nobe Display </span><span class="tool-desc" data-en="Resolve plugin for real-time video output to an external monitor during colour and finishing work." data-es="Plugin de Resolve para salida de vídeo en tiempo real a un monitor externo durante el etalonaje y el acabado.">Resolve plugin for real-time video output to an external monitor during colour and finishing work.</span></span>
       <span class="tool-name"><span class="tool-name-row">Captioneer </span><span class="tool-desc" data-en="Imports SRT files and auto-positions captions across Premiere sequences." data-es="Importa archivos SRT y posiciona automáticamente los subtítulos en secuencias de Premiere.">Imports SRT files and auto-positions captions across Premiere sequences.</span></span>
-      <span class="tool-subcat" style="margin-top:0.5rem;margin-bottom:0.25rem" data-en="In-house" data-es="Desarrollo propio">In-house</span>
+      <div class="personal-builds-block" id="personalBuildsBlock">
+      <span class="tool-subcat collapsible" id="personal-projects" style="margin-top:0.5rem;margin-bottom:0.25rem" data-en="Personal builds" data-es="Desarrollos propios" onclick="togglePersonalBuilds()">Personal builds</span>
+      <div class="personal-builds-content" id="personalBuildsContent">
       <span class="tool-name" id="subshiftToolRow">
         <span class="tool-name-row">
           <span class="tool-name-left">SubShift</span>
         </span>
         <span class="tool-desc"><span data-en="Native macOS caption converter — SRT · Avid DS · TXT · VTT" data-es="Conversor de subtítulos nativo para macOS — SRT · Avid DS · TXT · VTT">Native macOS caption converter — SRT · Avid DS · TXT · VTT</span><br><span id="subshiftInlineGate" onclick="event.stopPropagation()" style="display:inline-block;margin-top:0.5rem;width:100%"><span style="display:flex;gap:0;border:0.5px solid var(--border);max-width:280px"><input id="subshiftPw" type="password" placeholder="Password" data-en-placeholder="Password" data-es-placeholder="Contraseña" autocomplete="off" onclick="event.stopPropagation()" style="background:var(--bg);border:none;outline:none;padding:0.4rem 0.75rem;font-family:var(--font-mono);font-size:11px;color:var(--text);letter-spacing:0.08em;flex:1;width:100%"><button onclick="checkSubshiftPw(event)" style="background:var(--bg);border:none;border-left:0.5px solid var(--border);padding:0.4rem 0.75rem;font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);cursor:pointer">→</button></span><span id="subshiftErr" style="font-size:10px;color:#e07070;letter-spacing:0.08em;margin-top:0.35rem;display:none" data-en="Incorrect password" data-es="Contraseña incorrecta">Incorrect password</span><a id="subshiftDl" href="/subshift/SubShift.zip" download style="display:none;margin-top:0.5rem;font-size:10px;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;text-decoration:none" data-en="↓ Download SubShift v1.1" data-es="↓ Descargar SubShift v1.1">↓ Download SubShift v1.1</a></span></span>
       </span>
+      </div>
+      </div>
     </div>
   </div>
 </div>
@@ -1157,6 +1186,39 @@
       if (label) {
         label.classList.remove('highlight'); void label.offsetWidth; label.classList.add('highlight');
         label.addEventListener('animationend', () => label.classList.remove('highlight'), {once:true});
+      }
+    });
+  });
+
+  // Bio links to Personal builds - smooth scroll + highlight + expand the heading
+  function togglePersonalBuilds(){
+    const content = document.getElementById('personalBuildsContent');
+    const label = document.getElementById('personal-projects');
+    if (!content) return;
+    content.classList.toggle('open');
+    if (label) label.classList.toggle('open');
+  }
+  document.querySelectorAll('a[href="#personal-projects"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.getElementById('personal-projects');
+      const content = document.getElementById('personalBuildsContent');
+      const block = document.getElementById('personalBuildsBlock');
+      if (!target) return;
+      const nav = document.querySelector('nav');
+      const navH = nav ? nav.offsetHeight : 0;
+      const rect = target.getBoundingClientRect();
+      const top = rect.top + window.scrollY - navH - 2;
+      window.scrollTo({top, behavior: 'smooth'});
+      target.classList.remove('highlight'); void target.offsetWidth; target.classList.add('highlight');
+      target.addEventListener('animationend', () => target.classList.remove('highlight'), {once:true});
+      if (content && !content.classList.contains('open')) {
+        content.classList.add('open');
+        target.classList.add('open');
+      }
+      if (block) {
+        block.classList.remove('flash'); void block.offsetWidth; block.classList.add('flash');
+        block.addEventListener('animationend', () => block.classList.remove('flash'), {once:true});
       }
     });
   });
