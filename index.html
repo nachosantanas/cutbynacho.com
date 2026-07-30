@@ -254,7 +254,13 @@
     .software-category{font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);opacity:0.5;margin-top:1.25rem;margin-bottom:0.5rem;display:block}
     .software-category:first-of-type{margin-top:0}
     .masonry-gallery{column-count:3;column-gap:0.75rem;margin-top:1rem}
-    .masonry-item{width:100%;margin-bottom:0.75rem;break-inside:avoid;display:block;border-radius:2px;overflow:hidden}
+    .masonry-item{width:100%;margin-bottom:0.75rem;break-inside:avoid;display:block;border-radius:2px;overflow:hidden;position:relative}
+    .masonry-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,0.75),rgba(0,0,0,0) 55%);opacity:0;transition:opacity 0.4s ease;pointer-events:none}
+    .masonry-item:hover .masonry-overlay{opacity:1}
+    .masonry-caption{position:absolute;bottom:0;left:0;right:0;padding:0.6rem 0.7rem;opacity:0;transform:translateY(6px);transition:opacity 0.4s ease,transform 0.4s ease;pointer-events:none}
+    .masonry-item:hover .masonry-caption{opacity:1;transform:translateY(0)}
+    .masonry-caption .mc-title{display:block;font-size:11px;color:var(--text);letter-spacing:0.02em}
+    .masonry-caption .mc-role{display:block;font-size:9px;color:var(--muted);letter-spacing:0.1em;text-transform:uppercase;margin-top:2px}
     .masonry-item img{width:100%;display:block}
     .masonry-placeholder{width:100%;height:100%;background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);opacity:0.4}
     @media (max-width:700px){.masonry-gallery{column-count:2}}
@@ -454,9 +460,9 @@
 
   <!-- FCDO GIF gallery: replace each .masonry-placeholder div with <img src="/fcdo/your-file.gif"> -->
   <div class="masonry-gallery">
-    <div class="masonry-item" style="aspect-ratio:4/5"><div class="masonry-placeholder">GIF</div></div>
-    <div class="masonry-item" style="aspect-ratio:16/9"><div class="masonry-placeholder">GIF</div></div>
-    <div class="masonry-item" style="aspect-ratio:1/1"><div class="masonry-placeholder">GIF</div></div>
+    <div class="masonry-item"><img src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/dumb-excuse.gif" alt="Dumb Excuse" loading="lazy"><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">Dumb Excuse</span><span class="mc-role" data-en="Editor" data-es="Montador">Editor</span></div></div>
+    <div class="masonry-item"><img src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/reel.gif" alt="Reel" loading="lazy"><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title" data-en="Reel" data-es="Reel">Reel</span></div></div>
+    <div class="masonry-item"><img src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/EQL.gif" alt="EQL Fitness" loading="lazy"><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">EQL Fitness</span><span class="mc-role" data-en="Editor" data-es="Montador">Editor</span></div></div>
     <div class="masonry-item" style="aspect-ratio:9/16"><div class="masonry-placeholder">GIF</div></div>
     <div class="masonry-item" style="aspect-ratio:3/2"><div class="masonry-placeholder">GIF</div></div>
     <div class="masonry-item" style="aspect-ratio:4/3"><div class="masonry-placeholder">GIF</div></div>
