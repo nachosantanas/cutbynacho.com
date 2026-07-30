@@ -253,6 +253,12 @@
     .software-heading{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem}
     .software-category{font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);opacity:0.5;margin-top:1.25rem;margin-bottom:0.5rem;display:block}
     .software-category:first-of-type{margin-top:0}
+    .masonry-gallery{column-count:3;column-gap:0.75rem;margin-top:1rem}
+    .masonry-item{width:100%;margin-bottom:0.75rem;break-inside:avoid;display:block;border-radius:2px;overflow:hidden}
+    .masonry-item img{width:100%;display:block}
+    .masonry-placeholder{width:100%;height:100%;background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);opacity:0.4}
+    @media (max-width:700px){.masonry-gallery{column-count:2}}
+    @media (max-width:480px){.masonry-gallery{column-count:1}}
     .software-item{
       padding:1rem 0;border-bottom:0.5px solid var(--border);
       cursor:pointer;
@@ -417,10 +423,6 @@
       <div class="nav-dropdown-bridge"></div>
       <div class="nav-dropdown">
         <a href="#commercial" data-en="Commercial" data-es="Comercial">Commercial</a>
-        <a href="#social" data-en="Social" data-es="Social">Social</a>
-        <a href="#musicvideo" data-en="Music Video" data-es="Videoclip">Music Video</a>
-        <a href="#narrative" data-en="Narrative" data-es="Narrativa">Narrative</a>
-        <a href="#corporate" data-en="Corporate" data-es="Corporativo">Corporate</a>
       </div>
     </div>
     <a href="#about" data-en="About" data-es="Sobre mí">About</a>
@@ -448,17 +450,16 @@
 
 
 <div class="section" id="work">
-  <div class="section-label" data-en="Reel" data-es="Reel">Reel</div>
+  <div class="section-label" data-en="Selected Work" data-es="Trabajo seleccionado">Selected Work</div>
 
-  <div class="showreel" id="showreel" onclick="playShowreel()">
-    <video id="showreelBg" autoplay muted loop playsinline preload="none" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.55;z-index:1;pointer-events:none"></video>
-    <img class="showreel-poster" id="showreelPoster" alt="Showreel" loading="eager" style="position:relative;z-index:2">
-    <div class="showreel-overlay" id="showreelOverlay" style="z-index:3">
-      <div class="showreel-play">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M8 5v14l11-7L8 5z" fill="white"/></svg>
-      </div>
-      <span class="showreel-label" data-en="Play showreel" data-es="Reproducir showreel">Play showreel</span>
-    </div>
+  <!-- FCDO GIF gallery: replace each .masonry-placeholder div with <img src="/fcdo/your-file.gif"> -->
+  <div class="masonry-gallery">
+    <div class="masonry-item" style="aspect-ratio:4/5"><div class="masonry-placeholder">GIF</div></div>
+    <div class="masonry-item" style="aspect-ratio:16/9"><div class="masonry-placeholder">GIF</div></div>
+    <div class="masonry-item" style="aspect-ratio:1/1"><div class="masonry-placeholder">GIF</div></div>
+    <div class="masonry-item" style="aspect-ratio:9/16"><div class="masonry-placeholder">GIF</div></div>
+    <div class="masonry-item" style="aspect-ratio:3/2"><div class="masonry-placeholder">GIF</div></div>
+    <div class="masonry-item" style="aspect-ratio:4/3"><div class="masonry-placeholder">GIF</div></div>
   </div>
 </div>
 
@@ -545,127 +546,6 @@
     <span class="ext-arrow">↗</span></a>
 
   </div>
-</div>
-
-<div class="section" id="social">
-  <div class="section-label" data-en="Social" data-es="Social">Social</div>
-
-  <div class="work-grid reveal-stagger">
-
-    <!-- 11. Prayer for Ukraine (Editor cut) -->
-    <a class="featured-item" href="https://www.youtube.com/watch?v=UAy4YnFTEXg" target="_blank" rel="noopener">
-      <img src="https://img.youtube.com/vi/UAy4YnFTEXg/maxresdefault.jpg" alt="Prayer for Ukraine" loading="lazy">
-      <div class="grid-play"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="32" r="31" stroke="rgba(255,255,255,0.6)" stroke-width="1"/><path d="M26 20L46 32L26 44V20Z" fill="white"/></svg></div>
-      <div class="featured-overlay"></div>
-      <div class="featured-info">
-        <span class="featured-title">Prayer for Ukraine</span>
-        <span class="featured-role" data-en="Editor" data-es="Montador">Editor</span>
-      </div>
-    <span class="ext-arrow">↗</span></a>
-
-    <!-- 12. EQL Fitness -->
-    <a class="featured-item" href="https://vimeo.com/1197740098" target="_blank" rel="noopener" data-vimeo-id="1197740098">
-      <div class="grid-play"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="32" r="31" stroke="rgba(255,255,255,0.6)" stroke-width="1"/><path d="M26 20L46 32L26 44V20Z" fill="white"/></svg></div>
-      <div class="featured-overlay"></div>
-      <div class="featured-info">
-        <span class="featured-title">EQL Fitness</span>
-        <span class="featured-role" data-en="Editor" data-es="Montador">Editor</span>
-      </div>
-    <span class="ext-arrow">↗</span></a>
-
-    <!-- 13. Belonging No Where -->
-    <a class="featured-item" href="https://vimeo.com/1119535559" target="_blank" rel="noopener" data-vimeo-id="1119535559">
-      <div class="grid-play"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="32" r="31" stroke="rgba(255,255,255,0.6)" stroke-width="1"/><path d="M26 20L46 32L26 44V20Z" fill="white"/></svg></div>
-      <div class="featured-overlay"></div>
-      <div class="featured-info">
-        <span class="featured-title">Belonging No Where</span>
-        <span class="featured-role" data-en="Editor" data-es="Montador">Editor</span>
-      </div>
-    <span class="ext-arrow">↗</span></a>
-
-    <!-- 14. Casa de Las Rosas -->
-    <a class="featured-item" href="https://vimeo.com/899536386" target="_blank" rel="noopener" data-vimeo-id="899536386">
-      <div class="grid-play"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="32" r="31" stroke="rgba(255,255,255,0.6)" stroke-width="1"/><path d="M26 20L46 32L26 44V20Z" fill="white"/></svg></div>
-      <div class="featured-overlay"></div>
-      <div class="featured-info">
-        <span class="featured-title">Casa de Las Rosas</span>
-        <span class="featured-role" data-en="Editor" data-es="Montador">Editor</span>
-      </div>
-    <span class="ext-arrow">↗</span></a>
-
-    <!-- 15. Choices -->
-    <a class="featured-item" href="https://vimeo.com/1135060627" target="_blank" rel="noopener" data-vimeo-id="1135060627">
-      <div class="grid-play"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="32" r="31" stroke="rgba(255,255,255,0.6)" stroke-width="1"/><path d="M26 20L46 32L26 44V20Z" fill="white"/></svg></div>
-      <div class="featured-overlay"></div>
-      <div class="featured-info">
-        <span class="featured-title">Choices</span>
-        <span class="featured-role" data-en="Editor" data-es="Montador">Editor</span>
-      </div>
-    <span class="ext-arrow">↗</span></a>
-
-    <!-- 16. Rising Ballers -->
-    <a class="featured-item" href="https://vimeo.com/1137716602" target="_blank" rel="noopener" data-vimeo-id="1137716602">
-      <div class="grid-play"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="32" r="31" stroke="rgba(255,255,255,0.6)" stroke-width="1"/><path d="M26 20L46 32L26 44V20Z" fill="white"/></svg></div>
-      <div class="featured-overlay"></div>
-      <div class="featured-info">
-        <span class="featured-title">Rising Ballers</span>
-        <span class="featured-role" data-en="Editor" data-es="Montador">Editor</span>
-      </div>
-    <span class="ext-arrow">↗</span></a>
-
-  </div>
-</div>
-
-<div class="section" id="musicvideo">
-  <div class="section-label" data-en="Music Video" data-es="Videoclip">Music Video</div>
-
-  <div class="work-grid reveal-stagger">
-
-    <!-- Dumb Excuse - private, link stored but not clickable -->
-    <div class="featured-item locked" data-vimeo-id="1213973356" data-vimeo-url="https://vimeo.com/1213973356?share=copy&fl=sv&fe=ci">
-      <div class="grid-play"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="32" r="31" stroke="rgba(255,255,255,0.6)" stroke-width="1"/><path d="M24 30V26C24 21.5817 27.5817 18 32 18C36.4183 18 40 21.5817 40 26V30" stroke="white" stroke-width="2" stroke-linecap="round"/><rect x="21" y="30" width="22" height="17" rx="2" fill="white"/></svg></div>
-      <div class="featured-overlay"></div>
-      <div class="featured-info">
-        <span class="featured-title">Dumb Excuse</span>
-        <span class="featured-role" data-en="Editor" data-es="Montador">Editor</span>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-<div class="section" id="narrative">
-  <div class="section-label" data-en="Narrative" data-es="Narrativa">Narrative</div>
-
-  <div class="work-grid reveal-stagger">
-
-    <!-- Short film -->
-    <a class="featured-item" href="https://vimeo.com/761715020?fl=pl&amp;fe=sh" target="_blank" rel="noopener" data-vimeo-id="761715020">
-      <div class="grid-play"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="32" r="31" stroke="rgba(255,255,255,0.6)" stroke-width="1"/><path d="M26 20L46 32L26 44V20Z" fill="white"/></svg></div>
-      <div class="featured-overlay"></div>
-      <div class="featured-info">
-        <span class="featured-title">The Letterbox</span>
-        <span class="featured-role" data-en="Editor" data-es="Montador">Editor</span>
-      </div>
-    <span class="ext-arrow">↗</span></a>
-
-  </div>
-</div>
-
-<div class="section" id="corporate">
-  <div class="section-label" data-en="Corporate" data-es="Corporativo">Corporate</div>
-
-  <div class="work-grid reveal-stagger">
-
-    <!-- Corporate projects go here -->
-
-  </div>
-
-  <p style="margin-top:1.5rem;font-size:11px;color:var(--muted);letter-spacing:0.06em;line-height:1.7" data-en="Two years as Camera Operator and Editor for the UK Foreign, Commonwealth and Development Office, documented under work experience on LinkedIn with linked video content." data-es="Dos años de experiencia como Operador de Cámara y Editor para el Ministerio de Asuntos Exteriores, de la Commonwealth y de Desarrollo del Reino Unido (FCDO), documentados en la sección de experiencia de LinkedIn, con contenido audiovisual enlazado a los proyectos realizados.">Two years as Camera Operator and Editor for the UK Foreign, Commonwealth and Development Office, documented under work experience on LinkedIn with linked video content.</p>
-
-  <p style="margin-top:0.75rem;font-size:11px;color:var(--muted);letter-spacing:0.06em;line-height:1.7">
-    <span data-en="References and senior contacts from that work available on request via " data-es="Referencias y contactos de responsables senior de esta etapa profesional disponibles bajo solicitud a través de ">References and senior contacts from that work available on request via </span><a href="https://www.linkedin.com/in/cutbynacho/" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;transition:opacity 0.2s" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">LinkedIn ↗</a>
-  </p>
 </div>
 
 <div class="section" id="about">
@@ -850,11 +730,11 @@
 </footer>
 
 <script>
-  const sections = ['work','commercial','social','musicvideo','narrative','corporate','about','tools','contact'].map(id => document.getElementById(id));
+  const sections = ['work','commercial','about','tools','contact'].map(id => document.getElementById(id));
   const navLinks = document.querySelectorAll('.nav-links a');
 
   function setActive(id) {
-    const workGroup = ['work','commercial','social','musicvideo','narrative','corporate'];
+    const workGroup = ['work','commercial'];
     navLinks.forEach(l => {
       const href = l.getAttribute('href');
       const isWork = (href === '#work' || href === '#') && workGroup.includes(id);
@@ -864,11 +744,7 @@
     // Dynamic Work label
     const workLabels = {
       work: ['Work', 'Trabajo'],
-      commercial: ['Commercial', 'Comercial'],
-      social: ['Social', 'Social'],
-      musicvideo: ['Music Video', 'Videoclip'],
-      narrative: ['Narrative', 'Narrativa'],
-      corporate: ['Corporate', 'Corporativo']
+      commercial: ['Commercial', 'Comercial']
     };
     const navWorkEl = document.getElementById('nav-work');
     if (navWorkEl) {
@@ -964,22 +840,6 @@
     });
   });
 
-  // ── SHOWREEL BG AUTOPLAY ──
-  (function(){
-    const id = '1197459742';
-    const bgVid = document.getElementById('showreelBg');
-    if(bgVid){
-      fetch('https://vimeo.com/api/oembed.json?url=https://vimeo.com/'+id)
-        .then(r=>r.json())
-        .then(d=>{
-          if(d.thumbnail_url){
-            const poster = document.getElementById('showreelPoster');
-            if(poster) poster.src = d.thumbnail_url.replace(/_\d+x\d+/,'_1920x1080');
-          }
-        }).catch(()=>{});
-    }
-  })();
-
   // ── NAV WORK DROPDOWN (touch toggle) ──
   (function(){
     const wrap = document.getElementById('navWorkWrap');
@@ -1050,46 +910,6 @@
     }
     applyLang(initial);
   })();
-
-  function playShowreel(){
-    const el = document.getElementById('showreel');
-    if(el.querySelector('.showreel-video')) return;
-    const wrap = document.createElement('div');
-    wrap.className='showreel-video';
-    wrap.innerHTML='<iframe src="https://player.vimeo.com/video/1197459742?autoplay=1&title=0&byline=0&portrait=0&dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>';
-    const close = document.createElement('button');
-    close.className='showreel-close';
-    close.textContent='✕';
-    close.onclick=function(e){
-      e.stopPropagation();
-      stopShowreel();
-    };
-    document.getElementById('showreelOverlay').style.display='none';
-    document.getElementById('showreelPoster').style.display='none';
-    el.appendChild(wrap);el.appendChild(close);
-  }
-
-  function stopShowreel(){
-    const el = document.getElementById('showreel');
-    const wrap = el.querySelector('.showreel-video');
-    const close = el.querySelector('.showreel-close');
-    if(!wrap) return;
-    wrap.remove();
-    if(close) close.remove();
-    document.getElementById('showreelOverlay').style.display='';
-    document.getElementById('showreelPoster').style.display='';
-  }
-
-  // ── STOP SHOWREEL WHEN LEAVING THE WORK SECTION ──
-  const workSectionEl = document.getElementById('work');
-  if (workSectionEl) {
-    const showreelSectionObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) stopShowreel();
-      });
-    }, { threshold: 0 });
-    showreelSectionObserver.observe(workSectionEl);
-  }
 
   // ── VIMEO THUMBNAILS ──
   document.querySelectorAll('[data-vimeo-id]').forEach(el => {
