@@ -172,6 +172,7 @@
     body.is-windows .expand-all-hint .mac-key{display:none}
     body.is-windows .expand-all-hint .win-key{display:inline-flex}
     @media(max-width:768px){.expand-all-hint{display:none}}
+    .tool-cat-label{cursor:pointer}
     @keyframes labelPop{0%{color:var(--muted)}30%{color:var(--accent)}100%{color:var(--muted)}}
     .section-label.highlight{animation:labelPop 1.8s ease forwards}
     .tool-subcat.highlight{animation:labelPop 1.8s ease forwards;opacity:1!important}
@@ -279,8 +280,8 @@
     .masonry-placeholder{width:100%;height:100%;background:var(--surface);display:flex;align-items:center;justify-content:center;font-size:9px;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);opacity:0.4}
     @media (max-width:700px){.masonry-gallery{column-count:2}}
     @media (max-width:480px){.masonry-gallery{column-count:1}}
-    .masonry-item.masonry-extra{display:none}
-    .masonry-gallery.expanded .masonry-item.masonry-extra{display:block;animation:fadeInWork 0.6s var(--ease-out-expo)}
+    .masonry-gallery-wrap{position:relative;overflow:hidden;max-height:95vh;transition:max-height 0.9s var(--ease-out-expo)}
+    .masonry-gallery-wrap:not(.expanded){-webkit-mask-image:linear-gradient(to bottom, #000 65%, transparent 100%);mask-image:linear-gradient(to bottom, #000 65%, transparent 100%)}
     @keyframes fadeInWork{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
     .show-more-wrap{display:flex;justify-content:center;margin-top:2rem}
     .show-more-btn{background:none;border:0.5px solid var(--border);color:var(--muted);font-family:var(--font-mono);font-size:10px;letter-spacing:0.12em;text-transform:uppercase;padding:0.6rem 1.5rem;cursor:pointer;display:inline-flex;align-items:center;gap:0.5rem;transition:color 0.3s ease,border-color 0.3s ease}
@@ -481,6 +482,7 @@
   <div class="section-label" data-en="Selected Work" data-es="Trabajo seleccionado">Selected Work</div>
 
   <!-- FCDO GIF gallery: replace each .masonry-placeholder div with <img src="/fcdo/your-file.gif"> -->
+  <div class="masonry-gallery-wrap" id="masonryWrap">
   <div class="masonry-gallery">
     <a class="masonry-item" href="https://vimeo.com/1197459742?fl=ip&amp;fe=ec" target="_blank" rel="noopener"><video src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/reel.mp4" autoplay loop muted playsinline></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title" data-en="Showreel 2026" data-es="Showreel 2026">Showreel 2026</span><span class="mc-role" data-en="Shoot &amp; Edit" data-es="Rodaje y Montaje">Shoot &amp; Edit</span></div><span class="ext-arrow">↗</span></a>
     <a class="masonry-item" href="https://www.instagram.com/foreignanddevelopmentoffice/reel/DDPNwnBtw69/" target="_blank" rel="noopener"><video src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/ISIS.mp4" autoplay loop muted playsinline></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">ISIS</span><span class="mc-role" data-en="Shoot &amp; Edit" data-es="Rodaje y Montaje">Shoot &amp; Edit</span></div><span class="ext-arrow">↗</span></a>
@@ -500,6 +502,7 @@
     <a class="masonry-item masonry-extra" href="https://www.instagram.com/foreignanddevelopmentoffice/reel/C-2-lwUo1w5/" target="_blank" rel="noopener"><video src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/UK%20Aid%20Med.mp4" autoplay loop muted playsinline></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">UK Aid Med</span><span class="mc-role" data-en="Shoot &amp; Edit" data-es="Rodaje y Montaje">Shoot &amp; Edit</span></div><span class="ext-arrow">↗</span></a>
     <a class="masonry-item masonry-extra" href="https://www.instagram.com/p/DUSga0FDSDR/" target="_blank" rel="noopener"><video src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/Amino.mp4" autoplay loop muted playsinline></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">Amino</span><span class="mc-role" data-en="Shoot &amp; Edit" data-es="Rodaje y Montaje">Shoot &amp; Edit</span></div><span class="ext-arrow">↗</span></a>
     <a class="masonry-item masonry-extra" href="https://x.com/DavidLammy/status/1835922688629494139" target="_blank" rel="noopener"><video src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/david-lammy-climate.mp4" autoplay loop muted playsinline></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">Climate &amp; Nature Emergency</span><span class="mc-role" data-en="Shoot &amp; Edit" data-es="Rodaje y Montaje">Shoot &amp; Edit</span></div><span class="ext-arrow">↗</span></a>
+  </div>
   </div>
   <div class="show-more-wrap">
     <button class="show-more-btn" id="workShowMoreBtn" onclick="toggleWorkShowMore()">
@@ -588,12 +591,11 @@
   <div class="section-label" data-en="About" data-es="Sobre mí">About</div>
   <div class="about-grid reveal">
     <div class="about-text">
-      <p data-en="Video Editor and Assistant Editor working across commercial, branded and long-form productions." data-es="Montador y Ayudante de Montaje especializado en publicidad, contenido de marca y producciones de formato largo.">Video Editor and Assistant Editor working across commercial, branded and long-form productions.</p>
-      <p data-en="My work sits at the intersection of craft and precision. Building timelines that tell a story, but are also structured for seamless delivery downstream, from offline through to conform, with clean EDLs, AAFs, and XMLs ready for grade and finish." data-es="Entiendo el montaje como el lugar donde el criterio creativo y la precisión técnica se encuentran. Construyo líneas de tiempo que cuentan una historia, pero también están pensadas para facilitar todo el proceso de postproducción, desde el offline hasta el conformado, con EDLs, AAFs y XMLs limpios y listos para etalonaje y acabado.">My work sits at the intersection of craft and precision. Building timelines that tell a story, but are also structured for seamless delivery downstream, from offline through to conform, with clean EDLs, AAFs, and XMLs ready for grade and finish.</p>
-      <p data-en="I'm drawn to the detail: pacing, structure, and the subtle decisions that shape how something feels. That comes from curiosity, really: I've always taken the time to understand not just how to use a tool, but how it thinks, from Avid's track-based editing and bin management for long-form and broadcast, to Resolve's node-based grading for finishing." data-es="Me interesan los detalles: el ritmo, la estructura y esas decisiones casi imperceptibles que acaban definiendo cómo se siente una pieza. Eso viene, en realidad, de la curiosidad: siempre me he tomado el tiempo de entender no solo cómo usar una herramienta, sino cómo piensa, desde el montaje basado en pistas y la gestión de bins de Avid para formato largo y broadcast, hasta el etalonaje por nodos de Resolve para el acabado.">I'm drawn to the detail: pacing, structure, and the subtle decisions that shape how something feels. That comes from curiosity, really: I've always taken the time to understand not just how to use a tool, but how it thinks, from Avid's track-based editing and bin management for long-form and broadcast, to Resolve's node-based grading for finishing.</p>
-      <p><span data-en="Once I understand a system at that level, I start building automation around it: " data-es="En cuanto entiendo un sistema a ese nivel, empiezo a construir automatización a su alrededor: ">Once I understand a system at that level, I start building automation around it: </span><a href="#personal-projects" style="color:var(--accent);text-decoration:underline" data-en="custom tools" data-es="herramientas personalizadas">custom tools</a><span data-en=", " data-es=", ">, </span><a href="#personal-projects" style="color:var(--accent);text-decoration:underline">macros</a><span data-en=", and " data-es=" y ">, and </span><a href="#personal-projects" style="color:var(--accent);text-decoration:underline">scripts</a><span data-en=" that reduce friction and eliminate human error." data-es=" que reducen la fricción y eliminan el error humano."> that reduce friction and eliminate human error.</span></p>
-      <p data-en="Originally from Lanzarote, Canary Islands. That rhythm of water and patience still informs the way I cut." data-es="Soy de Lanzarote, en las Islas Canarias. Ese ritmo del agua y esa paciencia siguen presentes en mi forma de montar.">Originally from Lanzarote, Canary Islands. That rhythm of water and patience still informs the way I cut.</p>
-      <p data-en="Beyond the edit, I care about leaving things better than I found them, for the people I work with and the work we make together." data-es="Más allá del montaje, me gusta dejar las cosas mejor de como las encontré, tanto para las personas con las que trabajo como para los proyectos que construimos juntos.">Beyond the edit, I care about leaving things better than I found them, for the people I work with and the work we make together.</p>
+      <p data-en="I'm a Video Editor and Assistant Editor working across commercials, branded content and long-form productions." data-es="Soy editor de vídeo y asistente de edición, especializado en publicidad, contenido de marca y producciones de larga duración.">I'm a Video Editor and Assistant Editor working across commercials, branded content and long-form productions.</p>
+      <p data-en="I enjoy finding the rhythm and structure that make a story work, while building organised timelines that move smoothly through conform, grade and delivery." data-es="Me gusta encontrar el ritmo y la estructura que hacen que una historia funcione, al mismo tiempo que construyo timelines organizados que facilitan los procesos de conformado, etalonaje y entrega.">I enjoy finding the rhythm and structure that make a story work, while building organised timelines that move smoothly through conform, grade and delivery.</p>
+      <p data-en="I'm curious about how editing systems work beneath the surface, from Avid's track-based workflow to Resolve's node-based grading. That curiosity often leads me to build tools, macros and scripts that save time and reduce errors." data-es="Siempre he sentido curiosidad por entender cómo funcionan los sistemas de edición, desde el flujo de trabajo por pistas de Avid hasta el etalonaje por nodos de Resolve. Esa curiosidad me lleva a crear herramientas, macros y scripts que ahorran tiempo y reducen errores.">I'm curious about how editing systems work beneath the surface, from Avid's track-based workflow to Resolve's node-based grading. That curiosity often leads me to build tools, macros and scripts that save time and reduce errors.</p>
+      <p data-en="Originally from Lanzarote in the Canary Islands, I bring a sense of rhythm, space and patience to my work." data-es="Soy de Lanzarote, en las Islas Canarias, y aporto a mi trabajo un sentido del ritmo, el espacio y la paciencia.">Originally from Lanzarote in the Canary Islands, I bring a sense of rhythm, space and patience to my work.</p>
+      <p data-en="Above all, I aim to be curious, dependable and easy to work with, leaving every project and workflow better than I found it." data-es="Ante todo, intento ser una persona curiosa, responsable y con la que sea fácil trabajar, dejando cada proyecto y flujo de trabajo mejor de como lo encontré.">Above all, I aim to be curious, dependable and easy to work with, leaving every project and workflow better than I found it.</p>
       <div class="clients-label" data-en="Selected clients" data-es="Clientes seleccionados">Selected clients</div>
       <div class="client-list">
         <span class="client">Nike</span>
@@ -636,10 +638,10 @@
 </div>
 
 <div class="section" id="tools">
-  <div class="section-label" style="display:flex;align-items:center;gap:0.6rem"><span data-en="Tools &amp; ecosystem" data-es="Herramientas y ecosistema">Tools &amp; ecosystem</span><span class="expand-all-hint" title="Option/Alt-click any category to expand or collapse all"><span class="key-symbol mac-key">⌥</span><span class="key-symbol win-key">Alt</span><span data-en="click to expand all" data-es="clic para expandir todo">click to expand all</span></span></div>
+  <div class="section-label" style="display:flex;align-items:center;gap:0.6rem"><span data-en="Tools &amp; ecosystem" data-es="Herramientas y ecosistema">Tools &amp; ecosystem</span><span class="expand-all-hint" title="Click a category to expand it. Option/Alt-click to expand or collapse everything."><span class="key-symbol mac-key">⌥</span><span class="key-symbol win-key">Alt</span><span data-en="click to expand all" data-es="clic para expandir todo">click to expand all</span></span></div>
   <div class="tools-categories reveal">
     <div class="tool-cat">
-      <span class="tool-cat-label" data-en="Ecosystem &amp; utilities" data-es="Ecosistema y utilidades">Ecosystem &amp; utilities</span>
+      <span class="tool-cat-label" onclick="toggleCategory(this, event)"><span data-en="Ecosystem &amp; utilities" data-es="Ecosistema y utilidades">Ecosystem &amp; utilities</span></span>
       <span class="tool-subcat collapsible" id="subcat-transcoding-amp-encodingLabel" onclick="toggleSubcat('subcat-transcoding-amp-encoding', event)" data-en="Transcoding &amp; encoding" data-es="Transcodificación y codificación">Transcoding &amp; encoding</span>
       <div class="subcat-content" id="subcat-transcoding-amp-encoding">
       <span class="tool-name"><span class="tool-name-row">Shutter Encoder</span><span class="tool-desc" data-en="Free open-source transcoder. Converts any video or audio format via drag-and-drop." data-es="Transcodificador gratuito y de código abierto. Convierte cualquier formato de vídeo o audio arrastrando y soltando.">Free open-source transcoder. Converts any video or audio format via drag-and-drop.</span></span>
@@ -697,7 +699,7 @@
       </div>
     </div>
     <div class="tool-cat">
-      <span class="tool-cat-label" data-en="Post-production infrastructure" data-es="Infraestructura de postproducción">Post-production infrastructure</span>
+      <span class="tool-cat-label" onclick="toggleCategory(this, event)"><span data-en="Post-production infrastructure" data-es="Infraestructura de postproducción">Post-production infrastructure</span></span>
       <span class="tool-subcat collapsible" id="subcat-collaboration-amp-versioningLabel" onclick="toggleSubcat('subcat-collaboration-amp-versioning', event)" data-en="Collaboration &amp; versioning" data-es="Colaboración y versionado">Collaboration &amp; versioning</span>
       <div class="subcat-content" id="subcat-collaboration-amp-versioning">
       <span class="tool-name"><span class="tool-name-row">PostLab Pro</span><span class="tool-desc" data-en="Cloud collaboration for Avid, Premiere, Resolve, and FCPX. Remote project check-in/out." data-es="Colaboración en la nube para Avid, Premiere, Resolve y FCPX. Check-in/check-out remoto de proyectos.">Cloud collaboration for Avid, Premiere, Resolve, and FCPX. Remote project check-in/out.</span></span>
@@ -723,7 +725,7 @@
       </div>
     </div>
     <div class="tool-cat">
-      <span class="tool-cat-label" data-en="Plugins &amp; extensions" data-es="Plugins y extensiones">Plugins &amp; extensions</span>
+      <span class="tool-cat-label" onclick="toggleCategory(this, event)"><span data-en="Plugins &amp; extensions" data-es="Plugins y extensiones">Plugins &amp; extensions</span></span>
       <span class="tool-subcat collapsible" id="subcat-workflow-amp-organisationLabel" onclick="toggleSubcat('subcat-workflow-amp-organisation', event)" data-en="Workflow &amp; organisation" data-es="Flujo de trabajo y organización">Workflow &amp; organisation</span>
       <div class="subcat-content" id="subcat-workflow-amp-organisation">
       <span class="tool-name"><span class="tool-name-row">Excalibur </span><span class="tool-desc" data-en="Batch operations, sequence tools, and workflow automation for Premiere." data-es="Operaciones por lotes, herramientas de secuencia y automatización de flujo de trabajo para Premiere.">Batch operations, sequence tools, and workflow automation for Premiere.</span></span>
@@ -1087,38 +1089,74 @@
 
   // Selected Work - show more / show less toggle
   function toggleWorkShowMore(){
+    const wrap = document.getElementById('masonryWrap');
     const gallery = document.querySelector('.masonry-gallery');
     const btn = document.getElementById('workShowMoreBtn');
-    if (!gallery || !btn) return;
-    const isOpen = gallery.classList.toggle('expanded');
-    btn.classList.toggle('open', isOpen);
+    if (!wrap || !gallery || !btn) return;
+    const isOpen = wrap.classList.contains('expanded');
+    const collapsedHeight = () => (window.innerWidth <= 700 ? window.innerHeight * 0.85 : window.innerHeight * 0.95);
+
+    if (!isOpen){
+      // opening: animate from current collapsed height up to the gallery's real full height
+      wrap.style.maxHeight = wrap.getBoundingClientRect().height + 'px';
+      requestAnimationFrame(() => {
+        wrap.classList.add('expanded');
+        wrap.style.maxHeight = gallery.scrollHeight + 'px';
+      });
+    } else {
+      // closing: animate down from full height to the collapsed height, then let CSS take over
+      wrap.style.maxHeight = wrap.scrollHeight + 'px';
+      requestAnimationFrame(() => {
+        wrap.classList.remove('expanded');
+        wrap.style.maxHeight = collapsedHeight() + 'px';
+      });
+      wrap.addEventListener('transitionend', function clearInline(e){
+        if (e.propertyName === 'max-height' && !wrap.classList.contains('expanded')){
+          wrap.style.maxHeight = '';
+          wrap.removeEventListener('transitionend', clearInline);
+        }
+      });
+    }
+
+    btn.classList.toggle('open', !isOpen);
     const label = btn.querySelector('span[data-en]');
     if (label){
       const lang = document.documentElement.getAttribute('lang') === 'es' ? 'es' : 'en';
-      const enText = isOpen ? 'Show less' : 'Show more';
-      const esText = isOpen ? 'Ver menos' : 'Ver más';
+      const enText = !isOpen ? 'Show less' : 'Show more';
+      const esText = !isOpen ? 'Ver menos' : 'Ver más';
       label.setAttribute('data-en', enText);
       label.setAttribute('data-es', esText);
       label.textContent = lang === 'es' ? esText : enText;
     }
-    if (!isOpen) {
-      gallery.scrollIntoView({behavior:'smooth', block:'start'});
+    if (isOpen) {
+      wrap.scrollIntoView({behavior:'smooth', block:'start'});
     }
   }
 
   // Generic collapsible toggle for tool subcategories
+  // Shared helpers for expanding/collapsing groups of subcategories
+  function getAllSubcatIds(){
+    return Array.from(document.querySelectorAll('.subcat-content')).map(el => el.id);
+  }
+  function setSubcatsOpen(ids, open){
+    ids.forEach(sid => {
+      const content = document.getElementById(sid);
+      const label = document.getElementById(sid + 'Label');
+      if (!content) return;
+      content.classList.toggle('open', open);
+      if (label) label.classList.toggle('open', open);
+    });
+  }
+  function toggleAllSubcats(){
+    const ids = getAllSubcatIds();
+    const anyOpen = ids.some(sid => document.getElementById(sid).classList.contains('open'));
+    setSubcatsOpen(ids, !anyOpen);
+  }
+
   function toggleSubcat(id, event){
-    const allSubcatIds = Array.from(document.querySelectorAll('.subcat-content')).map(el => el.id);
     if (event && event.altKey){
       // Option/Alt-click: expand or collapse ALL subcategories at once
-      const anyOpen = allSubcatIds.some(sid => document.getElementById(sid).classList.contains('open'));
-      allSubcatIds.forEach(sid => {
-        const content = document.getElementById(sid);
-        const label = document.getElementById(sid + 'Label');
-        if (!content) return;
-        content.classList.toggle('open', !anyOpen);
-        if (label) label.classList.toggle('open', !anyOpen);
-      });
+      toggleAllSubcats();
       return;
     }
     const content = document.getElementById(id);
@@ -1127,6 +1165,23 @@
     content.classList.toggle('open');
     if (label) label.classList.toggle('open');
   }
+
+  // Cmd/Ctrl-click a category heading: expand or collapse just that category's subcategories
+  // Option/Alt-click a category heading: same as before, expand/collapse everything
+  function toggleCategory(labelEl, event){
+    if (!event) return;
+    if (event.altKey){
+      toggleAllSubcats();
+      return;
+    }
+    const catEl = labelEl.closest('.tool-cat');
+    if (!catEl) return;
+    const ids = Array.from(catEl.querySelectorAll('.subcat-content')).map(el => el.id);
+    if (!ids.length) return;
+    const anyOpen = ids.some(sid => document.getElementById(sid).classList.contains('open'));
+    setSubcatsOpen(ids, !anyOpen);
+  }
+
 
   // Show Alt vs Option symbol depending on platform
   if (/Mac|iPhone|iPad|iPod/.test(navigator.platform || navigator.userAgent)) {
