@@ -514,7 +514,19 @@
   <div class="section-label" data-en="Commercial" data-es="Comercial">Commercial</div>
 
   <!-- WORK GRID: 3 real projects per row -->
+  <div class="masonry-gallery-wrap" id="commercialWrap">
   <div class="work-grid reveal-stagger">
+
+    <!-- 0. Nobody Can Play Like Zlatan -->
+    <a class="featured-item" href="https://www.youtube.com/watch?v=z3MdPxqmFTU" target="_blank" rel="noopener">
+      <img src="https://img.youtube.com/vi/z3MdPxqmFTU/maxresdefault.jpg" alt="Nobody Can Play Like Zlatan" loading="lazy">
+      <div class="grid-play"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="32" r="31" stroke="rgba(255,255,255,0.6)" stroke-width="1"/><path d="M26 20L46 32L26 44V20Z" fill="white"/></svg></div>
+      <div class="featured-overlay"></div>
+      <div class="featured-info">
+        <span class="featured-title">Nobody Can Play Like Zlatan</span>
+        <span class="featured-role" data-en="Assistant Editor" data-es="Ayudante de Edición">Assistant Editor</span>
+      </div>
+    <span class="ext-arrow">↗</span></a>
 
     <!-- 1. Andrex - First School Poo -->
     <a class="featured-item" href="https://www.youtube.com/watch?v=Uv0W37Red9o" target="_blank" rel="noopener">
@@ -582,6 +594,13 @@
       </div>
     <span class="ext-arrow">↗</span></a>
 
+  </div>
+  </div>
+  <div class="show-more-wrap">
+    <button class="show-more-btn" id="commercialShowMoreBtn" onclick="toggleCommercialShowMore()">
+      <span data-en="Show more" data-es="Ver más">Show more</span>
+      <span class="show-more-arrow">▾</span>
+    </button>
   </div>
 </div>
 
@@ -1091,6 +1110,52 @@
     const wrap = document.getElementById('masonryWrap');
     const gallery = document.querySelector('.masonry-gallery');
     const btn = document.getElementById('workShowMoreBtn');
+    if (!wrap || !gallery || !btn) return;
+    const isOpen = wrap.classList.contains('expanded');
+    const collapsedHeight = () => (window.innerWidth <= 700 ? window.innerHeight * 0.85 : window.innerHeight * 0.95);
+
+    if (!isOpen){
+      // opening: animate from current collapsed height up to the gallery's real full height
+      wrap.style.maxHeight = wrap.getBoundingClientRect().height + 'px';
+      requestAnimationFrame(() => {
+        wrap.classList.add('expanded');
+        wrap.style.maxHeight = gallery.scrollHeight + 'px';
+      });
+    } else {
+      // closing: animate down from full height to the collapsed height, then let CSS take over
+      wrap.style.maxHeight = wrap.scrollHeight + 'px';
+      requestAnimationFrame(() => {
+        wrap.classList.remove('expanded');
+        wrap.style.maxHeight = collapsedHeight() + 'px';
+      });
+      wrap.addEventListener('transitionend', function clearInline(e){
+        if (e.propertyName === 'max-height' && !wrap.classList.contains('expanded')){
+          wrap.style.maxHeight = '';
+          wrap.removeEventListener('transitionend', clearInline);
+        }
+      });
+    }
+
+    btn.classList.toggle('open', !isOpen);
+    const label = btn.querySelector('span[data-en]');
+    if (label){
+      const lang = document.documentElement.getAttribute('lang') === 'es' ? 'es' : 'en';
+      const enText = !isOpen ? 'Show less' : 'Show more';
+      const esText = !isOpen ? 'Ver menos' : 'Ver más';
+      label.setAttribute('data-en', enText);
+      label.setAttribute('data-es', esText);
+      label.textContent = lang === 'es' ? esText : enText;
+    }
+    if (isOpen) {
+      wrap.scrollIntoView({behavior:'smooth', block:'start'});
+    }
+  }
+
+  // Commercial - show more / show less toggle
+  function toggleCommercialShowMore(){
+    const wrap = document.getElementById('commercialWrap');
+    const gallery = wrap ? wrap.querySelector('.work-grid') : null;
+    const btn = document.getElementById('commercialShowMoreBtn');
     if (!wrap || !gallery || !btn) return;
     const isOpen = wrap.classList.contains('expanded');
     const collapsedHeight = () => (window.innerWidth <= 700 ? window.innerHeight * 0.85 : window.innerHeight * 0.95);
