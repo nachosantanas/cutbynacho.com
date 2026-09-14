@@ -1151,32 +1151,70 @@
     }
   }
 
-  // Commercial - show more / show less toggle
-  function toggleCommercialShowMore(){
+  // Commercial - show exactly 2 rows collapsed, show more reveals the rest
+  function commercialGridEls(){
     const wrap = document.getElementById('commercialWrap');
     const gallery = wrap ? wrap.querySelector('.work-grid') : null;
     const btn = document.getElementById('commercialShowMoreBtn');
+    return { wrap, gallery, btn };
+  }
+
+  function computeCommercialCollapsedHeight(gallery){
+    const items = gallery.querySelectorAll('.featured-item');
+    if (!items.length) return gallery.scrollHeight;
+    const colsRaw = getComputedStyle(gallery).gridTemplateColumns.split(' ').filter(Boolean);
+    const cols = colsRaw.length || 1;
+    const breakIndex = cols * 2; // 2 rows
+    if (items.length <= breakIndex) return null; // nothing to collapse, everything fits in 2 rows
+    const galleryTop = gallery.getBoundingClientRect().top;
+    const breakTop = items[breakIndex].getBoundingClientRect().top;
+    return Math.max(0, Math.round(breakTop - galleryTop));
+  }
+
+  function applyCommercialCollapsedHeight(){
+    const { wrap, gallery, btn } = commercialGridEls();
+    if (!wrap || !gallery) return;
+    if (wrap.classList.contains('expanded')) return;
+    const h = computeCommercialCollapsedHeight(gallery);
+    if (h === null){
+      // everything already fits within 2 rows - no need to collapse or show the button
+      wrap.style.maxHeight = 'none';
+      wrap.classList.add('expanded');
+      if (btn) btn.closest('.show-more-wrap').style.display = 'none';
+    } else {
+      wrap.style.maxHeight = h + 'px';
+    }
+  }
+
+  applyCommercialCollapsedHeight();
+  window.addEventListener('resize', () => {
+    const { wrap } = commercialGridEls();
+    if (wrap && !wrap.classList.contains('expanded')) applyCommercialCollapsedHeight();
+  });
+
+  function toggleCommercialShowMore(){
+    const { wrap, gallery, btn } = commercialGridEls();
     if (!wrap || !gallery || !btn) return;
     const isOpen = wrap.classList.contains('expanded');
-    const collapsedHeight = () => (window.innerWidth <= 700 ? window.innerHeight * 0.85 : window.innerHeight * 0.95);
 
     if (!isOpen){
-      // opening: animate from current collapsed height up to the gallery's real full height
+      // opening: animate from the 2-row height up to the gallery's real full height
       wrap.style.maxHeight = wrap.getBoundingClientRect().height + 'px';
       requestAnimationFrame(() => {
         wrap.classList.add('expanded');
         wrap.style.maxHeight = gallery.scrollHeight + 'px';
       });
     } else {
-      // closing: animate down from full height to the collapsed height, then let CSS take over
+      // closing: animate down from full height back to exactly 2 rows, then let CSS take over
+      const collapsedH = computeCommercialCollapsedHeight(gallery);
       wrap.style.maxHeight = wrap.scrollHeight + 'px';
       requestAnimationFrame(() => {
         wrap.classList.remove('expanded');
-        wrap.style.maxHeight = collapsedHeight() + 'px';
+        wrap.style.maxHeight = (collapsedH === null ? gallery.scrollHeight : collapsedH) + 'px';
       });
       wrap.addEventListener('transitionend', function clearInline(e){
         if (e.propertyName === 'max-height' && !wrap.classList.contains('expanded')){
-          wrap.style.maxHeight = '';
+          wrap.style.maxHeight = computeCommercialCollapsedHeight(gallery) + 'px';
           wrap.removeEventListener('transitionend', clearInline);
         }
       });
