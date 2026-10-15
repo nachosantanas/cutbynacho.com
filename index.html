@@ -475,7 +475,7 @@
   <div class="masonry-gallery-wrap" id="masonryWrap">
   <div class="masonry-gallery">
     <a class="masonry-item" href="https://vimeo.com/1197459742?fl=ip&amp;fe=ec" target="_blank" rel="noopener"><video src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/reel.mp4" autoplay loop muted playsinline></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title" data-en="Showreel 2026" data-es="Showreel 2026">Showreel 2026</span><span class="mc-role" data-en="Shoot &amp; Edit" data-es="Rodaje y Montaje">Shoot &amp; Edit</span></div><span class="ext-arrow">↗</span></a>
-    <a class="masonry-item" href="https://vimeo.com/1236145017/722d6577de" target="_blank" rel="noopener"><img src="https://vumbnail.com/1236145017.jpg" data-vimeo-thumb="https://vimeo.com/1236145017/722d6577de" alt="Cartier Panthère" loading="lazy"><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">Cartier Panthère</span><span class="mc-role" data-en="Editor" data-es="Montador">Editor</span></div><span class="ext-arrow">↗</span></a>
+    <a class="masonry-item" href="https://vimeo.com/1236145017/722d6577de" target="_blank" rel="noopener"><video src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/Cartier%20Panther.mp4" autoplay loop muted playsinline></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">Cartier Panthère</span><span class="mc-role" data-en="Editor" data-es="Montador">Editor</span></div><span class="ext-arrow">↗</span></a>
     <a class="masonry-item" href="https://www.instagram.com/foreignanddevelopmentoffice/reel/DDPNwnBtw69/" target="_blank" rel="noopener"><video src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/ISIS.mp4" autoplay loop muted playsinline></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">ISIS</span><span class="mc-role" data-en="Shoot &amp; Edit" data-es="Rodaje y Montaje">Shoot &amp; Edit</span></div><span class="ext-arrow">↗</span></a>
     <a class="masonry-item" href="https://vimeo.com/1135060627?fl=tl&amp;fe=ec" target="_blank" rel="noopener"><video src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/Nicce.mp4" autoplay loop muted playsinline></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">NICCE</span><span class="mc-role" data-en="Editor" data-es="Montador">Editor</span></div><span class="ext-arrow">↗</span></a>
     <a class="masonry-item" href="https://vimeo.com/1137716602?fl=ip&amp;fe=ec" target="_blank" rel="noopener"><video src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/Rising%20Ballers.mp4" autoplay loop muted playsinline></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">Rising Ballers</span><span class="mc-role" data-en="Editor" data-es="Montador">Editor</span></div><span class="ext-arrow">↗</span></a>
@@ -1033,15 +1033,6 @@
       }).catch(()=>{});
   });
 
-
-  // ── VIMEO THUMBNAILS (Selected Work stills) ──
-  document.querySelectorAll('img[data-vimeo-thumb]').forEach(img => {
-    const url = img.getAttribute('data-vimeo-thumb');
-    fetch('https://vimeo.com/api/oembed.json?width=1280&url=' + encodeURIComponent(url))
-      .then(r => r.ok ? r.json() : Promise.reject())
-      .then(d => { if (d.thumbnail_url) img.src = d.thumbnail_url; })
-      .catch(() => {});
-  });
 
   // ── TOUCH PLAY BUTTON ──
   document.querySelectorAll('.featured-item').forEach(item => {
