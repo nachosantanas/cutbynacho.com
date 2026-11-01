@@ -16,6 +16,8 @@ Read PROJECT_STATUS.md when continuing work. README.md describes setup; `.agents
 - Dark charcoal, electric lime, Space Grotesk and the current editorial hero. Floating hero cards, portrait and custom pointer were deliberately removed; do not restore them from old instructions or unused assets. Keep existing media files unless asked to remove them.
 - Use plain factual copy, no invented credits, outcomes, awards, clients or availability. Preserve EN/ES switching. Current About copy is the approved concise editor-first bio.
 - Gallery cards stay in their layout on hover/focus: zoom only the clipped media and draw the lime frame above it, so the first-row outline is not cut off by the gallery wrapper.
+- Social uses a responsive grid masonry layout: derive each visible card span from its rendered media height, retain natural aspect ratios and remeasure after metadata/resize/filter changes. Show more reveals whole cards, never a masked partial row.
+- Role dropdowns in both galleries share one selection: All roles, Shoot & edit, Edit, Edit assistant. Use stable data-project-role values, never translated text; keep assistance distinct from sole editing. Hidden projects must be unfocusable and their videos paused.
 - First gallery is Social, second Commercial. Work navigation targets the gallery; its visible category changes with scroll. Keep spacious headings and gallery separation (44px desktop, 30px mobile); the mobile category strip wraps.
 - LinkedIn: https://www.linkedin.com/in/nachosantanas/. AF Films links the full company name to https://frankariza.com/ with no Madrid suffix. Toni & Guy is a Broadley Studios client. Do not reintroduce the removed SubShift listing or Selected editing outcomes section.
 - Keep muted loops, offscreen/hidden-page pausing, reduced-motion support, Pause motion and production GoatCounter. Local previews must not generate analytics visits.
@@ -32,7 +34,7 @@ Read PROJECT_STATUS.md when continuing work. README.md describes setup; `.agents
 
 ## Validation and completion
 
-- Run python3 tools/check_site.py and node tools/check_availability.mjs. For backend/shared calendar changes also run python3 tools/check_site.py --backend /path/to/backend; for bio/CV changes run the career checker with --website /path/to/this/checkout.
+- Run python3 tools/check_site.py and node tools/check_availability.mjs and node tools/check_projects.mjs. For backend/shared calendar changes also run python3 tools/check_site.py --backend /path/to/backend; for bio/CV changes run the career checker with --website /path/to/this/checkout.
 - Reuse an existing preview server; otherwise python3 -m http.server 8769 --directory . on an available port. Check affected desktop and phone layouts and EN/ES; do not claim browser QA when unavailable.
 - Follow the publish skill: confirm exact pushed-commit Pages success, then fetch the public changed files and verify the affected UI. A push or a working editor alone is not proof of a public fix.
 - Update PROJECT_STATUS.md only when verified state, a blocker or the next action changes. Keep private research, logs, account details and local machine configuration out of public guidance.

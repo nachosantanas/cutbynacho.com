@@ -485,6 +485,31 @@ html{scroll-padding-top:0!important}
 .build-card a,.builds-repo{display:inline-block;margin-top:16px;color:var(--accent);text-decoration:none;font-size:11px;border-bottom:1px solid var(--border)}
 @media(max-width:900px){.builds-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:700px){.builds-grid{grid-template-columns:1fr}.personal-builds-block{padding-left:6vw;padding-right:6vw}.future-title span:last-child{font-size:.3em;max-width:310px}.section,#work,#personal-projects{scroll-margin-top:96px}}
+
+/* Role filtering and complete-card galleries; media zoom never moves a frame. */
+.project-filter-bar{display:none;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;margin:-12px 0 32px}
+.projects-ready .project-filter-bar{display:flex}
+#work .show-more-wrap,#commercial .show-more-wrap{display:none}
+.projects-ready #work .show-more-wrap,.projects-ready #commercial .show-more-wrap{display:flex}
+.project-filter{display:flex;align-items:center;gap:14px;font:11px var(--font-mono);color:var(--muted)}
+.project-filter select{font:inherit;color:var(--text);background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:12px 32px 12px 12px;min-height:44px;max-width:100%;color-scheme:dark;cursor:pointer}
+.project-filter select:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.project-count,.project-empty{font:11px/1.7 var(--font-mono);color:var(--muted)}
+.project-empty{padding:24px 0}.project-empty[hidden],.show-more-wrap[hidden],.masonry-gallery[hidden],.work-grid[hidden],[data-project-role][hidden]{display:none!important}
+.masonry-gallery-wrap{max-height:none!important;overflow:visible;transition:none}
+.masonry-gallery-wrap:not(.expanded){mask-image:none;-webkit-mask-image:none}
+.projects-ready .masonry-gallery{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:1px;column-count:auto;gap:0 20px;align-items:start}
+.projects-ready .masonry-gallery .masonry-item{margin:0;min-width:0;align-self:start}
+.masonry-item video,.masonry-item img{width:100%;height:auto;aspect-ratio:var(--media-ratio,9 / 16);object-fit:contain}
+.work-grid{gap:20px;overflow:visible;border-radius:0;align-items:start}
+.featured-item{isolation:isolate;transition:border-color .3s}
+.featured-item::after{content:'';position:absolute;inset:0;border:2px solid transparent;border-radius:inherit;z-index:5;pointer-events:none;transition:border-color .3s}
+.featured-item:hover,.featured-item:focus-visible{border-color:var(--accent)}
+.featured-item:hover::after,.featured-item:focus-visible::after{border-color:var(--accent)}
+.featured-item:focus-visible .featured-info,.featured-item:focus-visible .ext-arrow{opacity:1;transform:none}
+@media(max-width:1000px) and (min-width:601px){.projects-ready .masonry-gallery,.work-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.projects-ready .masonry-gallery,.work-grid{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:700px){.project-filter-bar{margin:-2px 0 26px;gap:12px}.project-filter{gap:10px}.project-count{font-size:10px}.work-grid{gap:16px}}
 </style>
 
   <script type="application/ld+json">
@@ -504,6 +529,7 @@ html{scroll-padding-top:0!important}
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/availability.css?v=20261101-mobile">
   <script type="module" src="/assets/availability.js"></script>
+<script type="module" src="/assets/projects.js?v=1"></script>
 </head>
 <body>
 
@@ -560,33 +586,45 @@ html{scroll-padding-top:0!important}
 
 <div class="section" id="work">
   <h2 class="section-label" data-en="Social" data-es="Redes sociales">Social</h2>
+  <div class="project-filter-bar">
+    <label class="project-filter" for="workRole"><span data-en="Filter by role" data-es="Filtrar por función">Filter by role</span>
+      <select id="workRole" data-project-filter>
+        <option value="all" data-en="All roles" data-es="Todas las funciones">All roles</option>
+        <option value="shoot-edit" data-en="Shoot &amp; edit" data-es="Rodaje y montaje">Shoot &amp; edit</option>
+        <option value="editor" data-en="Edit" data-es="Montaje">Edit</option>
+        <option value="assistant-editor" data-en="Edit assistant" data-es="Ayudante de montaje">Edit assistant</option>
+      </select>
+    </label>
+    <span class="project-count" data-project-count role="status" aria-live="polite"></span>
+  </div>
+  <p class="project-empty" data-project-empty hidden data-en="No projects match this role in this section. Choose All roles to see the full selection." data-es="No hay proyectos con esta función en esta sección. Selecciona Todas las funciones para ver la selección completa.">No projects match this role in this section. Choose All roles to see the full selection.</p>
 
   <!-- FCDO GIF gallery: replace each .masonry-placeholder div with <img src="https://cutbynacho.com/fcdo/your-file.gif"> -->
   <div class="masonry-gallery-wrap" id="masonryWrap">
   <div class="masonry-gallery">
-    <a class="masonry-item" href="https://vimeo.com/1197459742?fl=ip&amp;fe=ec" target="_blank" rel="noopener"><video data-src="assets/hero-3.mp4" poster="assets/hero-3.jpg" loop muted playsinline preload="none"></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title" data-en="Showreel 2026" data-es="Showreel 2026">Showreel 2026</span><span class="mc-role" data-en="Shoot &amp; Edit" data-es="Rodaje y Montaje">Shoot &amp; Edit</span></div><span class="ext-arrow">↗</span></a>
-    <a class="masonry-item" href="https://vimeo.com/1236145017/722d6577de" target="_blank" rel="noopener"><video data-src="assets/hero-0.mp4" poster="assets/hero-0.jpg" loop muted playsinline preload="none"></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">Cartier Panthère</span><span class="mc-role" data-en="Editor" data-es="Montador">Editor</span></div><span class="ext-arrow">↗</span></a>
-    <a class="masonry-item" href="https://www.instagram.com/foreignanddevelopmentoffice/reel/DDPNwnBtw69/" target="_blank" rel="noopener"><video data-src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/ISIS.mp4" loop muted playsinline preload="none"></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">ISIS</span><span class="mc-role" data-en="Shoot &amp; Edit" data-es="Rodaje y Montaje">Shoot &amp; Edit</span></div><span class="ext-arrow">↗</span></a>
-    <a class="masonry-item" href="https://vimeo.com/1135060627?fl=tl&amp;fe=ec" target="_blank" rel="noopener"><video data-src="assets/hero-1.mp4" poster="assets/hero-1.jpg" loop muted playsinline preload="none"></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">NICCE</span><span class="mc-role" data-en="Editor" data-es="Montador">Editor</span></div><span class="ext-arrow">↗</span></a>
-    <a class="masonry-item" href="https://vimeo.com/1137716602?fl=ip&amp;fe=ec" target="_blank" rel="noopener"><video data-src="assets/hero-2.mp4" poster="assets/hero-2.jpg" loop muted playsinline preload="none"></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">Rising Ballers</span><span class="mc-role" data-en="Editor" data-es="Montador">Editor</span></div><span class="ext-arrow">↗</span></a>
-    <a class="masonry-item" href="https://www.instagram.com/reel/C_C5Ic3ovAh/" target="_blank" rel="noopener"><video data-src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/Prayers%20Trailler.mp4" loop muted playsinline preload="none"></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">Prayers Trailer</span><span class="mc-role" data-en="Shoot &amp; Edit" data-es="Rodaje y Montaje">Shoot &amp; Edit</span></div><span class="ext-arrow">↗</span></a>
-    <a class="masonry-item" href="https://www.instagram.com/p/DdHRtjqt7vA/" target="_blank" rel="noopener"><video data-src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/Raisa.mp4" loop muted playsinline preload="none"></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">Raisa</span><span class="mc-role" data-en="Editor" data-es="Montador">Editor</span></div><span class="ext-arrow">↗</span></a>
-    <a class="masonry-item" href="https://www.youtube.com/watch?v=H0o2ZM59a-I" target="_blank" rel="noopener"><video data-src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/dumb-excuse.mp4" loop muted playsinline preload="none"></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">Dumb Excuse</span><span class="mc-role" data-en="Shoot &amp; Edit" data-es="Rodaje y Montaje">Shoot &amp; Edit</span></div><span class="ext-arrow">↗</span></a>
-    <a class="masonry-item" href="https://www.youtube.com/watch?v=UAy4YnFTEXg" target="_blank" rel="noopener"><video data-src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/Ukraine-Voices.mp4" loop muted playsinline preload="none"></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">Prayers for Ukraine</span><span class="mc-role" data-en="Shoot &amp; Edit" data-es="Rodaje y Montaje">Shoot &amp; Edit</span></div><span class="ext-arrow">↗</span></a>
-    <a class="masonry-item masonry-extra" href="https://vimeo.com/1119535559?fl=tl&amp;fe=ec" target="_blank" rel="noopener"><video data-src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/No-where.mp4" loop muted playsinline preload="none"></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">Belonging No Where</span><span class="mc-role" data-en="Shoot &amp; Edit" data-es="Rodaje y Montaje">Shoot &amp; Edit</span></div><span class="ext-arrow">↗</span></a>
-    <div class="masonry-item masonry-extra"><video data-src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/Spotify%20Visualiser.mp4" loop muted playsinline preload="none"></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">Spotify Visualiser</span><span class="mc-role" data-en="Shoot &amp; Edit" data-es="Rodaje y Montaje">Shoot &amp; Edit</span></div><span class="ext-arrow">↗</span></div>
-    <a class="masonry-item masonry-extra" href="https://x.com/FCDOGovUK/status/1780270897045110998" target="_blank" rel="noopener"><video data-src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/Nato.mp4" loop muted playsinline preload="none"></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">Welcome to Nato</span><span class="mc-role" data-en="Shoot &amp; Edit" data-es="Rodaje y Montaje">Shoot &amp; Edit</span></div><span class="ext-arrow">↗</span></a>
-    <a class="masonry-item masonry-extra" href="https://www.instagram.com/p/DRy3HVQjZRF/" target="_blank" rel="noopener"><video data-src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/Anais%20Gallagher.mp4" loop muted playsinline preload="none"></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">Anais Gallagher</span><span class="mc-role" data-en="Shoot &amp; Edit" data-es="Rodaje y Montaje">Shoot &amp; Edit</span></div><span class="ext-arrow">↗</span></a>
-    <a class="masonry-item masonry-extra" href="https://www.instagram.com/foreignanddevelopmentoffice/reel/C4dAy1Kojpp/" target="_blank" rel="noopener"><video data-src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/Malaria%20Kids.mp4" loop muted playsinline preload="none"></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">Malaria Kids</span><span class="mc-role" data-en="Shoot &amp; Edit" data-es="Rodaje y Montaje">Shoot &amp; Edit</span></div><span class="ext-arrow">↗</span></a>
-    <a class="masonry-item masonry-extra" href="https://vimeo.com/1197740098?fl=tl&amp;fe=ec" target="_blank" rel="noopener"><video data-src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/EQL.mp4" loop muted playsinline preload="none"></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">EQL Fitness</span><span class="mc-role" data-en="Shoot &amp; Edit" data-es="Rodaje y Montaje">Shoot &amp; Edit</span></div><span class="ext-arrow">↗</span></a>
-    <a class="masonry-item masonry-extra" href="https://www.youtube.com/watch?v=cftZiTawiVs" target="_blank" rel="noopener"><video data-src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/Fight%20For%20Children%20In%20Care.mp4" loop muted playsinline preload="none"></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">Children in Care</span><span class="mc-role" data-en="Shoot &amp; Edit" data-es="Rodaje y Montaje">Shoot &amp; Edit</span></div><span class="ext-arrow">↗</span></a>
-    <a class="masonry-item masonry-extra" href="https://www.instagram.com/foreignanddevelopmentoffice/reel/C-2-lwUo1w5/" target="_blank" rel="noopener"><video data-src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/UK%20Aid%20Med.mp4" loop muted playsinline preload="none"></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">UK Aid Med</span><span class="mc-role" data-en="Shoot &amp; Edit" data-es="Rodaje y Montaje">Shoot &amp; Edit</span></div><span class="ext-arrow">↗</span></a>
-    <a class="masonry-item masonry-extra" href="https://www.instagram.com/p/DUSga0FDSDR/" target="_blank" rel="noopener"><video data-src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/Amino.mp4" loop muted playsinline preload="none"></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">Amino</span><span class="mc-role" data-en="Shoot &amp; Edit" data-es="Rodaje y Montaje">Shoot &amp; Edit</span></div><span class="ext-arrow">↗</span></a>
-    <a class="masonry-item masonry-extra" href="https://x.com/DavidLammy/status/1835922688629494139" target="_blank" rel="noopener"><video data-src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/david-lammy-climate.mp4" loop muted playsinline preload="none"></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">Climate &amp; Nature Emergency</span><span class="mc-role" data-en="Shoot &amp; Edit" data-es="Rodaje y Montaje">Shoot &amp; Edit</span></div><span class="ext-arrow">↗</span></a>
+    <a data-project-role="shoot-edit" class="masonry-item" href="https://vimeo.com/1197459742?fl=ip&amp;fe=ec" target="_blank" rel="noopener"><video style="--media-ratio:16 / 9" data-src="assets/hero-3.mp4" poster="assets/hero-3.jpg" loop muted playsinline preload="none"></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title" data-en="Showreel 2026" data-es="Showreel 2026">Showreel 2026</span><span class="mc-role" data-en="Shoot &amp; Edit" data-es="Rodaje y Montaje">Shoot &amp; Edit</span></div><span class="ext-arrow">↗</span></a>
+    <a data-project-role="editor" class="masonry-item" href="https://vimeo.com/1236145017/722d6577de" target="_blank" rel="noopener"><video style="--media-ratio:9 / 16" data-src="assets/hero-0.mp4" poster="assets/hero-0.jpg" loop muted playsinline preload="none"></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">Cartier Panthère</span><span class="mc-role" data-en="Editor" data-es="Montador">Editor</span></div><span class="ext-arrow">↗</span></a>
+    <a data-project-role="shoot-edit" class="masonry-item" href="https://www.instagram.com/foreignanddevelopmentoffice/reel/DDPNwnBtw69/" target="_blank" rel="noopener"><video style="--media-ratio:9 / 16" data-src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/ISIS.mp4" loop muted playsinline preload="none"></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">ISIS</span><span class="mc-role" data-en="Shoot &amp; Edit" data-es="Rodaje y Montaje">Shoot &amp; Edit</span></div><span class="ext-arrow">↗</span></a>
+    <a data-project-role="editor" class="masonry-item" href="https://vimeo.com/1135060627?fl=tl&amp;fe=ec" target="_blank" rel="noopener"><video style="--media-ratio:16 / 9" data-src="assets/hero-1.mp4" poster="assets/hero-1.jpg" loop muted playsinline preload="none"></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">NICCE</span><span class="mc-role" data-en="Editor" data-es="Montador">Editor</span></div><span class="ext-arrow">↗</span></a>
+    <a data-project-role="editor" class="masonry-item" href="https://vimeo.com/1137716602?fl=ip&amp;fe=ec" target="_blank" rel="noopener"><video style="--media-ratio:9 / 16" data-src="assets/hero-2.mp4" poster="assets/hero-2.jpg" loop muted playsinline preload="none"></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">Rising Ballers</span><span class="mc-role" data-en="Editor" data-es="Montador">Editor</span></div><span class="ext-arrow">↗</span></a>
+    <a data-project-role="shoot-edit" class="masonry-item" href="https://www.instagram.com/reel/C_C5Ic3ovAh/" target="_blank" rel="noopener"><video style="--media-ratio:9 / 16" data-src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/Prayers%20Trailler.mp4" loop muted playsinline preload="none"></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">Prayers Trailer</span><span class="mc-role" data-en="Shoot &amp; Edit" data-es="Rodaje y Montaje">Shoot &amp; Edit</span></div><span class="ext-arrow">↗</span></a>
+    <a data-project-role="editor" class="masonry-item" href="https://www.instagram.com/p/DdHRtjqt7vA/" target="_blank" rel="noopener"><video style="--media-ratio:9 / 16" data-src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/Raisa.mp4" loop muted playsinline preload="none"></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">Raisa</span><span class="mc-role" data-en="Editor" data-es="Montador">Editor</span></div><span class="ext-arrow">↗</span></a>
+    <a data-project-role="shoot-edit" class="masonry-item" href="https://www.youtube.com/watch?v=H0o2ZM59a-I" target="_blank" rel="noopener"><video style="--media-ratio:9 / 16" data-src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/dumb-excuse.mp4" loop muted playsinline preload="none"></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">Dumb Excuse</span><span class="mc-role" data-en="Shoot &amp; Edit" data-es="Rodaje y Montaje">Shoot &amp; Edit</span></div><span class="ext-arrow">↗</span></a>
+    <a data-project-role="shoot-edit" class="masonry-item" href="https://www.youtube.com/watch?v=UAy4YnFTEXg" target="_blank" rel="noopener"><video style="--media-ratio:9 / 16" data-src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/Ukraine-Voices.mp4" loop muted playsinline preload="none"></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">Prayers for Ukraine</span><span class="mc-role" data-en="Shoot &amp; Edit" data-es="Rodaje y Montaje">Shoot &amp; Edit</span></div><span class="ext-arrow">↗</span></a>
+    <a data-project-role="shoot-edit" class="masonry-item masonry-extra" href="https://vimeo.com/1119535559?fl=tl&amp;fe=ec" target="_blank" rel="noopener"><video style="--media-ratio:9 / 16" data-src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/No-where.mp4" loop muted playsinline preload="none"></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">Belonging No Where</span><span class="mc-role" data-en="Shoot &amp; Edit" data-es="Rodaje y Montaje">Shoot &amp; Edit</span></div><span class="ext-arrow">↗</span></a>
+    <div data-project-role="shoot-edit" class="masonry-item masonry-extra"><video style="--media-ratio:9 / 16" data-src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/Spotify%20Visualiser.mp4" loop muted playsinline preload="none"></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">Spotify Visualiser</span><span class="mc-role" data-en="Shoot &amp; Edit" data-es="Rodaje y Montaje">Shoot &amp; Edit</span></div><span class="ext-arrow">↗</span></div>
+    <a data-project-role="shoot-edit" class="masonry-item masonry-extra" href="https://x.com/FCDOGovUK/status/1780270897045110998" target="_blank" rel="noopener"><video style="--media-ratio:9 / 16" data-src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/Nato.mp4" loop muted playsinline preload="none"></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">Welcome to Nato</span><span class="mc-role" data-en="Shoot &amp; Edit" data-es="Rodaje y Montaje">Shoot &amp; Edit</span></div><span class="ext-arrow">↗</span></a>
+    <a data-project-role="shoot-edit" class="masonry-item masonry-extra" href="https://www.instagram.com/p/DRy3HVQjZRF/" target="_blank" rel="noopener"><video style="--media-ratio:9 / 16" data-src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/Anais%20Gallagher.mp4" loop muted playsinline preload="none"></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">Anais Gallagher</span><span class="mc-role" data-en="Shoot &amp; Edit" data-es="Rodaje y Montaje">Shoot &amp; Edit</span></div><span class="ext-arrow">↗</span></a>
+    <a data-project-role="shoot-edit" class="masonry-item masonry-extra" href="https://www.instagram.com/foreignanddevelopmentoffice/reel/C4dAy1Kojpp/" target="_blank" rel="noopener"><video style="--media-ratio:9 / 16" data-src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/Malaria%20Kids.mp4" loop muted playsinline preload="none"></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">Malaria Kids</span><span class="mc-role" data-en="Shoot &amp; Edit" data-es="Rodaje y Montaje">Shoot &amp; Edit</span></div><span class="ext-arrow">↗</span></a>
+    <a data-project-role="shoot-edit" class="masonry-item masonry-extra" href="https://vimeo.com/1197740098?fl=tl&amp;fe=ec" target="_blank" rel="noopener"><video style="--media-ratio:9 / 16" data-src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/EQL.mp4" loop muted playsinline preload="none"></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">EQL Fitness</span><span class="mc-role" data-en="Shoot &amp; Edit" data-es="Rodaje y Montaje">Shoot &amp; Edit</span></div><span class="ext-arrow">↗</span></a>
+    <a data-project-role="shoot-edit" class="masonry-item masonry-extra" href="https://www.youtube.com/watch?v=cftZiTawiVs" target="_blank" rel="noopener"><video style="--media-ratio:9 / 16" data-src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/Fight%20For%20Children%20In%20Care.mp4" loop muted playsinline preload="none"></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">Children in Care</span><span class="mc-role" data-en="Shoot &amp; Edit" data-es="Rodaje y Montaje">Shoot &amp; Edit</span></div><span class="ext-arrow">↗</span></a>
+    <a data-project-role="shoot-edit" class="masonry-item masonry-extra" href="https://www.instagram.com/foreignanddevelopmentoffice/reel/C-2-lwUo1w5/" target="_blank" rel="noopener"><video style="--media-ratio:9 / 16" data-src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/UK%20Aid%20Med.mp4" loop muted playsinline preload="none"></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">UK Aid Med</span><span class="mc-role" data-en="Shoot &amp; Edit" data-es="Rodaje y Montaje">Shoot &amp; Edit</span></div><span class="ext-arrow">↗</span></a>
+    <a data-project-role="shoot-edit" class="masonry-item masonry-extra" href="https://www.instagram.com/p/DUSga0FDSDR/" target="_blank" rel="noopener"><video style="--media-ratio:9 / 16" data-src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/Amino.mp4" loop muted playsinline preload="none"></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">Amino</span><span class="mc-role" data-en="Shoot &amp; Edit" data-es="Rodaje y Montaje">Shoot &amp; Edit</span></div><span class="ext-arrow">↗</span></a>
+    <a data-project-role="shoot-edit" class="masonry-item masonry-extra" href="https://x.com/DavidLammy/status/1835922688629494139" target="_blank" rel="noopener"><video style="--media-ratio:9 / 16" data-src="https://cdn.jsdelivr.net/gh/nachosantanas/nacho-gifs@main/david-lammy-climate.mp4" loop muted playsinline preload="none"></video><div class="masonry-overlay"></div><div class="masonry-caption"><span class="mc-title">Climate &amp; Nature Emergency</span><span class="mc-role" data-en="Shoot &amp; Edit" data-es="Rodaje y Montaje">Shoot &amp; Edit</span></div><span class="ext-arrow">↗</span></a>
   </div>
   </div>
   <div class="show-more-wrap">
-    <button class="show-more-btn" id="workShowMoreBtn" onclick="toggleWorkShowMore()">
+    <button class="show-more-btn" id="workShowMoreBtn" aria-controls="masonryWrap" aria-expanded="false">
       <span data-en="Show more" data-es="Ver más">Show more</span>
       <span class="show-more-arrow">▾</span>
     </button>
@@ -595,13 +633,25 @@ html{scroll-padding-top:0!important}
 
 <div class="section" id="commercial">
   <h2 class="section-label" data-en="Commercial" data-es="Comercial">Commercial</h2>
+  <div class="project-filter-bar">
+    <label class="project-filter" for="commercialRole"><span data-en="Filter by role" data-es="Filtrar por función">Filter by role</span>
+      <select id="commercialRole" data-project-filter>
+        <option value="all" data-en="All roles" data-es="Todas las funciones">All roles</option>
+        <option value="shoot-edit" data-en="Shoot &amp; edit" data-es="Rodaje y montaje">Shoot &amp; edit</option>
+        <option value="editor" data-en="Edit" data-es="Montaje">Edit</option>
+        <option value="assistant-editor" data-en="Edit assistant" data-es="Ayudante de montaje">Edit assistant</option>
+      </select>
+    </label>
+    <span class="project-count" data-project-count role="status" aria-live="polite"></span>
+  </div>
+  <p class="project-empty" data-project-empty hidden data-en="No projects match this role in this section. Choose All roles to see the full selection." data-es="No hay proyectos con esta función en esta sección. Selecciona Todas las funciones para ver la selección completa.">No projects match this role in this section. Choose All roles to see the full selection.</p>
 
   <!-- WORK GRID: 3 real projects per row -->
   <div class="masonry-gallery-wrap" id="commercialWrap">
-  <div class="work-grid reveal-stagger">
+  <div class="work-grid">
 
     <!-- 0. Nobody Can Play Like Zlatan -->
-    <a class="featured-item" href="https://www.youtube.com/watch?v=z3MdPxqmFTU" target="_blank" rel="noopener">
+    <a class="featured-item" data-project-role="assistant-editor" href="https://www.youtube.com/watch?v=z3MdPxqmFTU" target="_blank" rel="noopener">
       <img src="https://img.youtube.com/vi/z3MdPxqmFTU/maxresdefault.jpg" alt="Nobody Can Play Like Zlatan" loading="lazy">
       <div class="grid-play"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="32" r="31" stroke="rgba(255,255,255,0.6)" stroke-width="1"/><path d="M26 20L46 32L26 44V20Z" fill="white"/></svg></div>
       <div class="featured-overlay"></div>
@@ -612,7 +662,7 @@ html{scroll-padding-top:0!important}
     <span class="ext-arrow">↗</span></a>
 
     <!-- 1. Andrex - First School Poo -->
-    <a class="featured-item" href="https://www.youtube.com/watch?v=Uv0W37Red9o" target="_blank" rel="noopener">
+    <a class="featured-item" data-project-role="assistant-editor" href="https://www.youtube.com/watch?v=Uv0W37Red9o" target="_blank" rel="noopener">
       <img src="https://img.youtube.com/vi/Uv0W37Red9o/maxresdefault.jpg" alt="Andrex First School Poo" loading="lazy">
       <div class="grid-play"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="32" r="31" stroke="rgba(255,255,255,0.6)" stroke-width="1"/><path d="M26 20L46 32L26 44V20Z" fill="white"/></svg></div>
       <div class="featured-overlay"></div>
@@ -623,7 +673,7 @@ html{scroll-padding-top:0!important}
     <span class="ext-arrow">↗</span></a>
 
     <!-- 2. Late Nike Shopping -->
-    <a class="featured-item" href="https://www.youtube.com/watch?v=9bsjNnKcjzY" target="_blank" rel="noopener">
+    <a class="featured-item" data-project-role="assistant-editor" href="https://www.youtube.com/watch?v=9bsjNnKcjzY" target="_blank" rel="noopener">
       <img src="https://img.youtube.com/vi/9bsjNnKcjzY/maxresdefault.jpg" alt="Late Nike Shopping" loading="lazy">
       <div class="grid-play"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="32" r="31" stroke="rgba(255,255,255,0.6)" stroke-width="1"/><path d="M26 20L46 32L26 44V20Z" fill="white"/></svg></div>
       <div class="featured-overlay"></div>
@@ -634,7 +684,7 @@ html{scroll-padding-top:0!important}
     <span class="ext-arrow">↗</span></a>
 
     <!-- 3. Nike Psychic Readings -->
-    <a class="featured-item" href="https://www.youtube.com/watch?v=LYJoTsjVQZM" target="_blank" rel="noopener">
+    <a class="featured-item" data-project-role="assistant-editor" href="https://www.youtube.com/watch?v=LYJoTsjVQZM" target="_blank" rel="noopener">
       <img src="https://img.youtube.com/vi/LYJoTsjVQZM/maxresdefault.jpg" alt="Nike Psychic Readings" loading="lazy">
       <div class="grid-play"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="32" r="31" stroke="rgba(255,255,255,0.6)" stroke-width="1"/><path d="M26 20L46 32L26 44V20Z" fill="white"/></svg></div>
       <div class="featured-overlay"></div>
@@ -645,7 +695,7 @@ html{scroll-padding-top:0!important}
     <span class="ext-arrow">↗</span></a>
 
     <!-- 8. Reputational Damage -->
-    <a class="featured-item" href="https://www.youtube.com/watch?v=UD_pdVO4OU4" target="_blank" rel="noopener">
+    <a class="featured-item" data-project-role="assistant-editor" href="https://www.youtube.com/watch?v=UD_pdVO4OU4" target="_blank" rel="noopener">
       <img src="https://img.youtube.com/vi/UD_pdVO4OU4/maxresdefault.jpg" alt="Reputational Damage" loading="lazy">
       <div class="grid-play"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="32" r="31" stroke="rgba(255,255,255,0.6)" stroke-width="1"/><path d="M26 20L46 32L26 44V20Z" fill="white"/></svg></div>
       <div class="featured-overlay"></div>
@@ -656,7 +706,7 @@ html{scroll-padding-top:0!important}
     <span class="ext-arrow">↗</span></a>
 
     <!-- 9. The Fury Continues -->
-    <a class="featured-item" href="https://www.youtube.com/watch?v=Sxb7lP0TFbQ" target="_blank" rel="noopener">
+    <a class="featured-item" data-project-role="assistant-editor" href="https://www.youtube.com/watch?v=Sxb7lP0TFbQ" target="_blank" rel="noopener">
       <img src="https://img.youtube.com/vi/Sxb7lP0TFbQ/maxresdefault.jpg" alt="The Fury Continues" loading="lazy">
       <div class="grid-play"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="32" r="31" stroke="rgba(255,255,255,0.6)" stroke-width="1"/><path d="M26 20L46 32L26 44V20Z" fill="white"/></svg></div>
       <div class="featured-overlay"></div>
@@ -667,7 +717,7 @@ html{scroll-padding-top:0!important}
     <span class="ext-arrow">↗</span></a>
 
     <!-- 10. Starling Bank - Matchmakers -->
-    <a class="featured-item" href="https://www.youtube.com/watch?v=jBcbnrnWFG0" target="_blank" rel="noopener">
+    <a class="featured-item" data-project-role="assistant-editor" href="https://www.youtube.com/watch?v=jBcbnrnWFG0" target="_blank" rel="noopener">
       <img src="https://img.youtube.com/vi/jBcbnrnWFG0/maxresdefault.jpg" alt="Starling Bank Matchmakers" loading="lazy">
       <div class="grid-play"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="32" r="31" stroke="rgba(255,255,255,0.6)" stroke-width="1"/><path d="M26 20L46 32L26 44V20Z" fill="white"/></svg></div>
       <div class="featured-overlay"></div>
@@ -678,7 +728,7 @@ html{scroll-padding-top:0!important}
     <span class="ext-arrow">↗</span></a>
 
     <!-- 11. Electrifying the Game -->
-    <a class="featured-item" href="https://www.youtube.com/watch?v=xWp4OG3rwZM" target="_blank" rel="noopener">
+    <a class="featured-item" data-project-role="assistant-editor" href="https://www.youtube.com/watch?v=xWp4OG3rwZM" target="_blank" rel="noopener">
       <img src="https://img.youtube.com/vi/xWp4OG3rwZM/maxresdefault.jpg" alt="Electrifying the Game" loading="lazy">
       <div class="grid-play"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="32" r="31" stroke="rgba(255,255,255,0.6)" stroke-width="1"/><path d="M26 20L46 32L26 44V20Z" fill="white"/></svg></div>
       <div class="featured-overlay"></div>
@@ -689,7 +739,7 @@ html{scroll-padding-top:0!important}
     <span class="ext-arrow">↗</span></a>
 
     <!-- 12. Now You're Cooking -->
-    <a class="featured-item" href="https://www.youtube.com/watch?v=Eqyz-Uozydk" target="_blank" rel="noopener">
+    <a class="featured-item" data-project-role="assistant-editor" href="https://www.youtube.com/watch?v=Eqyz-Uozydk" target="_blank" rel="noopener">
       <img src="https://img.youtube.com/vi/Eqyz-Uozydk/maxresdefault.jpg" alt="Now You're Cooking" loading="lazy">
       <div class="grid-play"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="32" r="31" stroke="rgba(255,255,255,0.6)" stroke-width="1"/><path d="M26 20L46 32L26 44V20Z" fill="white"/></svg></div>
       <div class="featured-overlay"></div>
@@ -700,7 +750,7 @@ html{scroll-padding-top:0!important}
     <span class="ext-arrow">↗</span></a>
 
     <!-- 13. Inspired by Buxton Peak -->
-    <a class="featured-item" href="https://www.youtube.com/watch?v=jJvzrfcZanU" target="_blank" rel="noopener">
+    <a class="featured-item" data-project-role="assistant-editor" href="https://www.youtube.com/watch?v=jJvzrfcZanU" target="_blank" rel="noopener">
       <img src="https://img.youtube.com/vi/jJvzrfcZanU/maxresdefault.jpg" alt="Inspired by Buxton Peak" loading="lazy">
       <div class="grid-play"><svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="32" cy="32" r="31" stroke="rgba(255,255,255,0.6)" stroke-width="1"/><path d="M26 20L46 32L26 44V20Z" fill="white"/></svg></div>
       <div class="featured-overlay"></div>
@@ -713,7 +763,7 @@ html{scroll-padding-top:0!important}
   </div>
   </div>
   <div class="show-more-wrap">
-    <button class="show-more-btn" id="commercialShowMoreBtn" onclick="toggleCommercialShowMore()">
+    <button class="show-more-btn" id="commercialShowMoreBtn" aria-controls="commercialWrap" aria-expanded="false">
       <span data-en="Show more" data-es="Ver más">Show more</span>
       <span class="show-more-arrow">▾</span>
     </button>
@@ -1169,136 +1219,6 @@ html{scroll-padding-top:0!important}
     if (label) {label.classList.toggle('open',open);label.setAttribute('aria-expanded',String(open));}
   }
 
-  // Selected Work - show more / show less toggle
-  function toggleWorkShowMore(){
-    const wrap = document.getElementById('masonryWrap');
-    const gallery = document.querySelector('.masonry-gallery');
-    const btn = document.getElementById('workShowMoreBtn');
-    if (!wrap || !gallery || !btn) return;
-    const isOpen = wrap.classList.contains('expanded');
-    const collapsedHeight = () => (window.innerWidth <= 700 ? window.innerHeight * 0.85 : window.innerHeight * 0.95);
-
-    if (!isOpen){
-      // opening: animate from current collapsed height up to the gallery's real full height
-      wrap.style.maxHeight = wrap.getBoundingClientRect().height + 'px';
-      requestAnimationFrame(() => {
-        wrap.classList.add('expanded');
-        wrap.style.maxHeight = gallery.scrollHeight + 'px';
-      });
-    } else {
-      // closing: animate down from full height to the collapsed height, then let CSS take over
-      wrap.style.maxHeight = wrap.scrollHeight + 'px';
-      requestAnimationFrame(() => {
-        wrap.classList.remove('expanded');
-        wrap.style.maxHeight = collapsedHeight() + 'px';
-      });
-      wrap.addEventListener('transitionend', function clearInline(e){
-        if (e.propertyName === 'max-height' && !wrap.classList.contains('expanded')){
-          wrap.style.maxHeight = '';
-          wrap.removeEventListener('transitionend', clearInline);
-        }
-      });
-    }
-
-    btn.classList.toggle('open', !isOpen);
-    const label = btn.querySelector('span[data-en]');
-    if (label){
-      const lang = document.documentElement.getAttribute('lang') === 'es' ? 'es' : 'en';
-      const enText = !isOpen ? 'Show less' : 'Show more';
-      const esText = !isOpen ? 'Ver menos' : 'Ver más';
-      label.setAttribute('data-en', enText);
-      label.setAttribute('data-es', esText);
-      label.textContent = lang === 'es' ? esText : enText;
-    }
-    if (isOpen) {
-      wrap.scrollIntoView({behavior:'smooth', block:'start'});
-    }
-  }
-
-  // Commercial - show exactly 2 rows collapsed, show more reveals the rest
-  function commercialGridEls(){
-    const wrap = document.getElementById('commercialWrap');
-    const gallery = wrap ? wrap.querySelector('.work-grid') : null;
-    const btn = document.getElementById('commercialShowMoreBtn');
-    return { wrap, gallery, btn };
-  }
-
-  function computeCommercialCollapsedHeight(gallery){
-    const items = gallery.querySelectorAll('.featured-item');
-    if (!items.length) return gallery.scrollHeight;
-    const colsRaw = getComputedStyle(gallery).gridTemplateColumns.split(' ').filter(Boolean);
-    const cols = colsRaw.length || 1;
-    const breakIndex = cols * 2; // 2 rows
-    if (items.length <= breakIndex) return null; // nothing to collapse, everything fits in 2 rows
-    const galleryTop = gallery.getBoundingClientRect().top;
-    const breakTop = items[breakIndex].getBoundingClientRect().top;
-    return Math.max(0, Math.round(breakTop - galleryTop));
-  }
-
-  function applyCommercialCollapsedHeight(){
-    const { wrap, gallery, btn } = commercialGridEls();
-    if (!wrap || !gallery) return;
-    if (wrap.classList.contains('expanded')) return;
-    const h = computeCommercialCollapsedHeight(gallery);
-    if (h === null){
-      // everything already fits within 2 rows - no need to collapse or show the button
-      wrap.style.maxHeight = 'none';
-      wrap.classList.add('expanded');
-      if (btn) btn.closest('.show-more-wrap').style.display = 'none';
-    } else {
-      wrap.style.maxHeight = h + 'px';
-    }
-  }
-
-  applyCommercialCollapsedHeight();
-  window.addEventListener('resize', () => {
-    const { wrap } = commercialGridEls();
-    if (wrap && !wrap.classList.contains('expanded')) applyCommercialCollapsedHeight();
-  });
-
-  function toggleCommercialShowMore(){
-    const { wrap, gallery, btn } = commercialGridEls();
-    if (!wrap || !gallery || !btn) return;
-    const isOpen = wrap.classList.contains('expanded');
-
-    if (!isOpen){
-      // opening: animate from the 2-row height up to the gallery's real full height
-      wrap.style.maxHeight = wrap.getBoundingClientRect().height + 'px';
-      requestAnimationFrame(() => {
-        wrap.classList.add('expanded');
-        wrap.style.maxHeight = gallery.scrollHeight + 'px';
-      });
-    } else {
-      // closing: animate down from full height back to exactly 2 rows, then let CSS take over
-      const collapsedH = computeCommercialCollapsedHeight(gallery);
-      wrap.style.maxHeight = wrap.scrollHeight + 'px';
-      requestAnimationFrame(() => {
-        wrap.classList.remove('expanded');
-        wrap.style.maxHeight = (collapsedH === null ? gallery.scrollHeight : collapsedH) + 'px';
-      });
-      wrap.addEventListener('transitionend', function clearInline(e){
-        if (e.propertyName === 'max-height' && !wrap.classList.contains('expanded')){
-          wrap.style.maxHeight = computeCommercialCollapsedHeight(gallery) + 'px';
-          wrap.removeEventListener('transitionend', clearInline);
-        }
-      });
-    }
-
-    btn.classList.toggle('open', !isOpen);
-    const label = btn.querySelector('span[data-en]');
-    if (label){
-      const lang = document.documentElement.getAttribute('lang') === 'es' ? 'es' : 'en';
-      const enText = !isOpen ? 'Show less' : 'Show more';
-      const esText = !isOpen ? 'Ver menos' : 'Ver más';
-      label.setAttribute('data-en', enText);
-      label.setAttribute('data-es', esText);
-      label.textContent = lang === 'es' ? esText : enText;
-    }
-    if (isOpen) {
-      wrap.scrollIntoView({behavior:'smooth', block:'start'});
-    }
-  }
-
   // Generic collapsible toggle for tool subcategories
   // Shared helpers for expanding/collapsing groups of subcategories
   function getAllSubcatIds(){
@@ -1421,12 +1341,12 @@ html{scroll-padding-top:0!important}
  function sync(){
    root.classList.toggle('motion-paused',paused);toggle.setAttribute('aria-pressed',String(paused));
    toggle.textContent=paused?'Resume motion ▶':'Pause motion Ⅱ';
-   videos.forEach(v=>{if(visible.has(v)&&!paused&&!document.hidden){if(v.dataset.src){v.src=v.dataset.src;delete v.dataset.src;}v.play().catch(()=>{});}else{v.pause();if(visible.has(v)&&!v.src&&v.dataset.src){v.src=v.dataset.src;delete v.dataset.src;v.preload='metadata';}}});
+   videos.forEach(v=>{if(visible.has(v)&&!v.closest('[hidden]')&&!paused&&!document.hidden){if(v.dataset.src){v.src=v.dataset.src;delete v.dataset.src;}v.play().catch(()=>{});}else{v.pause();if(visible.has(v)&&!v.closest('[hidden]')&&!v.src&&v.dataset.src){v.src=v.dataset.src;delete v.dataset.src;v.preload='metadata';}}});
  }
  const io=new IntersectionObserver(entries=>{entries.forEach(e=>{e.isIntersecting?visible.add(e.target):visible.delete(e.target)});sync()},{threshold:.08});
  videos.forEach(v=>{v.muted=true;io.observe(v)});
  toggle.addEventListener('click',()=>{paused=!paused;sync()});
- mq.addEventListener('change',e=>{paused=e.matches;sync()});document.addEventListener('visibilitychange',sync);sync();
+ mq.addEventListener('change',e=>{paused=e.matches;sync()});document.addEventListener('visibilitychange',sync);document.addEventListener('projectschange',sync);sync();
 
 })();
 </script>

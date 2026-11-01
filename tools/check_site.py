@@ -73,7 +73,7 @@ def main():
             path = Path(tmp) / f'script-{i}.js'
             path.write_text(script)
             subprocess.run(['node', '--check', str(path)], check=True)
-        for path in (ROOT / 'assets/availability.js', ROOT / 'tools/check_availability.mjs'):
+        for path in (ROOT / 'assets/availability.js', ROOT / 'assets/projects.js', ROOT / 'tools/check_availability.mjs', ROOT / 'tools/check_projects.mjs'):
             subprocess.run(['node', '--check', str(path)], check=True)
     if args.backend:
         backend = args.backend.resolve()

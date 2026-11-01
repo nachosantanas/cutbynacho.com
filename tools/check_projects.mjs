@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+import {visibleProjects} from '../assets/projects.js';
+const cards=[{role:'shoot-edit',name:'shooting'},{role:'editor',name:'editing'},{role:'assistant-editor',name:'assisting'},{role:'editor',name:'second edit'}];
+assert.deepEqual(visibleProjects(cards,'editor').map(p=>p.name),['editing','second edit']);
+assert.deepEqual(visibleProjects(cards,'shoot-edit').map(p=>p.name),['shooting']);
+assert.deepEqual(visibleProjects(cards,'assistant-editor').map(p=>p.name),['assisting']);
+assert.deepEqual(visibleProjects(cards,'all',2),cards.slice(0,2));
+assert.deepEqual(visibleProjects(cards,'missing'),[]);
+assert.deepEqual(visibleProjects(cards,'all'),cards);
+console.log('Passed: role distinctions, ordering, complete-card limits and empty filters. Browser layout checks are separate.');
