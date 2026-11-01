@@ -22,7 +22,7 @@ export function validateAvailability(data) {
   return {timezone:'Europe/London',updated_at:data.updated_at,ranges};
 }
 export async function loadAvailability() {
-  const response = await fetch('/assets/availability.json', {cache:'no-store'});
+  const response = await fetch('https://nacho-availability.nuttypony18.chatgpt.site/api/availability', {cache:'no-store',credentials:'omit',signal:AbortSignal.timeout(10000)});
   if (!response.ok) throw new Error('Availability could not be loaded');
   return validateAvailability(await response.json());
 }
