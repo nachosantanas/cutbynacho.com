@@ -113,34 +113,6 @@
     .fade-in{opacity:0;transform:translateY(16px);transition:opacity 0.5s ease,transform 0.5s ease}
     .fade-in.visible{opacity:1;transform:translateY(0)}
 
-    /* SUBSHIFT SECTION */
-    .subshift-wrap{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
-    .subshift-icon{width:56px;height:56px;border-radius:14px;margin-bottom:1.5rem;display:block}
-    .subshift-title{font-family:var(--font-serif);font-size:32px;color:var(--text);margin-bottom:0.5rem}
-    .subshift-title em{font-style:italic;color:var(--accent)}
-    .subshift-desc{color:#b8b4ad;font-size:13px;line-height:1.9;margin-bottom:1.5rem}
-    .subshift-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:2rem}
-    .subshift-tag{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;padding:4px 10px;border:0.5px solid var(--border);color:var(--muted)}
-    .subshift-features{list-style:none;margin-bottom:2rem}
-    .subshift-features li{font-size:12px;color:var(--muted);padding:0.5rem 0;border-bottom:0.5px solid var(--border);letter-spacing:0.04em;display:flex;align-items:center;gap:0.75rem}
-    .subshift-features li::before{content:"—";color:var(--accent);opacity:0.6}
-    .subshift-features li:first-child{border-top:0.5px solid var(--border)}
-    .subshift-gate{margin-top:1rem}
-    .subshift-gate-label{font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--muted);margin-bottom:0.75rem;display:block}
-    .subshift-input-row{display:flex;gap:0;border:0.5px solid var(--border)}
-    .subshift-pw{background:var(--surface);border:none;outline:none;padding:0.6rem 1rem;font-family:var(--font-mono);font-size:12px;color:var(--text);letter-spacing:0.1em;flex:1;width:100%}
-    .subshift-pw::placeholder{color:var(--muted);opacity:0.4}
-    .subshift-pw-btn{background:var(--surface);border:none;border-left:0.5px solid var(--border);padding:0.6rem 1.2rem;font-family:var(--font-mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);cursor:pointer;transition:background 0.2s}
-    .subshift-pw-btn:hover{background:#1a1a18}
-    .subshift-error{font-size:11px;color:#e07070;letter-spacing:0.08em;margin-top:0.5rem;opacity:0;transition:opacity 0.2s}
-    .subshift-error.show{opacity:1}
-    .subshift-download{display:none;margin-top:1.5rem}
-    .subshift-download.show{display:block}
-    .subshift-dl-btn{display:inline-flex;align-items:center;gap:0.75rem;background:var(--accent);color:var(--bg);font-family:var(--font-mono);font-size:12px;letter-spacing:0.1em;text-transform:uppercase;padding:0.75rem 1.5rem;text-decoration:none;transition:opacity 0.2s}
-    .subshift-dl-btn:hover{opacity:0.85}
-    .subshift-dl-note{font-size:10px;color:var(--muted);letter-spacing:0.06em;margin-top:0.75rem;line-height:1.7}
-    .subshift-shortcuts{border-top:0.5px solid var(--border);padding-top:2rem}
-    .subshift-shortcuts-label{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;display:block}
     .shortcut-row{display:flex;justify-content:space-between;padding:0.4rem 0;border-bottom:0.5px solid var(--border);font-size:11px}
     .shortcut-row:last-child{border-bottom:none}
     .shortcut-action{color:var(--muted);letter-spacing:0.04em}
@@ -510,7 +482,6 @@ html{scroll-padding-top:0!important}
 .build-card[open] .build-expand{transform:rotate(45deg)}
 .build-card p{color:var(--muted);margin-top:20px;font-size:12px;line-height:1.8}
 .build-card a,.builds-repo{display:inline-block;margin-top:16px;color:var(--accent);text-decoration:none;font-size:11px;border-bottom:1px solid var(--border)}
-#subshiftToolRow{margin-top:32px;max-width:600px}
 .site-cursor{position:fixed;top:0;left:0;width:24px;height:24px;border:2px solid #d1ff65;border-radius:50%;background:#d1ff6529;box-shadow:0 0 0 1px #080b0b;z-index:2147483647;pointer-events:none;display:none;transform:translate(-50%,-50%)}
 .site-cursor::after{content:'';position:absolute;width:4px;height:4px;left:50%;top:50%;transform:translate(-50%,-50%);border-radius:50%;background:#d1ff65}
 .site-cursor.over-link{width:34px;height:34px;background:#d1ff6540}
@@ -933,12 +904,7 @@ html{scroll-padding-top:0!important}
 <details class="build-card" id="build-projects"><summary><img src="assets/builds/projects.png" width="56" height="56" alt="" loading="lazy"><span>Projects</span><span class="build-expand" aria-hidden="true">+</span></summary><p data-en="Create project folders and templates for Avid, Premiere and Resolve. Uses my local templates and needs configuration on another Mac." data-es="Crea carpetas y plantillas de proyecto para Avid, Premiere y Resolve. Usa mis plantillas locales y necesita configuración en otro Mac.">Create project folders and templates for Avid, Premiere and Resolve. Uses my local templates and needs configuration on another Mac.</p><a href="https://github.com/nachosantanas/finder-tools#projects" target="_blank" rel="noopener" data-en="Read about this tool ↗" data-es="Información de la herramienta ↗">Read about this tool ↗</a></details></div>
 <p class="builds-note" data-en="Documentation and icons only. These tools are part of my personal setup; no app downloads or source code are published here." data-es="Solo documentación e iconos. Estas herramientas forman parte de mi configuración personal; aquí no se publican descargas ni código fuente.">Documentation and icons only. These tools are part of my personal setup; no app downloads or source code are published here.</p>
 <a class="builds-repo" href="https://github.com/nachosantanas/finder-tools" target="_blank" rel="noopener" data-en="Explore the Finder Tools catalogue on GitHub ↗" data-es="Explora el catálogo de Finder Tools en GitHub ↗">Explore the Finder Tools catalogue on GitHub ↗</a>
-      <span class="tool-name" id="subshiftToolRow">
-        <span class="tool-name-row">
-          <span class="tool-name-left">SubShift</span>
-        </span>
-        <span class="tool-desc"><span data-en="Native macOS caption converter — SRT · Avid DS · TXT · VTT" data-es="Conversor de subtítulos nativo para macOS — SRT · Avid DS · TXT · VTT">Native macOS caption converter — SRT · Avid DS · TXT · VTT</span><br><span id="subshiftInlineGate" onclick="event.stopPropagation()" style="display:inline-block;margin-top:0.5rem;width:100%"><span style="display:flex;gap:0;border:0.5px solid var(--border);max-width:280px"><input id="subshiftPw" type="password" placeholder="Password" data-en-placeholder="Password" data-es-placeholder="Contraseña" autocomplete="off" onclick="event.stopPropagation()" style="background:var(--bg);border:none;outline:none;padding:0.4rem 0.75rem;font-family:var(--font-mono);font-size:11px;color:var(--text);letter-spacing:0.08em;flex:1;width:100%"><button onclick="checkSubshiftPw(event)" style="background:var(--bg);border:none;border-left:0.5px solid var(--border);padding:0.4rem 0.75rem;font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);cursor:pointer">→</button></span><span id="subshiftErr" style="font-size:10px;color:#e07070;letter-spacing:0.08em;margin-top:0.35rem;display:none" data-en="Incorrect password" data-es="Contraseña incorrecta">Incorrect password</span><a id="subshiftDl" href="https://cutbynacho.com/subshift/SubShift.zip" download style="display:none;margin-top:0.5rem;font-size:10px;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;text-decoration:none" data-en="↓ Download SubShift v1.1" data-es="↓ Descargar SubShift v1.1">↓ Download SubShift v1.1</a></span></span>
-      </span>
+
 </div></section>
 
 <div class="section" id="contact">
@@ -1067,14 +1033,7 @@ html{scroll-padding-top:0!important}
       document.querySelectorAll('.tool-name.open').forEach(n=>n.classList.remove('open'));
       if(!isOpen) {
         el.classList.add('open');
-      } else {
-        // Reset SubShift gate when closing
-        const pw = document.getElementById('subshiftPw');
-        const err = document.getElementById('subshiftErr');
-        const dl = document.getElementById('subshiftDl');
-        if (pw) { pw.value = ''; pw.disabled = false; }
-        if (err) err.style.display = 'none';
-        if (dl) dl.style.display = 'none';
+
       }
     });
   });
@@ -1179,27 +1138,6 @@ html{scroll-padding-top:0!important}
       document.querySelectorAll('.featured-item').forEach(i => i.classList.remove('touch-active'));
     }
   }, {passive:true});
-
-  // ── SUBSHIFT PASSWORD ──
-  async function hashPw(s){const e=new TextEncoder().encode(s);const h=await crypto.subtle.digest('SHA-256',e);return Array.from(new Uint8Array(h)).map(b=>b.toString(16).padStart(2,'0')).join('')}
-  async function checkSubshiftPw(e) {
-    if (e) e.stopPropagation();
-    const pw = document.getElementById('subshiftPw').value.trim();
-    const err = document.getElementById('subshiftErr');
-    const dl  = document.getElementById('subshiftDl');
-    const hash = await hashPw(pw.toLowerCase());
-    if (hash === 'a34cb4a58b3420f47e3c072fab28abc75a0cf4148362892fce6d920f09529018') {
-      err.style.display = 'none';
-      dl.style.display = 'inline-block';
-      document.getElementById('subshiftPw').disabled = true;
-    } else {
-      err.style.display = 'block';
-    }
-  }
-  document.addEventListener('DOMContentLoaded', () => {
-    const pw = document.getElementById('subshiftPw');
-    if (pw) pw.addEventListener('keydown', e => { if (e.key === 'Enter') checkSubshiftPw(e); });
-  });
 
   // Fix Safari mobile nav gap
   function fixNavPadding() {
