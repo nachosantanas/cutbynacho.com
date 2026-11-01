@@ -1,0 +1,68 @@
+[
+  {
+    "name": "Atom Browser",
+    "slug": "atom-browser",
+    "description": "Browse Avid MXF atoms as clips, preview them in IINA, and inspect multicam groups.",
+    "description_es": "Explora archivos MXF de Avid como clips, previsualízalos en IINA y revisa grupos multicámara."
+  },
+  {
+    "name": "Clip Info",
+    "slug": "clip-info",
+    "description": "A live clip-information window that follows your selection in Finder.",
+    "description_es": "Una ventana de información de clips que sigue tu selección en Finder."
+  },
+  {
+    "name": "Runtime",
+    "slug": "runtime",
+    "description": "Calculate the total running time of selected clips or folders, with a timeline frame-rate picker.",
+    "description_es": "Calcula la duración total de clips o carpetas, con selector de frecuencia de fotogramas."
+  },
+  {
+    "name": "Timecode Changer",
+    "slug": "timecode-changer",
+    "description": "Batch-change timecode in MOV, MP4, MXF and WAV without re-encoding. Also edit reel names in MOV/MP4 and tape names in WAV. Creates copies by default.",
+    "description_es": "Cambia códigos de tiempo en MOV, MP4, MXF y WAV sin recodificar. También modifica nombres de bobina en MOV/MP4 y cinta en WAV. Crea copias por defecto."
+  },
+  {
+    "name": "Captions to Titles",
+    "slug": "captions-to-titles",
+    "description": "Convert captions in Final Cut Event XML into titles with matching timing, for CommandPost’s Titles to Keywords workflow. Requires Python 3.9 or newer.",
+    "description_es": "Convierte subtítulos de un XML de evento de Final Cut en títulos con los mismos tiempos, para Titles to Keywords de CommandPost. Requiere Python 3.9 o posterior."
+  },
+  {
+    "name": "Proxy Size",
+    "slug": "proxy-size",
+    "description": "Calculate proxy dimensions at 50%, 25% and standard sizes while preserving the source aspect ratio. Copy dimensions into Shutter Encoder.",
+    "description_es": "Calcula dimensiones de proxy al 50 %, 25 % y tamaños estándar conservando la proporción. Copia las dimensiones a Shutter Encoder."
+  },
+  {
+    "name": "Video Tags",
+    "slug": "video-tags",
+    "description": "Add technical metadata and QC flags as Finder tags, which Final Cut can import as keywords.",
+    "description_es": "Añade metadatos técnicos y avisos de control de calidad como etiquetas de Finder, que Final Cut puede importar como palabras clave."
+  },
+  {
+    "name": "TC to Comments",
+    "slug": "tc-to-comments",
+    "description": "Write each clip’s starting timecode into its Finder comment while preserving existing notes.",
+    "description_es": "Escribe el código de tiempo inicial de cada clip en su comentario de Finder conservando las notas existentes."
+  },
+  {
+    "name": "Comment",
+    "slug": "comment",
+    "description": "Apply a comment to selected Finder files, replacing or appending to existing comments.",
+    "description_es": "Aplica un comentario a los archivos seleccionados en Finder, sustituyendo o ampliando los comentarios existentes."
+  },
+  {
+    "name": "Copy Names",
+    "slug": "copy-names",
+    "description": "Copy selected file names in natural order. Hold Option to omit file extensions.",
+    "description_es": "Copia los nombres de archivos seleccionados en orden natural. Mantén Opción para omitir las extensiones."
+  },
+  {
+    "name": "Projects",
+    "slug": "projects",
+    "description": "Create project folders and templates for Avid, Premiere and Resolve. Uses my local templates and needs configuration on another Mac.",
+    "description_es": "Crea carpetas y plantillas de proyecto para Avid, Premiere y Resolve. Usa mis plantillas locales y necesita configuración en otro Mac."
+  }
+]

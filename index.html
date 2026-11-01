@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Nacho Santana - Editor</title>
-  <meta name="description" content="Video editor based in London, cutting social, branded, documentary and commercial work in Avid, Premiere, Resolve and Final Cut.">
+  <meta name="description" content="Video editor and edit assistant based in London, cutting social, branded, documentary and commercial work in Avid, Premiere, Resolve and Final Cut.">
 
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a0a09'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='serif' font-size='13' font-style='italic' fill='%23c8b89a'>NS</text></svg>">
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://cutbynacho.com">
   <meta property="og:title" content="Nacho Santana - Editor">
-  <meta property="og:description" content="Video editor based in London, cutting social, branded, documentary and commercial work in Avid, Premiere, Resolve and Final Cut.">
+  <meta property="og:description" content="Video editor and edit assistant based in London, cutting social, branded, documentary and commercial work in Avid, Premiere, Resolve and Final Cut.">
 
   <link rel="preconnect" href="https://img.youtube.com">
   <link rel="preconnect" href="https://vimeo.com">
@@ -183,8 +183,8 @@
     .personal-builds-block{border-radius:4px;margin:0 -0.75rem;padding:0 0.75rem}
     .personal-builds-block.flash{animation:personalBuildsFlash 3s ease forwards}
     @keyframes personalBuildsFlash{
-      0%{background:rgba(200,184,154,0.18)}
-      60%{background:rgba(200,184,154,0.18)}
+      0%{background:rgba(209,255,101,0.08)}
+      60%{background:rgba(209,255,101,0.08)}
       100%{background:rgba(200,184,154,0)}
     }
 
@@ -490,13 +490,33 @@ html.motion-paused .float-card{animation-play-state:paused}html.motion-paused{sc
 }
 
 
-/* Native cursors stay responsive and retain text-selection behaviour. */
-@media(hover:hover) and (pointer:fine){
-  body{cursor:url('assets/cursor-ring.svg') 12 12,auto}
-  a,button,[role="button"],.tool-name,.tool-cat-label,.tool-subcat.collapsible,#langToggle span{cursor:url('assets/cursor-ring-active.svg') 16 16,pointer!important}
-  input,textarea,[contenteditable="true"],p{cursor:text}
-}
-
+/* Explicit selection colour also covers Safari's prefixed text fill. */
+::selection,*::selection{background-color:#d1ff65!important;color:#080b0b!important;-webkit-text-fill-color:#080b0b!important}
+html{scroll-padding-top:0!important}
+.section,#personal-projects{scroll-margin-top:112px}
+#work{scroll-margin-top:112px}
+.future-title span:last-child{max-width:640px}
+.personal-builds-block{margin:0;border-radius:0;padding-left:5vw;padding-right:5vw}
+#personalBuildsBlock>.section-label{font-family:var(--font-serif);font-size:clamp(27px,2.7vw,38px);letter-spacing:-.035em;text-transform:none}
+#personal-projects{font:inherit;color:inherit;background:none;border:0;text-align:left;cursor:pointer}
+.personal-builds-content.open{max-height:none;overflow:visible}
+.builds-intro,.builds-note{max-width:700px;color:var(--muted);margin-bottom:28px}
+.builds-note{font-size:11px;margin-top:28px;margin-bottom:14px}
+.builds-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.build-card{border:1px solid var(--border);padding:20px;background:var(--surface);align-self:start}
+.build-card summary{display:flex;align-items:center;gap:16px;list-style:none;cursor:pointer;font-family:var(--font-serif);font-size:19px;letter-spacing:-.03em}
+.build-card summary::-webkit-details-marker{display:none}
+.build-card img{object-fit:contain;flex-shrink:0}.build-expand{margin-left:auto;color:var(--accent)}
+.build-card[open] .build-expand{transform:rotate(45deg)}
+.build-card p{color:var(--muted);margin-top:20px;font-size:12px;line-height:1.8}
+.build-card a,.builds-repo{display:inline-block;margin-top:16px;color:var(--accent);text-decoration:none;font-size:11px;border-bottom:1px solid var(--border)}
+#subshiftToolRow{margin-top:32px;max-width:600px}
+.site-cursor{position:fixed;top:0;left:0;width:24px;height:24px;border:2px solid #d1ff65;border-radius:50%;background:#d1ff6529;box-shadow:0 0 0 1px #080b0b;z-index:2147483647;pointer-events:none;display:none;transform:translate(-50%,-50%)}
+.site-cursor::after{content:'';position:absolute;width:4px;height:4px;left:50%;top:50%;transform:translate(-50%,-50%);border-radius:50%;background:#d1ff65}
+.site-cursor.over-link{width:34px;height:34px;background:#d1ff6540}
+@media(hover:hover) and (pointer:fine){html.cursor-ready,html.cursor-ready *{cursor:none!important}html.cursor-ready .site-cursor{display:block}}
+@media(max-width:900px){.builds-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.builds-grid{grid-template-columns:1fr}.personal-builds-block{padding-left:6vw;padding-right:6vw}.future-title span:last-child{font-size:.3em;max-width:310px}.section,#work,#personal-projects{scroll-margin-top:96px}}
 </style>
 
   <script type="application/ld+json">
@@ -504,7 +524,7 @@ html.motion-paused .float-card{animation-play-state:paused}html.motion-paused{sc
     "@context": "https://schema.org",
     "@type": "Person",
     "name": "Nacho Santana",
-    "jobTitle": "Video Editor",
+    "jobTitle": "Video Editor and Edit Assistant",
     "url": "https://cutbynacho.com",
     "sameAs": [
       "https://www.linkedin.com/in/cutbynacho/"
@@ -555,11 +575,11 @@ html.motion-paused .float-card{animation-play-state:paused}html.motion-paused{sc
 
 <div class="work-flash" id="workFlash"></div>
 <section class="future-hero" aria-label="Nacho Santana, video editor">
-  <div class="hero-meta"><span data-en="London · Video editor" data-es="Londres · Montador">London · Video editor</span><span>Avid / Premiere / Resolve / Final Cut</span></div>
+  <div class="hero-meta"><span data-en="London · Video editor &amp; Edit assistant" data-es="Londres · Montador y Ayudante de montaje">London · Video editor &amp; Edit assistant</span><span>Avid / Premiere / Resolve / Final Cut</span></div>
   <div class="hero-copy">
-    <h1 class="future-title"><span>Nacho</span><span class="outline">Santana.</span><span data-en="Video editor." data-es="Montador.">Video editor.</span></h1>
-    <p data-en="London-based video editor working across commercial, branded, documentary and social projects." data-es="Montador en Londres. Publicidad, contenido de marca, documentales y redes sociales.">London-based video editor working across commercial, branded, documentary and social projects.</p>
-    <div class="hero-actions"><a class="primary" href="https://vimeo.com/1197459742?fl=ip&amp;fe=ec" target="_blank" rel="noopener" data-en="▶ Watch showreel" data-es="▶ Ver showreel">▶ Watch showreel</a><a href="#work" data-en="View work ↘" data-es="Ver trabajos ↘">View work ↘</a></div>
+    <h1 class="future-title"><span>Nacho</span><span class="outline">Santana.</span><span data-en="Video editor &amp; Edit assistant." data-es="Montador y Ayudante de montaje.">Video editor &amp; Edit assistant.</span></h1>
+    <p data-en="London-based video editor and edit assistant working across commercial, branded, documentary and social projects." data-es="Montador y ayudante de montaje en Londres. Publicidad, contenido de marca, documentales y redes sociales.">London-based video editor and edit assistant working across commercial, branded, documentary and social projects.</p>
+    <div class="hero-actions"><a class="primary" href="https://vimeo.com/1197459742?fl=ip&amp;fe=ec" target="_blank" rel="noopener" data-en="▶ Watch showreel" data-es="▶ Ver showreel">▶ Watch showreel</a><a href="#work" data-en="View work ↘" data-es="Ver trabajos ↘">View work ↘</a><a href="#personal-projects" data-en="Explore my builds ↗" data-es="Explora mis herramientas ↗">Explore my builds ↗</a></div>
   </div>
   <div class="hero-bottom"><span data-en="Portfolio / 2026" data-es="Portfolio / 2026">Portfolio / 2026</span><a class="hero-scroll" href="#work" data-en="Selected work ↓" data-es="Trabajo seleccionado ↓">Selected work ↓</a><button type="button" class="motion-toggle" id="motionToggle" aria-pressed="false">Pause motion Ⅱ</button></div>
 </section>
@@ -733,7 +753,7 @@ html.motion-paused .float-card{animation-play-state:paused}html.motion-paused{sc
   <div class="section-label" data-en="About" data-es="Sobre mí">About</div>
   <div class="about-grid reveal">
     <div class="about-text">
-      <p data-en="I&#x27;m a video editor based in London, cutting social, branded, documentary and commercial work. I edit in Avid, Premiere, Resolve and Final Cut, and I&#x27;m comfortable taking a project from rushes through to final delivery." data-es="Soy montador de vídeo con base en Londres. Monto piezas para redes sociales, contenido de marca, documental y publicidad. Trabajo en Avid, Premiere, Resolve y Final Cut, y me siento cómodo llevando un proyecto desde el material bruto hasta la entrega final.">I'm a video editor based in London, cutting social, branded, documentary and commercial work. I edit in Avid, Premiere, Resolve and Final Cut, and I'm comfortable taking a project from rushes through to final delivery.</p>
+      <p data-en="I&#x27;m a video editor based in London, cutting social, branded, documentary and commercial work. I edit in Avid, Premiere, Resolve and Final Cut, and I&#x27;m comfortable taking a project from rushes through to final delivery." data-es="Soy montador de vídeo con base en Londres. Monto piezas para redes sociales, contenido de marca, documental y publicidad. Trabajo en Avid, Premiere, Resolve y Final Cut, y me siento cómodo llevando un proyecto desde el material bruto hasta la entrega final.">I'm a video editor and edit assistant based in London, cutting social, branded, documentary and commercial work. I edit in Avid, Premiere, Resolve and Final Cut, and I'm comfortable taking a project from rushes through to final delivery.</p>
       <p data-en="My best work starts with the audience. I look for the opening image, the rhythm and the narrative turn that will hold attention, then shape structure, duration and framing for each platform. I can recut long material into focused social stories, or build a film from interviews and observational footage." data-es="Mi mejor trabajo empieza por el público. Busco la imagen de apertura, el ritmo y el giro narrativo que mantienen la atención, y adapto la estructura, la duración y el encuadre a cada plataforma. Puedo convertir material largo en historias concretas para redes, o construir una pieza a partir de entrevistas y material observacional.">My best work starts with the audience. I look for the opening image, the rhythm and the narrative turn that will hold attention, then shape structure, duration and framing for each platform. I can recut long material into focused social stories, or build a film from interviews and observational footage.</p>
       <p data-en="At the Foreign, Commonwealth and Development Office I cut content from international shoots, global events and fast-moving public communications, often shooting it myself. In commercial post, working with The Quarry, Tenthree, Final Cut, Doma, Avenues and Stitch, I&#x27;ve seen how premium branded work is built, from first assembly to final conform." data-es="En el Foreign, Commonwealth and Development Office monté contenido de rodajes internacionales, eventos globales y comunicaciones públicas con plazos ajustados, a menudo rodándolo yo mismo. En postproducción publicitaria, con The Quarry, Tenthree, Final Cut, Doma, Avenues y Stitch, he visto cómo se construye el trabajo de marca de alto nivel, desde el primer montaje hasta el conformado final.">At the Foreign, Commonwealth and Development Office I cut content from international shoots, global events and fast-moving public communications, often shooting it myself. In commercial post, working with The Quarry, Tenthree, Final Cut, Doma, Avenues and Stitch, I've seen how premium branded work is built, from first assembly to final conform.</p>
       <p data-en="The technical side still matters to me. Clean, organised timelines keep the edit moving smoothly through conform, grade and delivery, and when a workflow slows the creative work down, I build my own tools and scripts to fix it." data-es="El lado técnico sigue siendo importante para mí. Un timeline limpio y organizado hace que el montaje avance sin problemas por el conformado, el etalonaje y la entrega, y cuando un flujo de trabajo frena el trabajo creativo, creo mis propias herramientas y scripts para resolverlo.">The technical side still matters to me. Clean, organised timelines keep the edit moving smoothly through conform, grade and delivery, and when a workflow slows the creative work down, I build my own tools and scripts to fix it.</p>
@@ -891,21 +911,35 @@ html.motion-paused .float-card{animation-play-state:paused}html.motion-paused{sc
       <span class="tool-name"><span class="tool-name-row">Nobe Display </span><span class="tool-desc" data-en="Resolve plugin for real-time video output to an external monitor during colour and finishing work." data-es="Plugin de Resolve para salida de vídeo en tiempo real a un monitor externo durante el etalonaje y el acabado.">Resolve plugin for real-time video output to an external monitor during colour and finishing work.</span></span>
       <span class="tool-name"><span class="tool-name-row">Captioneer </span><span class="tool-desc" data-en="Imports SRT files and auto-positions captions across Premiere sequences." data-es="Importa archivos SRT y posiciona automáticamente los subtítulos en secuencias de Premiere.">Imports SRT files and auto-positions captions across Premiere sequences.</span></span>
       </div>
-      <div class="personal-builds-block" id="personalBuildsBlock">
-      <span class="tool-subcat collapsible" id="personal-projects" style="margin-top:0.5rem;margin-bottom:0.25rem" data-en="Personal builds" data-es="Desarrollos propios" onclick="togglePersonalBuilds()">Personal builds</span>
-      <div class="personal-builds-content" id="personalBuildsContent">
+    </div>
+  </div>
+</div>
+
+
+<section class="section personal-builds-block" id="personalBuildsBlock">
+<h2 class="section-label"><button type="button" id="personal-projects" onclick="togglePersonalBuilds()" aria-expanded="false" aria-controls="personalBuildsContent" data-en="Personal builds +" data-es="Desarrollos propios +">Personal builds +</button></h2>
+<p class="builds-intro" data-en="macOS tools I build for my editing workflow. Click a tool to explore what it does." data-es="Herramientas de macOS que desarrollo para mi trabajo de montaje. Haz clic para conocer cada una.">macOS tools I build for my editing workflow. Click a tool to explore what it does.</p>
+<div class="personal-builds-content" id="personalBuildsContent">
+<div class="builds-grid"><details class="build-card" id="build-atom-browser"><summary><img src="assets/builds/atom-browser.png" width="56" height="56" alt="" loading="lazy"><span>Atom Browser</span><span class="build-expand" aria-hidden="true">+</span></summary><p data-en="Browse Avid MXF atoms as clips, preview them in IINA, and inspect multicam groups." data-es="Explora archivos MXF de Avid como clips, previsualízalos en IINA y revisa grupos multicámara.">Browse Avid MXF atoms as clips, preview them in IINA, and inspect multicam groups.</p><a href="https://github.com/nachosantanas/finder-tools#atom-browser" target="_blank" rel="noopener" data-en="Read about this tool ↗" data-es="Información de la herramienta ↗">Read about this tool ↗</a></details>
+<details class="build-card" id="build-clip-info"><summary><img src="assets/builds/clip-info.png" width="56" height="56" alt="" loading="lazy"><span>Clip Info</span><span class="build-expand" aria-hidden="true">+</span></summary><p data-en="A live clip-information window that follows your selection in Finder." data-es="Una ventana de información de clips que sigue tu selección en Finder.">A live clip-information window that follows your selection in Finder.</p><a href="https://github.com/nachosantanas/finder-tools#clip-info" target="_blank" rel="noopener" data-en="Read about this tool ↗" data-es="Información de la herramienta ↗">Read about this tool ↗</a></details>
+<details class="build-card" id="build-runtime"><summary><img src="assets/builds/runtime.png" width="56" height="56" alt="" loading="lazy"><span>Runtime</span><span class="build-expand" aria-hidden="true">+</span></summary><p data-en="Calculate the total running time of selected clips or folders, with a timeline frame-rate picker." data-es="Calcula la duración total de clips o carpetas, con selector de frecuencia de fotogramas.">Calculate the total running time of selected clips or folders, with a timeline frame-rate picker.</p><a href="https://github.com/nachosantanas/finder-tools#runtime" target="_blank" rel="noopener" data-en="Read about this tool ↗" data-es="Información de la herramienta ↗">Read about this tool ↗</a></details>
+<details class="build-card" id="build-timecode-changer"><summary><img src="assets/builds/timecode-changer.png" width="56" height="56" alt="" loading="lazy"><span>Timecode Changer</span><span class="build-expand" aria-hidden="true">+</span></summary><p data-en="Batch-change timecode in MOV, MP4, MXF and WAV without re-encoding. Also edit reel names in MOV/MP4 and tape names in WAV. Creates copies by default." data-es="Cambia códigos de tiempo en MOV, MP4, MXF y WAV sin recodificar. También modifica nombres de bobina en MOV/MP4 y cinta en WAV. Crea copias por defecto.">Batch-change timecode in MOV, MP4, MXF and WAV without re-encoding. Also edit reel names in MOV/MP4 and tape names in WAV. Creates copies by default.</p><a href="https://github.com/nachosantanas/finder-tools#timecode-changer" target="_blank" rel="noopener" data-en="Read about this tool ↗" data-es="Información de la herramienta ↗">Read about this tool ↗</a></details>
+<details class="build-card" id="build-captions-to-titles"><summary><img src="assets/builds/captions-to-titles.png" width="56" height="56" alt="" loading="lazy"><span>Captions to Titles</span><span class="build-expand" aria-hidden="true">+</span></summary><p data-en="Convert captions in Final Cut Event XML into titles with matching timing, for CommandPost’s Titles to Keywords workflow. Requires Python 3.9 or newer." data-es="Convierte subtítulos de un XML de evento de Final Cut en títulos con los mismos tiempos, para Titles to Keywords de CommandPost. Requiere Python 3.9 o posterior.">Convert captions in Final Cut Event XML into titles with matching timing, for CommandPost’s Titles to Keywords workflow. Requires Python 3.9 or newer.</p><a href="https://github.com/nachosantanas/finder-tools#captions-to-titles" target="_blank" rel="noopener" data-en="Read about this tool ↗" data-es="Información de la herramienta ↗">Read about this tool ↗</a></details>
+<details class="build-card" id="build-proxy-size"><summary><img src="assets/builds/proxy-size.png" width="56" height="56" alt="" loading="lazy"><span>Proxy Size</span><span class="build-expand" aria-hidden="true">+</span></summary><p data-en="Calculate proxy dimensions at 50%, 25% and standard sizes while preserving the source aspect ratio. Copy dimensions into Shutter Encoder." data-es="Calcula dimensiones de proxy al 50 %, 25 % y tamaños estándar conservando la proporción. Copia las dimensiones a Shutter Encoder.">Calculate proxy dimensions at 50%, 25% and standard sizes while preserving the source aspect ratio. Copy dimensions into Shutter Encoder.</p><a href="https://github.com/nachosantanas/finder-tools#proxy-size" target="_blank" rel="noopener" data-en="Read about this tool ↗" data-es="Información de la herramienta ↗">Read about this tool ↗</a></details>
+<details class="build-card" id="build-video-tags"><summary><img src="assets/builds/video-tags.png" width="56" height="56" alt="" loading="lazy"><span>Video Tags</span><span class="build-expand" aria-hidden="true">+</span></summary><p data-en="Add technical metadata and QC flags as Finder tags, which Final Cut can import as keywords." data-es="Añade metadatos técnicos y avisos de control de calidad como etiquetas de Finder, que Final Cut puede importar como palabras clave.">Add technical metadata and QC flags as Finder tags, which Final Cut can import as keywords.</p><a href="https://github.com/nachosantanas/finder-tools#video-tags" target="_blank" rel="noopener" data-en="Read about this tool ↗" data-es="Información de la herramienta ↗">Read about this tool ↗</a></details>
+<details class="build-card" id="build-tc-to-comments"><summary><img src="assets/builds/tc-to-comments.png" width="56" height="56" alt="" loading="lazy"><span>TC to Comments</span><span class="build-expand" aria-hidden="true">+</span></summary><p data-en="Write each clip’s starting timecode into its Finder comment while preserving existing notes." data-es="Escribe el código de tiempo inicial de cada clip en su comentario de Finder conservando las notas existentes.">Write each clip’s starting timecode into its Finder comment while preserving existing notes.</p><a href="https://github.com/nachosantanas/finder-tools#tc-to-comments" target="_blank" rel="noopener" data-en="Read about this tool ↗" data-es="Información de la herramienta ↗">Read about this tool ↗</a></details>
+<details class="build-card" id="build-comment"><summary><img src="assets/builds/comment.png" width="56" height="56" alt="" loading="lazy"><span>Comment</span><span class="build-expand" aria-hidden="true">+</span></summary><p data-en="Apply a comment to selected Finder files, replacing or appending to existing comments." data-es="Aplica un comentario a los archivos seleccionados en Finder, sustituyendo o ampliando los comentarios existentes.">Apply a comment to selected Finder files, replacing or appending to existing comments.</p><a href="https://github.com/nachosantanas/finder-tools#comment" target="_blank" rel="noopener" data-en="Read about this tool ↗" data-es="Información de la herramienta ↗">Read about this tool ↗</a></details>
+<details class="build-card" id="build-copy-names"><summary><img src="assets/builds/copy-names.png" width="56" height="56" alt="" loading="lazy"><span>Copy Names</span><span class="build-expand" aria-hidden="true">+</span></summary><p data-en="Copy selected file names in natural order. Hold Option to omit file extensions." data-es="Copia los nombres de archivos seleccionados en orden natural. Mantén Opción para omitir las extensiones.">Copy selected file names in natural order. Hold Option to omit file extensions.</p><a href="https://github.com/nachosantanas/finder-tools#copy-names" target="_blank" rel="noopener" data-en="Read about this tool ↗" data-es="Información de la herramienta ↗">Read about this tool ↗</a></details>
+<details class="build-card" id="build-projects"><summary><img src="assets/builds/projects.png" width="56" height="56" alt="" loading="lazy"><span>Projects</span><span class="build-expand" aria-hidden="true">+</span></summary><p data-en="Create project folders and templates for Avid, Premiere and Resolve. Uses my local templates and needs configuration on another Mac." data-es="Crea carpetas y plantillas de proyecto para Avid, Premiere y Resolve. Usa mis plantillas locales y necesita configuración en otro Mac.">Create project folders and templates for Avid, Premiere and Resolve. Uses my local templates and needs configuration on another Mac.</p><a href="https://github.com/nachosantanas/finder-tools#projects" target="_blank" rel="noopener" data-en="Read about this tool ↗" data-es="Información de la herramienta ↗">Read about this tool ↗</a></details></div>
+<p class="builds-note" data-en="Documentation and icons only. These tools are part of my personal setup; no app downloads or source code are published here." data-es="Solo documentación e iconos. Estas herramientas forman parte de mi configuración personal; aquí no se publican descargas ni código fuente.">Documentation and icons only. These tools are part of my personal setup; no app downloads or source code are published here.</p>
+<a class="builds-repo" href="https://github.com/nachosantanas/finder-tools" target="_blank" rel="noopener" data-en="Explore the Finder Tools catalogue on GitHub ↗" data-es="Explora el catálogo de Finder Tools en GitHub ↗">Explore the Finder Tools catalogue on GitHub ↗</a>
       <span class="tool-name" id="subshiftToolRow">
         <span class="tool-name-row">
           <span class="tool-name-left">SubShift</span>
         </span>
         <span class="tool-desc"><span data-en="Native macOS caption converter — SRT · Avid DS · TXT · VTT" data-es="Conversor de subtítulos nativo para macOS — SRT · Avid DS · TXT · VTT">Native macOS caption converter — SRT · Avid DS · TXT · VTT</span><br><span id="subshiftInlineGate" onclick="event.stopPropagation()" style="display:inline-block;margin-top:0.5rem;width:100%"><span style="display:flex;gap:0;border:0.5px solid var(--border);max-width:280px"><input id="subshiftPw" type="password" placeholder="Password" data-en-placeholder="Password" data-es-placeholder="Contraseña" autocomplete="off" onclick="event.stopPropagation()" style="background:var(--bg);border:none;outline:none;padding:0.4rem 0.75rem;font-family:var(--font-mono);font-size:11px;color:var(--text);letter-spacing:0.08em;flex:1;width:100%"><button onclick="checkSubshiftPw(event)" style="background:var(--bg);border:none;border-left:0.5px solid var(--border);padding:0.4rem 0.75rem;font-family:var(--font-mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);cursor:pointer">→</button></span><span id="subshiftErr" style="font-size:10px;color:#e07070;letter-spacing:0.08em;margin-top:0.35rem;display:none" data-en="Incorrect password" data-es="Contraseña incorrecta">Incorrect password</span><a id="subshiftDl" href="https://cutbynacho.com/subshift/SubShift.zip" download style="display:none;margin-top:0.5rem;font-size:10px;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;text-decoration:none" data-en="↓ Download SubShift v1.1" data-es="↓ Descargar SubShift v1.1">↓ Download SubShift v1.1</a></span></span>
       </span>
-      </div>
-      </div>
-    </div>
-  </div>
-</div>
-
+</div></section>
 
 <div class="section" id="contact">
   <div class="section-label" data-en="Get in touch" data-es="Contacta conmigo">Get in touch</div>
@@ -1184,35 +1218,13 @@ html.motion-paused .float-card{animation-play-state:paused}html.motion-paused{sc
   window.addEventListener('resize', fixNavPadding);
   window.addEventListener('load', () => setActive('work'));
 
-  // Nav scroll with correct offset
-  document.querySelectorAll('.nav-links a').forEach(a => {
+  // Give all work links the same sticky-nav clearance.
+  document.querySelectorAll('a[href="#work"],a[href="#commercial"],a[href="#about"],a[href="#tools"],a[href="#contact"]').forEach(a => {
     a.addEventListener('click', e => {
+      const target=document.querySelector(a.getAttribute('href'));
+      if(!target)return;
       e.preventDefault();
-      const href = a.getAttribute('href');
-      if (href === '#') {
-        window.scrollTo({top: 0, behavior: 'smooth'});
-        setTimeout(() => setActive('work'), 300);
-        const flash = document.getElementById('workFlash');
-        if (flash) {
-          flash.classList.add('active');
-          setTimeout(() => flash.classList.remove('active'), 350);
-        }
-        return;
-      }
-      const target = document.querySelector(href);
-      if (!target) return;
-      const nav = document.querySelector('nav');
-      const navH = nav ? nav.offsetHeight : 0;
-      const rect = target.getBoundingClientRect();
-      const top = rect.top + window.scrollY - navH - 2;
-      window.scrollTo({top, behavior: 'smooth'});
-      target.classList.remove('flash'); void target.offsetWidth; target.classList.add('flash');
-      target.addEventListener('animationend', () => target.classList.remove('flash'), {once:true});
-      const label = target.querySelector('.section-label');
-      if (label) {
-        label.classList.remove('highlight'); void label.offsetWidth; label.classList.add('highlight');
-        label.addEventListener('animationend', () => label.classList.remove('highlight'), {once:true});
-      }
+      target.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth',block:'start'});
     });
   });
 
@@ -1221,8 +1233,8 @@ html.motion-paused .float-card{animation-play-state:paused}html.motion-paused{sc
     const content = document.getElementById('personalBuildsContent');
     const label = document.getElementById('personal-projects');
     if (!content) return;
-    content.classList.toggle('open');
-    if (label) label.classList.toggle('open');
+    const open=content.classList.toggle('open');
+    if (label) {label.classList.toggle('open',open);label.setAttribute('aria-expanded',String(open));}
   }
 
   // Selected Work - show more / show less toggle
@@ -1384,8 +1396,8 @@ html.motion-paused .float-card{animation-play-state:paused}html.motion-paused{sc
     const content = document.getElementById(id);
     const label = document.getElementById(id + 'Label');
     if (!content) return;
-    content.classList.toggle('open');
-    if (label) label.classList.toggle('open');
+    const open=content.classList.toggle('open');
+    if (label) {label.classList.toggle('open',open);label.setAttribute('aria-expanded',String(open));}
   }
 
   // Cmd/Ctrl-click a category heading: expand or collapse just that category's subcategories
@@ -1411,6 +1423,7 @@ html.motion-paused .float-card{animation-play-state:paused}html.motion-paused{sc
   } else {
     document.body.classList.add('is-windows');
   }
+  window.addEventListener('load',()=>{if(location.hash==='#personal-projects'){document.getElementById('personalBuildsContent').classList.add('open');document.getElementById('personal-projects').setAttribute('aria-expanded','true');}});
   document.querySelectorAll('a[href="#personal-projects"]').forEach(a => {
     a.addEventListener('click', e => {
       e.preventDefault();
@@ -1428,6 +1441,7 @@ html.motion-paused .float-card{animation-play-state:paused}html.motion-paused{sc
       if (content && !content.classList.contains('open')) {
         content.classList.add('open');
         target.classList.add('open');
+        target.setAttribute('aria-expanded','true');
       }
       if (block) {
         block.classList.remove('flash'); void block.offsetWidth; block.classList.add('flash');
@@ -1486,5 +1500,24 @@ html.motion-paused .float-card{animation-play-state:paused}html.motion-paused{sc
 </script>
 
 <script data-goatcounter="https://nachosantana.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<div class="site-cursor" aria-hidden="true"></div>
+<script>
+(()=>{
+ const ring=document.querySelector('.site-cursor'),root=document.documentElement;
+ const fine=matchMedia('(hover:hover) and (pointer:fine)');
+ function hide(){root.classList.remove('cursor-ready');}
+ document.addEventListener('pointermove',e=>{
+  if(!fine.matches||e.pointerType!=='mouse'){hide();return;}
+  const text=e.target.closest('input,textarea,[contenteditable="true"]');
+  if(text){hide();return;}
+  ring.style.left=e.clientX+'px';ring.style.top=e.clientY+'px';
+  ring.classList.toggle('over-link',!!e.target.closest('a,button,summary,[role="button"],.tool-name,.tool-subcat,#langToggle'));
+  root.classList.add('cursor-ready');
+ },{passive:true});
+ document.documentElement.addEventListener('pointerleave',hide);
+ window.addEventListener('blur',hide);fine.addEventListener('change',hide);
+ document.addEventListener('visibilitychange',()=>{if(document.hidden)hide()});
+})();
+</script>
 </body>
 </html>
