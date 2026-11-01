@@ -30,7 +30,7 @@
       --ease-out-expo:cubic-bezier(0.16,1,0.3,1);
     }
     html{scroll-behavior:smooth}
-    ::selection{background:#f5d06e;color:#0a0a09}
+    ::selection{background:var(--accent);color:var(--bg)}
 
     /* REDUCED MOTION */
     @media(prefers-reduced-motion:reduce){
@@ -487,6 +487,14 @@ html.motion-paused .float-card{animation-play-state:paused}html.motion-paused{sc
 .hero-actions{margin-top:22px;gap:24px}
 .hero-actions a{font-size:10px;padding:0 0 6px}
 .hero-bottom{font-size:8px}.hero-bottom .hero-scroll{display:none}
+}
+
+
+/* Native cursors stay responsive and retain text-selection behaviour. */
+@media(hover:hover) and (pointer:fine){
+  body{cursor:url('assets/cursor-ring.svg') 12 12,auto}
+  a,button,[role="button"],.tool-name,.tool-cat-label,.tool-subcat.collapsible,#langToggle span{cursor:url('assets/cursor-ring-active.svg') 16 16,pointer!important}
+  input,textarea,[contenteditable="true"],p{cursor:text}
 }
 
 </style>
