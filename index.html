@@ -502,6 +502,8 @@ html{scroll-padding-top:0!important}
   }
   </script>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/availability.css">
+  <script type="module" src="/assets/availability.js"></script>
 </head>
 <body>
 
@@ -903,6 +905,10 @@ html{scroll-padding-top:0!important}
 
 <div class="section" id="contact">
   <div class="section-label" data-en="Get in touch" data-es="Contacta conmigo">Get in touch</div>
+  <div id="availability" class="av-widget" data-public-availability>
+    <p data-en="Loading availability…" data-es="Cargando disponibilidad…">Loading availability…</p>
+    <noscript><p>For availability, email <a href="mailto:info4nacho@gmail.com">info4nacho@gmail.com</a>.</p></noscript>
+  </div>
   <div class="contact-grid reveal">
     <div class="contact-block">
       <p data-en="Available for freelance and contract editing across commercial, branded, documentary and social projects. Based in London and available to travel internationally." data-es="Disponible para montaje freelance y por contrato en proyectos publicitarios, de marca, documentales y para redes sociales. Con base en Londres y disponible para viajar internacionalmente.">Available for freelance and contract editing across commercial, branded, documentary and social projects. Based in London and available to travel internationally.</p>
@@ -923,7 +929,7 @@ html{scroll-padding-top:0!important}
 <div id="jklMsg" data-en="J K L - nice one, editor 🎬" data-es="J K L - bien hecho, editor 🎬">J K L - nice one, editor 🎬</div>
 
 <footer>
-  <div class="footer-copy">© 2026 Nacho Santana</div>
+  <div class="footer-copy">© 2026 Nacho Santana · <a class="av-manage" href="/availability-admin.html" data-en="Manage availability" data-es="Gestionar disponibilidad">Manage availability</a></div>
   <div class="timecode" id="timecodeFooter">00:00:00:00</div>
   <div class="footer-copy" data-en="London, UK" data-es="Londres, Reino Unido">London, UK</div>
 </footer>
