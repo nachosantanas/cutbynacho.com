@@ -13,9 +13,9 @@
 .av-day{appearance:none;min-width:0;min-height:60px;border:1px solid var(--border);background:transparent;color:var(--text);font:inherit;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;cursor:pointer;padding:4px}
 .av-number{font-family:var(--font-serif);font-size:19px;line-height:1.2}
 .av-day-label{font-size:8px;line-height:1.2;color:var(--muted)}
-.av-available{--status:#d1ff65}.av-pencilled{--status:#e9bc70}.av-booked{--status:#87928d}.av-enquire{--status:#cad4ce}
+.av-available{--status:#d1ff65}.av-pencilled{--status:#e9bc70}.av-booked{--status:#87928d}.av-unavailable{--status:#b6a5a5}.av-enquire{--status:#cad4ce}
 .av-day.av-available{background:#d1ff6510;border-color:#d1ff6555}.av-day.av-pencilled{background:#e9bc7010;border-color:#e9bc7055}
-.av-day.av-booked{background:repeating-linear-gradient(-45deg,transparent,transparent 5px,#87928d12 5px,#87928d12 6px);color:#87928d;cursor:not-allowed}
+.av-day.av-booked,.av-day.av-unavailable{background:repeating-linear-gradient(-45deg,transparent,transparent 5px,#87928d12 5px,#87928d12 6px);color:#87928d;cursor:not-allowed}
 .av-day.av-selected{background:var(--accent);border-color:var(--accent);color:var(--bg)}.av-day.av-selected .av-day-label{color:var(--bg)}
 .av-day[aria-current="date"] .av-number{text-decoration:underline;text-underline-offset:4px}
 .av-day.av-outside{opacity:.18;background:none;border-color:transparent;cursor:default}

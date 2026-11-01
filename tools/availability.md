@@ -1,6 +1,6 @@
 # Availability management
 
-Open https://cutbynacho.com/availability-admin.html and choose Open private editor. Sign in using the authorised ChatGPT account, choose date ranges, apply them to the draft, then press Save availability. No GitHub commit is needed for schedule updates.
+Open https://cutbynacho.com/availability-admin.html (the footer link is labelled Admin login) and choose Open private editor. Sign in using the authorised ChatGPT account, choose date ranges, apply them to the draft, then press Save availability. No GitHub commit is needed for schedule updates.
 
 Public feed: https://nacho-availability.nuttypony18.chatgpt.site/api/availability
 Private editor: https://nacho-availability.nuttypony18.chatgpt.site/
@@ -12,3 +12,5 @@ The editor supports the next 365 days; clients see the next 56 days in Europe/Lo
 The backend source is maintained separately in /Users/nachosantana/Documents/Codex/nacho-availability-backend and its private Sites source repository. It is not published in the portfolio repository. assets/availability.json is the original empty legacy file and is no longer the live data source.
 
 Checks: python3 tools/check_site.py; node tools/check_availability.mjs. Backend checks: node scripts/assemble.mjs; node scripts/check.mjs; bash scripts/build.sh; node scripts/validate-artifact.mjs.
+
+Use Unavailable for holidays or other time off. Visitors see only Unavailable, not the reason. Booked and Unavailable dates cannot be selected for an enquiry.

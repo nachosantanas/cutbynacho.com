@@ -1,4 +1,4 @@
-export const STATUSES = ['available', 'pencilled', 'booked', 'enquire'];
+export const STATUSES = ['available', 'pencilled', 'booked', 'unavailable', 'enquire'];
 const DAY = 86400000;
 export function todayLondon() {
   const parts = new Intl.DateTimeFormat('en-GB', {timeZone:'Europe/London',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
@@ -41,8 +41,8 @@ export function datesBetween(start, end) {
   return dates;
 }
 const COPY = {
-  en:{available:'Available',pencilled:'Pencilled',booked:'Booked',enquire:'Enquire',short:{available:'Free',pencilled:'Pencil',booked:'Booked',enquire:'Ask'},previous:'Previous month',next:'Next month',select:'Select dates to include in your enquiry.',selected:'Selected dates',clear:'Clear selection',email:'Enquire about these dates ↗',empty:'Select one or more dates',updated:'Last updated',unpublished:'Availability has not yet been published. Please enquire about your dates.',failed:'Availability could not be loaded. Please email to confirm your dates.',period:'Next 8 weeks · London dates',note:'Availability is indicative. Dates are confirmed after discussing scope and budget.',weekdays:['Mon','Tue','Wed','Thu','Fri','Sat','Sun']},
-  es:{available:'Disponible',pencilled:'En opción',booked:'Reservado',enquire:'Consultar',short:{available:'Libre',pencilled:'Opción',booked:'Ocup.',enquire:'Pedir'},previous:'Mes anterior',next:'Mes siguiente',select:'Selecciona las fechas que quieres incluir en tu consulta.',selected:'Fechas seleccionadas',clear:'Borrar selección',email:'Consultar estas fechas ↗',empty:'Selecciona una o varias fechas',updated:'Última actualización',unpublished:'La disponibilidad aún no está publicada. Consulta tus fechas.',failed:'No se pudo cargar la disponibilidad. Confirma tus fechas por email.',period:'Próximas 8 semanas · Fechas de Londres',note:'Disponibilidad orientativa. Las fechas se confirman tras acordar el alcance y el presupuesto.',weekdays:['Lun','Mar','Mié','Jue','Vie','Sáb','Dom']}
+  en:{available:'Available',pencilled:'Pencilled',booked:'Booked',unavailable:'Unavailable',enquire:'Enquire',short:{available:'Free',pencilled:'Pencil',booked:'Booked',unavailable:'Unavailable',enquire:'Ask'},previous:'Previous month',next:'Next month',select:'Select dates to include in your enquiry.',selected:'Selected dates',clear:'Clear selection',email:'Enquire about these dates ↗',empty:'Select one or more dates',updated:'Last updated',unpublished:'Availability has not yet been published. Please enquire about your dates.',failed:'Availability could not be loaded. Please email to confirm your dates.',period:'Next 8 weeks · London dates',note:'Availability is indicative. Dates are confirmed after discussing scope and budget.',weekdays:['Mon','Tue','Wed','Thu','Fri','Sat','Sun']},
+  es:{available:'Disponible',pencilled:'En opción',booked:'Reservado',unavailable:'No disponible',enquire:'Consultar',short:{available:'Libre',pencilled:'Opción',booked:'Ocup.',unavailable:'No disp.',enquire:'Pedir'},previous:'Mes anterior',next:'Mes siguiente',select:'Selecciona las fechas que quieres incluir en tu consulta.',selected:'Fechas seleccionadas',clear:'Borrar selección',email:'Consultar estas fechas ↗',empty:'Selecciona una o varias fechas',updated:'Última actualización',unpublished:'La disponibilidad aún no está publicada. Consulta tus fechas.',failed:'No se pudo cargar la disponibilidad. Confirma tus fechas por email.',period:'Próximas 8 semanas · Fechas de Londres',note:'Disponibilidad orientativa. Las fechas se confirman tras acordar el alcance y el presupuesto.',weekdays:['Lun','Mar','Mié','Jue','Vie','Sáb','Dom']}
 };
 export class AvailabilityCalendar {
   constructor(host, data, {days=56,admin=false,onSelect=()=>{},selection=new Set()}={}) {
@@ -63,7 +63,7 @@ export class AvailabilityCalendar {
       const step={ArrowLeft:-1,ArrowRight:1,ArrowUp:-7,ArrowDown:7}[e.key];
       if(!button || !step)return;
       let date=addDays(button.dataset.date,step);
-      while(date>=this.today&&date<=this.last&&!this.admin&&statusFor(this.data,date)==='booked')date=addDays(date,step);
+      while(date>=this.today&&date<=this.last&&!this.admin&&['booked','unavailable'].includes(statusFor(this.data,date)))date=addDays(date,step);
       if(date<this.today||date>this.last)return;
       e.preventDefault();const d=dateValue(date);this.month=d.getUTCFullYear()*12+d.getUTCMonth();this.render();this.host.querySelector(`[data-date="${date}"]`)?.focus();
     });
@@ -90,7 +90,7 @@ export class AvailabilityCalendar {
       const date=new Date(Date.UTC(year,month,1-offset+i,12)),iso=isoDate(date),outside=date.getUTCMonth()!==month||iso<this.today||iso>this.last;
       const status=statusFor(this.data,iso),button=document.createElement('button');button.type='button';button.dataset.date=iso;
       button.className=`av-day av-${status}${outside?' av-outside':''}${this.selected.has(iso)?' av-selected':''}`;
-      button.disabled=outside||(!this.admin&&status==='booked');button.setAttribute('aria-pressed',String(this.selected.has(iso)));button.setAttribute('aria-label',`${formatDate(iso,this.lang)} — ${text[status]}`);
+      button.disabled=outside||(!this.admin&&['booked','unavailable'].includes(status));button.setAttribute('aria-pressed',String(this.selected.has(iso)));button.setAttribute('aria-label',`${formatDate(iso,this.lang)} — ${text[status]}`);
       if(iso===this.today)button.setAttribute('aria-current','date');
       const number=document.createElement('span');number.className='av-number';number.textContent=date.getUTCDate();
       const label=document.createElement('span');label.className='av-day-label';label.textContent=outside?'':text.short[status];button.append(number,label);grid.append(button);

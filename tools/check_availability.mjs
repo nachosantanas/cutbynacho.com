@@ -17,3 +17,7 @@ assert.throws(()=>validateAvailability({...data,timezone:'UTC'}));
 assert.throws(()=>validateAvailability({...data,updated_at:null}));
 assert.throws(()=>validateAvailability({...data,updated_at:'2026'}));
 console.log('Passed: date validity, DST/year boundaries, overrides and safe unknown defaults.');
+
+const holiday=validateAvailability({timezone:'Europe/London',updated_at:'2026-11-01T12:00:00Z',ranges:[{start:'2026-11-12',end:'2026-11-15',status:'unavailable'}]});
+assert.equal(statusFor(holiday,'2026-11-13'),'unavailable');
+assert.equal(statusFor(holiday,'2026-11-16'),'enquire');
