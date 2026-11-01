@@ -32,3 +32,9 @@
 .av-note{margin:26px 0 14px!important;font-size:11px!important;line-height:1.8!important;max-width:390px}
 .av-updated{line-height:1.8;max-width:390px}.av-manage{color:var(--muted);font-size:10px;text-decoration:none}.av-manage:hover{color:var(--accent)}
 @media(max-width:700px){.av-widget{padding-top:8px;margin-bottom:40px}.av-layout{grid-template-columns:1fr;gap:20px}.av-calendar{padding:12px}.av-days,.av-weekdays{gap:3px}.av-day{min-height:48px;padding:3px 1px}.av-number{font-size:17px}.av-day-label{font-size:7px}.av-enquiry{padding:0}.av-selection{margin:16px 0!important}.av-intro{gap:12px}.av-legend{gap:10px 16px}}
+
+@media(max-width:700px){
+  .av-day.av-unavailable:not(.av-outside) .av-day-label{font-size:0}
+  .av-day.av-unavailable:not(.av-outside) .av-day-label::after{content:'Away';font-size:7px;line-height:1.2}
+  html[lang="es"] .av-day.av-unavailable:not(.av-outside) .av-day-label::after{content:'Fuera'}
+}
