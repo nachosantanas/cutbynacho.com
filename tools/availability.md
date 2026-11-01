@@ -9,8 +9,10 @@ The portfolio stays on GitHub Pages. The editor and feed run on Sites with persi
 
 The editor supports the next 365 days; clients see the next 56 days in Europe/London. Newer date ranges override older overlaps. Save checks the stored revision to prevent overwriting another tab’s update. Unsaved changes trigger a navigation warning. Only statuses and dates are stored, not client names or appointments.
 
-The backend source is maintained separately in /Users/nachosantana/Documents/Codex/nacho-availability-backend and its private Sites source repository. It is not published in the portfolio repository. assets/availability.json is the original empty legacy file and is no longer the live data source.
+The backend source is maintained in a separate availability-backend checkout and its private Sites source repository. It is not published in the portfolio repository. assets/availability.json is the original empty legacy file and is no longer the live data source.
 
 Checks: python3 tools/check_site.py; node tools/check_availability.mjs. Backend checks: node scripts/assemble.mjs; node scripts/check.mjs; bash scripts/build.sh; node scripts/validate-artifact.mjs.
 
 Use Unavailable for holidays or other time off. Visitors see only Unavailable, not the reason. Booked and Unavailable dates cannot be selected for an enquiry.
+
+For shared calendar style/status changes, run `python3 tools/check_site.py --backend /path/to/nacho-availability-backend`. This checks shared source contracts; public mobile/browser and authentication checks remain separate.
