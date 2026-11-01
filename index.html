@@ -519,6 +519,7 @@ html{scroll-padding-top:0!important}
       </div>
       <div class="nav-dropdown-bridge"></div>
       <div class="nav-dropdown">
+        <a href="#work" data-en="Social" data-es="Redes sociales">Social</a>
         <a href="#commercial" data-en="Commercial" data-es="Comercial">Commercial</a>
       </div>
     </div>
@@ -549,14 +550,14 @@ html{scroll-padding-top:0!important}
     <p data-en="London-based video editor and edit assistant working across commercial, branded, documentary and social projects." data-es="Montador y ayudante de montaje en Londres. Publicidad, contenido de marca, documentales y redes sociales.">London-based video editor and edit assistant working across commercial, branded, documentary and social projects.</p>
     <div class="hero-actions"><a class="primary" href="https://vimeo.com/1197459742?fl=ip&amp;fe=ec" target="_blank" rel="noopener" data-en="▶ Watch showreel" data-es="▶ Ver showreel">▶ Watch showreel</a><a href="#work" data-en="View work ↘" data-es="Ver trabajos ↘">View work ↘</a><a href="#personal-projects" data-en="Explore my builds ↗" data-es="Explora mis herramientas ↗">Explore my builds ↗</a></div>
   </div>
-  <div class="hero-bottom"><span data-en="Portfolio / 2026" data-es="Portfolio / 2026">Portfolio / 2026</span><a class="hero-scroll" href="#work" data-en="Selected work ↓" data-es="Trabajo seleccionado ↓">Selected work ↓</a><button type="button" class="motion-toggle" id="motionToggle" aria-pressed="false">Pause motion Ⅱ</button></div>
+  <div class="hero-bottom"><span data-en="Portfolio / 2026" data-es="Portfolio / 2026">Portfolio / 2026</span><a class="hero-scroll" href="#work" data-en="Social ↓" data-es="Redes sociales ↓">Social ↓</a><button type="button" class="motion-toggle" id="motionToggle" aria-pressed="false">Pause motion Ⅱ</button></div>
 </section>
 <div class="edit-strip"><strong data-en="Editing" data-es="Montaje">Editing</strong><span>Commercial</span><span>Branded</span><span>Documentary</span><span>Social</span></div>
 
 
 
 <div class="section" id="work">
-  <h2 class="section-label" data-en="Selected work" data-es="Trabajo seleccionado">Selected work</h2>
+  <h2 class="section-label" data-en="Social" data-es="Redes sociales">Social</h2>
 
   <!-- FCDO GIF gallery: replace each .masonry-placeholder div with <img src="https://cutbynacho.com/fcdo/your-file.gif"> -->
   <div class="masonry-gallery-wrap" id="masonryWrap">
@@ -932,45 +933,39 @@ html{scroll-padding-top:0!important}
   const navLinks = document.querySelectorAll('.nav-links a');
 
   function setActive(id) {
-    const workGroup = ['work','commercial'];
-    navLinks.forEach(l => {
-      const href = l.getAttribute('href');
-      const isWork = (href === '#work' || href === '#') && workGroup.includes(id);
-      l.classList.toggle('active', href === '#' + id || isWork);
-    });
-
-    // Dynamic Work label
     const workLabels = {
-      work: ['Work', 'Trabajo'],
+      home: ['Work', 'Trabajo'],
+      work: ['Social', 'Redes sociales'],
       commercial: ['Commercial', 'Comercial']
     };
     const navWorkEl = document.getElementById('nav-work');
     if (navWorkEl) {
-      const pair = workGroup.includes(id) ? workLabels[id] : workLabels.work;
+      const pair = workLabels[id] || workLabels.home;
       navWorkEl.setAttribute('data-en', pair[0]);
       navWorkEl.setAttribute('data-es', pair[1]);
-      const currentLang = document.documentElement.getAttribute('lang') === 'es' ? 'es' : 'en';
-      navWorkEl.textContent = currentLang === 'es' ? pair[1] : pair[0];
+      navWorkEl.href = id === 'commercial' ? '#commercial' : '#work';
+      navWorkEl.textContent = document.documentElement.lang === 'es' ? pair[1] : pair[0];
     }
+    navLinks.forEach(l => {
+      const active = l === navWorkEl
+        ? ['home','work','commercial'].includes(id)
+        : l.getAttribute('href') === '#' + id;
+      l.classList.toggle('active', active);
+    });
   }
 
-  let lastActiveSection = 'work';
-  window.addEventListener('scroll', () => {
+  function updateActiveNav() {
     const navH = document.querySelector('nav').getBoundingClientRect().height;
-    const atBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 50;
-    const atTop = window.scrollY < 100;
-    let current = null;
-    sections.forEach(s => {
-      const top = s.getBoundingClientRect().top;
-      if (top <= navH + 80 && top > -(s.offsetHeight * 0.5)) current = s.id;
+    let current = 'home';
+    sections.forEach(section => {
+      if (section.getBoundingClientRect().top <= navH + 80) current = section.id;
     });
-    if (atBottom) current = 'contact';
-    if (atTop) current = 'work';
-    if (current === null) current = lastActiveSection;
-    lastActiveSection = current;
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 50) current = 'contact';
+    if (window.scrollY < 100) current = 'home';
     setActive(current);
-  }, {passive:true});
-
+  }
+  window.addEventListener('scroll', updateActiveNav, {passive:true});
+  window.addEventListener('resize', updateActiveNav);
 
   // ── MOBILE NAV OFFSET ──
   function setNavOffset() {
@@ -1147,7 +1142,7 @@ html{scroll-padding-top:0!important}
   }
   window.addEventListener('load', fixNavPadding);
   window.addEventListener('resize', fixNavPadding);
-  window.addEventListener('load', () => setActive('work'));
+  window.addEventListener('load', updateActiveNav);
 
   // Give all work links the same sticky-nav clearance.
   document.querySelectorAll('a[href="#work"],a[href="#commercial"],a[href="#about"],a[href="#tools"],a[href="#contact"]').forEach(a => {
