@@ -483,10 +483,6 @@ html{scroll-padding-top:0!important}
 .build-card[open] .build-expand{transform:rotate(45deg)}
 .build-card p{color:var(--muted);margin-top:20px;font-size:12px;line-height:1.8}
 .build-card a,.builds-repo{display:inline-block;margin-top:16px;color:var(--accent);text-decoration:none;font-size:11px;border-bottom:1px solid var(--border)}
-.site-cursor{position:fixed;top:0;left:0;width:24px;height:24px;border:2px solid #d1ff65;border-radius:50%;background:#d1ff6529;box-shadow:0 0 0 1px #080b0b;z-index:2147483647;pointer-events:none;display:none;transform:translate(-50%,-50%)}
-.site-cursor::after{content:'';position:absolute;width:4px;height:4px;left:50%;top:50%;transform:translate(-50%,-50%);border-radius:50%;background:#d1ff65}
-.site-cursor.over-link{width:34px;height:34px;background:#d1ff6540}
-@media(hover:hover) and (pointer:fine){html.cursor-ready,html.cursor-ready *{cursor:none!important}html.cursor-ready .site-cursor{display:block}}
 @media(max-width:900px){.builds-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:700px){.builds-grid{grid-template-columns:1fr}.personal-builds-block{padding-left:6vw;padding-right:6vw}.future-title span:last-child{font-size:.3em;max-width:310px}.section,#work,#personal-projects{scroll-margin-top:96px}}
 </style>
@@ -1435,24 +1431,6 @@ html{scroll-padding-top:0!important}
 </script>
 
 <script data-goatcounter="https://nachosantana.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-<div class="site-cursor" aria-hidden="true"></div>
-<script>
-(()=>{
- const ring=document.querySelector('.site-cursor'),root=document.documentElement;
- const fine=matchMedia('(hover:hover) and (pointer:fine)');
- function hide(){root.classList.remove('cursor-ready');}
- document.addEventListener('pointermove',e=>{
-  if(!fine.matches||e.pointerType!=='mouse'){hide();return;}
-  const text=e.target.closest('input,textarea,[contenteditable="true"]');
-  if(text){hide();return;}
-  ring.style.left=e.clientX+'px';ring.style.top=e.clientY+'px';
-  ring.classList.toggle('over-link',!!e.target.closest('a,button,summary,[role="button"],.tool-name,.tool-subcat,#langToggle'));
-  root.classList.add('cursor-ready');
- },{passive:true});
- document.documentElement.addEventListener('pointerleave',hide);
- window.addEventListener('blur',hide);fine.addEventListener('change',hide);
- document.addEventListener('visibilitychange',()=>{if(document.hidden)hide()});
-})();
-</script>
+
 </body>
 </html>
