@@ -6,7 +6,11 @@
   <title>Nacho Santana - Video editor &amp; Edit assistant</title>
   <meta name="description" content="Video editor and edit assistant based in London, cutting social, branded, documentary and commercial work in Avid, Premiere, Resolve and Final Cut.">
 
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230a0a09'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='serif' font-size='13' font-style='italic' fill='%23c8b89a'>NS</text></svg>">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=2">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png?v=2">
+  <link rel="shortcut icon" href="/favicon.ico?v=2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png?v=2">
+  <meta name="theme-color" content="#080b0b">
 
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://cutbynacho.com">
@@ -223,9 +227,7 @@
     .featured-item.locked:hover .grid-play{opacity:0.65;transform:translate(-50%,-50%)}
 
     /* ABOUT */
-    .about-grid{display:grid;grid-template-columns:1.4fr 0.9fr 0.7fr;gap:3rem;align-items:start}
-    .about-photo-wrap{width:100%}
-    .about-photo{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;filter:grayscale(15%);border:0.5px solid var(--border)}
+    .about-grid{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:3rem;align-items:start}
     .about-text p{color:#b8b4ad;font-size:13px;line-height:1.9;margin-bottom:1rem}
     .clients-label{font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-top:1.5rem}
     .client-list{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.75rem}
@@ -360,7 +362,6 @@
       .mobile-scroll-nudge{display:flex}
       .section{padding:2.5rem 1.5rem;scroll-margin-top:150px}
       .about-grid{grid-template-columns:1fr;gap:2rem}
-      .about-photo{max-width:280px;aspect-ratio:4/5;margin:0 auto}
       .work-grid{grid-template-columns:1fr}
       .reveal-stagger.visible>*{transition-delay:0s!important}
       .tools-categories{grid-template-columns:1fr}
@@ -763,9 +764,6 @@ html{scroll-padding-top:0!important}
         <span class="sw-name">DaVinci Resolve</span>
         <div class="sw-tags"><span class="sw-tag" data-en="Edit" data-es="Montaje">Edit</span><span class="sw-tag" data-en="Colour" data-es="Etalonaje">Colour</span><span class="sw-tag" data-en="Conform" data-es="Conformado">Conform</span></div>
       </div>
-    </div>
-    <div class="about-photo-wrap">
-      <img class="about-photo" src="nacho.jpg" alt="Nacho Santana">
     </div>
   </div>
 </div>
