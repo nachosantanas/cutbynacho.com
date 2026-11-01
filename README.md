@@ -20,7 +20,7 @@ Reuse a server already listening on 8769. Browser QA must cover the affected int
 - assets/: media, favicon, public tools catalogue and calendar code/styles.
 - availability-admin.html: entry link to the separately hosted editor.
 - tools/availability.md: calendar operation and backend boundary.
-- CV-Ignacio-Santana-Soria-EN.pdf and CV-Ignacio-Santana-Soria-ES.pdf: public exports. Editable sources are in the private career repository; editing this HTML does not rebuild PDFs.
+- Nacho-Santana-CV-EN.pdf and Nacho-Santana-CV-ES.pdf: public CV filenames used by the website. Keep CV-Ignacio-Santana-Soria-EN.pdf and CV-Ignacio-Santana-Soria-ES.pdf as identical compatibility copies for existing links. Update both naming pairs together on future exports. Editable sources are in the private career repository; editing this HTML does not rebuild PDFs.
 
 The calendar is a rolling eight-week public view with a year of date management. Its backend persists owner-supplied statuses separately; no project names or holiday reasons are published.
 

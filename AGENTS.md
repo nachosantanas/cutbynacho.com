@@ -21,6 +21,7 @@ Read PROJECT_STATUS.md when continuing work. README.md describes setup; `.agents
 
 ## Shared content and calendar boundary
 
+- Public CV links use Nacho-Santana-CV-EN.pdf and Nacho-Santana-CV-ES.pdf. Retain the original CV-Ignacio-Santana-Soria filenames as byte-identical compatibility copies; update both naming pairs when exporting.
 - The private career repository owns editable CV sources and stored bio variants. Website bio updates must be reflected in its matching Website bio sections; do not replace LinkedIn copy or rebuild CVs merely because a website bio changed.
 - The public Finder Tools catalogue contains descriptions and icons only. Never publish toolkit sources, facility settings, personal configuration or credentials.
 - The availability backend is a separate Sites project. Follow tools/availability.md and its private source workflow for backend changes; this repository does not deploy it.

@@ -3,6 +3,7 @@
 import argparse
 import ast
 import json
+import hashlib
 from html.parser import HTMLParser
 from pathlib import Path
 import re
@@ -47,6 +48,11 @@ def main():
     for name in ('nacho.jpg', 'CV-Ignacio-Santana-Soria-EN.pdf', 'CV-Ignacio-Santana-Soria-ES.pdf',
                  'AGENTS.md', 'README.md', 'PROJECT_STATUS.md', '.agents/skills/publish-portfolio/SKILL.md'):
         assert (ROOT / name).is_file(), f'Missing {name}'
+    for language in ('EN', 'ES'):
+        public = ROOT / f'Nacho-Santana-CV-{language}.pdf'
+        legacy = ROOT / f'CV-Ignacio-Santana-Soria-{language}.pdf'
+        assert public.is_file(), f'Missing named CV: {public.name}'
+        assert hashlib.sha256(public.read_bytes()).digest() == hashlib.sha256(legacy.read_bytes()).digest(), f'Named and legacy CV differ: {language}'
     for name in page.files:
         assert (ROOT / name).is_file(), f'Missing local reference: {name}'
     assert len(page.ids) == len(set(page.ids)), 'Duplicate HTML id'

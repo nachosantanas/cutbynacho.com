@@ -8,6 +8,8 @@
 - Available = lime, Pencilled = amber, Booked = red, Unavailable = purple with shading. On phones only, Unavailable becomes Away (Fuera in Spanish). Desktop and accessible names retain the full status.
 - Public window: next 56 days; editor: next 365 days. Future dates appear as the window advances. Backend data is live, not a checked-in fixture.
 
+- Public CV links use the Nacho-Santana-CV-EN/ES.pdf filenames; original Ignacio filenames remain identical compatibility copies.
+
 ## Validation limits and next work
 
 - Source checks, browser checks and exact-commit deployment checks are separate evidence. Record the actual outcome when working; this file is not a promise that all future changes pass.
