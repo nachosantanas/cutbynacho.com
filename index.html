@@ -439,6 +439,27 @@ html.motion-paused .float-card{animation-play-state:paused}html.motion-paused{sc
 
 @media(max-width:700px){
 .future-hero{min-height:0;padding-bottom:68px}.hero-copy{position:relative;top:auto;left:auto;right:auto;padding:100px 6vw 0}.future-title{font-size:clamp(64px,16vw,110px)}.hero-actions a{padding:13px 14px;font-size:9px}.float-stage{position:relative;height:410px;margin-top:48px}.float-card.one{top:5px;right:5%;width:61%;height:190px}.float-card.two{top:135px;left:5%;width:42%;height:210px}.float-card.three{top:230px;right:4%;width:40%;height:140px}.hero-bottom{bottom:22px}.hero-copy>p{margin-top:22px}}
+
+/* Section spacing and typography polish */
+.section{padding-top:88px;padding-bottom:88px;scroll-margin-top:88px}
+.section-label{line-height:1.5;min-height:38px;gap:22px;margin-bottom:40px}
+.section-label::before{font-size:18px;line-height:1;flex-shrink:0}
+.section-label::after{min-width:32px;opacity:.65}
+#work>.section-label,#commercial>.section-label{font-family:var(--font-serif);font-size:clamp(25px,2.7vw,38px);font-weight:500;letter-spacing:-.035em;text-transform:none;line-height:1.25;padding:8px 0;margin-bottom:44px;color:var(--text)}
+#work>.section-label::before,#commercial>.section-label::before{color:var(--accent);font-family:var(--font-mono);margin-right:4px}
+.masonry-gallery{margin-top:0}
+.show-more-btn{margin-top:24px;min-height:44px;padding:12px 24px}
+#tools>.section-label{flex-wrap:wrap;row-gap:14px}
+@media(max-width:700px){
+.section{padding-top:56px;padding-bottom:60px;scroll-margin-top:84px}
+.section-label{gap:16px;margin-bottom:28px;line-height:1.6}
+#work>.section-label,#commercial>.section-label{font-size:27px;margin-bottom:30px;padding:8px 0;gap:16px}
+#work>.section-label::before,#commercial>.section-label::before{font-size:16px;margin-right:0}
+#tools>.section-label .expand-all-hint{margin-left:0;white-space:normal}
+.edit-strip{padding-top:22px;padding-bottom:22px}
+}
+
+@media(max-width:700px){.edit-strip{flex-wrap:wrap;gap:12px 22px;overflow:visible;white-space:normal}.edit-strip strong{flex-basis:100%}.edit-strip span::before{display:none}}
 </style>
 
   <script type="application/ld+json">
@@ -516,7 +537,7 @@ html.motion-paused .float-card{animation-play-state:paused}html.motion-paused{sc
 
 
 <div class="section" id="work">
-  <div class="section-label" data-en="Selected Work" data-es="Trabajo seleccionado">Selected Work</div>
+  <h2 class="section-label" data-en="Selected work" data-es="Trabajo seleccionado">Selected work</h2>
 
   <!-- FCDO GIF gallery: replace each .masonry-placeholder div with <img src="https://cutbynacho.com/fcdo/your-file.gif"> -->
   <div class="masonry-gallery-wrap" id="masonryWrap">
@@ -551,7 +572,7 @@ html.motion-paused .float-card{animation-play-state:paused}html.motion-paused{sc
 </div>
 
 <div class="section" id="commercial">
-  <div class="section-label" data-en="Commercial" data-es="Comercial">Commercial</div>
+  <h2 class="section-label" data-en="Commercial" data-es="Comercial">Commercial</h2>
 
   <!-- WORK GRID: 3 real projects per row -->
   <div class="masonry-gallery-wrap" id="commercialWrap">
@@ -1137,7 +1158,7 @@ html.motion-paused .float-card{animation-play-state:paused}html.motion-paused{sc
     a.addEventListener('click', e => {
       e.preventDefault();
       const href = a.getAttribute('href');
-      if (href === '#' || href === '#work') {
+      if (href === '#') {
         window.scrollTo({top: 0, behavior: 'smooth'});
         setTimeout(() => setActive('work'), 300);
         const flash = document.getElementById('workFlash');
