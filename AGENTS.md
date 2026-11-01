@@ -15,6 +15,7 @@ Read PROJECT_STATUS.md when continuing work. README.md describes setup; `.agents
 - Canonical profession: Video editor & Edit assistant; Spanish: Montador de vídeo y ayudante de montaje. Keep the actual role on each project; assisting is not sole editor credit.
 - Dark charcoal, electric lime, Space Grotesk and the current editorial hero. Floating hero cards, portrait and custom pointer were deliberately removed; do not restore them from old instructions or unused assets. Keep existing media files unless asked to remove them.
 - Use plain factual copy, no invented credits, outcomes, awards, clients or availability. Preserve EN/ES switching. Current About copy is the approved concise editor-first bio.
+- Gallery cards stay in their layout on hover/focus: zoom only the clipped media and draw the lime frame above it, so the first-row outline is not cut off by the gallery wrapper.
 - First gallery is Social, second Commercial. Work navigation targets the gallery; its visible category changes with scroll. Keep spacious headings and gallery separation (44px desktop, 30px mobile); the mobile category strip wraps.
 - LinkedIn: https://www.linkedin.com/in/nachosantanas/. AF Films links the full company name to https://frankariza.com/ with no Madrid suffix. Toni & Guy is a Broadley Studios client. Do not reintroduce the removed SubShift listing or Selected editing outcomes section.
 - Keep muted loops, offscreen/hidden-page pausing, reduced-motion support, Pause motion and production GoatCounter. Local previews must not generate analytics visits.
