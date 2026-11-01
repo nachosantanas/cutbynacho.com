@@ -460,6 +460,35 @@ html.motion-paused .float-card{animation-play-state:paused}html.motion-paused{sc
 }
 
 @media(max-width:700px){.edit-strip{flex-wrap:wrap;gap:12px 22px;overflow:visible;white-space:normal}.edit-strip strong{flex-basis:100%}.edit-strip span::before{display:none}}
+
+/* Editorial introduction: a compact masthead followed directly by the portfolio. */
+.future-hero{height:auto;min-height:0;max-height:none;padding:32px 5vw 24px;background:var(--bg)}
+.future-hero::before{display:none}
+.hero-meta{position:static;font-size:9px;letter-spacing:.1em;gap:24px}
+.hero-meta span:first-child::before{display:none}
+.hero-copy{position:static;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(250px,1fr);column-gap:8vw;align-items:end;padding:72px 0 56px;pointer-events:auto}
+.future-title{font-size:clamp(64px,7.3vw,112px);line-height:.98;letter-spacing:-.065em;font-weight:400;max-width:none;grid-row:1 / 3}
+.future-title .outline{color:var(--text)}
+.future-title span:last-child{font-size:.34em;letter-spacing:-.035em;line-height:1.4;color:var(--accent);margin-top:22px}
+.hero-copy>p{font-size:12px;max-width:360px;margin:0;line-height:1.9;color:var(--muted)}
+.hero-actions{margin-top:24px;gap:24px;flex-wrap:wrap}
+.hero-actions a,.hero-actions .primary{padding:0 0 6px;background:none;border:0;border-bottom:1px solid var(--border);border-radius:0;color:var(--text);font-size:10px;letter-spacing:.04em}
+.hero-actions a:hover,.hero-actions .primary:hover{transform:none;background:none;color:var(--accent);border-color:var(--accent)}
+.hero-bottom{position:static;gap:20px;font-size:9px;letter-spacing:.08em}
+.hero-scroll{color:var(--muted);text-decoration:none}.hero-scroll:hover{color:var(--accent)}
+.motion-toggle{background:none;border-radius:0;padding:7px 10px}
+@media(max-width:700px){
+.future-hero{padding:24px 6vw 20px}
+.hero-meta span:last-child{display:none}
+.hero-copy{display:block;padding:48px 0 40px}
+.future-title{font-size:clamp(62px,15vw,100px)}
+.future-title span:last-child{margin-top:16px}
+.hero-copy>p{margin-top:28px;max-width:340px}
+.hero-actions{margin-top:22px;gap:24px}
+.hero-actions a{font-size:10px;padding:0 0 6px}
+.hero-bottom{font-size:8px}.hero-bottom .hero-scroll{display:none}
+}
+
 </style>
 
   <script type="application/ld+json">
@@ -519,19 +548,13 @@ html.motion-paused .float-card{animation-play-state:paused}html.motion-paused{sc
 <div class="work-flash" id="workFlash"></div>
 <section class="future-hero" aria-label="Nacho Santana, video editor">
   <div class="hero-meta"><span data-en="London · Video editor" data-es="Londres · Montador">London · Video editor</span><span>Avid / Premiere / Resolve / Final Cut</span></div>
-  <div class="orbit" aria-hidden="true"></div>
   <div class="hero-copy">
-    <div class="hero-kicker">Video editor / London</div>
     <h1 class="future-title"><span>Nacho</span><span class="outline">Santana.</span><span data-en="Video editor." data-es="Montador.">Video editor.</span></h1>
     <p data-en="London-based video editor working across commercial, branded, documentary and social projects." data-es="Montador en Londres. Publicidad, contenido de marca, documentales y redes sociales.">London-based video editor working across commercial, branded, documentary and social projects.</p>
     <div class="hero-actions"><a class="primary" href="https://vimeo.com/1197459742?fl=ip&amp;fe=ec" target="_blank" rel="noopener" data-en="▶ Watch showreel" data-es="▶ Ver showreel">▶ Watch showreel</a><a href="#work" data-en="View work ↘" data-es="Ver trabajos ↘">View work ↘</a></div>
   </div>
-  <div class="float-stage">
-<a class="float-card one" href="https://vimeo.com/1236145017/722d6577de" target="_blank" rel="noopener" aria-label="Watch Cartier Panthère"><video data-src="assets/hero-0.mp4" poster="assets/hero-0.jpg" loop muted playsinline preload="none" aria-hidden="true"></video><figcaption><span>Cartier Panthère</span><span>↗</span></figcaption></a>
-<a class="float-card two" href="https://vimeo.com/1135060627?fl=tl&amp;fe=ec" target="_blank" rel="noopener" aria-label="Watch NICCE"><video data-src="assets/hero-1.mp4" poster="assets/hero-1.jpg" loop muted playsinline preload="none" aria-hidden="true"></video><figcaption><span>NICCE</span><span>↗</span></figcaption></a>
-<a class="float-card three" href="https://vimeo.com/1137716602?fl=ip&amp;fe=ec" target="_blank" rel="noopener" aria-label="Watch Rising Ballers"><video data-src="assets/hero-2.mp4" poster="assets/hero-2.jpg" loop muted playsinline preload="none" aria-hidden="true"></video><figcaption><span>Rising Ballers</span><span>↗</span></figcaption></a>
-<a class="float-card four" href="https://vimeo.com/1197459742?fl=ip&amp;fe=ec" target="_blank" rel="noopener" aria-label="Watch Showreel 2026"><video data-src="assets/hero-3.mp4" poster="assets/hero-3.jpg" loop muted playsinline preload="none" aria-hidden="true"></video><figcaption><span>Showreel 2026</span><span>↗</span></figcaption></a>
-</div><div class="hero-bottom"><span>Selected work / 2026</span><span class="hero-scroll">Selected work ↓</span><button type="button" class="motion-toggle" id="motionToggle" aria-pressed="false">Pause motion Ⅱ</button></div></section>
+  <div class="hero-bottom"><span data-en="Portfolio / 2026" data-es="Portfolio / 2026">Portfolio / 2026</span><a class="hero-scroll" href="#work" data-en="Selected work ↓" data-es="Trabajo seleccionado ↓">Selected work ↓</a><button type="button" class="motion-toggle" id="motionToggle" aria-pressed="false">Pause motion Ⅱ</button></div>
+</section>
 <div class="edit-strip"><strong data-en="Editing" data-es="Montaje">Editing</strong><span>Commercial</span><span>Branded</span><span>Documentary</span><span>Social</span></div>
 
 
@@ -1450,9 +1473,7 @@ html.motion-paused .float-card{animation-play-state:paused}html.motion-paused{sc
  videos.forEach(v=>{v.muted=true;io.observe(v)});
  toggle.addEventListener('click',()=>{paused=!paused;sync()});
  mq.addEventListener('change',e=>{paused=e.matches;sync()});document.addEventListener('visibilitychange',sync);sync();
- const hero=document.querySelector('.future-hero'),cards=[...document.querySelectorAll('.float-card')];let raf=0;
- hero.addEventListener('pointermove',e=>{if(paused||e.pointerType!=='mouse'||innerWidth<1000||raf)return;raf=requestAnimationFrame(()=>{const r=hero.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;cards.forEach((c,i)=>{c.style.setProperty('--dx',`${x*(12+i*5)}px`);c.style.setProperty('--dy',`${y*(10+i*4)}px`)});raf=0})});
- hero.addEventListener('pointerleave',()=>cards.forEach(c=>{c.style.setProperty('--dx','0px');c.style.setProperty('--dy','0px')}));
+
 })();
 </script>
 
