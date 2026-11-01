@@ -7,10 +7,10 @@ function initProjects() {
     const section = document.getElementById(id);
     return {section, id, gallery:section.querySelector(id === 'work' ? '.masonry-gallery' : '.work-grid'),
       projects:[...section.querySelectorAll('[data-project-role]')].map(card => ({card, role:card.dataset.projectRole})),
-      button:section.querySelector('.show-more-btn'), expanded:false};
+      button:section.querySelector('.show-more-btn'), expanded:false, role:'all'};
   });
   document.documentElement.classList.add('projects-ready');
-  let role = 'all', scheduled = false;
+  let scheduled = false;
   const spanish = () => document.documentElement.lang === 'es';
   const columns = () => innerWidth <= 600 ? 1 : innerWidth <= 1000 ? 2 : 3;
 
@@ -28,8 +28,8 @@ function initProjects() {
   function render() {
     for (const state of sections) {
       const limit = state.expanded ? Infinity : columns() * (state.id === 'work' ? 3 : 2);
-      const matching = visibleProjects(state.projects, role);
-      const visible = new Set(visibleProjects(state.projects, role, limit));
+      const matching = visibleProjects(state.projects, state.role);
+      const visible = new Set(visibleProjects(state.projects, state.role, limit));
       for (const project of state.projects) {
         project.card.hidden = !visible.has(project);
         if (project.card.hidden) project.card.querySelectorAll('video').forEach(video => video.pause());
@@ -49,12 +49,11 @@ function initProjects() {
     scheduleLayout();
     document.dispatchEvent(new Event('projectschange'));
   }
-  document.querySelectorAll('[data-project-filter]').forEach(select => select.addEventListener('change', () => {
-    role = select.value;
-    document.querySelectorAll('[data-project-filter]').forEach(other => { other.value = role; });
-    sections.forEach(state => { state.expanded = false; });
+  for (const state of sections) state.section.querySelector('[data-project-filter]').addEventListener('change', event => {
+    state.role = event.target.value;
+    state.expanded = false;
     render();
-  }));
+  });
   for (const state of sections) state.button.addEventListener('click', () => {
     state.expanded = !state.expanded;
     render();
