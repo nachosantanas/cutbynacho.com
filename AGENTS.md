@@ -38,3 +38,7 @@ Read PROJECT_STATUS.md when continuing work. README.md describes setup; `.agents
 - Reuse an existing preview server; otherwise python3 -m http.server 8769 --directory . on an available port. Check affected desktop and phone layouts and EN/ES; do not claim browser QA when unavailable.
 - Follow the publish skill: confirm exact pushed-commit Pages success, then fetch the public changed files and verify the affected UI. A push or a working editor alone is not proof of a public fix.
 - Update PROJECT_STATUS.md only when verified state, a blocker or the next action changes. Keep private research, logs, account details and local machine configuration out of public guidance.
+
+## Agent continuation
+
+Read docs/DEVELOPMENT_HANDOFF.md and docs/USING_AGENTS.md for task/reviewer prompts. For this development-migration task use a draft PR; do not deploy or merge as a side effect.
