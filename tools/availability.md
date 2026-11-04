@@ -1,9 +1,8 @@
 # Availability management
 
-Open https://cutbynacho.com/availability-admin.html (the footer link is labelled Admin login) and choose Open private editor. Sign in using the authorised ChatGPT account, choose date ranges, apply them to the draft, then press Save availability. No GitHub commit is needed for schedule updates.
+Open the private editor using the local resource map. The public site has no management page or admin link. Sign in using the authorised ChatGPT account, choose date ranges, apply them to the draft, then press Save availability. No GitHub commit is needed for schedule updates.
 
 Public feed: https://nacho-availability.nuttypony18.chatgpt.site/api/availability
-Private editor: https://nacho-availability.nuttypony18.chatgpt.site/
 
 The portfolio stays on GitHub Pages. The editor and feed run on Sites with persistent R2 storage. Server-side account authorisation, same-origin write checks and conditional writes protect updates. OWNER_EMAIL is a secret runtime setting, never a client credential. Unknown dates show Enquire; no availability has been assumed.
 

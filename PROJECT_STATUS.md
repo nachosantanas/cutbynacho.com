@@ -4,7 +4,7 @@
 
 - Editorial, bilingual portfolio with Social and Commercial galleries. Both galleries have lime hover/focus frames and independent role dropdowns (Social excludes assisting; Commercial excludes shooting); Social uses natural-ratio grid masonry. Show more/less changes the number of complete cards instead of clipping their height. Portrait, custom pointer and Portfolio / 2026 label are removed from the displayed page.
 - About uses the approved concise editor-first bio; both roles remain credited. Career repository stores the same Website bio variants.
-- Public availability reads the separate Sites feed; the footer Admin login links to the management entry page. ChatGPT sign-in remains the chosen working authentication. The proposed Supabase/password migration was dropped; do not resume it without a new request.
+- Public availability reads the separate Sites feed; the public management page and footer Admin login link are removed. The editor address is kept in the local resource map. ChatGPT sign-in remains the chosen working authentication. The proposed Supabase/password migration was dropped; do not resume it without a new request.
 - Available = lime, Pencilled = amber, Booked = red, Unavailable = purple with shading. On phones only, Unavailable becomes Away (Fuera in Spanish). Desktop and accessible names retain the full status.
 - Public window: next 56 days; editor: next 365 days. Future dates appear as the window advances. Backend data is live, not a checked-in fixture.
 

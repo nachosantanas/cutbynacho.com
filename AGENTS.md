@@ -5,7 +5,7 @@ Read PROJECT_STATUS.md when continuing work. README.md describes setup; `.agents
 ## Source and publishing
 
 - This dedicated checkout is the production source, not older preview or Downloads copies.
-- Buildless HTML/CSS/JavaScript: index.html, assets/, availability-admin.html. No npm build is needed.
+- Buildless HTML/CSS/JavaScript: index.html, assets/. No npm build is needed.
 - origin is nachosantanas/cutbynacho.com; GitHub Pages publishes the repository root from main to https://cutbynacho.com. Preserve CNAME, both root CV PDF filenames and original project URLs.
 - Requested website changes are authorised for validation, commit, push to main and deployment verification unless Nacho requests a preview or no publication. This does not authorise unrelated changes, private data publication or hosting/domain migration.
 - Check status and pull --ff-only before editing. Preserve concurrent and unrelated changes; stage intended paths only. Never reset or force-push.
