@@ -106,7 +106,7 @@ function initProjects() {
   for (const state of sections) state.button.addEventListener('click', () => {
     state.expanded = !state.expanded;
     render();
-    if (!state.expanded) state.section.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',block:'start'});
+    if (!state.expanded) state.button.closest('.show-more-wrap').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',block:'end'});
   });
 
   const cards = sections[0].projects.map(project => project.card);
