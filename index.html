@@ -104,9 +104,9 @@
     .work-flash.active{opacity:1}
 
     /* SCROLL REVEAL */
-    .reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s var(--ease-out-expo),transform 0.7s var(--ease-out-expo)}
+    .reveal{opacity:1;transform:none;transition:opacity 0.7s var(--ease-out-expo),transform 0.7s var(--ease-out-expo)}
     .reveal.visible{opacity:1;transform:translateY(0)}
-    .reveal-stagger>*{opacity:0;transform:translateY(20px);transition:opacity 0.6s var(--ease-out-expo),transform 0.6s var(--ease-out-expo)}
+    .reveal-stagger>*{opacity:1;transform:none;transition:opacity 0.6s var(--ease-out-expo),transform 0.6s var(--ease-out-expo)}
     .reveal-stagger.visible>*{opacity:1;transform:translateY(0)}
     .reveal-stagger.visible>*:nth-child(1){transition-delay:0s}
     .reveal-stagger.visible>*:nth-child(2){transition-delay:0.06s}
@@ -114,7 +114,7 @@
     .reveal-stagger.visible>*:nth-child(4){transition-delay:0.18s}
     .reveal-stagger.visible>*:nth-child(5){transition-delay:0.24s}
     .reveal-stagger.visible>*:nth-child(6){transition-delay:0.3s}
-    .fade-in{opacity:0;transform:translateY(16px);transition:opacity 0.5s ease,transform 0.5s ease}
+    .fade-in{opacity:1;transform:none;transition:opacity 0.5s ease,transform 0.5s ease}
     .fade-in.visible{opacity:1;transform:translateY(0)}
 
     .shortcut-row{display:flex;justify-content:space-between;padding:0.4rem 0;border-bottom:0.5px solid var(--border);font-size:11px}
@@ -402,7 +402,7 @@ nav{padding:1.3rem 4vw;background:#080b0bcf;border-color:#ffffff14}nav.scrolled{
 .section{padding:80px 5vw;scroll-margin-top:65px}.section-label{font-size:11px;color:var(--accent);letter-spacing:.13em;margin-bottom:35px;display:flex;align-items:center;gap:20px}.section-label::before{content:'↳';font-size:20px}.section-label::after{content:'';height:1px;flex:1;background:var(--border)}
 .masonry-gallery{column-gap:20px}.masonry-item{border-radius:8px;margin-bottom:20px;background:var(--surface);border:1px solid #ffffff10;isolation:isolate;transition:border-color .3s}.masonry-item::after{content:'';position:absolute;inset:0;border:2px solid transparent;border-radius:inherit;z-index:5;pointer-events:none;transition:border-color .3s}.masonry-item:hover,.masonry-item:focus-visible{transform:none;border-color:var(--accent)}.masonry-item:hover::after,.masonry-item:focus-visible::after{border-color:var(--accent)}.masonry-caption{opacity:1!important;transform:none!important;background:linear-gradient(transparent,#000b);padding:28px 20px 17px!important}.mc-title{font-family:var(--font-serif);font-size:19px!important;letter-spacing:-.03em!important}.mc-role{color:var(--accent)!important;font-size:9px!important;margin-top:5px}.masonry-overlay{opacity:.1}.masonry-item video{transition:transform 1s}.masonry-item:hover video{transform:scale(1.035)}
 .featured-item{border-radius:7px;border:1px solid #ffffff12}.featured-info{opacity:1;transform:none;background:linear-gradient(transparent,#000c)}.featured-title{font-family:var(--font-serif);font-size:17px}.featured-overlay{opacity:.15}
-#about{background:radial-gradient(ellipse at 0 100%,#163b263b,transparent 65%)}.about-grid{gap:4vw}.about-text p{font-size:15px;line-height:1.85}.sw-name{font-family:var(--font-serif)}.tools-categories{gap:24px}.tool-category{background:linear-gradient(145deg,#141f19,#0b100d);border:1px solid var(--border);border-radius:8px;padding:24px}.contact-link{font-family:var(--font-serif);font-size:clamp(22px,3vw,44px);letter-spacing:-.06em;color:var(--accent)}#contact{background:radial-gradient(ellipse at 80% 100%,#254e2633,transparent 70%)}footer{padding:25px 5vw}.social-item{border-color:var(--border)}
+#about{background:var(--bg)}.about-grid{gap:4vw}.about-text p{font-size:15px;line-height:1.85}.sw-name{font-family:var(--font-serif)}.tools-categories{gap:24px}.tool-category{background:linear-gradient(145deg,#141f19,#0b100d);border:1px solid var(--border);border-radius:8px;padding:24px}.contact-link{font-family:var(--font-serif);font-size:clamp(22px,3vw,44px);letter-spacing:-.06em;color:var(--accent)}#contact{background:var(--bg)}footer{padding:25px 5vw}.social-item{border-color:var(--border)}
 html.motion-paused .float-card{animation-play-state:paused}html.motion-paused{scroll-behavior:auto}
 @media(min-width:1600px){.future-hero{min-height:900px}.hero-copy{left:9vw}}
 @media(max-width:1000px){.future-hero{min-height:800px}.hero-copy{left:5vw;top:23%}.future-title{font-size:105px}.float-card.one{width:39%;height:30%;right:-8%;top:23%}.float-card.two{right:21%;width:27%;height:27%;top:61%}.float-card.three{width:25%;height:20%;top:68%;right:-3%}.float-card.four{left:40%;width:24%;top:9%}.hero-copy>p{max-width:290px}.nav-socials{display:none}}
@@ -498,9 +498,9 @@ html{scroll-padding-top:0!important}
 .project-empty{padding:24px 0}.project-empty[hidden],.show-more-wrap[hidden],.masonry-gallery[hidden],.work-grid[hidden],[data-project-role][hidden]{display:none!important}
 .masonry-gallery-wrap{max-height:none!important;overflow:visible;transition:none}
 .masonry-gallery-wrap:not(.expanded){mask-image:none;-webkit-mask-image:none}
-.projects-ready .masonry-gallery,.projects-ready .work-grid{display:flex;flex-wrap:wrap;column-count:auto;gap:20px;align-items:start}
-.projects-ready .masonry-gallery .masonry-item,.projects-ready .work-grid .featured-item{margin:0;min-width:0;flex:none;align-self:start;border:0}
-.projects-ready .masonry-gallery .masonry-item video,.projects-ready .masonry-gallery .masonry-item img{height:100%;aspect-ratio:auto}
+.projects-ready .masonry-gallery,.projects-ready .work-grid{display:block;position:relative;column-count:auto}
+.projects-ready .masonry-gallery .masonry-item,.projects-ready .work-grid .featured-item{position:absolute;margin:0;min-width:0;border:0}
+.projects-ready .masonry-gallery .masonry-item video,.projects-ready .masonry-gallery .masonry-item img{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto}
 .masonry-item video,.masonry-item img{width:100%;height:auto;aspect-ratio:var(--media-ratio,9 / 16);object-fit:contain}
 .work-grid{gap:20px;overflow:visible;border-radius:0;align-items:start}
 .featured-item{isolation:isolate;transition:border-color .3s}
@@ -529,7 +529,7 @@ html{scroll-padding-top:0!important}
 @media(pointer:coarse){.ext-arrow{opacity:.7}.nav-links a{min-height:44px;display:inline-flex;align-items:center}.nav-dropdown{display:none!important}}
 /* A continuation cue below complete rows, never a mask over project credits. */
 .projects-ready #work .show-more-wrap,.projects-ready #commercial .show-more-wrap{position:relative;margin-top:0;padding:28px 0 8px;isolation:isolate}
-.show-more-wrap:has(.show-more-btn:not(.open))::before{content:'';position:absolute;z-index:-1;inset:0 0 auto;height:110px;pointer-events:none;background:radial-gradient(ellipse at 50% 0,rgba(209,255,101,.16),transparent 72%);border-top:1px solid rgba(209,255,101,.28)}
+.show-more-wrap:has(.show-more-btn:not(.open))::before{content:'';position:absolute;z-index:-1;inset:0 0 auto;height:110px;pointer-events:none;background:linear-gradient(to bottom,rgba(209,255,101,.13),rgba(209,255,101,0) 90%);border-top:1px solid rgba(209,255,101,.28)}
 .show-more-btn:not(.open){margin-top:0;background:rgba(209,255,101,.09);border:1px solid rgba(209,255,101,.55);color:var(--accent);font-size:11px;letter-spacing:.08em;gap:14px}
 .show-more-btn:not(.open):hover,.show-more-btn:not(.open):focus-visible{background:rgba(209,255,101,.18);border-color:var(--accent)}
 .show-more-btn:not(.open) .show-more-arrow{font-size:18px;line-height:1}
@@ -553,7 +553,7 @@ html{scroll-padding-top:0!important}
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/availability.css?v=20261101-mobile">
   <script type="module" src="/assets/availability.js"></script>
-<script type="module" src="/assets/projects.js?v=5"></script>
+<script type="module" src="/assets/projects.js?v=6"></script>
 </head>
 <body>
 
@@ -1324,18 +1324,6 @@ html{scroll-padding-top:0!important}
       }
     });
   });
-
-  // Scroll reveal
-  const revealEls = document.querySelectorAll('.fade-in,.reveal,.reveal-stagger');
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.08 });
-  revealEls.forEach(el => revealObserver.observe(el));
 
   // Nav shrink on scroll
   const navEl = document.querySelector('nav');

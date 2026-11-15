@@ -46,18 +46,27 @@ function initProjects() {
     for (const state of sections) {
       const matching = visibleProjects(state.projects, state.role);
       state.gallery.hidden = !matching.length;
-      const width = Math.max(1, state.gallery.clientWidth);
+      const width = Math.max(1, state.gallery.getBoundingClientRect().width);
       const gap = innerWidth <= 600 ? 12 : 20;
       const ratios = matching.map(ratio);
       const rows = innerWidth <= 600
         ? ratios.map((r,i) => ({start:i,end:i+1,height:width/r}))
         : justifiedRows(ratios, width, gap, innerWidth <= 1000 ? 260 : 300);
       const limit = rows[Math.min(state.id === 'work' ? 3 : 2, rows.length) - 1]?.end || 0;
-      state.gallery.style.gap = `${gap}px`;
-      for (const row of rows) for (let i = row.start; i < row.end; i++) {
-        matching[i].card.style.width = `${ratios[i] * row.height}px`;
-        matching[i].card.style.height = `${row.height}px`;
+      let top = 0;
+      for (const row of rows) {
+        if (!state.expanded && row.start >= limit) break;
+        let left = 0;
+        for (let i = row.start; i < row.end; i++) {
+          const card = matching[i].card;
+          // Explicit row positions avoid Safari flex wrapping fractional widths.
+          const cardWidth = i === row.end - 1 ? width - left : ratios[i] * row.height;
+          Object.assign(card.style, {left:`${left}px`,top:`${top}px`,width:`${cardWidth}px`,height:`${row.height}px`});
+          left += cardWidth + gap;
+        }
+        top += row.height + gap;
       }
+      state.gallery.style.height = `${Math.max(0, top - gap)}px`;
       const visible = new Set(matching.slice(0, state.expanded ? Infinity : limit));
       for (const project of state.projects) {
         project.card.hidden = !visible.has(project);
