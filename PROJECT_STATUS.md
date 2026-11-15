@@ -3,7 +3,7 @@
 ## Verified baseline
 
 - Editorial, bilingual portfolio with Social and Commercial galleries. Both galleries have lime hover/focus frames and independent role dropdowns (Social excludes assisting; Commercial excludes shooting); both galleries use justified rows with natural media proportions and aligned outer edges. Show more/less reveals complete rows instead of clipping their height. Portrait, custom pointer and Portfolio / 2026 label are removed from the displayed page.
-- Commercial uses three cards across from 768px, two on narrow tablets and one on phones; the last rows balance to avoid a lone oversized card.
+- Commercial uses three cards across from 768px, two on narrow tablets and one on phones; all cards retain the same dimensions after expansion, including the incomplete last row.
 - Gallery cards use explicit row coordinates to avoid fractional flex wrapping in Safari; media fills the card bounds. About/Tools content is visible without scroll reveal, and About/Contact use flat backgrounds to avoid the large radial shapes seen in iPad captures.
 - Tablet portrait (701–1024px) stacks the introduction, About and tool catalogue; justified rows keep cards at least 150px wide when sharing a row. Collapsed galleries show a lime continuation glow and the remaining project count.
 - About uses the approved concise editor-first bio; both roles remain credited. Career repository stores the same Website bio variants.

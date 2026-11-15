@@ -26,7 +26,8 @@ for (const width of [620, 900, 1400]) {
 }
 console.log('Passed: justified rows retain order and proportions and fill every row.');
 
-assert.deepEqual(commercialRows(10,900,20,3).map(r=>r.end-r.start),[3,3,2,2]);
-assert.deepEqual(commercialRows(4,900,20,3).map(r=>r.end-r.start),[2,2]);
+assert.deepEqual(commercialRows(10,900,20,3).map(r=>r.end-r.start),[3,3,3,1]);
+assert.deepEqual(commercialRows(4,900,20,3).map(r=>r.end-r.start),[3,1]);
 assert.equal(commercialRows(10,350,12,1).length,10);
-console.log('Passed: Commercial shows three across and balances the final rows.');
+assert.ok(commercialRows(10,900,20,3).every(row=>row.height===commercialRows(10,900,20,3)[0].height));
+console.log('Passed: Commercial retains three columns and identical card sizes after expansion.');

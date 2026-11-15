@@ -29,12 +29,9 @@ export function justifiedRows(ratios, width, gap = 20, target = 300, minWidth = 
 
 export function commercialRows(count, width, gap, columns) {
   const rows = [];
-  let start = 0;
-  const rowCount = Math.ceil(count / columns);
-  for (let row = 0; row < rowCount; row++) {
-    const size = Math.ceil((count - start) / (rowCount - row));
-    rows.push({start,end:start+size,height:(width-gap*(size-1))/size/(16/9)});
-    start += size;
+  const height = (width - gap * (columns - 1)) / columns / (16 / 9);
+  for (let start = 0; start < count; start += columns) {
+    rows.push({start,end:Math.min(count,start+columns),height});
   }
   return rows;
 }
@@ -74,7 +71,7 @@ function initProjects() {
         for (let i = row.start; i < row.end; i++) {
           const card = matching[i].card;
           // Explicit row positions avoid Safari flex wrapping fractional widths.
-          const cardWidth = i === row.end - 1 ? width - left : ratios[i] * row.height;
+          const cardWidth = state.id !== 'commercial' && i === row.end - 1 ? width - left : ratios[i] * row.height;
           Object.assign(card.style, {left:`${left}px`,top:`${top}px`,width:`${cardWidth}px`,height:`${row.height}px`});
           left += cardWidth + gap;
         }
