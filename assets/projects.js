@@ -70,8 +70,9 @@ function initProjects() {
       state.button.setAttribute('aria-expanded', String(state.expanded));
       state.button.classList.toggle('open', state.expanded);
       const label = state.button.querySelector('[data-en]');
-      label.dataset.en = state.expanded ? 'Show less' : 'Show more';
-      label.dataset.es = state.expanded ? 'Ver menos' : 'Ver más';
+      const remaining = matching.length - visible.size;
+      label.dataset.en = state.expanded ? 'Show less' : `Show ${remaining} more projects`;
+      label.dataset.es = state.expanded ? 'Ver menos' : `Ver ${remaining} proyectos más`;
       label.textContent = spanish() ? label.dataset.es : label.dataset.en;
     }
     document.dispatchEvent(new Event('projectschange'));
