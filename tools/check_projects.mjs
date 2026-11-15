@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import {visibleProjects, justifiedRows} from '../assets/projects.js';
+import {visibleProjects, justifiedRows, commercialRows} from '../assets/projects.js';
 const cards=[{role:'shoot-edit',name:'shooting'},{role:'editor',name:'editing'},{role:'assistant-editor',name:'assisting'},{role:'editor',name:'second edit'}];
 assert.deepEqual(visibleProjects(cards,'editor').map(p=>p.name),['editing','second edit']);
 assert.deepEqual(visibleProjects(cards,'shoot-edit').map(p=>p.name),['shooting']);
@@ -25,3 +25,8 @@ for (const width of [620, 900, 1400]) {
   }
 }
 console.log('Passed: justified rows retain order and proportions and fill every row.');
+
+assert.deepEqual(commercialRows(10,900,20,3).map(r=>r.end-r.start),[3,3,2,2]);
+assert.deepEqual(commercialRows(4,900,20,3).map(r=>r.end-r.start),[2,2]);
+assert.equal(commercialRows(10,350,12,1).length,10);
+console.log('Passed: Commercial shows three across and balances the final rows.');

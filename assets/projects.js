@@ -27,6 +27,18 @@ export function justifiedRows(ratios, width, gap = 20, target = 300, minWidth = 
   return rows;
 }
 
+export function commercialRows(count, width, gap, columns) {
+  const rows = [];
+  let start = 0;
+  const rowCount = Math.ceil(count / columns);
+  for (let row = 0; row < rowCount; row++) {
+    const size = Math.ceil((count - start) / (rowCount - row));
+    rows.push({start,end:start+size,height:(width-gap*(size-1))/size/(16/9)});
+    start += size;
+  }
+  return rows;
+}
+
 function initProjects() {
   const sections = ['work', 'commercial'].map(id => {
     const section = document.getElementById(id);
@@ -49,7 +61,9 @@ function initProjects() {
       const width = Math.max(1, state.gallery.getBoundingClientRect().width);
       const gap = innerWidth <= 600 ? 12 : 20;
       const ratios = matching.map(ratio);
-      const rows = innerWidth <= 600
+      const rows = state.id === 'commercial'
+        ? commercialRows(matching.length, width, gap, innerWidth <= 600 ? 1 : innerWidth < 768 ? 2 : 3)
+        : innerWidth <= 600
         ? ratios.map((r,i) => ({start:i,end:i+1,height:width/r}))
         : justifiedRows(ratios, width, gap, innerWidth <= 1000 ? 260 : 300);
       const limit = rows[Math.min(state.id === 'work' ? 3 : 2, rows.length) - 1]?.end || 0;
