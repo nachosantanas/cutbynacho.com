@@ -3,7 +3,7 @@ export function visibleProjects(projects, role, limit = Infinity) {
 }
 
 // Balance every row, including the last, without changing project order.
-export function justifiedRows(ratios, width, gap = 20, target = 300) {
+export function justifiedRows(ratios, width, gap = 20, target = 300, minWidth = 150) {
   const costs = Array(ratios.length + 1).fill(Infinity), ends = [];
   costs[ratios.length] = 0;
   for (let start = ratios.length - 1; start >= 0; start--) {
@@ -12,6 +12,7 @@ export function justifiedRows(ratios, width, gap = 20, target = 300) {
       sum += ratios[end];
       const height = (width - gap * (end - start)) / sum;
       if (height <= 0) break;
+      if (end > start && Math.min(...ratios.slice(start, end + 1)) * height < minWidth) continue;
       const cost = (height - target) ** 2 + costs[end + 1];
       if (cost < costs[start]) { costs[start] = cost; ends[start] = end + 1; }
     }

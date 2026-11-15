@@ -17,6 +17,7 @@ for (const width of [620, 900, 1400]) {
     for (const row of rows) {
       assert.equal(row.start,next);
       assert.ok(row.height > 0);
+      if (row.end-row.start>1) assert.ok(Math.min(...ratios.slice(row.start,row.end))*row.height>=150,'Portrait cards remain readable on tablets');
       const filled = ratios.slice(row.start,row.end).reduce((sum,r) => sum+r*row.height,0)+20*(row.end-row.start-1);
       assert.ok(Math.abs(filled-width)<0.001,'Every row must fill the gallery, including the last');
       next=row.end;

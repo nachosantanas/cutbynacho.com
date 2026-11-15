@@ -510,6 +510,23 @@ html{scroll-padding-top:0!important}
 .featured-item:focus-visible .featured-info,.featured-item:focus-visible .ext-arrow{opacity:1;transform:none}
 @media(max-width:1000px) and (min-width:601px){.projects-ready .masonry-gallery,.work-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.projects-ready .masonry-gallery,.work-grid{grid-template-columns:minmax(0,1fr)}}
+/* Tablet portrait needs its own composition between phone and desktop. */
+@media(min-width:701px) and (max-width:1024px){
+.hero-copy{display:block;padding:48px 0 36px}
+.future-title{font-size:clamp(76px,10vw,100px)}
+.future-title span:last-child{font-size:.3em;margin-top:18px}
+.hero-copy>p{max-width:520px;margin-top:26px;font-size:14px;line-height:1.7}
+.hero-actions{margin-top:22px;gap:28px}
+.hero-actions a{font-size:11px;min-height:36px;display:inline-flex;align-items:center}
+.hero-meta span:last-child{display:none}
+.edit-strip{flex-wrap:wrap;gap:14px 24px;white-space:normal}
+.edit-strip span::before{display:none}
+.about-grid{grid-template-columns:1fr;gap:36px}
+.tools-categories{grid-template-columns:1fr}
+.tool-cat{border-right:0;border-bottom:1px solid var(--border);padding:24px 0!important;margin:0}
+.contact-grid{grid-template-columns:1fr}
+}
+@media(pointer:coarse){.ext-arrow{opacity:.7}.nav-links a{min-height:44px;display:inline-flex;align-items:center}.nav-dropdown{display:none!important}}
 /* A continuation cue below complete rows, never a mask over project credits. */
 .projects-ready #work .show-more-wrap,.projects-ready #commercial .show-more-wrap{position:relative;margin-top:0;padding:28px 0 8px;isolation:isolate}
 .show-more-wrap:has(.show-more-btn:not(.open))::before{content:'';position:absolute;z-index:-1;inset:0 0 auto;height:110px;pointer-events:none;background:radial-gradient(ellipse at 50% 0,rgba(209,255,101,.16),transparent 72%);border-top:1px solid rgba(209,255,101,.28)}
@@ -536,7 +553,7 @@ html{scroll-padding-top:0!important}
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/availability.css?v=20261101-mobile">
   <script type="module" src="/assets/availability.js"></script>
-<script type="module" src="/assets/projects.js?v=4"></script>
+<script type="module" src="/assets/projects.js?v=5"></script>
 </head>
 <body>
 
