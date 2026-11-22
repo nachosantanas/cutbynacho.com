@@ -56,7 +56,7 @@ def main():
     for name in page.files:
         assert (ROOT / name).is_file(), f'Missing local reference: {name}'
     assert len(page.ids) == len(set(page.ids)), 'Duplicate HTML id'
-    for name in ('work', 'commercial', 'about', 'tools', 'contact', 'availability'):
+    for name in ('work', 'commercial', 'about', 'personalBuildsBlock', 'contact', 'availability'):
         assert name in page.ids, f'Missing section {name}'
     catalogue = json.loads((ROOT / 'assets/builds/catalogue.json').read_text())
     slugs = [item['slug'] for item in catalogue]
