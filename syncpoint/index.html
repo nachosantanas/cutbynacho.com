@@ -4,75 +4,12 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
-  <meta name="theme-color" content="#080b0b">
-  <meta name="description" content="Download and activate the SyncPoint private beta for Apple Silicon Macs.">
-  <title>SyncPoint private beta · Nacho Santana</title>
-  <link rel="icon" href="/assets/favicon.svg?v=2" type="image/svg+xml">
-  <style>
-    :root { color-scheme: dark; font-family: system-ui, sans-serif; background: #080b0b; color: #f2f5ed; }
-    body { margin: 0; padding: 2rem clamp(1.25rem, 6vw, 4rem); line-height: 1.55; }
-    header, main { max-width: 42rem; margin-inline: auto; }
-    header { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .75rem 1.5rem; }
-    main { margin-block: clamp(3rem, 12vw, 8rem) 3rem; }
-    h1 { font-size: clamp(2.7rem, 10vw, 5rem); line-height: 1; letter-spacing: -.06em; margin: .5rem 0 1.25rem; }
-    h2 { font-size: 1.25rem; margin: 2rem 0 .5rem; }
-    p, ol { max-width: 60ch; }
-    li + li { margin-top: .5rem; }
-    .muted { color: #aebbb3; }
-    .button { display: inline-block; margin-top: 1rem; padding: .75rem 1.125rem; border-radius: .25rem; background: #d1ff65; color: #080b0b; font-weight: 700; text-decoration: none; }
-    a { color: #d1ff65; text-underline-offset: .2em; }
-    a:focus-visible { outline: 2px solid #f2f5ed; outline-offset: 5px; }
-    .install { margin-top: 2rem; border-top: 1px solid #293632; }
-    [hidden] { display: none !important; }
-  </style>
+  <link rel="canonical" href="https://cutbynacho.com/xsync/">
+  <title>XSync private beta</title>
+  <noscript><meta http-equiv="refresh" content="0; url=/xsync/"></noscript>
+  <script>location.replace('/xsync/' + location.search + location.hash);</script>
 </head>
 <body>
-  <header>
-    <a href="/">Nacho Santana</a>
-    <nav aria-label="Language"><a href="?lang=en" lang="en">English</a> · <a href="?lang=es" lang="es">Español</a></nav>
-  </header>
-  <main>
-    <section id="english" lang="en">
-      <p class="muted">Private beta · 0.39.0 (build 70)</p>
-      <h1>SyncPoint</h1>
-      <p>Sync camera footage and production sound, review matches, and export synced clips and multicams to Final Cut Pro.</p>
-      <p><strong>Apple Silicon · macOS 14 or later</strong></p>
-      <a class="button" href="https://drive.google.com/file/d/1BDPF0Z3s4RGSh9fIXdURQws7NoGMh_xc/view?usp=drivesdk">Download on Google Drive</a>
-      <p class="muted">48 MB DMG. Sign in with the Google account you were invited with.</p>
-      <div class="install">
-        <h2>Install and activate</h2>
-        <ol>
-          <li>Open the DMG, read <strong>START HERE</strong>, and drag SyncPoint into Applications. If Finder offers to replace an existing copy, choose another destination.</li>
-          <li>The beta is ad-hoc signed and hasn’t been notarized. If macOS blocks it, follow the <a href="https://support.apple.com/en-gb/102445">Apple first-launch instructions</a> for the copy you received.</li>
-          <li>In SyncPoint, open <strong>Beta license…</strong> and enter your invitation code while online.</li>
-        </ol>
-        <p>Access lasts 30 days from first activation. Offline access lasts up to seven days within that term.</p>
-      </div>
-    </section>
-    <section id="spanish" lang="es" hidden>
-      <p class="muted">Beta privada · 0.39.0 (compilación 70)</p>
-      <h1>SyncPoint</h1>
-      <p>Sincroniza imagen y sonido directo, revisa las coincidencias y exporta clips sincronizados y multicámara a Final Cut Pro.</p>
-      <p><strong>Apple Silicon · macOS 14 o posterior</strong></p>
-      <a class="button" href="https://drive.google.com/file/d/1BDPF0Z3s4RGSh9fIXdURQws7NoGMh_xc/view?usp=drivesdk">Descargar en Google Drive</a>
-      <p class="muted">DMG de 48 MB. Inicia sesión con la cuenta de Google que recibió la invitación.</p>
-      <div class="install">
-        <h2>Instalación y activación</h2>
-        <ol>
-          <li>Abre el DMG, lee <strong>START HERE</strong> y arrastra SyncPoint a Aplicaciones. Si Finder te ofrece reemplazar una copia existente, elige otro destino.</li>
-          <li>La beta tiene firma ad hoc y carece de notarización. Si macOS la bloquea, sigue <a href="https://support.apple.com/es-es/102445">las instrucciones de Apple</a> para abrir la copia que recibiste.</li>
-          <li>En SyncPoint, abre <strong>Beta license…</strong> e introduce tu código de invitación con conexión a internet.</li>
-        </ol>
-        <p>El acceso dura 30 días desde la primera activación. Puedes trabajar sin conexión hasta siete días dentro de ese plazo.</p>
-      </div>
-    </section>
-  </main>
-  <script>
-    if (new URLSearchParams(location.search).get('lang') === 'es') {
-      document.documentElement.lang = 'es';
-      document.getElementById('english').hidden = true;
-      document.getElementById('spanish').hidden = false;
-    }
-  </script>
+  <p><a href="/xsync/">Open the XSync private beta page</a></p>
 </body>
 </html>
